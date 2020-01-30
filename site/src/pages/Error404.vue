@@ -1,18 +1,17 @@
 <template>
-  <div class="fixed-center text-center">
-    <p>
-      <img
-        src="~assets/sad.svg"
-        style="width:30vw;max-width:150px;"
-      >
-    </p>
-    <p class="text-faded">Sorry, nothing here...<strong>(404)</strong></p>
-    <q-btn
-      color="secondary"
-      style="width:200px;"
-      to="/"
-      label="Go back"
-    />
+  <div class="o-error404">
+    <img class="o-error404_ilustra" src="~assets/404/bg-404.png" alt="">
+    <div class="o-error404_content">
+      <p class="o-error404_title"><strong>404</strong></p>
+      <p class="a-txt">
+        Ops! parece que seus estudos
+        tiveram um pequeno desvio, vamos
+        voltar à tela inicial para você
+        continuar de onde parou.
+      </p>
+
+    <q-btn rounded outline color="primary" class="bg-white full-width q-mt-md" size="lg" label="Voltar"  to="/" />
+    </div>
   </div>
 </template>
 
