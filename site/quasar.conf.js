@@ -52,7 +52,11 @@ module.exports = function (ctx) {
         'QRouteTab',
         'QTabPanels',
         'QTabPanel',
-        'QCircularProgress'
+        'QCircularProgress',
+        'QLinearProgress',
+        'QCard',
+        'QCardSection',
+        'QCardActions'
       ],
       directives: [],
 

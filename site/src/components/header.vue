@@ -44,7 +44,7 @@ export default {
     return {
       tab: 'activities',
       progress: {
-        value: 0, // porcentagem
+        value: 0,
         levelUp: 100,
         xp: 15
       }

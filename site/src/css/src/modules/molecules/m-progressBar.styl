@@ -1,0 +1,22 @@
+.m-progressBar {
+  width: 100%;
+  display: flex;
+  align-items: center;
+
+  &.rounded-borders {
+    border-radius: 50% !important;
+  }
+}
+
+.m-progressBar-value {
+  color: $accent;
+  font-size: rem(18);
+
+  &:first-child {
+    margin-left: rem(15);
+  }
+
+  &.-negative {
+    color: $negative
+  }
+}
