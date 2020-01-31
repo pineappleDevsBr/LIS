@@ -1,25 +1,21 @@
 .o-error404 {
   min-height: 100vh;
   position: relative;
-  background: $primary;
-}
-
-.o-error404_ilustra {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: 1;
+  background: $primary url('~assets/404/bg-404.png');
+  background-position: bottom right;
+  background-size: contain;
+  background-repeat: no-repeat;
 }
 
 .o-error404_content {
   z-index 2;
-  padding: 0 20px;
+  padding: 0 rem(20);
   position: absolute;
 }
 
 .o-error404_title {
   color: $white;
   font-size: rem(100);
-  padding-top: rem(70);
+  padding-top: rem(50);
   text-align: center;
 }

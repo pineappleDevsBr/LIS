@@ -1,6 +1,5 @@
 <template>
   <div class="o-error404">
-    <img class="o-error404_ilustra" src="~assets/404/bg-404.png" alt="">
     <div class="o-error404_content">
       <p class="o-error404_title"><strong>404</strong></p>
       <p class="a-txt">
