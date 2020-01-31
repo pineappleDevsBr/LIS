@@ -1,0 +1,49 @@
+.o-header {
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    left: 0;
+    bottom: -39px;
+    width: 49px;
+    height: 39px;
+    background: url('~assets/header/borda.png');
+  }
+}
+
+.o-header_head {
+  display: flex;
+  align-items: center;
+  width: 100%;
+  padding: rem(20) rem(20) 0;
+}
+
+.o-header_title {
+  font-size: rem(30);
+  font-weight: $fontweight.bold;
+  text-transform: uppercase;
+}
+
+.o-header_menu-item {
+  text-transform: capitalize;
+
+  & .q-tab__indicator {
+    display: none;
+  }
+
+  &.q-tab--active {
+    & .q-tab__label {
+      font-size: rem(22);
+      font-weight: $fontweight.bold;
+    }
+  }
+
+  & .q-tab__label {
+    font-size: rem(18);
+    transition: 0.1s;
+  }
+
+  &:first-child {
+    margin-left: rem(60);
+  }
+}

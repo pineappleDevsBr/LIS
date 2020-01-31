@@ -2,7 +2,9 @@
   <q-layout view="lHh Lpr lFf">
     <qheader></qheader>
     <q-page-container>
-      <router-view />
+      <div class="v-container">
+        <router-view />
+      </div>
     </q-page-container>
   </q-layout>
 </template>

@@ -2,7 +2,7 @@
   <div class="o-error404">
     <div class="o-error404_content">
       <p class="o-error404_title"><strong>404</strong></p>
-      <p class="a-txt">
+      <p class="a-text">
         Ops! parece que seus estudos
         tiveram um pequeno desvio, vamos
         voltar à tela inicial para você
