@@ -55,10 +55,14 @@ module.exports = function (ctx) {
         'QCircularProgress',
         'QLinearProgress',
         'QCard',
+        'QIcon',
         'QCardSection',
-        'QCardActions'
+        'QCardActions',
+        'QPopupProxy'
       ],
-      directives: [],
+      directives: [
+        'ClosePopup'
+      ],
 
       // Quasar plugins
       plugins: []

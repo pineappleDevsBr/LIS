@@ -6,17 +6,28 @@
           <q-toolbar-title class="a-text o-header_title">
           Lis
           </q-toolbar-title>
-          <q-circular-progress
-          show-value
-          font-size="14px"
-          :value="progressXp"
-          size="60px"
-          :thickness="0.12"
-          color="white"
-          track-color="grey-11"
-        >
-          {{ progress.xp }}XP
-        </q-circular-progress>
+          <div v-if="routerActive === 'home'">
+            <q-circular-progress
+            show-value
+            font-size="14px"
+            :value="progressXp"
+            size="60px"
+            :thickness="0.12"
+            color="white"
+            track-color="grey-11">
+              {{ progress.xp }}XP
+            </q-circular-progress>
+          </div>
+          <div v-else-if="routerActive === 'store'" class="o-header_title o-header_money">
+            {{money}}
+            <img class="o-header_coin" :src="`statics/store/coin.svg`" alt="">
+          </div>
+          <div v-else-if="routerActive === 'profile'">
+
+          </div>
+          <div v-else-if="routerActive === 'hub'">
+
+          </div>
         </div>
         <div class="o-header_menu">
           <router-link class="o-header_menu-item -active" :to="{ name: 'home' }">
@@ -42,7 +53,7 @@ export default {
   name: 'qheader',
   data () {
     return {
-      tab: 'activities',
+      money: 420,
       progress: {
         value: 0,
         levelUp: 100,
@@ -53,6 +64,10 @@ export default {
   computed: {
     progressXp () {
       return ((this.progress.xp * 100) / this.progress.levelUp)
+    },
+
+    routerActive () {
+      return this.$route.name
     }
   }
 }
