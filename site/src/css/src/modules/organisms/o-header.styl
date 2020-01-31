@@ -24,26 +24,22 @@
   text-transform: uppercase;
 }
 
+.o-header_menu {
+  padding: rem(10) rem(15);
+  overflow: hidden;
+  transform: translateX(30%);
+  width: 400px;
+}
+
 .o-header_menu-item {
-  text-transform: capitalize;
+  color: $white;
+  text-decoration: none;
+  font-size: rem(18);
+  transform: translateZ(0) scale(0.8);
+  padding: 0 rem(8);
 
-  & .q-tab__indicator {
-    display: none;
-  }
-
-  &.q-tab--active {
-    & .q-tab__label {
-      font-size: rem(22);
-      font-weight: $fontweight.bold;
-    }
-  }
-
-  & .q-tab__label {
-    font-size: rem(18);
-    transition: 0.1s;
-  }
-
-  &:first-child {
-    margin-left: rem(60);
+  &.-active {
+    font-size: rem(22);
+    font-weight: $fontweight.bold;
   }
 }

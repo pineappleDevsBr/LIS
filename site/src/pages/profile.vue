@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div>
-      Atividades
+      Perfil
     </div>
   </q-page>
 </template>

@@ -5,7 +5,7 @@
       Learn is Simple
     </div>
     <img class="o-welcome_ilustra" src="~assets/welcome/ilustra.svg" alt="">
-    <q-btn rounded outline color="primary" class="bg-white" size="lg" label="Vamos começar"  to="/login" />
+    <q-btn rounded outline color="primary" class="bg-white" size="lg" label="Vamos começar"  :to="{name: 'login'}" />
   </q-page>
 </template>
 

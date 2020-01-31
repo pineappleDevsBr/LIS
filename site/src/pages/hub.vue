@@ -1,7 +1,7 @@
 <template>
   <q-page>
     <div>
-      Atividades
+      Hub de amigos
     </div>
   </q-page>
 </template>

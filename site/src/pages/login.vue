@@ -11,7 +11,7 @@
         <q-input outlined bg-color="white" color="primary" type="password" v-model="password" label="Senha" />
 
         <q-btn outline color="white" size="lg" label="Login" />
-        <router-link to="#" class="q-mt-md text-white a-link">
+        <router-link :to="{name: 'forgot-password'}" class="q-mt-md text-white a-link">
         Esqueci minha senha
       </router-link>
       </q-form>

@@ -12,23 +12,26 @@
           :value="progressXp"
           size="60px"
           :thickness="0.12"
-          color="negative"
-          track-color="grey-3"
+          color="white"
+          track-color="grey-11"
         >
           {{ progress.xp }}XP
         </q-circular-progress>
         </div>
-        <q-tabs
-        inline-label
-        shrink
-        v-model="tab"
-        narrow-indicator
-        class="bg-primary text-white o-header_menu">
-          <q-tab class="o-header_menu-item" name="activities" label="Atividades" />
-          <q-tab class="o-header_menu-item" name="store" label="Loja" />
-          <q-tab class="o-header_menu-item" name="profile" label="Perfil" />
-          <q-tab class="o-header_menu-item" name="hub" label="Hub de amigos" />
-        </q-tabs>
+        <div class="o-header_menu">
+          <router-link class="o-header_menu-item -active" :to="{ name: 'home' }">
+            Atividades
+          </router-link>
+          <router-link class="o-header_menu-item" :to="{ name: 'store' }">
+            Loja
+          </router-link>
+          <router-link class="o-header_menu-item" :to="{ name: 'profile' }">
+            Perfil
+          </router-link>
+          <router-link class="o-header_menu-item" :to="{ name: 'hub' }">
+            Hub de amigos
+          </router-link>
+        </div>
       </q-toolbar>
     </q-header>
   </div>
