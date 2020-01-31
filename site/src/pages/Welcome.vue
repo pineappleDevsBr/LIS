@@ -4,7 +4,7 @@
     <div class="a-txt o-welcome_text">
       Learn is Simple
     </div>
-    <img class="o-welcome_ilustra" src="~assets/welcome/ilustra.png" alt="">
+    <img class="o-welcome_ilustra" src="~assets/welcome/ilustra.svg" alt="">
     <q-btn rounded outline color="primary" class="bg-white" size="lg" label="Vamos começar"  to="/login" />
   </q-page>
 </template>
