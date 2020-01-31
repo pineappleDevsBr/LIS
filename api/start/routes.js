@@ -16,5 +16,9 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
+Route.group(() => {
+  Route.get('/test', 'UserController.index')
+}).middleware(['auth']);
+
+Route.post('/session', 'SessionController.store')
 Route.on('/').render('welcome')
-Route.get('/welcome', 'UserController.index');
