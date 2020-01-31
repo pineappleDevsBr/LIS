@@ -35,11 +35,6 @@ export default {
         { id: 5, name: 'Vale-presente', price: 100, icon: 'buy.svg', description: 'Vale-presente: você pode comprar para presentear um amigo com um item surpresa 😁' }
       ]
     }
-  },
-  methods: {
-    teste () {
-      alert('deu certo')
-    }
   }
 }
 </script>
