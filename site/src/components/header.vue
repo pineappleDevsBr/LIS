@@ -23,7 +23,9 @@
             <img class="o-header_coin" :src="`statics/store/coin.svg`" alt="">
           </div>
           <div v-else-if="routerActive === 'profile'">
-
+            <q-btn flat dense round no-ripple @click="rotateAnimation">
+              <img class="o-header_settings" :src="`statics/profile/cog.svg`" alt="">
+            </q-btn>
           </div>
           <div v-else-if="routerActive === 'hub'">
 

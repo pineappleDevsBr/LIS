@@ -1,17 +1,17 @@
 <template>
   <div class="m-cards">
     <q-card class="m-card" v-for="item in products" v-bind:key="item.id">
-      <q-card-section class="o-store_box-product">
-        <div class="o-store_price">
+      <q-card-section class="m-store_box-product">
+        <div class="m-store_price">
           <strong>{{item.price}}</strong>
-          <img class="o-store_coin" :src="`statics/store/coin.svg`" alt="">
+          <img class="m-store_coin" :src="`statics/store/coin.svg`" alt="">
         </div>
-        <img class="o-store_icon" :src="`statics/store/products/${item.icon}`" alt="">
-        <div class="o-store_product">
-          <h2 class="o-store_title">{{item.name}}</h2>
-          <q-icon name="contact_support" class="o-store_product-question">
+        <img class="m-store_icon" :src="`statics/store/products/${item.icon}`" alt="">
+        <div class="m-store_product">
+          <h2 class="m-store_title">{{item.name}}</h2>
+          <q-icon name="contact_support" class="m-store_product-question">
             <q-popup-proxy :offset="[10, 10]">
-              <q-banner class="o-store_product-info">
+              <q-banner class="m-store_product-info">
                 <p>{{item.description}}</p>
               </q-banner>
             </q-popup-proxy>
