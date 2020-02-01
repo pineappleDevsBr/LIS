@@ -23,12 +23,14 @@
             <img class="o-header_coin" :src="`statics/store/coin.svg`" alt="">
           </div>
           <div v-else-if="routerActive === 'profile'">
-            <q-btn flat dense round no-ripple @click="rotateAnimation">
+            <q-btn flat dense round no-ripple>
               <img class="o-header_settings" :src="`statics/profile/cog.svg`" alt="">
             </q-btn>
           </div>
           <div v-else-if="routerActive === 'hub'">
-
+            <q-btn flat dense round no-ripple>
+              <img class="o-header_add-friends" :src="`statics/hub/add-friend.svg`" alt="">
+            </q-btn>
           </div>
         </div>
         <div class="o-header_menu">
