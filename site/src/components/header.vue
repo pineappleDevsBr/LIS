@@ -4,7 +4,8 @@
       <q-toolbar class="flex column">
         <div class="o-header_head">
           <q-toolbar-title class="a-text o-header_title">
-          Lis
+            <q-icon name="arrow_back" v-if="title !== 'LIS'"/>
+            {{ title }}
           </q-toolbar-title>
           <div v-if="routerActive === 'home'">
             <q-circular-progress
@@ -33,7 +34,7 @@
             </q-btn>
           </div>
         </div>
-        <div class="o-header_menu">
+        <div class="o-header_menu" v-if="title === 'LIS'">
           <router-link class="o-header_menu-item -active" :to="{ name: 'home' }">
             Atividades
           </router-link>
@@ -72,6 +73,11 @@ export default {
 
     routerActive () {
       return this.$route.name
+    },
+
+    title () {
+      if (this.routerActive === 'settings') return 'Configurações'
+      else return 'LIS'
     }
   }
 }

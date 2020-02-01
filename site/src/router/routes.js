@@ -22,6 +22,13 @@ const routes = [
     ]
   },
   {
+    path: '/settings',
+    component: () => import('layouts/index.vue'),
+    children: [
+      { path: '', name: 'settings', component: () => import('pages/settings.vue') }
+    ]
+  },
+  {
     path: '/hub',
     component: () => import('layouts/index.vue'),
     children: [
