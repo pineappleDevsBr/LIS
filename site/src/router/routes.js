@@ -22,6 +22,13 @@ const routes = [
     ]
   },
   {
+    path: '/profile/:id',
+    component: () => import('layouts/index.vue'),
+    children: [
+      { path: '', component: () => import('pages/profile-friend.vue') }
+    ]
+  },
+  {
     path: '/settings',
     component: () => import('layouts/index.vue'),
     children: [

@@ -8,17 +8,17 @@
       <h2 class="m-profile_achievements-title">Conquistas</h2>
 
       <q-card class="m-card" v-for="item in achievements" v-bind:key="item.id">
-      <q-card-section class="m-profile_card">
-        <img class="m-profile_icon" :src="`statics/profile/achievements/${item.icon}`" alt="">
-        <div>
-          <h2 class="m-profile_title">{{item.title}}</h2>
-          <p class="m-profile_description">{{item.description}}</p>
-        </div>
-      </q-card-section>
-      <q-card-section>
-        <progressBar></progressBar>
-      </q-card-section>
-    </q-card>
+        <q-card-section class="m-profile_card">
+          <img class="m-profile_icon" :src="`statics/profile/achievements/${item.icon}`" alt="">
+          <div>
+            <h2 class="m-profile_title">{{item.title}}</h2>
+            <p class="m-profile_description">{{item.description}}</p>
+          </div>
+        </q-card-section>
+        <q-card-section>
+          <progressBar></progressBar>
+        </q-card-section>
+      </q-card>
     </div>
   </div>
 </template>
