@@ -30,9 +30,6 @@ export default {
     selectedAvatar (avatar) {
       if (avatar) this.$emit('selectedAvatar', { avatar })
       else this.$emit('selectedAvatar')
-    },
-    hide ([evt]) {
-      console.log('oi')
     }
   }
 }

@@ -25,14 +25,21 @@ const routes = [
     path: '/profile/:id',
     component: () => import('layouts/index.vue'),
     children: [
-      { path: '', component: () => import('pages/profile-friend.vue') }
+      { path: '', component: () => import('pages/internal-pages/profile-friend.vue') }
     ]
   },
   {
     path: '/settings',
     component: () => import('layouts/index.vue'),
     children: [
-      { path: '', name: 'settings', component: () => import('pages/settings.vue') }
+      { path: '', name: 'settings', component: () => import('pages/internal-pages/settings.vue') }
+    ]
+  },
+  {
+    path: '/reading',
+    component: () => import('layouts/index.vue'),
+    children: [
+      { path: '', name: 'reading', component: () => import('pages/activities/reading.vue') }
     ]
   },
   {

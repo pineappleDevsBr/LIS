@@ -9,9 +9,9 @@
 
 <script>
 export default {
-  name: 'progress',
+  name: 'progressBar',
   props: {
-    progress: Boolean
+    progress: Object
   },
   computed: {
     progressXp () {

@@ -52,8 +52,8 @@
 </template>
 
 <script>
-import qprompt from '../components/ui/dlg-prompt'
-import changeAvatar from '../components/ui/changeAvatar'
+import qprompt from '../../components/ui/dlg-prompt'
+import changeAvatar from '../../components/ui/changeAvatar'
 
 export default {
   name: 'Settings',
@@ -92,7 +92,6 @@ export default {
 
     isClose (event) {
       const { type, newValue } = event
-      console.log(type)
       if (type === 'name') this.account.name = newValue
       else if (type === 'email') this.account.email = newValue
       else this.account.password = newValue

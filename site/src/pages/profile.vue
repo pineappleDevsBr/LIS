@@ -34,7 +34,7 @@ export default {
     return {
       achievements: [
         { id: 1, title: 'Resistencia', description: 'Faça 10 dias consecutivos de atividades', icon: 'shield.svg', progress: { showValue: true, levelUp: 10, xp: 10 } },
-        { id: 1, title: 'Modo NERD', description: 'Leia 20 textos do nível 3', icon: 'book.svg', progress: { showValue: true, levelUp: 20, xp: 14 } }
+        { id: 2, title: 'Modo NERD', description: 'Leia 20 textos do nível 3', icon: 'book.svg', progress: { showValue: true, levelUp: 20, xp: 14 } }
       ]
     }
   }

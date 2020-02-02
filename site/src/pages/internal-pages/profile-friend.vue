@@ -47,7 +47,7 @@
 </template>
 
 <script>
-import progressBar from '../components/progress-bar'
+import progressBar from '../../components/progress-bar'
 
 export default {
   name: 'friend',

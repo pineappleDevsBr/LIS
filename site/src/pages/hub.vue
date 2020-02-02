@@ -33,7 +33,6 @@ export default {
   },
   methods: {
     viewFriend (id) {
-      console.log(id)
       this.$router.push(`/profile/${id}`)
     }
   }
