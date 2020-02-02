@@ -24,7 +24,7 @@
             <img class="o-header_coin" :src="`statics/store/coin.svg`" alt="">
           </div>
           <div v-else-if="routerActive === 'profile'">
-            <q-btn flat dense round no-ripple>
+            <q-btn flat dense round no-ripple :to="{ name: 'settings' }">
               <img class="o-header_settings" :src="`statics/profile/cog.svg`" alt="">
             </q-btn>
           </div>
