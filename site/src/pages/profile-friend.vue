@@ -6,7 +6,7 @@
         <h3 class="m-friends_xp-spotlight">1.560 XP</h3>
       </q-card-section>
       <q-card-section>
-        <progressBar></progressBar>
+        <progressBar :progress="progress"></progressBar>
       </q-card-section>
     </q-card>
 
@@ -56,6 +56,11 @@ export default {
   },
   data () {
     return {
+      progress: {
+        showValue: false,
+        levelUp: 2000,
+        xp: 1560
+      },
       friends: [
         { id: 1, name: 'Amigo1', avatar: 'lis-avatar2.png', level: '5', xp: '856', course: { name: 'Inglês', flag: '226-united-states.svg' } },
         { id: 2, name: 'Amigo2', avatar: 'lis-avatar3.png', level: '1', xp: '300', course: { name: 'Inglês', flag: '226-united-states.svg' } },

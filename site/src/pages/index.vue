@@ -9,7 +9,7 @@
         </div>
       </q-card-section>
       <q-card-section>
-        <progressBar></progressBar>
+        <progressBar :progress="item.progress"></progressBar>
       </q-card-section>
     </q-card>
   </div>
@@ -26,9 +26,9 @@ export default {
   data () {
     return {
       activities: [
-        { id: 1, title: 'Quiz', icon: 'quiz.svg', activitie: 'Pronomes' },
-        { id: 2, title: 'Videos', icon: 'interactive-content.svg', activitie: 'Substantivos' },
-        { id: 3, title: 'Leitura', icon: 'read.svg', activitie: 'Verbo To be' }
+        { id: 1, title: 'Quiz', icon: 'quiz.svg', activitie: 'Pronomes', progress: { showValue: false, levelUp: 100, xp: 80 } },
+        { id: 2, title: 'Videos', icon: 'interactive-content.svg', activitie: 'Substantivos', progress: { showValue: false, levelUp: 350, xp: 180 } },
+        { id: 3, title: 'Leitura', icon: 'read.svg', activitie: 'Verbo To be', progress: { showValue: false, levelUp: 650, xp: 20 } }
       ]
     }
   }

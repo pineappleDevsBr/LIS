@@ -10,15 +10,8 @@
 <script>
 export default {
   name: 'progress',
-  data () {
-    return {
-      progress: {
-        showValue: false,
-        value: 0,
-        levelUp: 100,
-        xp: 10
-      }
-    }
+  props: {
+    progress: Boolean
   },
   computed: {
     progressXp () {
