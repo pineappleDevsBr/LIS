@@ -1,5 +1,5 @@
 <template>
-  <q-dialog v-model="selectAvatar" @before-hide="selectedAvatar()">
+  <q-dialog v-model="selectAvatar" persistent>
      <div class="m-changeAvatar">
       <q-avatar class="m-changeAvatar_item" v-for="avatar in avatars" v-bind:key="avatar.id" @click="selectedAvatar(avatar.image)">
         <img :src="`https://api.adorable.io/avatars/50/${avatar.image}`">
@@ -30,6 +30,9 @@ export default {
     selectedAvatar (avatar) {
       if (avatar) this.$emit('selectedAvatar', { avatar })
       else this.$emit('selectedAvatar')
+    },
+    hide ([evt]) {
+      console.log('oi')
     }
   }
 }
