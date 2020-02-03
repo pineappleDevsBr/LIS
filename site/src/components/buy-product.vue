@@ -1,5 +1,5 @@
 <template>
-  <q-dialog v-model="buy">
+  <q-dialog v-model="buy" persistent>
     <q-card class="m-card m-buy">
       <q-card-section class="m-buy_cash">
         Preço: {{product.price}}
@@ -13,7 +13,10 @@
 
       <q-card-actions class="m-buy_add">
         Quantidade: {{qtde}}
-        <q-btn class="m-buy_add-btn" push round dense icon="add" @click="qtde += 1" />
+        <div>
+          <q-btn class="m-buy_add-btn" push round dense icon="remove" @click="remove" />
+          <q-btn class="m-buy_add-btn" push round dense icon="add" @click="add" />
+        </div>
       </q-card-actions>
 
       <q-card-section class="m-buy_value">
@@ -22,8 +25,8 @@
       <q-separator />
 
       <q-card-actions align="right">
-        <q-btn v-close-popup flat class="m-buy_btn" label="Cancelar" />
-        <q-btn v-close-popup flat class="m-buy_btn" label="Comprar" />
+        <q-btn @click="close" flat class="m-buy_btn" label="Cancelar" />
+        <q-btn @click="finishBuy" flat class="m-buy_btn" label="Comprar" />
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -38,7 +41,26 @@ export default {
   },
   data () {
     return {
-      qtde: 1
+      qtde: 1,
+      wallet: 420
+    }
+  },
+  methods: {
+    remove () {
+      if (this.qtde > 1) {
+        this.qtde -= 1
+      }
+    },
+    add () {
+      if ((this.value + this.product.price) <= this.wallet) {
+        this.qtde += 1
+      }
+    },
+    finishBuy () {
+      this.$emit('close')
+    },
+    close () {
+      this.$emit('close')
     }
   },
   computed: {

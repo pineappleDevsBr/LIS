@@ -9,17 +9,10 @@
         <img class="m-store_icon" :src="`statics/store/products/${item.icon}`" alt="">
         <div class="m-store_product">
           <h2 class="m-store_title">{{item.name}}</h2>
-          <q-icon name="contact_support" class="m-store_product-question">
-            <q-popup-proxy :offset="[10, 10]">
-              <q-banner class="m-store_product-info">
-                <p>{{item.description}}</p>
-              </q-banner>
-            </q-popup-proxy>
-          </q-icon>
         </div>
       </q-card-section>
     </q-card>
-    <buy :buy="buyConfirm" :product="products[productId]"></buy>
+    <buy :buy="buyConfirm" :product="products[productId]" @close="closeBuyConfirm"></buy>
   </div>
 </template>
 
@@ -48,6 +41,9 @@ export default {
     buyProduct (id) {
       this.productId = id
       this.buyConfirm = true
+    },
+    closeBuyConfirm () {
+      this.buyConfirm = false
     }
   }
 }
