@@ -4,7 +4,6 @@
       <q-toolbar class="flex column">
         <div class="o-header_head">
           <q-toolbar-title class="a-text o-header_title">
-            <q-icon name="arrow_back" v-if="title !== 'LIS'"/>
             {{ title }}
           </q-toolbar-title>
           <component :is="activeAction"></component>

@@ -25,6 +25,7 @@
 
 <script>
 import progressBar from '../components/progress-bar'
+
 export default {
   name: 'Profile',
   components: {

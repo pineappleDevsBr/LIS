@@ -29,13 +29,6 @@ const routes = [
     ]
   },
   {
-    path: '/settings',
-    component: () => import('layouts/index.vue'),
-    children: [
-      { path: '', name: 'settings', component: () => import('pages/internal-pages/settings.vue') }
-    ]
-  },
-  {
     path: '/reading',
     component: () => import('layouts/index.vue'),
     children: [
