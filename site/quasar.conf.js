@@ -62,7 +62,8 @@ module.exports = function (ctx) {
         'QPopupEdit',
         'QDialog',
         'QToggle',
-        'QScrollArea'
+        'QScrollArea',
+        'QCheckbox'
       ],
       directives: [
         'ClosePopup'

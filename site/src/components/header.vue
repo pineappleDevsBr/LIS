@@ -40,6 +40,7 @@ export default {
   },
   data () {
     return {
+      title: 'LIS',
       swiperOption: {
         slidesPerView: 'auto',
         freeMode: true,
@@ -65,11 +66,6 @@ export default {
 
     activeAction () {
       return this.routes[this.$route.name].action ? `q${this.routes[this.$route.name].action}` : this.default.action
-    },
-
-    title () {
-      if (this.routerActive === 'settings') return 'Configurações'
-      else return 'LIS'
     }
   },
   methods: {
