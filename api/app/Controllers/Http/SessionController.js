@@ -1,4 +1,5 @@
 'use strict'
+const User = use('App/Models/User');
 
 class SessionController {
   async store({ request, response, auth }) {
@@ -6,8 +7,20 @@ class SessionController {
       'email',
       'password'
     ]);
+    
+    try {
+      const data = await User.findBy('email', email);
 
-    return { token } = await auth.attempt(email, password);
+      if (data && data.password === password) {
+        return { token } = await auth.attempt(email, password);
+      } else if (data) {
+        response.status(401).send('Invalid password');
+      } else {
+        response.send('User not finded');
+      }
+    } catch (err) {
+      response.send(err)
+    }
   }
 }
 

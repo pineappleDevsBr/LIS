@@ -7,46 +7,14 @@
             <q-icon name="arrow_back" v-if="title !== 'LIS'"/>
             {{ title }}
           </q-toolbar-title>
-          <div v-if="routerActive === 'home'">
-            <q-circular-progress
-            show-value
-            font-size="14px"
-            :value="progressXp"
-            size="60px"
-            :thickness="0.12"
-            color="white"
-            track-color="grey-11">
-              {{ progress.xp }}XP
-            </q-circular-progress>
-          </div>
-          <div v-else-if="routerActive === 'store'" class="o-header_title o-header_money">
-            {{money}}
-            <img class="o-header_coin" :src="`statics/store/coin.svg`" alt="">
-          </div>
-          <div v-else-if="routerActive === 'profile'">
-            <q-btn flat dense round no-ripple :to="{ name: 'settings' }">
-              <img class="o-header_settings" :src="`statics/profile/cog.svg`" alt="">
-            </q-btn>
-          </div>
-          <div v-else-if="routerActive === 'hub'">
-            <q-btn flat dense round no-ripple>
-              <img class="o-header_add-friends" :src="`statics/hub/add-friend.svg`" alt="">
-            </q-btn>
-          </div>
+          <component :is="activeAction"></component>
         </div>
         <div class="o-header_menu" v-if="title === 'LIS'">
-          <router-link class="o-header_menu-item -active" :to="{ name: 'home' }">
-            Atividades
-          </router-link>
-          <router-link class="o-header_menu-item" :to="{ name: 'store' }">
-            Loja
-          </router-link>
-          <router-link class="o-header_menu-item" :to="{ name: 'profile' }">
-            Perfil
-          </router-link>
-          <router-link class="o-header_menu-item" :to="{ name: 'hub' }">
-            Hub de amigos
-          </router-link>
+          <swiper :options="swiperOption" ref="mySwiper">
+            <swiper-slide class="o-header_menu-slide" v-for="(item, index) in routes" :key="index">
+              <router-link class="o-header_menu-item" :class="[ routerActive === item.name ? '-active' : '' ]" :to="{ name: item.name }">{{ item.label }}</router-link>
+            </swiper-slide>
+          </swiper>
         </div>
       </q-toolbar>
     </q-header>
@@ -54,30 +22,61 @@
 </template>
 
 <script>
+import 'swiper/dist/css/swiper.css'
+import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import qprogress from './ui-header/progress'
+import qfriends from './ui-header/friends'
+import qstore from './ui-header/store'
+import qsettings from './ui-header/settings'
+
 export default {
   name: 'qheader',
+  components: {
+    swiper,
+    swiperSlide,
+    qprogress,
+    qfriends,
+    qstore,
+    qsettings
+  },
   data () {
     return {
-      money: 420,
-      progress: {
-        value: 0,
-        levelUp: 100,
-        xp: 15
-      }
+      swiperOption: {
+        slidesPerView: 'auto',
+        freeMode: true,
+        freeModeMomentum: false
+      },
+      routes: {
+        home: { name: 'home', label: 'Atividades', action: 'progress' },
+        store: { name: 'store', label: 'Loja', action: 'store' },
+        profile: { name: 'profile', label: 'Perfil', action: 'settings' },
+        hub: { name: 'hub', label: 'Hub de amigos', action: 'friends' }
+      },
+      default: { name: 'home', label: 'Atividades', action: 'progress' }
     }
   },
   computed: {
-    progressXp () {
-      return ((this.progress.xp * 100) / this.progress.levelUp)
+    swiper () {
+      return this.$refs.mySwiper.swiper
     },
 
     routerActive () {
       return this.$route.name
     },
 
+    activeAction () {
+      return this.routes[this.$route.name].action ? `q${this.routes[this.$route.name].action}` : this.default.action
+    },
+
     title () {
       if (this.routerActive === 'settings') return 'Configurações'
       else return 'LIS'
+    }
+  },
+  methods: {
+    toSlide (idx) {
+      console.log(idx)
+      this.swiper.slideTo(idx)
     }
   }
 }
