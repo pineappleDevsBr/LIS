@@ -47,12 +47,12 @@ export default {
         freeModeMomentum: false
       },
       routes: {
-        home: { name: 'home', label: 'Atividades', action: 'progress' },
-        store: { name: 'store', label: 'Loja', action: 'store' },
-        profile: { name: 'profile', label: 'Perfil', action: 'settings' },
-        hub: { name: 'hub', label: 'Hub de amigos', action: 'friends' }
+        home: { name: 'home', label: 'Atividades', action: 'qprogress' },
+        store: { name: 'store', label: 'Loja', action: 'qstore' },
+        profile: { name: 'profile', label: 'Perfil', action: 'qsettings' },
+        hub: { name: 'hub', label: 'Hub de amigos', action: 'qfriends' }
       },
-      default: { name: 'home', label: 'Atividades', action: 'progress' }
+      default: { name: 'home', label: 'Atividades', action: 'qsettings' }
     }
   },
   computed: {
@@ -65,7 +65,11 @@ export default {
     },
 
     activeAction () {
-      return this.routes[this.$route.name].action ? `q${this.routes[this.$route.name].action}` : this.default.action
+      if (this.routes[this.$route.name] && this.routes[this.$route.name].action) {
+        return this.routes[this.$route.name].action
+      }
+
+      return this.default.action
     }
   },
   methods: {
