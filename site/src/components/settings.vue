@@ -6,15 +6,15 @@
     :maximized="true"
     transition-show="slide-up"
     transition-hide="slide-down">
-    <div class="o-settings">
-      <div class="o-settings_header">
-        <h2 class="o-settings_title">Configurações</h2>
+    <div class="o-modal">
+      <div class="o-modal_header">
+        <h2 class="o-modal_title">Configurações</h2>
         <q-btn
         flat
         icon="close"
         @click="closeSettings"/>
       </div>
-      <div class="o-settings_account">
+      <div class="o-modal_content">
         <h2 class="m-settings_title">Conta</h2>
         <q-card class="m-card m-settings_card">
           <q-card-section class="m-settings_info" @click="selectAvatar = true">

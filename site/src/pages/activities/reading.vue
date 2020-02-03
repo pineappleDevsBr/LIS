@@ -22,7 +22,7 @@
         </q-scroll-area>
       </q-card-section>
     </q-card>
-    <q-btn no-caps rounded class="m-reading_btn" label="Ler outro texto"/>
+    <q-btn no-caps rounded class="m-reading_btn" label="Ler outro texto" :to="{ name: 'texts' }"/>
   </div>
 </template>
 
