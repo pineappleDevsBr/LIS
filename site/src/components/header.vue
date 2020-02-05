@@ -52,7 +52,7 @@ export default {
         profile: { name: 'profile', label: 'Perfil', action: 'qsettings' },
         hub: { name: 'hub', label: 'Hub de amigos', action: 'qfriends' }
       },
-      default: { name: 'home', label: 'Atividades', action: 'qsettings' }
+      default: { name: 'home', label: 'Atividades', action: 'qprogress' }
     }
   },
   computed: {

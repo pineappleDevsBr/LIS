@@ -32,8 +32,7 @@ const routes = [
     path: '/texts',
     component: () => import('layouts/index.vue'),
     children: [
-      { path: '', name: 'texts', component: () => import('pages/activities/texts.vue') },
-      { path: '/reading', name: 'reading', component: () => import('pages/activities/reading.vue') }
+      { path: '', name: 'texts', component: () => import('pages/activities/texts.vue') }
     ]
   },
   {
