@@ -1,8 +1,18 @@
+import store from '../store'
+
+function requireAuth (to, from, next) {
+  if (!store().state.auth.isUserLogged) {
+    next({ path: '/login' })
+  } else {
+    next()
+  }
+}
 
 const routes = [
   {
     path: '/',
     component: () => import('layouts/index.vue'),
+    beforeEnter: requireAuth,
     children: [
       { path: '', name: 'home', component: () => import('pages/index.vue') }
     ]
@@ -47,6 +57,13 @@ const routes = [
     component: () => import('layouts/withoutHeader.vue'),
     children: [
       { path: '', name: 'welcome', component: () => import('pages/Welcome.vue') }
+    ]
+  },
+  {
+    path: '/access',
+    component: () => import('layouts/withoutHeader.vue'),
+    children: [
+      { path: '', name: 'access', component: () => import('pages/access.vue') }
     ]
   },
   {

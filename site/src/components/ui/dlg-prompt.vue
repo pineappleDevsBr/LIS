@@ -11,7 +11,7 @@
 
       <q-card-actions align="right" class="text-primary">
         <q-btn flat label="Cancelar" v-close-popup @click="isClose()"/>
-        <q-btn flat label="Salvar" v-close-popup @click="isClose(prompt.value)"/>
+        <q-btn flat label="Alterar" v-close-popup @click="isClose(prompt.value)"/>
       </q-card-actions>
     </q-card>
   </q-dialog>

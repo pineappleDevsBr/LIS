@@ -1,5 +1,6 @@
 // Configuration for your app
 // https://quasar.dev/quasar-cli/quasar-conf-js
+const path = require('path');
 
 module.exports = function (ctx) {
   return {
@@ -70,7 +71,9 @@ module.exports = function (ctx) {
       ],
 
       // Quasar plugins
-      plugins: []
+      plugins: [
+        'Cookies'
+      ]
     },
 
     // https://quasar.dev/quasar-cli/cli-documentation/supporting-ie
@@ -97,6 +100,15 @@ module.exports = function (ctx) {
             formatter: require('eslint').CLIEngine.getFormatter('stylish')
           }
         })
+
+        cfg.resolve.alias = {
+          ...cfg.resolve.alias, // This adds the existing alias
+
+          // Add your own alias like this
+          '@utils': path.resolve(__dirname, './src/utils'),
+          '@store': path.resolve(__dirname, './src/store'),
+          '@api': path.resolve(__dirname, './src/api'),
+        }
       }
     },
 
