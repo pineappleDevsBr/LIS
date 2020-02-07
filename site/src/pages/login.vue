@@ -7,9 +7,9 @@
       class="q-gutter-md column">
 
         <q-input
-        outlined
-        bg-color="white"
-        color="primary"
+        color="white"
+        label-color="white"
+        style="color: white;"
         v-model="form.email"
         @blur="$v.form.email.$touch"
         :error="$v.form.email.$error"
@@ -17,18 +17,17 @@
         label="E-mail" />
 
         <q-input
-        outlined
+        color="white"
+        label-color="white"
+        style="color: white;"
         type="password"
-        bg-color="white"
-        color="primary"
         v-model="form.password"
         @blur="$v.form.password.$touch"
         :error="$v.form.password.$error"
         error-message="Campo obrigatório"
         label="Senha"/>
-
-        <q-btn push type="submit" label="Login"/>
-
+        <img style="margin-top: -60px;" src="statics/login/ilustra.svg" alt="">
+        <q-btn rounded no-caps outline color="primary" class="bg-white" size="lg" type="submit" label="Login"/>
         <router-link :to="{name: 'forgot-password'}" class="q-mt-md text-white a-link">
         Esqueci minha senha
       </router-link>
@@ -48,6 +47,11 @@ export default {
       form: {
         email: '',
         password: ''
+      },
+      errorFilter: {
+        '404': 'Usuario nao encontrado',
+        '401': 'Senha incorreta',
+        '500': 'Erro interno'
       }
     }
   },
@@ -75,7 +79,7 @@ export default {
         } else {
           this.$q.notify({
             color: 'negative',
-            message: this.$t('auth.errorRequest'),
+            message: this.errorFilter[response.error.response.status],
             icon: 'report_problem'
           })
         }
