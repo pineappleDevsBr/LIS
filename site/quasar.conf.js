@@ -9,6 +9,7 @@ module.exports = function (ctx) {
     // https://quasar.dev/quasar-cli/cli-documentation/boot-files
     boot: [
       'i18n',
+      'vuelidate',
       'axios'
     ],
 
@@ -64,7 +65,8 @@ module.exports = function (ctx) {
         'QDialog',
         'QToggle',
         'QScrollArea',
-        'QCheckbox'
+        'QCheckbox',
+        'QField'
       ],
       directives: [
         'ClosePopup'
@@ -72,7 +74,9 @@ module.exports = function (ctx) {
 
       // Quasar plugins
       plugins: [
-        'Cookies'
+        'Cookies',
+        'Loading',
+        'Notify'
       ]
     },
 

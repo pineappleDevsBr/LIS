@@ -11,28 +11,20 @@ const actions = {
   async login ({ commit }, payload) {
     try {
       const { data } = await auth.login(payload)
+      commit('LOGIN_SUCCESSFUL', JSON.parse(JSON.stringify(data)))
+      cookie('token', 'set', data.token, 30)
 
-      commit('LOGIN_SUCCESSFUL', { data, payload })
-      cookie('token', 'set', data.token, payload.remind ? 30 : null)
-      cookie('name', 'set', data.user.name, payload.remind ? 30 : null)
-
-      return { status: true }
+      return { status: true, data }
     } catch (error) {
       return { status: false, error }
     }
   },
 
-  async logout ({ commit }) {
-    try {
-      await auth.logout()
-
-      commit('LOGOUT')
-      cookie('token', 'remove')
-      cookie('name', 'remove')
-      return { status: true }
-    } catch (error) {
-      return { status: false, error }
-    }
+  logout ({ commit }) {
+    commit('LOGOUT')
+    cookie('token', 'remove')
+    cookie('name', 'remove')
+    return { status: true }
   },
 
   async forgot ({ commit }, payload) { // eslint-disable-line
@@ -77,11 +69,11 @@ const actions = {
 }
 
 const mutations = {
-  LOGIN_SUCCESSFUL (state, { payload, data }) {
+  LOGIN_SUCCESSFUL (state, data) {
+    console.log(state)
+
     state.isUserLogged = true
-    state.user.email = payload.email
     state.user.token = data.token
-    state.user.name = data.user.name
   },
 
   LOGOUT (state) {

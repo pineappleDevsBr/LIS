@@ -20,5 +20,5 @@ Route.group(() => {
   Route.get('/test', 'UserController.index')
 }).middleware(['auth']);
 
-Route.post('/session', 'SessionController.store')
+Route.post('/login', 'SessionController.store')
 Route.on('/').render('welcome')

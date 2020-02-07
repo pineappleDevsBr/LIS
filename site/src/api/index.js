@@ -3,7 +3,7 @@ import { Cookies } from 'quasar'
 import authAPI from './modules/auth'
 
 const api = axios.create({
-  baseURL: '',
+  baseURL: 'http://localhost:3333',
   crossDomain: true,
   timeout: 10000
 })
