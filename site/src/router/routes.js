@@ -11,8 +11,8 @@ function requireAuth (to, from, next) {
 const routes = [
   {
     path: '/',
-    component: () => import('layouts/index.vue'),
     beforeEnter: requireAuth,
+    component: () => import('layouts/index.vue'),
     children: [
       { path: '', name: 'home', component: () => import('pages/index.vue') }
     ]

@@ -57,7 +57,7 @@
     </div>
     <div class="m-settings_actions">
       <q-btn no-caps rounded class="m-setting_actions-item" label="Salvar todas as alterações" @click="closeSettings"/>
-      <q-btn no-caps rounded class="m-setting_actions-item" label="Trocar de conta"/>
+      <q-btn no-caps rounded class="m-setting_actions-item" label="Trocar de conta" @click="loggout"/>
     </div>
     <qprompt :prompt="prompt" @isClose="isClose"></qprompt>
     <changeAvatar :selectAvatar="selectAvatar" @selectedAvatar="selectedAvatar"></changeAvatar>
@@ -68,6 +68,7 @@
 <script>
 import qprompt from './ui/dlg-prompt'
 import changeAvatar from './ui/changeAvatar'
+import store from '../store/index'
 
 export default {
   name: 'Settings',
@@ -100,6 +101,10 @@ export default {
     }
   },
   methods: {
+    loggout () {
+      store().dispatch('auth/logout')
+      this.$router.push({ name: 'login' })
+    },
     openDlg (type, title, value) {
       this.prompt.isOpen = true
       this.prompt.type = type
