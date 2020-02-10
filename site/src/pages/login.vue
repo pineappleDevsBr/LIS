@@ -7,6 +7,7 @@
       class="q-gutter-md column">
 
         <q-input
+        dark
         color="white"
         label-color="white"
         style="color: white;"
@@ -17,6 +18,7 @@
         label="E-mail" />
 
         <q-input
+        dark
         color="white"
         label-color="white"
         style="color: white;"

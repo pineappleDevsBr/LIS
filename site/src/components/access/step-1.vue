@@ -1,0 +1,37 @@
+<template>
+  <div class="o-access_step1">
+    <h1 class="o-access_title">LIS</h1>
+    <div class="a-text o-access_text">
+      Learn is Simple
+    </div>
+    <img class="o-access_ilustra" src="statics/access/ilustra_step1.svg" alt="">
+    <q-btn
+    rounded
+    outline
+    color="primary"
+    class="bg-white o-access_btn"
+    size="lg"
+    label="Cadastrar-se"
+    @click="next"/>
+
+    <q-btn
+    rounded
+    outline
+    color="primary"
+    class="bg-white o-access_btn"
+    size="lg"
+    label="Login"
+    :to="{name: 'login'}"/>
+  </div>
+</template>
+
+<script>
+export default {
+  name: 'step1',
+  methods: {
+    next () {
+      this.$emit('next')
+    }
+  }
+}
+</script>
