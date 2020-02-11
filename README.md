@@ -1,4 +1,6 @@
-# LIS - Learning is simple
+<div align="center">
+  # LIS - Learning is simple
+</div>
 
 <div align="center">
 
