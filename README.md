@@ -1,5 +1,5 @@
 <div align="center">
-  <h1># LIS - Learning is simple</h1>
+  <h1>LIS - Learning is simple</h1>
 </div>
 
 <div align="center">
@@ -71,6 +71,7 @@ npm install
 ## Team
 
 <a href="https://sourcerer.io/leandrocesarr"><img src="https://avatars3.githubusercontent.com/u/36801789?v=4" height="50px" width="50px" alt=""/></a>
+<a href="https://sourcerer.io/fernandosouzamarques"><img src="https://avatars2.githubusercontent.com/u/39650868?v=4" height="50px" width="50px" alt=""/></a>
 
 <hr />
 
