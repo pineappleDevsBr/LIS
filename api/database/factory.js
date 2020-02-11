@@ -14,6 +14,14 @@
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use('Factory')
 
+Factory.blueprint('App/Models/FriendList', async (faker, i) => {
+  return {
+    user_one_id: i.one,
+    user_two_id: i.two,
+    user_action_id: i.one,
+  }
+})
+
 Factory.blueprint('App/Models/Nationality', async (faker) => {
   return {
     name: faker.country(),

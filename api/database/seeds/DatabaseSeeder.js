@@ -23,12 +23,24 @@ class DatabaseSeeder {
 
     // -------------------------------------------------------------------------- //
 
-    const user = await Factory.model('App/Models/User').make();
+    const user_model_1 = await Factory.model('App/Models/User').make();
+    const user_model_2 = await Factory.model('App/Models/User').make();
 
     // -------------------------------------------------------------------------- //
 
-    await country_1.users().save(user);
-    
+    await country_1.users().save(user_model_1);
+    await country_1.users().save(user_model_2);
+
+    // -------------------------------------------------------------------------- //
+
+    const user_1 = await User.find(1);
+    const user_2 = await User.find(2);
+
+    await Factory.model('App/Models/FriendList').create(0, { one: user_1.id, two: user_2.id });
+
+    // await friend_relationship.friends().attach(users[0].id).save();
+
+
     // const admin = new User();
     // admin.username = 'admin'
     // admin.email = 'admin@lis.com',
