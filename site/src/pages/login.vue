@@ -22,12 +22,20 @@
         color="white"
         label-color="white"
         style="color: white;"
-        type="password"
+        :type="isPwd ? 'password' : 'text'"
         v-model="form.password"
         @blur="$v.form.password.$touch"
         :error="$v.form.password.$error"
         error-message="Campo obrigatório"
-        label="Senha"/>
+        label="Senha">
+          <template v-slot:append>
+            <q-icon
+              :name="isPwd ? 'visibility_off' : 'visibility'"
+              class="cursor-pointer"
+              @click="isPwd = !isPwd"
+            />
+          </template>
+        </q-input>
         <img style="margin-top: -60px;" src="statics/login/ilustra.svg" alt="">
         <q-btn rounded no-caps outline color="primary" class="bg-white" size="lg" type="submit" label="Login"/>
         <router-link :to="{name: 'forgot-password'}" class="q-mt-md text-white a-link">
@@ -46,6 +54,7 @@ export default {
   name: 'login',
   data () {
     return {
+      isPwd: true,
       form: {
         email: '',
         password: ''
