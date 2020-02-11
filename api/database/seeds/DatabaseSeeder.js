@@ -41,11 +41,15 @@ class DatabaseSeeder {
     // await friend_relationship.friends().attach(users[0].id).save();
 
 
-    // const admin = new User();
-    // admin.username = 'admin'
-    // admin.email = 'admin@lis.com',
-    // admin.password = 'admin123';
-    // await admin.save();
+    const admin = new User();
+    admin.nickname = 'admin'
+    admin.email = 'admin@lis.com',
+    admin.password = 'admin123';
+    admin.date_of_birth = new Date();
+    admin.nationality_id = 1;
+    admin.user_type = 1;
+
+    await admin.save();
 
     // await Factory
     //   .model('App/Models/User')
