@@ -1,5 +1,5 @@
 <div align="center">
-  # LIS - Learning is simple
+  <h1># LIS - Learning is simple</h1>
 </div>
 
 <div align="center">
