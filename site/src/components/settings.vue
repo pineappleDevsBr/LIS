@@ -18,25 +18,25 @@
       <q-card class="m-card m-settings_card">
         <q-card-section class="m-settings_info" @click="selectAvatar = true">
           <p class="m-settings_info-account">Imagem de perfil:</p>
-          <img class="m-profile_avatar" :src="`https://api.adorable.io/avatars/35/${account.avatar}`" alt="avatar adorable">
+          <img class="m-profile_avatar" :src="`https://api.adorable.io/avatars/35/lis-avatar${getUser.id}.png`" alt="avatar adorable">
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card">
-        <q-card-section class="m-settings_info" @click="openDlg('name', 'Nome', account.name)">
+        <q-card-section class="m-settings_info" @click="openDlg('name', 'Nome', getUser.nickname)">
           <p class="m-settings_info-account">Nome:</p>
-          <q-input borderless v-model="account.name" disable />
+          <q-input borderless v-model="getUser.nickname" disable />
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card">
-        <q-card-section class="m-settings_info" @click="openDlg('email', 'E-mail', account.email)">
+        <q-card-section class="m-settings_info" @click="openDlg('email', 'E-mail', getUser.email)">
             <p class="m-settings_info-account">E-mail:</p>
-            <q-input borderless v-model="account.email" disable />
+            <q-input borderless v-model="getUser.email" disable />
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card">
-        <q-card-section class="m-settings_info" @click="openDlg('password', 'Senha', account.password)">
+        <q-card-section class="m-settings_info">
             <p class="m-settings_info-account">Senha:</p>
-            <q-input borderless v-model="account.password" disable type="password" />
+            <q-input borderless v-model="getUser.nickname" disable type="password" />
         </q-card-section>
       </q-card>
     </div>
@@ -69,6 +69,7 @@
 import qprompt from './ui/dlg-prompt'
 import changeAvatar from './ui/changeAvatar'
 import store from '../store/index'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Settings',
@@ -81,12 +82,6 @@ export default {
   },
   data () {
     return {
-      account: {
-        avatar: 'lis-avatar1.png',
-        name: 'Lis',
-        email: 'lorem@ipsum.com',
-        password: 'secret'
-      },
       notifications: {
         update: false,
         changeData: true
@@ -114,17 +109,19 @@ export default {
 
     isClose (event) {
       const { type, newValue } = event
-      if (type === 'name') this.account.name = newValue
-      else if (type === 'email') this.account.email = newValue
-      else this.account.password = newValue
+      if (type === 'name') this.getUser.nickname = newValue
+      else this.getUser.email = newValue
     },
     selectedAvatar (event) {
       this.selectAvatar = false
-      if (event !== undefined) this.account.avatar = event.avatar
+      if (event !== undefined) this.getUser.avatar = event.avatar
     },
     closeSettings () {
       this.$emit('closeSettings')
     }
+  },
+  computed: {
+    ...mapGetters('user', ['getUser'])
   }
 }
 </script>

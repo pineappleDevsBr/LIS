@@ -1,8 +1,8 @@
 <template>
   <div class="o-profile">
     <div class="m-profile_info">
-      <img class="m-profile_avatar" :src="`https://api.adorable.io/avatars/75/${getName}.png`" alt="avatar adorable">
-      <p class="m-profile_username">{{ getName }}</p>
+      <img class="m-profile_avatar" :src="`https://api.adorable.io/avatars/75/lis-avatar${getUser.id}.png`" alt="avatar adorable">
+      <p class="m-profile_username">{{ getUser.nickname }}</p>
     </div>
     <div class="m-profile_achievements" v-if="products.length > 0">
       <h2 class="m-profile_achievements-title">Meus itens</h2>
@@ -61,7 +61,7 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('user', ['getName'])
+    ...mapGetters('user', ['getUser'])
   }
 }
 </script>

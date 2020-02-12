@@ -33,6 +33,8 @@
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'buy',
   props: {
@@ -41,8 +43,7 @@ export default {
   },
   data () {
     return {
-      qtde: 1,
-      wallet: 420
+      qtde: 1
     }
   },
   methods: {
@@ -52,7 +53,7 @@ export default {
       }
     },
     add () {
-      if ((this.value + this.product.price) <= this.wallet) {
+      if ((this.value + this.product.price) <= this.getUser.money) {
         this.qtde += 1
       }
     },
@@ -64,6 +65,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('user', ['getUser']),
     value () {
       return this.qtde * this.product.price
     }

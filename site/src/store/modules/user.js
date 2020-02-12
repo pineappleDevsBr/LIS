@@ -2,7 +2,7 @@
 import { user } from '@api/index'
 
 const getters = {
-  getName: (state) => state.nickname
+  getUser: (state) => state
 }
 
 const actions = {
@@ -33,6 +33,7 @@ const state = {
   email: '',
   date_of_birth: '',
   xp: 0,
+  money: 0,
   nationality: {
     id: 1,
     name: 'Brazil',

@@ -18,6 +18,7 @@
 
 <script>
 import buy from '../components/buy-product'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Store',
@@ -39,12 +40,23 @@ export default {
   },
   methods: {
     buyProduct (id) {
-      this.productId = id
-      this.buyConfirm = true
+      if (this.getUser.money >= this.products[id - 1].price) {
+        this.productId = id - 1
+        this.buyConfirm = true
+      } else {
+        this.$q.notify({
+          color: 'negative',
+          message: 'Moedas insuficientes!',
+          icon: 'monetization_on'
+        })
+      }
     },
     closeBuyConfirm () {
       this.buyConfirm = false
     }
+  },
+  computed: {
+    ...mapGetters('user', ['getUser'])
   }
 }
 </script>
