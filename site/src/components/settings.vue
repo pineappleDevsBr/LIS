@@ -61,6 +61,7 @@
     </div>
     <qprompt :prompt="prompt" @isClose="isClose"></qprompt>
     <changeAvatar :selectAvatar="selectAvatar" @selectedAvatar="selectedAvatar"></changeAvatar>
+    <changePassword></changePassword>
     </div>
   </q-dialog>
 </template>
@@ -68,6 +69,7 @@
 <script>
 import qprompt from './ui/dlg-prompt'
 import changeAvatar from './ui/changeAvatar'
+import changePassword from './ui/changePassword'
 import store from '../store/index'
 import { mapGetters } from 'vuex'
 
@@ -75,7 +77,8 @@ export default {
   name: 'Settings',
   components: {
     qprompt,
-    changeAvatar
+    changeAvatar,
+    changePassword
   },
   props: {
     settings: Boolean
