@@ -17,7 +17,8 @@
 const Route = use('Route')
 
 Route.group(() => {
-  Route.get('/test', 'UserController.index')
+  Route.get('/user/all', 'UserController.index')
+  Route.get('/user', 'UserController.getUser')
 }).middleware(['auth']);
 
 Route.post('/login', 'SessionController.store')

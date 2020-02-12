@@ -1,8 +1,8 @@
 <template>
   <div class="o-profile">
     <div class="m-profile_info">
-      <img class="m-profile_avatar" src="https://api.adorable.io/avatars/75/lis-avatar1.png" alt="avatar adorable">
-      <p class="m-profile_username">Lis</p>
+      <img class="m-profile_avatar" :src="`https://api.adorable.io/avatars/75/${getName}.png`" alt="avatar adorable">
+      <p class="m-profile_username">{{ getName }}</p>
     </div>
     <div class="m-profile_achievements" v-if="products.length > 0">
       <h2 class="m-profile_achievements-title">Meus itens</h2>
@@ -41,6 +41,7 @@
 
 <script>
 import progressBar from '../components/progress-bar'
+import { mapGetters } from 'vuex'
 
 export default {
   name: 'Profile',
@@ -58,6 +59,9 @@ export default {
         { id: 2, name: 'Vale-presente', qtde: 5, icon: 'gift-card.svg', description: 'Vale-presente: você pode comprar para presentear um amigo com um item surpresa 😁' }
       ]
     }
+  },
+  computed: {
+    ...mapGetters('user', ['getName'])
   }
 }
 </script>

@@ -22,10 +22,10 @@ Factory.blueprint('App/Models/FriendList', async (faker, i) => {
   }
 })
 
-Factory.blueprint('App/Models/Nationality', async (faker) => {
+Factory.blueprint('App/Models/Nationality', async (faker, i) => {
   return {
-    name: faker.country(),
-    file: faker.email(),
+    name: i.country || aker.country(),
+    file: i.file || faker.first(),
   }
 })
 

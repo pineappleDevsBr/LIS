@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Cookies } from 'quasar'
 import authAPI from './modules/auth'
+import userAPI from './modules/user'
 
 const api = axios.create({
   baseURL: 'http://localhost:3333',
@@ -10,7 +11,7 @@ const api = axios.create({
 
 api.interceptors.request.use(
   (config) => {
-    const token = Cookies.get('nh-tracking_token')
+    const token = Cookies.get('lis_token')
     if (token) config.headers.Authorization = `Bearer ${token}`
     return config
   },
@@ -18,3 +19,4 @@ api.interceptors.request.use(
 )
 
 export const auth = authAPI(api)
+export const user = userAPI(api)
