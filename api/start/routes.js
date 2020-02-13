@@ -20,6 +20,7 @@ Route.group(() => {
   Route.get('/user/all', 'UserController.index')
   Route.get('/user', 'UserController.get')
   Route.put('/user', 'UserController.update')
+  Route.get('/theme', 'ThemeController.index')
 }).middleware(['auth']);
 
 Route.post('/user', 'UserController.store')
