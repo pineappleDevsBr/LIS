@@ -18,8 +18,10 @@ const Route = use('Route')
 
 Route.group(() => {
   Route.get('/user/all', 'UserController.index')
-  Route.get('/user', 'UserController.getUser')
+  Route.get('/user', 'UserController.get')
+  Route.put('/user', 'UserController.update')
 }).middleware(['auth']);
 
+Route.post('/user', 'UserController.store')
 Route.post('/login', 'SessionController.store')
 Route.on('/').render('welcome')

@@ -14,6 +14,20 @@
 /** @type {import('@adonisjs/lucid/src/Factory')} */
 const Factory = use('Factory')
 
+Factory.blueprint('App/Models/ThemeList', async (faker, i) => {
+  return {
+    user_id: i.user_id,
+    theme_id: i.theme_id,
+  }
+})
+
+Factory.blueprint('App/Models/Theme', async (faker) => {
+  return {
+    name: faker.first(),
+    description: faker.sentence({ words: 10 })
+  }
+})
+
 Factory.blueprint('App/Models/FriendList', async (faker, i) => {
   return {
     user_one_id: i.one,
@@ -24,13 +38,14 @@ Factory.blueprint('App/Models/FriendList', async (faker, i) => {
 
 Factory.blueprint('App/Models/Nationality', async (faker, i) => {
   return {
-    name: i.country || aker.country(),
+    name: i.country || faker.country(),
     file: i.file || faker.first(),
   }
 })
 
 Factory.blueprint('App/Models/User', async (faker) => {
   return {
+    name: faker.name(), 
     nickname: faker.username(),
     email: faker.email(),
     password: faker.password(),

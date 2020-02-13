@@ -21,6 +21,10 @@ class User extends Model {
     })
   }
 
+  static get hidden() {
+    return ['password', 'created_at', 'updated_at'];
+  }
+
   nationality() {
     return this.belongsTo('App/Models/Nationality')
   }

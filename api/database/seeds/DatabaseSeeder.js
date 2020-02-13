@@ -14,6 +14,7 @@
 const Factory = use('Factory')
 const Nationality = use('App/Models/Nationality')
 const User = use('App/Models/User')
+const Theme = use('App/Models/Theme')
 
 class DatabaseSeeder {
   async run () {
@@ -23,6 +24,7 @@ class DatabaseSeeder {
 
     const admin = new User();
     admin.nickname = 'admin'
+    admin.name = 'admin'
     admin.email = 'admin@lis.com',
     admin.password = 'admin123';
     admin.date_of_birth = new Date();
@@ -47,6 +49,14 @@ class DatabaseSeeder {
 
     await Factory.model('App/Models/FriendList').create(0, { one: 1, two: user_2.id });
     await Factory.model('App/Models/FriendList').create(0, { one: user_1.id, two: user_2.id });
+
+    // -------------------------------------------------------------------------- //
+
+    await Factory.model('App/Models/Theme').createMany(5)
+    const theme_1 = await Theme.find(1);
+
+    await Factory.model('App/Models/ThemeList')
+      .create(0, { user_id: user_1.id, theme_id: theme_1.id })
   }
 }
 
