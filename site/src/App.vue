@@ -11,6 +11,7 @@ export default {
   name: 'App',
   async mounted () {
     await store().dispatch('user/getUser')
+    await store().dispatch('theme/getTheme')
   }
 }
 </script>
