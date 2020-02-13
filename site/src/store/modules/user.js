@@ -33,7 +33,7 @@ const state = {
   email: '',
   date_of_birth: '',
   xp: 0,
-  money: 0,
+  money: 100,
   nationality: {
     id: 1,
     name: 'Brazil',
