@@ -29,6 +29,10 @@ class User extends Model {
     return this.belongsTo('App/Models/Nationality')
   }
 
+  themeList() {
+    return this.hasMany('App/Models/ThemeList')
+  }
+
   /**
    * A relationship on tokens is required for auth to
    * work. Since features like `refreshTokens` or

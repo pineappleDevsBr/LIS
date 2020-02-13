@@ -1,7 +1,9 @@
 'use strict'
 /** @type {import('@adonisjs/lucid/src/Lucid/Model')} */
 
+const Database = use('Database');
 const User = use('App/Models/User');
+const ThemeList = use('App/Models/ThemeList');
 
 class UserController {
   async index({ response }) {
@@ -9,7 +11,7 @@ class UserController {
     try {
       const data = await User
       .query()
-      .with('nationality')        
+      .with('nationality')
       .fetch()
 
       response.json(data);
@@ -35,9 +37,9 @@ class UserController {
 
   async update({ response, auth, request }) {
     const body = request.only([
-      'name', 'nickname', 'email', 'password', 'date_of_birht', 'nationality_id'
+      'name', 'nickname', 'email', 'password', 'date_of_birth', 'nationality_id'
     ]);
-    
+
     try {
       const data = await User
         .query()
@@ -53,27 +55,25 @@ class UserController {
     }
   }
 
-  async store({ request, response }) {
-    const { themes } = request.only(['themes']);
+  async store({ request, response, auth }) {
+    let { themes } = request.only(['themes']);
     const body = request.only([
-      'name', 'nickname', 'email', 'password', 'date_of_birht', 'nationality_id'
+      'name', 'nickname', 'email', 'password', 'date_of_birth', 'nationality_id'
     ]);
 
-    response.send(body);
+    themes = themes.map(theme => ({ theme_id: theme, user_id: auth.user.id }));
+    const trx = await Database.beginTransaction()
 
+    try {
+      const data = await User.create(body, trx);
+      const theme_data = await ThemeList.createMany(themes, trx);
 
-    // try {
-    //   await Database.transaction(async (trx) => {
-    //     const user = await trx.insert(body).into('users');
-        
-    //     themes.forEach(theme => {
-    //       await trx.insert({ theme_id: theme, user_id: user.id }).into('theme_lists');
-    //     });
-    //   })
-    //   response.send(data);
-    // } catch (err) {
-    //   response.send(err);
-    // }
+      await trx.commit();
+      response.send({ data, theme_data });
+    } catch (err) {
+      await trx.rollback();
+      response.send(err);
+    }
   }
 }
 
