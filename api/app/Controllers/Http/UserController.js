@@ -55,21 +55,21 @@ class UserController {
     }
   }
 
-  async store({ request, response, auth }) {
+  async store({ request, response }) {
     let { themes } = request.only(['themes']);
     const body = request.only([
       'name', 'nickname', 'email', 'password', 'date_of_birth', 'nationality_id'
     ]);
 
-    themes = themes.map(theme => ({ theme_id: theme, user_id: auth.user.id }));
     const trx = await Database.beginTransaction()
 
     try {
       const data = await User.create(body, trx);
+      themes = themes.map(theme => ({ theme_id: theme, user_id: data.id }));
       const theme_data = await ThemeList.createMany(themes, trx);
 
       await trx.commit();
-      response.send({ data, theme_data });
+      response.status(201).send({ data, theme_data });
     } catch (err) {
       await trx.rollback();
       response.send(err);

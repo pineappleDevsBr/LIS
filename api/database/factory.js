@@ -43,12 +43,13 @@ Factory.blueprint('App/Models/Nationality', async (faker, i) => {
   }
 })
 
-Factory.blueprint('App/Models/User', async (faker) => {
+Factory.blueprint('App/Models/User', async (faker, i, data) => {
   return {
-    name: faker.name(), 
+    name: faker.name(),
     nickname: faker.username(),
     email: faker.email(),
     password: faker.password(),
-    date_of_birth: new Date()
+    date_of_birth: new Date(),
+    ...data
   }
 })
