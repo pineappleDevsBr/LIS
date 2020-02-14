@@ -1,5 +1,10 @@
 <div align="center">
-  <h1>LIS - Learning is simple</h1>
+  <h1>
+    <img width="200" src="https://i.imgur.com/lkVaMXu.png">
+    <br />
+    <br />
+    Learning is simple
+  </h1>
 </div>
 
 <div align="center">
@@ -7,6 +12,10 @@
   <a href="https://github.com/pineappleDevsBr/LIS/">
     <img src="https://img.shields.io/badge/facebook-like-blue"
       alt="NovaHaus Facebook" />
+  </a>
+
+  <a href="twitch.tv/leandrocesarrrr">
+    <img alt="Twitch Status" src="https://img.shields.io/twitch/status/leandrocesarrrr">
   </a>
 
   <a>
@@ -19,8 +28,8 @@
   <h4>
     <a href="https://novahaus.com.br" target="_blank">Website</a> |
     <a href="#installing">Install</a> |
-    <a href="#components">Documentation</a> | 
-    <a href="#components">See our projects</a> | 
+    <a href="#components">Documentation</a> |
+    <a href="#components">See our projects</a> |
     <a href="#components">Licence</a>
   </h4>
 </div>
@@ -28,18 +37,11 @@
 ---
 
 ## Requisitos
-
-### Front-End
-
 * Node >= 12.0.0
 * NPM >= 6.0.0
 * VueCLI
-
-### Back-End
-
-* Node >= 12.0.0
-* NPM >= 6.0.0
-* MySQL 
+* AdonisCLI
+* MySQL
 
 ---
 
