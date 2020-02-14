@@ -34,9 +34,9 @@
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card">
-        <q-card-section class="m-settings_info">
+        <q-card-section class="m-settings_info" @click="changePassword.isOpen = true">
             <p class="m-settings_info-account">Senha:</p>
-            <q-input borderless v-model="getUser.nickname" disable type="password" />
+            <q-input borderless v-model="secretPass" disable type="password" />
         </q-card-section>
       </q-card>
     </div>
@@ -61,7 +61,7 @@
     </div>
     <qprompt :prompt="prompt" @isClose="isClose"></qprompt>
     <changeAvatar :selectAvatar="selectAvatar" @selectedAvatar="selectedAvatar"></changeAvatar>
-    <changePassword></changePassword>
+    <changePassword :isOpen="changePassword.isOpen" @close="changePassword.isOpen = false"></changePassword>
     </div>
   </q-dialog>
 </template>
@@ -95,7 +95,11 @@ export default {
         title: '',
         value: ''
       },
-      selectAvatar: false
+      secretPass: '*****************',
+      selectAvatar: false,
+      changePassword: {
+        isOpen: false
+      }
     }
   },
   methods: {

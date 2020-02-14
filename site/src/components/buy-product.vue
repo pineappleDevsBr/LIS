@@ -25,8 +25,8 @@
       <q-separator />
 
       <q-card-actions align="right">
-        <q-btn @click="close" flat class="m-buy_btn" label="Cancelar" />
-        <q-btn @click="finishBuy" flat class="m-buy_btn" label="Comprar" />
+        <q-btn @click="close" flat class="a-btn_actions" label="Cancelar" />
+        <q-btn @click="finishBuy" flat class="a-btn_actions" label="Comprar" />
       </q-card-actions>
     </q-card>
   </q-dialog>

@@ -1,16 +1,15 @@
 // import cookie from '@utils/cookies'
-import { user } from '@api/index'
+import { theme } from '@api/index'
 
 const getters = {
-  getUser: (state) => state
+  getTheme: (state) => state
 }
 
 const actions = {
-  async getUser ({ commit }) {
+  async getTheme ({ commit }) {
     try {
-      const { data } = await user.get()
-      commit('UPDATE_USER', data)
-
+      const { data } = await theme.get()
+      commit('UPDATE_THEME', data)
       return data
     } catch (err) {
       return err
@@ -19,7 +18,8 @@ const actions = {
 }
 
 const mutations = {
-  UPDATE_USER (state, data) {
+  UPDATE_THEME (state, data) {
+    console.log('oi: ', data)
     Object.entries(data)
       .forEach((item) => {
         state[item[0]] = item[1]
@@ -29,16 +29,8 @@ const mutations = {
 
 const state = {
   id: 1,
-  nickname: '',
-  email: '',
-  date_of_birth: '',
-  xp: 0,
-  money: 100,
-  nationality: {
-    id: 1,
-    name: 'Brazil',
-    file: 'Keith'
-  }
+  name: '',
+  description: ''
 }
 
 export default {
