@@ -42,7 +42,7 @@ module.exports = (cli, runner) => {
     | Seed the database before starting the tests.
     |
     */
-   await ace.call('seed')
+    await ace.call('seed')
   })
 
   runner.after(async () => {

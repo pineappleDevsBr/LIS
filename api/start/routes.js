@@ -29,4 +29,6 @@ Route.group(() => {
 Route.get('/theme/all', 'ThemeController.index')
 Route.post('/user', 'UserController.store')
 Route.post('/login', 'SessionController.store')
+Route.post('/forgot', 'ForgotPasswordController.store')
+Route.post('/reset', 'ResetPasswordController.store')
 Route.on('/').render('welcome')
