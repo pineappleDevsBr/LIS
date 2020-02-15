@@ -56,7 +56,7 @@ class DatabaseSeeder {
     const theme_1 = await Theme.find(1);
 
     await Factory.model('App/Models/ThemeList')
-      .create(0, { user_id: user_1.id, theme_id: theme_1.id })
+      .create(0, { user_id: 1, theme_id: theme_1.id })
   }
 }
 

@@ -28,3 +28,4 @@ test('It should return user data when user created', async ({ assert, client }) 
   response.assertStatus(201)
   assert.exists(response.body.data, response.body.theme_data);
 })
+

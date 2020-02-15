@@ -25,7 +25,6 @@ module.exports = (cli, runner) => {
     |
     */
     use('Adonis/Src/Server').listen(process.env.HOST, process.env.PORT)
-
     /*
     |--------------------------------------------------------------------------
     | Run migrations
@@ -35,6 +34,15 @@ module.exports = (cli, runner) => {
     |
     */
     await ace.call('migration:run')
+    /*
+    |--------------------------------------------------------------------------
+    | Run Seeds
+    |--------------------------------------------------------------------------
+    |
+    | Seed the database before starting the tests.
+    |
+    */
+   await ace.call('seed')
   })
 
   runner.after(async () => {

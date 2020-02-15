@@ -5,14 +5,19 @@ const Database = use('Database');
 const User = use('App/Models/User');
 const ThemeList = use('App/Models/ThemeList');
 
+const labels = [
+  'name', 'nickname', 'email', 'password', 'date_of_birth', 'nationality_id'
+]
+
 class UserController {
-  async index({ response }) {
+  async index({ response, params }) {
 
     try {
       const data = await User
-      .query()
-      .with('nationality')
-      .fetch()
+        .query()
+        .where('id', params.id)
+        .with('nationality')
+        .first()
 
       response.json(data);
     } catch (err) {
@@ -36,9 +41,7 @@ class UserController {
   }
 
   async update({ response, auth, request }) {
-    const body = request.only([
-      'name', 'nickname', 'email', 'password', 'date_of_birth', 'nationality_id'
-    ]);
+    const body = request.only(labels);
 
     try {
       const data = await User
@@ -57,9 +60,7 @@ class UserController {
 
   async store({ request, response }) {
     let { themes } = request.only(['themes']);
-    const body = request.only([
-      'name', 'nickname', 'email', 'password', 'date_of_birth', 'nationality_id'
-    ]);
+    const body = request.only(labels);
 
     const trx = await Database.beginTransaction()
 
