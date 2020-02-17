@@ -18,11 +18,11 @@ class ForgotPasswordController {
       });
 
       const resetPassword = `${Env.get('FRONT_URL')}/reset?token=${hash}`;
-      
-      await Mail.send('emails.welcome', { name: user.name, resetPassword }, (message) => {
+
+      await Mail.send('emails.forgot', { name: user.name, resetPassword }, (message) => {
         message
           .to(user.email)
-          .from('suporte@pineappleDevs.com')
+          .from('suporte@pineappledevs.com')
           .subject('LIS - Recuperação de senha')
       })
 

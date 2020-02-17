@@ -2,6 +2,7 @@
 /** @type {import('@adonisjs/lucid/src/Lucid/Model')} */
 
 const Database = use('Database');
+const Mail = use('Mail');
 const User = use('App/Models/User');
 const ThemeList = use('App/Models/ThemeList');
 
@@ -70,6 +71,12 @@ class UserController {
       const theme_data = await ThemeList.createMany(themes, trx);
 
       await trx.commit();
+      await Mail.send('emails.welcome', { name: user.name }, (message) => {
+        message
+          .to(user.email)
+          .from('suporte@pineappledevs.com')
+          .subject('LIS - Bem vindo!')
+      })
       response.status(201).send({ data, theme_data });
     } catch (err) {
       await trx.rollback();
