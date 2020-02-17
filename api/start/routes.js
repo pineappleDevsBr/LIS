@@ -16,7 +16,7 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.group(() => {
+Route.group(() => { // App
   Route.get('/user/:id', 'UserController.index')
   Route.get('/user', 'UserController.get')
   Route.put('/user', 'UserController.update')
@@ -24,11 +24,19 @@ Route.group(() => {
   Route.post('/theme', 'ThemeController.store')
   Route.put('/theme', 'ThemeController.update')
   Route.delete('/theme', 'ThemeController.delete')
-}).middleware(['auth']);
+}).middleware(['auth:jwt']);
 
+Route.group(() => { // Admin
+  Route.on('/').render('index').as('admin')
+}).prefix('admin').middleware(['auth:session', 'admin'])
+
+// Free app routes
 Route.get('/theme/all', 'ThemeController.index')
 Route.post('/user', 'UserController.store')
 Route.post('/login', 'SessionController.store')
 Route.post('/forgot', 'ForgotPasswordController.store')
 Route.post('/reset', 'ResetPasswordController.store')
-Route.on('/').render('welcome')
+
+// Free admin routes
+Route.on('/admin/login').render('login').as('admin.login')
+Route.post('/admin/login', 'AdminController.store').as('admin.auth')
