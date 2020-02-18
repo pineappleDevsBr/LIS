@@ -13,7 +13,7 @@ class Admin {
     await auth.authenticator('session').check();
 
     try {
-      if(!auth.user || auth.user.user_type !== 1) {
+      if (!auth.user || auth.user.user_type !== 1) {
         response.status(401).json()
       }
 

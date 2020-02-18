@@ -28,6 +28,8 @@ Route.group(() => { // App
 
 Route.group(() => { // Admin
   Route.on('/').render('index').as('admin')
+  Route.get('/themes', 'Admin/ThemeController.index').as('admin.themes')
+  Route.get('/users', 'Admin/UserController.index').as('admin.users')
 }).prefix('admin').middleware(['auth:session', 'admin'])
 
 // Free app routes

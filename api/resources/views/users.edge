@@ -1,0 +1,9 @@
+@layout('layout.index')
+
+@section('content')
+  <div class="container-fluid pt-3">
+    <div class="row">
+      @!each(user in users, include = 'partials.users.user')
+    </div>
+  </div>
+@endsection
