@@ -71,9 +71,9 @@ class UserController {
       const theme_data = await ThemeList.createMany(themes, trx);
 
       await trx.commit();
-      await Mail.send('emails.welcome', { name: user.name }, (message) => {
+      await Mail.send('emails.welcome', { name: data.name }, (message) => {
         message
-          .to(user.email)
+          .to(data.email)
           .from('suporte@pineappledevs.com')
           .subject('LIS - Bem vindo!')
       })
