@@ -19,7 +19,6 @@ const actions = {
 
 const mutations = {
   UPDATE_THEME (state, data) {
-    console.log('oi: ', data)
     Object.entries(data)
       .forEach((item) => {
         state[item[0]] = item[1]

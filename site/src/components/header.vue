@@ -74,7 +74,6 @@ export default {
   },
   methods: {
     toSlide (idx) {
-      console.log(idx)
       this.swiper.slideTo(idx)
     }
   }
