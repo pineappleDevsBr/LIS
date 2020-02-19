@@ -13,7 +13,7 @@
           <div class="account-wrap">
             <div class="account-item clearfix js-item-menu">
               <div class="image rounded-circle">
-                <img src="https://api.adorable.io/avatars/75/lis-avatar{{ user.name }}.png" alt="John Doe" />
+                <img src="https://api.adorable.io/avatars/75/lis-avatar{{ auth.user.name }}.png" alt="John Doe" />
               </div>
               <div class="content">
                 <a class="js-acc-btn" href="{{ route('admin') }}">{{ auth.user.name }}</a>
@@ -22,7 +22,7 @@
                 <div class="info clearfix">
                   <div class="image">
                     <a href="#">
-                      <img class="rounded-circle" src="https://api.adorable.io/avatars/75/lis-avatar{{ user.name }}.png" alt="John Doe" />
+                      <img class="rounded-circle" src="https://api.adorable.io/avatars/75/lis-avatar{{ auth.user.name }}.png" alt="John Doe" />
                     </a>
                   </div>
                   <div class="content">
