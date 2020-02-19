@@ -72,6 +72,13 @@ const routes = [
     children: [
       { path: '', name: 'login', component: () => import('pages/login.vue') }
     ]
+  },
+  {
+    path: '/forgot',
+    component: () => import('layouts/withoutHeader.vue'),
+    children: [
+      { path: '', name: 'forgot-password', component: () => import('pages/forgot.vue') }
+    ]
   }
 ]
 
