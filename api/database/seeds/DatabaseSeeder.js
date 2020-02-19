@@ -22,15 +22,25 @@ class DatabaseSeeder {
     await Factory.model('App/Models/Nationality').create(0, { country: 'Brazil' });
     const country_1 = await Nationality.find(1);
 
-    const admin = new User();
-    admin.nickname = 'admin'
-    admin.name = 'admin'
-    admin.email = 'admin@lis.com',
-    admin.password = 'admin123';
-    admin.date_of_birth = new Date();
-    admin.nationality_id = 1;
-    admin.user_type = 1;
-    await admin.save();
+    const admin_1 = new User();
+    admin_1.nickname = '4stronaut4'
+    admin_1.name = 'Leandro C. Silva'
+    admin_1.email = 'leandro@lis.com',
+    admin_1.password = '123';
+    admin_1.date_of_birth = new Date();
+    admin_1.nationality_id = 1;
+    admin_1.user_type = 1;
+    await admin_1.save();
+
+    const admin_2 = new User();
+    admin_2.nickname = 'Isquerim'
+    admin_2.name = 'Fernando S. Marques'
+    admin_2.email = 'fernando@lis.com',
+    admin_2.password = '123';
+    admin_2.date_of_birth = new Date();
+    admin_2.nationality_id = 1;
+    admin_2.user_type = 1;
+    await admin_2.save();
 
     // -------------------------------------------------------------------------- //
 

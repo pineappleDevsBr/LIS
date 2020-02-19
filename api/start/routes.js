@@ -17,28 +17,28 @@
 const Route = use('Route')
 
 Route.group(() => { // App
-  Route.get('/user/:id', 'UserController.index')
-  Route.get('/user', 'UserController.get')
-  Route.put('/user', 'UserController.update')
-  Route.get('/theme', 'ThemeController.indexUser')
-  Route.post('/theme', 'ThemeController.store')
-  Route.put('/theme', 'ThemeController.update')
-  Route.delete('/theme', 'ThemeController.delete')
+  Route.get('/user/:id', 'Api/UserController.index')
+  Route.get('/user', 'Api/UserController.get')
+  Route.put('/user', 'Api/UserController.update')
+  Route.get('/theme', 'Api/ThemeController.indexUser')
+  Route.post('/theme', 'Api/ThemeController.store')
+  Route.put('/theme', 'Api/ThemeController.update')
+  Route.delete('/theme', 'Api/ThemeController.delete')
 }).middleware(['auth:jwt']);
 
 Route.group(() => { // Admin
-  Route.on('/').render('index').as('admin')
+  Route.get('/', 'Admin/IndexController.index').as('admin')
   Route.get('/themes', 'Admin/ThemeController.index').as('admin.themes')
   Route.get('/users', 'Admin/UserController.index').as('admin.users')
 }).prefix('admin').middleware(['auth:session', 'admin'])
 
 // Free app routes
-Route.get('/theme/all', 'ThemeController.index')
-Route.post('/user', 'UserController.store')
-Route.post('/login', 'SessionController.store')
-Route.post('/forgot', 'ForgotPasswordController.store')
-Route.post('/reset', 'ResetPasswordController.store')
+Route.get('/theme/all', 'Api/ThemeController.index')
+Route.post('/user', 'Api/UserController.store')
+Route.post('/login', 'Api/SessionController.store')
+Route.post('/forgot', 'Api/ForgotPasswordController.store')
+Route.post('/reset', 'Api/ResetPasswordController.store')
 
 // Free admin routes
 Route.on('/admin/login').render('login').as('admin.login')
-Route.post('/admin/login', 'AdminController.store').as('admin.auth')
+Route.post('/admin/login', 'Admin/AdminController.store').as('admin.auth')

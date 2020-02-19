@@ -1,9 +1,13 @@
 @layout('layout.index')
 
 @section('content')
-  <div class="container-fluid pt-3">
-    <div class="row">
-      @!each(user in users, include = 'partials.users.user')
+  <div class="row">
+    <div class="col-md-4 mb-3">
+      <button type="button" class="btn btn-dark">
+        <i class="fa fa-plus"></i>
+          New theme
+      </button>
     </div>
   </div>
+  @include('partials.users.index')
 @endsection

@@ -1,81 +1,78 @@
 @layout('layout.index')
 
 @section('content')
-  <div class="content-header">
-    <div class="container-fluid">
-      <div class="row mb-2">
-        <div class="col-sm-6">
-          <h1 class="m-0 text-dark">Dashboard</h1>
-        </div><!-- /.col -->
-        <div class="col-sm-6">
-          <ol class="breadcrumb float-sm-right">
-            <li class="breadcrumb-item"><a href="#">Home</a></li>
-            <li class="breadcrumb-item active">Dashboard v1</li>
-          </ol>
-        </div><!-- /.col -->
-      </div><!-- /.row -->
-    </div><!-- /.container-fluid -->
+<div class="row m-t-25">
+  <div class="col-sm-6 col-lg-3">
+      <div class="overview-item overview-item--c1 h-100">
+          <div class="overview__inner">
+              <div class="overview-box clearfix">
+                  <div class="icon">
+                      <i class="zmdi zmdi-account-o"></i>
+                  </div>
+                  <div class="text">
+                    <h2>{{ users }}</h2>
+                      <span>members</span>
+                  </div>
+              </div>
+              <div class="overview-chart">
+                  <canvas id="widgetChart1"></canvas>
+              </div>
+          </div>
+      </div>
   </div>
-  <div class="row">
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-info">
-        <div class="inner">
-          <h3>150</h3>
-
-          <p>New Orders</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-bag"></i>
-        </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+  <div class="col-sm-6 col-lg-3">
+      <div class="overview-item overview-item--c2 h-100">
+          <div class="overview__inner">
+              <div class="overview-box clearfix">
+                  <div class="icon">
+                      <i class="zmdi zmdi-shopping-cart"></i>
+                  </div>
+                  <div class="text">
+                      <h2>688*</h2>
+                      <span>items solid</span>
+                  </div>
+              </div>
+              <div class="overview-chart">
+                  <canvas id="widgetChart2"></canvas>
+              </div>
+          </div>
       </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-success">
-        <div class="inner">
-          <h3>53<sup style="font-size: 20px">%</sup></h3>
-
-          <p>Bounce Rate</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-stats-bars"></i>
-        </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-warning">
-        <div class="inner">
-          <h3>44</h3>
-
-          <p>User Registrations</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-person-add"></i>
-        </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <!-- ./col -->
-    <div class="col-lg-3 col-6">
-      <!-- small box -->
-      <div class="small-box bg-danger">
-        <div class="inner">
-          <h3>65</h3>
-
-          <p>Unique Visitors</p>
-        </div>
-        <div class="icon">
-          <i class="ion ion-pie-graph"></i>
-        </div>
-        <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
-      </div>
-    </div>
-    <!-- ./col -->
   </div>
+  <div class="col-sm-6 col-lg-3">
+      <div class="overview-item overview-item--c3 h-100">
+          <div class="overview__inner">
+              <div class="overview-box clearfix">
+                  <div class="icon">
+                      <i class="zmdi zmdi-calendar-note"></i>
+                  </div>
+                  <div class="text">
+                      <h2>108*</h2>
+                      <span>this week</span>
+                  </div>
+              </div>
+              <div class="overview-chart">
+                  <canvas id="widgetChart3"></canvas>
+              </div>
+          </div>
+      </div>
+  </div>
+  <div class="col-sm-6 col-lg-3">
+      <div class="overview-item overview-item--c4 h-100">
+          <div class="overview__inner">
+              <div class="overview-box clearfix">
+                  <div class="icon">
+                      <i class="zmdi zmdi-money"></i>
+                  </div>
+                  <div class="text">
+                      <h2>$106*</h2>
+                      <span>total earnings</span>
+                  </div>
+              </div>
+              <div class="overview-chart">
+                  <canvas id="widgetChart4"></canvas>
+              </div>
+          </div>
+      </div>
+  </div>
+</div>
 @endsection

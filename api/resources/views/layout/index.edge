@@ -3,18 +3,18 @@
 
   @include('partials.head')
 
-  <body class="hold-transition sidebar-mini layout-fixed layout-navbar-fixed skin-red">
-    <div class="wrapper">
+  <body class="animsition">
+    <div class="page-wrapper">
       @include('partials.navbar')
       @include('partials.sidebar')
 
-      <div class="content-wrapper">
-        <div class=" content">
+      <div class="page-container">
+        @include('partials.header')
+        <div class="main-content section__content section__content--p30">
           @!section('content')
         </div>
+        @include('partials.footer')
       </div>
-    
-      @include('partials.footer')
     </div>
   
     @include('partials.foot')
