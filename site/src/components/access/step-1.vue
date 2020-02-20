@@ -1,7 +1,7 @@
 <template>
   <div class="o-access_step1">
-    <h1 class="o-access_title">LIS</h1>
-    <div class="a-text o-access_text">
+    <h1 class="a-title -white">LIS</h1>
+    <div class="a-title -white -sub">
       Learn is Simple
     </div>
     <img class="o-access_ilustra" src="statics/access/ilustra_step1.svg" alt="">

@@ -1,8 +1,8 @@
 <template>
   <q-page class="bg-primary q-pa-md flex items-center">
     <div class="full-width">
-      <div class="text-h2 text-white q-mb-lg">Esqueci minha senha</div>
-      <div>
+      <div class="a-title -white o-forgot_title">Esqueci minha senha</div>
+      <div class="a-text">
         Informe seu e-mail cadastrado na aplicação
         e você receberá um link para alterar sua
         senha.
@@ -41,37 +41,33 @@ export default {
     return {
       isPwd: true,
       form: {
-        email: '',
-        password: ''
+        email: ''
       },
       errorFilter: {
         '404': 'Usuario nao encontrado',
-        '401': 'Senha incorreta',
         '500': 'Erro interno'
       }
     }
   },
   validations: {
     form: {
-      email: { required, email },
-      password: { required }
+      email: { required, email }
     }
   },
   methods: {
     async submit () {
       const payload = {
-        email: this.form.email,
-        password: this.form.password
+        email: this.form.email
       }
 
       this.$v.form.$touch()
 
       if (!this.$v.form.$error) {
         this.$q.loading.show()
-        const response = await store().dispatch('auth/login', payload)
+        const response = await store().dispatch('auth/forgot', payload)
 
         if (response.status) {
-          this.$router.push({ name: 'home' })
+          this.$router.push({ name: 'welcome' })
         } else {
           this.$q.notify({
             color: 'negative',

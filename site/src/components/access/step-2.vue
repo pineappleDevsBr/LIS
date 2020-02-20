@@ -1,6 +1,6 @@
 <template>
   <div class="o-access_step2">
-    <div class="a-text o-access_text">
+    <div class="a-title -white -sub">
       Dados pessoais
     </div>
 

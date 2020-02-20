@@ -1,21 +1,10 @@
 <template>
   <q-page class="bg-primary q-pa-md flex items-center">
     <div class="full-width">
-      <div class="a-title -white">Login</div>
+      <div class="a-title -white">Alterar minha senha</div>
       <q-form
       @submit.prevent="submit"
       class="q-gutter-md column">
-
-        <q-input
-        dark
-        color="white"
-        label-color="white"
-        style="color: white;"
-        v-model="form.email"
-        @blur="$v.form.email.$touch"
-        :error="$v.form.email.$error"
-        error-message="Campo obrigatório"
-        label="E-mail" />
 
         <q-input
         dark
@@ -27,27 +16,28 @@
         @blur="$v.form.password.$touch"
         :error="$v.form.password.$error"
         error-message="Campo obrigatório"
-        label="Senha">
-          <template v-slot:append>
-            <q-icon
-              :name="isPwd ? 'visibility_off' : 'visibility'"
-              class="cursor-pointer"
-              @click="isPwd = !isPwd"
-            />
-          </template>
-        </q-input>
-        <img style="margin-top: -60px;" src="statics/login/ilustra.svg" alt="">
-        <q-btn rounded no-caps outline color="primary" class="bg-white" size="lg" type="submit" label="Login"/>
-        <router-link :to="{name: 'forgot-password'}" class="q-mt-md text-white a-link">
-        Esqueci minha senha
-      </router-link>
+        label="Senha"/>
+
+        <q-input
+        dark
+        color="white"
+        label-color="white"
+        style="color: white;"
+        :type="isPwd ? 'password' : 'text'"
+        v-model="form.confirmPassword"
+        @blur="$v.form.confirmPassword.$touch"
+        :error="$v.form.confirmPassword.$error"
+        error-message="A senha deve ser igual à de cima"
+        label="Confirmação da senha"/>
+        <img style="margin-top: -30px;" src="statics/reset/ilustra.png" alt="">
+        <q-btn rounded no-caps outline color="primary" class="bg-white" size="lg" type="submit" label="Alterar senha"/>
       </q-form>
     </div>
   </q-page>
 </template>
 
 <script>
-import { required, email } from 'vuelidate/lib/validators'
+import { required, sameAs } from 'vuelidate/lib/validators'
 import store from '../store/index'
 
 export default {
@@ -55,38 +45,39 @@ export default {
   data () {
     return {
       isPwd: true,
+      token: this.$route.query.token,
       form: {
-        email: '',
+        confirmPassword: '',
         password: ''
       },
       errorFilter: {
         '404': 'Usuario nao encontrado',
-        '401': 'Senha incorreta',
         '500': 'Erro interno'
       }
     }
   },
   validations: {
     form: {
-      email: { required, email },
-      password: { required }
+      password: { required },
+      confirmPassword: { sameAsPassword: sameAs('password') }
     }
   },
   methods: {
     async submit () {
       const payload = {
-        email: this.form.email,
-        password: this.form.password
+        token: this.token,
+        password: this.form.password,
+        confirmPassword: this.form.confirmPassword
       }
 
       this.$v.form.$touch()
 
       if (!this.$v.form.$error) {
         this.$q.loading.show()
-        const response = await store().dispatch('auth/login', payload)
+        const response = await store().dispatch('auth/reset', payload)
 
         if (response.status) {
-          this.$router.push({ name: 'home' })
+          this.$router.push({ name: 'login' })
         } else {
           this.$q.notify({
             color: 'negative',

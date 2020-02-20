@@ -1,6 +1,6 @@
 <template>
   <div class="o-access_step3">
-    <div class="a-text o-access_text">
+    <div class="a-title -white -sub">
       Escolha de temas
     </div>
     <q-card class="my-card o-access_selectTheme" style="max-height: 400px; overflow-y: auto;">
