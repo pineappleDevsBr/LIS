@@ -1,5 +1,5 @@
 <template>
-  <q-page class="bg-primary q-pa-md flex items-center">
+  <q-page class="q-pa-md flex items-center">
     <div class="full-width">
       <div class="a-title -white">Login</div>
       <q-form

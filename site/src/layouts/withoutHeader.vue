@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf">
+  <q-layout view="lHh Lpr lFf" class="bg-primary">
     <q-page-container>
       <router-view />
     </q-page-container>
@@ -11,6 +11,3 @@ export default {
   name: 'index'
 }
 </script>
-
-<style>
-</style>

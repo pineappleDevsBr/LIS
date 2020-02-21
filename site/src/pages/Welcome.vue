@@ -1,5 +1,5 @@
 <template>
-  <q-page class="bg-primary q-pa-md flex column o-welcome">
+  <q-page class="q-pa-md flex column o-welcome">
     <h1 class="a-title -white">LIS</h1>
     <div class="a-title -white -sub">
       Learn is Simple

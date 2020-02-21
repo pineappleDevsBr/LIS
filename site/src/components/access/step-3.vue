@@ -44,14 +44,7 @@ export default {
   data () {
     return {
       filter: '',
-      bgColor: 'bg-white',
-      themes: [
-        { id: 1, name: 'Marvel Comics' },
-        { id: 2, name: 'DC Comics' },
-        { id: 3, name: 'Disney' },
-        { id: 4, name: 'Disney' },
-        { id: 5, name: 'Disney' }
-      ]
+      bgColor: 'bg-white'
     }
   },
   methods: {

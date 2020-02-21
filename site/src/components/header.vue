@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-header class="o-header">
+    <q-header class="o-header v-hld_mobile">
       <q-toolbar class="flex column">
         <div class="o-header_head">
           <q-toolbar-title class="a-text o-header_title">

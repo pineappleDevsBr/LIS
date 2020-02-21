@@ -2,7 +2,7 @@
 import { theme } from '@api/index'
 
 const getters = {
-  getTheme: (state) => state
+  getTheme: (state) => state.themes
 }
 
 const actions = {
@@ -19,17 +19,13 @@ const actions = {
 
 const mutations = {
   UPDATE_THEME (state, data) {
-    Object.entries(data)
-      .forEach((item) => {
-        state[item[0]] = item[1]
-      })
+    console.log(state.themes, data)
+    state.themes = data
   }
 }
 
 const state = {
-  id: 1,
-  name: '',
-  description: ''
+  themes: []
 }
 
 export default {
