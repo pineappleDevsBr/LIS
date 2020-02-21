@@ -1,0 +1,31 @@
+@layout('layout.index')
+
+@section('content')
+
+<div class="card-body card-block">
+  <form action="{{ route('admin.themes.store') }}" method="post" class="form-horizontal">
+    <legend class="row col m-b-40"> Register a new theme </legend>
+    <div class="row form-group">
+      <div class="col-12 col-md-9">
+        <input type="text" name="name" placeholder="Name" class="form-control">
+        <small class="form-text text-muted">This is a help text</small>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-12 col-md-9">
+        <textarea name="description" rows="9" placeholder="Description..."
+          class="form-control"></textarea>
+      </div>
+    </div>
+    <div class="">
+      <button type="submit" class="btn btn-primary btn-sm">
+        <i class="fa fa-dot-circle-o"></i> Submit
+      </button>
+      <button type="reset" class="btn btn-danger btn-sm">
+        <i class="fa fa-ban"></i> Reset
+      </button>
+      </div>
+  </form>
+</div>
+
+@endsection

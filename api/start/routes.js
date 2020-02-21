@@ -29,6 +29,8 @@ Route.group(() => { // App
 Route.group(() => { // Admin
   Route.get('/', 'Admin/IndexController.index').as('admin')
   Route.get('/themes', 'Admin/ThemeController.index').as('admin.themes')
+  Route.on('/themes/new').render('pages.theme.store')
+  Route.post('/themes/new', 'Admin/ThemeController.store').as('admin.themes.store')
   Route.get('/users', 'Admin/UserController.index').as('admin.users')
 }).prefix('admin').middleware(['auth:session', 'admin'])
 
