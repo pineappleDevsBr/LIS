@@ -8,7 +8,7 @@ trait('Test/ApiClient');
 
 test('It should return user data when user created', async ({ assert, client }) => {
   await Factory.model('App/Models/Nationality').create();
-  await Factory.model('App/Models/Theme').createMany(3);
+  await Factory.model('App/Models/Theme').createMany(2);
   const nat_1 = await Nationality.find(1);
   const user_data = {
     name: 'Lorem ipsum da Silva',
@@ -17,7 +17,7 @@ test('It should return user data when user created', async ({ assert, client }) 
     password: 'lorem123',
     date_of_birth: new Date(),
     nationality_id: nat_1.id,
-    themes: [ 1,2,3 ]
+    themes: [ 1,2 ]
   }
 
   const response = await client

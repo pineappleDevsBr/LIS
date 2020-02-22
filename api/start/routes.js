@@ -28,10 +28,18 @@ Route.group(() => { // App
 
 Route.group(() => { // Admin
   Route.get('/', 'Admin/IndexController.index').as('admin')
-  Route.get('/themes', 'Admin/ThemeController.index').as('admin.themes')
-  Route.on('/themes/new').render('pages.theme.store')
+
+  // Admin -> Themes
+  Route.on('/themes/new').render('pages.themes.store')
   Route.post('/themes/new', 'Admin/ThemeController.store').as('admin.themes.store')
+  Route.post('/themes/update', 'Admin/ThemeController.update').as('admin.themes.update')
+  Route.get('/themes/update/:id', 'Admin/ThemeController.indexOf').as('admin.themes.indexOf')
+  Route.post('/themes', 'Admin/ThemeController.delete').as('admin.themes.delete')
+  Route.get('/themes', 'Admin/ThemeController.index').as('admin.themes')
+
+  // Admin -> Users
   Route.get('/users', 'Admin/UserController.index').as('admin.users')
+  
 }).prefix('admin').middleware(['auth:session', 'admin'])
 
 // Free app routes

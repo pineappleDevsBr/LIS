@@ -1,0 +1,31 @@
+@layout('layout.index')
+
+@section('content')
+
+<div class="card-body card-block">
+  <form action="{{ route('admin.themes.update') }}" method="post" class="form-horizontal">
+    <legend class="row col m-b-40"> Updating theme: #{{ theme.id }} </legend>
+    <div class="row form-group">
+      <div class="col-12 col-md-9">
+      <input type="text" name="name" placeholder="Name" class="form-control" value="{{ theme.name }}">
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-12 col-md-9">
+        <textarea name="description" rows="9" placeholder="Description..." class="form-control">{{ theme.description }}</textarea>
+      </div>
+    </div>
+    <div class="">
+      <button type="submit" class="btn btn-primary btn-sm">
+        <i class="fa fa-dot-circle-o"></i> Submit
+      </button>
+      <button type="reset" class="btn btn-danger btn-sm">
+        <i class="fa fa-ban"></i> Reset
+      </button>
+      </div>
+
+      <input type="hidden" name="id" value="{{ theme.id }}">
+  </form>
+</div>
+
+@endsection

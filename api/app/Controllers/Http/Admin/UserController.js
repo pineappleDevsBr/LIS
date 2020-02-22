@@ -5,7 +5,7 @@ class UserController {
   async index({ view }) {
     const users = await User.all();
 
-    return view.render('users', { users: users.toJSON() })
+    return view.render('pages.users.index', { users: users.toJSON() })
   }
 }
 
