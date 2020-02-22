@@ -8,9 +8,9 @@
         <i class="fa fa-plus"></i>
           New theme
       </a>
-      @if(old('created'))
+      @if(old('result'))
         <div class="alert alert-success mb-0" role="alert">
-          Theme has succesfull created
+          Theme has succesfull {{ old('result') }}
         </div>
       @endif
     </div>

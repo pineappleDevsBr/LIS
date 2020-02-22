@@ -9,17 +9,17 @@ class Admin {
    * @param {Request} ctx.request
    * @param {Function} next
    */
-  async handle ({ response, auth, session }, next) {
-    await auth.authenticator('session').check();
-
+  async handle ({ response, auth }, next) {
+    
     try {
+      await auth.authenticator('session').check();
       if (!auth.user || auth.user.user_type !== 1) {
         response.status(401).json()
       }
 
       await next();
-    } catch (err) {
-      response.send(err)
+    } catch {
+      response.redirect('/admin/login')
     }
   }
 }

@@ -3,7 +3,7 @@
 @section('content')
 
 <div class="card-body card-block">
-  <form action="{{ route('admin.themes.store') }}" method="post" class="form-horizontal">
+  <form action="{{ route('admin.themes.store') }}" method="{{ request.params.id ? 'put' : 'post' }}" class="form-horizontal">
     <legend class="row col m-b-40"> Register a new theme </legend>
     <div class="row form-group">
       <div class="col-12 col-md-9">
