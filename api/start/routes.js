@@ -40,7 +40,7 @@ Route.group(() => { // Admin
   // Admin -> Users
   Route.get('/users', 'Admin/UserController.index').as('admin.users')
   
-}).prefix('admin').middleware(['auth:session', 'admin'])
+}).prefix('admin').middleware(['admin', 'auth:session'])
 
 // Free app routes
 Route.get('/theme/all', 'Api/ThemeController.index')
