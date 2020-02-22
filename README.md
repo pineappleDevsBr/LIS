@@ -1,6 +1,6 @@
 <div align="center">
   <h1>
-    <img width="200" src="https://raw.githubusercontent.com/pineappleDevsBr/LIS/master/sources/logo.png">
+    <img width="200" src="https://drive.google.com/uc?export=view&id=1DqyqRrNiOdiiER85tGFBYBculT8R73J_">
     <br />
     <br />
     Learning is simple
