@@ -5,7 +5,7 @@ import userAPI from './modules/user'
 import themeAPI from './modules/theme'
 
 const api = axios.create({
-  baseURL: 'http://localhost:3333',
+  baseURL: 'http://localhost:3333/api/v1',
   crossDomain: true,
   timeout: 10000
 })

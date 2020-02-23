@@ -63,7 +63,7 @@ class UserController {
     let { themes } = request.only(['themes']);
     const body = request.only(labels);
 
-    const trx = await Database.beginTransaction()
+    const trx = await Database.beginTransaction();
 
     try {
       const data = await User.create(body, trx);

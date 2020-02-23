@@ -16,17 +16,36 @@
 /** @type {typeof import('@adonisjs/framework/src/Route/Manager')} */
 const Route = use('Route')
 
-Route.group(() => { // App
+/*
+|--------------------------------------------------------------------------
+| App
+|--------------------------------------------------------------------------
+*/
+
+Route.group(() => {
   Route.get('/user/:id', 'Api/UserController.index')
   Route.get('/user', 'Api/UserController.get')
-  Route.put('/user', 'Api/UserController.update')
+  Route.put('/user', 'Api/UserController.update').validator(['User'])
   Route.get('/theme', 'Api/ThemeController.indexUser')
-  Route.post('/theme', 'Api/ThemeController.store')
   Route.put('/theme', 'Api/ThemeController.update')
   Route.delete('/theme', 'Api/ThemeController.delete')
-}).middleware(['auth:jwt']);
+}).prefix('api/v1').middleware(['auth:jwt']);
 
-Route.group(() => { // Admin
+Route.group(() => {
+  Route.get('/theme', 'Api/ThemeController.index')
+  Route.post('/user', 'Api/UserController.store').validator(['User'])
+  Route.post('/login', 'Api/SessionController.store')
+  Route.post('/forgot', 'Api/ForgotPasswordController.store')
+  Route.post('/reset', 'Api/ResetPasswordController.store')
+}).prefix('api/v1')
+
+/*
+|--------------------------------------------------------------------------
+| Admin
+|--------------------------------------------------------------------------
+*/
+
+Route.group(() => {
   Route.get('/', 'Admin/IndexController.index').as('admin')
 
   // Admin -> Themes
@@ -42,13 +61,7 @@ Route.group(() => { // Admin
   
 }).prefix('admin').middleware(['admin', 'auth:session'])
 
-// Free app routes
-Route.get('/theme/all', 'Api/ThemeController.index')
-Route.post('/user', 'Api/UserController.store')
-Route.post('/login', 'Api/SessionController.store')
-Route.post('/forgot', 'Api/ForgotPasswordController.store')
-Route.post('/reset', 'Api/ResetPasswordController.store')
-
-// Free admin routes
-Route.on('/admin/login').render('login').as('admin.login')
-Route.post('/admin/login', 'Admin/AdminController.store').as('admin.auth')
+Route.group(() => {
+  Route.on('/login').render('login').as('admin.login')
+  Route.post('/login', 'Admin/AdminController.store').as('admin.auth')
+}).prefix('admin')
