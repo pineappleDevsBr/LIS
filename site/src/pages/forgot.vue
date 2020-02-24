@@ -1,33 +1,30 @@
 <template>
-  <q-page class="q-pa-md flex items-center">
-    <div class="full-width">
-      <div class="a-title -white o-forgot_title">Esqueci minha senha</div>
-      <div class="a-text">
-        Informe seu e-mail cadastrado na aplicação
-        e você receberá um link para alterar sua
-        senha.
-      </div>
-      <q-form
-      @submit.prevent="submit"
-      class="q-gutter-md column">
-
-        <q-input
-        dark
-        color="white"
-        label-color="white"
-        style="color: white;"
-        v-model="form.email"
-        @blur="$v.form.email.$touch"
-        :error="$v.form.email.$error"
-        error-message="Campo obrigatório"
-        label="E-mail" />
-        <img src="statics/forgot/ilustra.png" alt="">
-        <q-btn rounded no-caps outline color="primary" class="bg-white" size="lg" type="submit" label="Enviar e-mail"/>
-        <router-link :to="{name: 'login'}" class="q-mt-md text-white a-link">
-        Voltar a tela de login
-      </router-link>
-      </q-form>
+  <q-page class="o-forgot">
+    <div class="a-title -white o-forgot_title">Esqueci minha senha</div>
+    <div class="a-text">
+      Informe seu e-mail cadastrado na aplicação
+      e você receberá um link para alterar sua
+      senha.
     </div>
+    <q-form
+    @submit.prevent="submit"
+    class="q-gutter-md column">
+
+      <q-input
+      dark
+      color="white"
+      label-color="white"
+      style="color: white;"
+      v-model="form.email"
+      @blur="$v.form.email.$touch"
+      :error="$v.form.email.$error"
+      error-message="Campo obrigatório"
+      label="E-mail" />
+      <q-btn rounded no-caps outline color="primary" class="bg-white o-forgot_btn" size="lg" type="submit" label="Enviar e-mail"/>
+      <router-link :to="{name: 'login'}" class="q-mt-md text-white a-link">
+      Voltar a tela de login
+    </router-link>
+    </q-form>
   </q-page>
 </template>
 

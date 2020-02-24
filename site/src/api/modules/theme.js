@@ -1,3 +1,3 @@
 export default axios => ({
-  get: () => axios.get('theme/all')
+  get: () => axios.get('theme')
 })

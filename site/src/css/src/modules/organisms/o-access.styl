@@ -2,28 +2,40 @@
   background: $primary;
 }
 
-.o-access_ilustra {
-  margin-top: rem(60);
-}
-
-.o-access_btn {
-  margin-bottom: rem(20);
-}
-
 .o-access_step1,
 .o-access_step2,
 .o-access_step3 {
-  background: $primary;
   display: flex;
   flex-direction: column;
 }
 
-.o-access_step2 {
-  .o-access_ilustra {
-    margin-top: rem(-60);
-  }
+.o-access_step1 {
+  background: url('~assets/access/ilustra_step-1.png') no-repeat;
+  background-position: center rem(150);
 
-  .o-access_btn {
-    margin-top: rem(-30);
+  & .o-access_btn:nth-child(3) {
+    margin-top: rem(400);
+    margin-bottom: rem(10);
+  }
+}
+
+.o-access_step2 {
+  background: url('~assets/access/ilustra_step-2.png') no-repeat;
+  background-position: right rem(450);
+  background-size: rem(275);
+
+  & .o-access_btn {
+    margin-top: rem(220);
+  }
+}
+
+
+.o-access_step3 {
+  background: url('~assets/access/ilustra_step-3.png') no-repeat;
+  background-position: center 82%;
+  background-size: rem(275);
+
+  & .o-access_btn {
+    margin-top: rem(350);
   }
 }

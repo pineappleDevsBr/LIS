@@ -1,6 +1,5 @@
 <template>
-  <q-page class="q-pa-md flex items-center">
-    <div class="full-width">
+  <q-page class="o-login">
       <div class="a-title -white">Login</div>
       <q-form
       @submit.prevent="submit"
@@ -36,13 +35,11 @@
             />
           </template>
         </q-input>
-        <img style="margin-top: -60px;" src="statics/login/ilustra.svg" alt="">
-        <q-btn rounded no-caps outline color="primary" class="bg-white" size="lg" type="submit" label="Login"/>
+        <q-btn rounded no-caps outline color="primary" class="bg-white o-login_btn" size="lg" type="submit" label="Login"/>
         <router-link :to="{name: 'forgot-password'}" class="q-mt-md text-white a-link">
         Esqueci minha senha
       </router-link>
       </q-form>
-    </div>
   </q-page>
 </template>
 
