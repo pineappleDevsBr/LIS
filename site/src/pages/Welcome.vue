@@ -4,8 +4,7 @@
     <div class="a-title -white -sub">
       Learn is Simple
     </div>
-    <img class="o-welcome_ilustra" src="~assets/welcome/ilustra.svg" alt="">
-    <q-btn rounded outline color="primary" class="bg-white" size="lg" label="Vamos começar"  :to="{name: 'access'}" />
+    <q-btn rounded outline color="primary" class="bg-white o-welcome_btn" size="lg" label="Vamos começar"  :to="{name: 'access'}" />
   </q-page>
 </template>
 

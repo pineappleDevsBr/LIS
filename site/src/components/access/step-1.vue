@@ -4,7 +4,6 @@
     <div class="a-title -white -sub">
       Learn is Simple
     </div>
-    <img class="o-access_ilustra" src="statics/access/ilustra_step1.svg" alt="">
     <q-btn
     rounded
     outline

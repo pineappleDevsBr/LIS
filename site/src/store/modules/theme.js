@@ -19,7 +19,6 @@ const actions = {
 
 const mutations = {
   UPDATE_THEME (state, data) {
-    console.log(state.themes, data)
     state.themes = data
   }
 }

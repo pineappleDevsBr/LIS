@@ -1,38 +1,35 @@
 <template>
-  <q-page class="q-pa-md flex items-center">
-    <div class="full-width">
-      <div class="a-title -white">Alterar minha senha</div>
-      <q-form
-      @submit.prevent="submit"
-      class="q-gutter-md column">
+  <q-page class="o-reset">
+    <div class="a-title -white">Alterar minha senha</div>
+    <q-form
+    @submit.prevent="submit"
+    class="q-gutter-md column">
 
-        <q-input
-        dark
-        color="white"
-        label-color="white"
-        style="color: white;"
-        :type="isPwd ? 'password' : 'text'"
-        v-model="form.password"
-        @blur="$v.form.password.$touch"
-        :error="$v.form.password.$error"
-        error-message="Campo obrigatório"
-        label="Senha"/>
+      <q-input
+      dark
+      color="white"
+      label-color="white"
+      style="color: white;"
+      :type="isPwd ? 'password' : 'text'"
+      v-model="form.password"
+      @blur="$v.form.password.$touch"
+      :error="$v.form.password.$error"
+      error-message="Campo obrigatório"
+      label="Senha"/>
 
-        <q-input
-        dark
-        color="white"
-        label-color="white"
-        style="color: white;"
-        :type="isPwd ? 'password' : 'text'"
-        v-model="form.confirmPassword"
-        @blur="$v.form.confirmPassword.$touch"
-        :error="$v.form.confirmPassword.$error"
-        error-message="A senha deve ser igual à de cima"
-        label="Confirmação da senha"/>
-        <img style="margin-top: -30px;" src="statics/reset/ilustra.png" alt="">
-        <q-btn rounded no-caps outline color="primary" class="bg-white" size="lg" type="submit" label="Alterar senha"/>
-      </q-form>
-    </div>
+      <q-input
+      dark
+      color="white"
+      label-color="white"
+      style="color: white;"
+      :type="isPwd ? 'password' : 'text'"
+      v-model="form.confirmPassword"
+      @blur="$v.form.confirmPassword.$touch"
+      :error="$v.form.confirmPassword.$error"
+      error-message="A senha deve ser igual à de cima"
+      label="Confirmação da senha"/>
+      <q-btn rounded no-caps outline color="primary" class="bg-white o-reset_btn" size="lg" type="submit" label="Alterar senha"/>
+    </q-form>
   </q-page>
 </template>
 
@@ -49,10 +46,6 @@ export default {
       form: {
         confirmPassword: '',
         password: ''
-      },
-      errorFilter: {
-        '404': 'Usuario nao encontrado',
-        '500': 'Erro interno'
       }
     }
   },
@@ -81,7 +74,7 @@ export default {
         } else {
           this.$q.notify({
             color: 'negative',
-            message: this.errorFilter[response.error.response.status],
+            message: this.$i18n.t(`errorFilter.user.${response.error.response.status}`),
             icon: 'report_problem'
           })
         }

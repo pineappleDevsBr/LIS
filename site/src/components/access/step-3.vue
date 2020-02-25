@@ -24,14 +24,13 @@
         </q-card>
       </q-card-section>
     </q-card>
-    <img class="o-access_ilustra" src="statics/access/ilustra_step3.svg" alt="">
     <q-btn
     rounded
     outline
     color="primary"
     class="bg-white o-access_btn"
     size="lg"
-    label="Próximo"
+    label="Finalizar cadastro"
     @click="finish"/>
   </div>
 </template>

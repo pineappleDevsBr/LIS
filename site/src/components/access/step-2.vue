@@ -73,7 +73,6 @@
       </template>
     </q-input>
 
-    <img class="o-access_ilustra" src="statics/access/ilustra_step2.svg" alt="">
     <q-btn
     rounded
     outline
