@@ -82,7 +82,7 @@ export default {
         } else {
           this.$q.notify({
             color: 'negative',
-            message: this.$i18n.t(`errorFilter.${response.error.response.status}`),
+            message: this.$i18n.t(`errorFilter.user.${response.error.response.status}`),
             icon: 'report_problem'
           })
         }

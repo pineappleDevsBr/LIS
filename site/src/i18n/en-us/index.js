@@ -3,8 +3,10 @@
 
 export default {
   errorFilter: {
-    '404': 'User not found',
-    '401': 'Incorrect password',
-    '500': 'Internal error'
+    user: {
+      '404': 'User not found',
+      '401': 'Incorrect password',
+      '500': 'Internal error'
+    }
   }
 }
