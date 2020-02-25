@@ -24,15 +24,14 @@ const Route = use('Route')
 
 Route.group(() => {
   Route.get('/user/:id', 'Api/UserController.index')
+  Route.get('/user/theme', 'Api/ThemeController.indexUser')
   Route.get('/user', 'Api/UserController.get')
   Route.put('/user', 'Api/UserController.update').validator(['User'])
-  Route.get('/theme', 'Api/ThemeController.indexUser')
-  Route.put('/theme', 'Api/ThemeController.update')
-  Route.delete('/theme', 'Api/ThemeController.delete')
 }).prefix('api/v1').middleware(['auth:jwt']);
 
 Route.group(() => {
   Route.get('/theme', 'Api/ThemeController.index')
+  Route.post('/check', 'Api/UserController.check')
   Route.post('/user', 'Api/UserController.store').validator(['User'])
   Route.post('/login', 'Api/SessionController.store')
   Route.post('/forgot', 'Api/ForgotPasswordController.store')

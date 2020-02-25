@@ -83,6 +83,20 @@ class UserController {
       response.send(err);
     }
   }
+
+  async check({ request, response }) {
+    const { payload } = request.only(['payload']);
+    const queryParameter = Object.keys(payload)[0];
+    
+    try {
+       const data = await User.findBy(queryParameter, payload[queryParameter]);
+      const status = data ? 204 : 404
+       response.status(status).send(status);
+      
+    } catch (err) {
+      response.send(err);
+    }
+  }
 }
 
 module.exports = UserController
