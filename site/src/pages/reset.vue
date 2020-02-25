@@ -46,10 +46,6 @@ export default {
       form: {
         confirmPassword: '',
         password: ''
-      },
-      errorFilter: {
-        '404': 'Usuario nao encontrado',
-        '500': 'Erro interno'
       }
     }
   },
@@ -78,7 +74,7 @@ export default {
         } else {
           this.$q.notify({
             color: 'negative',
-            message: this.errorFilter[response.error.response.status],
+            message: this.$i18n.t(`errorFilter.${response.error.response.status}`),
             icon: 'report_problem'
           })
         }

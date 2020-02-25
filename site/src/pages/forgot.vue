@@ -39,10 +39,6 @@ export default {
       isPwd: true,
       form: {
         email: ''
-      },
-      errorFilter: {
-        '404': 'Usuario nao encontrado',
-        '500': 'Erro interno'
       }
     }
   },
@@ -64,11 +60,16 @@ export default {
         const response = await store().dispatch('auth/forgot', payload)
 
         if (response.status) {
+          this.$q.notify({
+            color: 'positive',
+            message: 'E-mail enviado com sucesso!',
+            icon: 'email'
+          })
           this.$router.push({ name: 'welcome' })
         } else {
           this.$q.notify({
             color: 'negative',
-            message: this.errorFilter[response.error.response.status],
+            message: this.$i18n.t(`errorFilter.${response.error.response.status}`),
             icon: 'report_problem'
           })
         }
