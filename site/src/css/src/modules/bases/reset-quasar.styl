@@ -1,3 +1,13 @@
 .q-stepper__header {
   display: none;
 }
+
+.primary-error {
+  & + .q-field--error .q-field__bottom {
+    color: $white;
+  }
+
+  & + .q-field--focused .q-field__label {
+    color: $white;
+  }
+}

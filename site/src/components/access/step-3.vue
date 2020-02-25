@@ -1,14 +1,14 @@
 <template>
   <div class="o-access_step3">
     <div class="a-title -white -sub">
-      Escolha de temas
+      {{ $t('access.choice_of_themes.title') }}
     </div>
     <q-card class="my-card o-access_selectTheme" style="max-height: 400px; overflow-y: auto;">
       <q-card-section>
-         <q-input dense v-model="filter" label="Buscar tema..." />
+         <q-input dense v-model="filter" :label="$t('access.choice_of_themes.search')" />
       </q-card-section>
       <q-card-section>
-        Arraste para a direita para selecionar o tema.
+        {{ $t('access.choice_of_themes.info') }}
       </q-card-section>
       <q-card-section>
         <q-card  class="m-card" v-for="theme in getTheme" v-bind:key="theme.id">
@@ -25,12 +25,13 @@
       </q-card-section>
     </q-card>
     <q-btn
+    no-caps
     rounded
     outline
     color="primary"
     class="bg-white o-access_btn"
     size="lg"
-    label="Finalizar cadastro"
+    :label="$t('access.choice_of_themes.btn')"
     @click="finish"/>
   </div>
 </template>

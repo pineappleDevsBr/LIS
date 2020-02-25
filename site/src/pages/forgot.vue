@@ -1,10 +1,8 @@
 <template>
   <q-page class="o-forgot">
-    <div class="a-title -white o-forgot_title">Esqueci minha senha</div>
+    <div class="a-title -white o-forgot_title">{{ $t('forgot.title') }}</div>
     <div class="a-text">
-      Informe seu e-mail cadastrado na aplicação
-      e você receberá um link para alterar sua
-      senha.
+      {{ $t('forgot.info') }}
     </div>
     <q-form
     @submit.prevent="submit"
@@ -14,15 +12,15 @@
       dark
       color="white"
       label-color="white"
-      style="color: white;"
+      class="primary-error"
       v-model="form.email"
       @blur="$v.form.email.$touch"
       :error="$v.form.email.$error"
-      error-message="Campo obrigatório"
-      label="E-mail" />
-      <q-btn rounded no-caps outline color="primary" class="bg-white o-forgot_btn" size="lg" type="submit" label="Enviar e-mail"/>
+      :error-message="$t('forgot.errors.required')"
+      :label="$t('forgot.email')" />
+      <q-btn rounded no-caps outline color="primary" class="bg-white o-forgot_btn" size="lg" type="submit" :label="$t('forgot.btn')"/>
       <router-link :to="{name: 'login'}" class="q-mt-md text-white a-link">
-      Voltar a tela de login
+      {{ $t('forgot.back_to_login') }}
     </router-link>
     </q-form>
   </q-page>
@@ -62,7 +60,7 @@ export default {
         if (response.status) {
           this.$q.notify({
             color: 'positive',
-            message: 'E-mail enviado com sucesso!',
+            message: this.$i18n.t(`forgot.send_email`),
             icon: 'email'
           })
           this.$router.push({ name: 'welcome' })

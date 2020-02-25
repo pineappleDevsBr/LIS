@@ -1,68 +1,69 @@
 <template>
   <div class="o-access_step2">
     <div class="a-title -white -sub">
-      Dados pessoais
+      {{ $t('access.personal_data.title') }}
     </div>
 
     <q-input
     dark
     color="white"
     label-color="white"
-    style="color: white;"
+    class="primary-error"
     v-model="form.name"
     @blur="$v.form.name.$touch"
     :error="$v.form.name.$error"
-    error-message="Campo obrigatório"
-    label="Nome completo" />
+    :error-message="$t('access.personal_data.errors.required')"
+    :label="$t('access.personal_data.name')" />
 
     <q-input
     dark
     color="white"
     label-color="white"
-    style="color: white;"
+    class="primary-error"
     v-model="form.nickname"
     @blur="$v.form.nickname.$touch"
     :error="$v.form.nickname.$error"
-    error-message="Campo obrigatório"
-    label="Nickname" />
+    :error-message="$t('access.personal_data.errors.required')"
+    :label="$t('access.personal_data.nickname')" />
 
     <q-input
     dark
     color="white"
     label-color="white"
-    style="color: white;"
+    class="primary-error"
     v-model="form.email"
     @blur="$v.form.email.$touch"
     :error="$v.form.email.$error"
-    error-message="Campo obrigatório"
-    label="E-mail" />
+    :error-message="$t('access.personal_data.errors.required')"
+    :label="$t('access.personal_data.email')" />
 
     <q-input
     dark
     color="white"
     label-color="white"
-    style="color: white;"
+    class="primary-error"
     v-model="form.password"
     @blur="$v.form.password.$touch"
     :error="$v.form.password.$error"
-    error-message="Campo obrigatório"
+    :error-message="$t('access.personal_data.errors.required')"
     type="password"
-    label="Senha" />
+    :label="$t('access.personal_data.password')" />
 
     <q-input
     dark
     color="white"
     label-color="white"
-    style="color: white;"
+    class="primary-error"
     v-model="form.confirm_password"
     @blur="$v.form.confirm_password.$touch"
     :error="$v.form.confirm_password.$error"
-    error-message="Campo obrigatório"
+    :error-message="$t('access.personal_data.errors.required')"
     type="password"
-    label="Confirmação de senha" />
+    :label="$t('access.personal_data.password_confirmation')" />
 
     <q-input
-    dark color="white" label-color="white" style="color: white;"
+    :label="$t('access.personal_data.date_of_birth')"
+    dark color="white" label-color="white" class="primary-error"
     v-model="form.date_of_birth" mask="date" :rules="['date']">
       <template v-slot:append>
         <q-icon name="event" class="cursor-pointer">
@@ -74,12 +75,13 @@
     </q-input>
 
     <q-btn
+    no-caps
     rounded
     outline
     color="primary"
     class="bg-white o-access_btn"
     size="lg"
-    label="Próximo"
+    :label="$t('access.personal_data.btn')"
     @click="next"/>
   </div>
 </template>
