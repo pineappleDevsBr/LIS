@@ -8,15 +8,15 @@
       class="bg-primary no-shadow"
     >
       <q-step :name="1" title="Register" :done="step > 1">
-        <step1 @next="next" @finish="finish"></step1>
+        <step1 @next="next"></step1>
       </q-step>
 
       <q-step :name="2" title="Personal data" :done="step > 2">
-        <step2 @next="next" @finish="finish"></step2>
+        <step2 @next="next"></step2>
       </q-step>
 
       <q-step :name="3" title="Themes">
-        <step3 @next="next" @finish="finish"></step3>
+        <step3 @finish="finish"></step3>
       </q-step>
     </q-stepper>
   </q-page>
@@ -36,16 +36,21 @@ export default {
   },
   data () {
     return {
-      step: 1
+      step: 1,
+      personalData: null
     }
   },
   methods: {
-    next () {
+    next (evt) {
+      if (evt) {
+        this.personalData = evt
+      }
       this.$refs.stepper.next()
     },
 
-    finish () {
-      console.log('Concluido!')
+    finish (evt) {
+      const payload = this.personalData
+      payload.themes = evt
     }
   }
 }

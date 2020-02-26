@@ -11,7 +11,7 @@
     color="primary"
     class="bg-white o-access_btn"
     size="lg"
-    :label="$t('access.btn_register')"
+    :label="$t('access.btnRegister')"
     @click="next"/>
 
     <q-btn
@@ -21,7 +21,7 @@
     color="primary"
     class="bg-white o-access_btn"
     size="lg"
-    :label="$t('access.btn_login')"
+    :label="$t('access.btnLogin')"
     :to="{name: 'login'}"/>
   </div>
 </template>

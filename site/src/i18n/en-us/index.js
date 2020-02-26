@@ -7,28 +7,37 @@ export default {
       '404': 'User not found',
       '401': 'Incorrect password',
       '500': 'Internal error'
-    }
+    },
+    nicknameCheck: {
+      '204': 'This nickname is already in use',
+      '404': 'User not found'
+    },
+    emailCheck: {
+      '204': 'This email is already in use',
+      '404': 'User not found'
+    },
+    selectThemes: 'Select at least one theme'
   },
   welcome: {
     btn: 'Let\'s start'
   },
   access: {
-    btn_register: 'Register',
-    btn_login: 'Login',
-    personal_data: {
+    btnRegister: 'Register',
+    btnLogin: 'Login',
+    personalData: {
       title: 'Personal data',
       name: 'Full name',
       nickname: 'Nickname',
       email: 'Email',
       password: 'Password',
-      password_confirmation: 'Password confirmation',
-      date_of_birth: 'Date of birth',
+      passwordConfirmation: 'Password confirmation',
+      dateOfBirth: 'Date of birth',
       btn: 'Next',
       errors: {
         required: 'Required field'
       }
     },
-    choice_of_themes: {
+    choiceOfThemes: {
       title: 'Choosing themes',
       search: 'Search theme...',
       info: 'Drag to the right to select the theme.',
@@ -53,8 +62,8 @@ export default {
     info: 'Enter your registered email address in the application and you will receive a link to change your password.',
     email: 'Email',
     btn: 'Send email',
-    back_to_login: 'Back to login screen',
-    send_email: 'Email successfully sent!',
+    backToLogin: 'Back to login screen',
+    sendEmail: 'Email successfully sent!',
     errors: {
       required: 'Required field'
     }
@@ -62,7 +71,7 @@ export default {
   reset: {
     title: 'Change my password',
     password: 'Password',
-    password_confirmation: 'Password confirmation',
+    passwordConfirmation: 'Password confirmation',
     btn: 'Change password',
     errors: {
       required: 'Required field',

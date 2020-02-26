@@ -27,7 +27,7 @@
       @blur="$v.form.confirmPassword.$touch"
       :error="$v.form.confirmPassword.$error"
       :error-message="$t('reset.errors.same')"
-      :label="$t('reset.password_confirmation')"/>
+      :label="$t('reset.passwordConfirmation')"/>
       <q-btn rounded no-caps outline color="primary" class="bg-white o-reset_btn" size="lg" type="submit" :label="$t('reset.btn')"/>
     </q-form>
   </q-page>

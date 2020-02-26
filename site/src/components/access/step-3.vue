@@ -1,18 +1,18 @@
 <template>
   <div class="o-access_step3">
     <div class="a-title -white -sub">
-      {{ $t('access.choice_of_themes.title') }}
+      {{ $t('access.choiceOfThemes.title') }}
     </div>
     <q-card class="my-card o-access_selectTheme" style="max-height: 400px; overflow-y: auto;">
       <q-card-section>
-         <q-input dense v-model="filter" :label="$t('access.choice_of_themes.search')" />
+         <q-input dense v-model="filter" :label="$t('access.choiceOfThemes.search')" />
       </q-card-section>
       <q-card-section>
-        {{ $t('access.choice_of_themes.info') }}
+        {{ $t('access.choiceOfThemes.info') }}
       </q-card-section>
       <q-card-section>
         <q-card  class="m-card" v-for="theme in getTheme" v-bind:key="theme.id">
-          <q-slide-item @left="onLeft" @right="onRight" right-color="negative">
+          <q-slide-item @left="onLeft, addTheme(theme)" @right="onRight" right-color="negative">
             <template v-slot:left>
               <q-icon name="done" />
             </template>
@@ -31,7 +31,7 @@
     color="primary"
     class="bg-white o-access_btn"
     size="lg"
-    :label="$t('access.choice_of_themes.btn')"
+    :label="$t('access.choiceOfThemes.btn')"
     @click="finish"/>
   </div>
 </template>
@@ -44,16 +44,29 @@ export default {
   data () {
     return {
       filter: '',
-      bgColor: 'bg-white'
+      bgColor: 'bg-white',
+      themes: []
     }
   },
   methods: {
     finish () {
-      this.$emit('finish')
+      if (this.themes.length > 0) {
+        this.$emit('finish', this.themes)
+      } else {
+        this.$q.notify({
+          color: 'negative',
+          message: this.$i18n.t(`errorFilter.selectThemes`),
+          icon: 'report_problem'
+        })
+      }
     },
     onLeft ({ reset }) {
       this.bgColor = 'bg-accent'
       this.finalize(reset)
+    },
+
+    addTheme (theme) {
+      this.themes.push(theme)
     },
 
     onRight ({ reset }) {
