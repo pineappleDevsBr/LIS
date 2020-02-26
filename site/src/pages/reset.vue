@@ -12,8 +12,7 @@
       class="primary-error"
       :type="isPwd ? 'password' : 'text'"
       v-model="form.password"
-      @blur="$v.form.password.$touch"
-      :error="$v.form.password.$error"
+      :error="!validationPassword"
       :error-message="$t('reset.errors.required')"
       :label="$t('reset.password')"/>
 
@@ -34,7 +33,7 @@
 </template>
 
 <script>
-import { required, sameAs } from 'vuelidate/lib/validators'
+import { sameAs } from 'vuelidate/lib/validators'
 import store from '../store/index'
 
 export default {
@@ -51,7 +50,6 @@ export default {
   },
   validations: {
     form: {
-      password: { required },
       confirmPassword: { sameAsPassword: sameAs('password') }
     }
   },
@@ -81,6 +79,12 @@ export default {
 
         this.$q.loading.hide()
       }
+    }
+  },
+  computed: {
+    validationPassword () {
+      const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/
+      return reg.test(this.form.password)
     }
   }
 }

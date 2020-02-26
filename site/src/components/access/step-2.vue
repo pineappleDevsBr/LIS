@@ -44,7 +44,7 @@
     class="primary-error"
     v-model="form.password"
     @blur="$v.form.password.$touch"
-    :error="$v.form.password.$error"
+    :error="!validationPassword"
     :error-message="$t('access.personalData.errors.required')"
     type="password"
     :label="$t('access.personalData.password')" />
@@ -172,6 +172,10 @@ export default {
     disabled () {
       const verify = this.errors.nicknameCheck || this.errors.emailCheck
       return verify
+    },
+    validationPassword () {
+      const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/
+      return reg.test(this.form.password)
     }
   }
 }
