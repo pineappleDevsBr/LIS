@@ -26,6 +26,7 @@
 import step1 from '../components/access/step-1'
 import step2 from '../components/access/step-2'
 import step3 from '../components/access/step-3'
+import store from '../store/index'
 
 export default {
   name: 'Access',
@@ -48,9 +49,27 @@ export default {
       this.$refs.stepper.next()
     },
 
-    finish (evt) {
+    async finish (evt) {
       const payload = this.personalData
       payload.themes = evt
+
+      this.$q.loading.show()
+      const response = await store().dispatch('user/createUser', payload)
+      if (response.status) {
+        this.$q.notify({
+          color: 'positive',
+          message: 'Usuário cadastrado com sucesso!',
+          icon: 'report_problem'
+        })
+        this.$router.push({ name: 'login' })
+      } else {
+        this.$q.notify({
+          color: 'negative',
+          message: this.$i18n.t(`errorFilter.user.${response.error.response.status}`),
+          icon: 'report_problem'
+        })
+      }
+      this.$q.loading.hide()
     }
   }
 }

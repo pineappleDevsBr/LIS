@@ -12,7 +12,7 @@
       </q-card-section>
       <q-card-section>
         <q-card  class="m-card" v-for="theme in getTheme" v-bind:key="theme.id">
-          <q-slide-item @left="onLeft, addTheme(theme)" @right="onRight" right-color="negative">
+          <q-slide-item @left="onLeft, addTheme(theme.id)" @right="onRight" right-color="negative">
             <template v-slot:left>
               <q-icon name="done" />
             </template>

@@ -64,11 +64,11 @@
     <q-input
     :label="$t('access.personalData.dateOfBirth')"
     dark color="white" label-color="white" class="primary-error"
-    v-model="form.dateOfBirth">
+    v-model="form.dateOfBirth" mask="##/##/####">
       <template v-slot:append>
         <q-icon name="event" class="cursor-pointer">
           <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-            <q-date v-model="form.dateOfBirth" @input="() => $refs.qDateProxy.hide()"  mask="DD/MM/YYYY"/>
+            <q-date v-model="form.dateOfBirth" @input="() => $refs.qDateProxy.hide()"  mask="DD/MM/YYYY" :locale="myLocale"/>
           </q-popup-proxy>
         </q-icon>
       </template>
@@ -95,6 +95,12 @@ export default {
   name: 'step2',
   data () {
     return {
+      myLocale: {
+        days: 'Domingo_Segunda_Terça_Quarta_Quinta_Sexta_Sábado'.split('_'),
+        daysShort: 'Dom_Seg_Ter_Qua_Qui_Sex_Sáb'.split('_'),
+        months: 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julio_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
+        monthsShort: 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dec'.split('_')
+      },
       form: {
         name: '',
         nickname: '',
@@ -121,12 +127,15 @@ export default {
   },
   methods: {
     next () {
+      const newDate = this.formatDate(this.form.dateOfBirth)
+
       const payload = {
-        email: this.form.email,
-        password: this.form.password,
         name: this.form.name,
         nickname: this.form.nickname,
-        dateOfBirth: this.form.dateOfBirth
+        email: this.form.email,
+        password: this.form.password,
+        date_of_birth: newDate,
+        nationality_id: 1
       }
 
       this.$v.form.$touch()
@@ -153,6 +162,10 @@ export default {
         if (type === 'nicknameCheck') this.errors.nicknameCheck = false
         else this.errors.emailCheck = false
       }
+    },
+    formatDate (date) {
+      const yyyymmdd = date.split('/')
+      return `${yyyymmdd[2]}-${yyyymmdd[1]}-${yyyymmdd[0]}`
     }
   },
   computed: {
