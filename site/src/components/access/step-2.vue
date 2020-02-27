@@ -134,8 +134,7 @@ export default {
         nickname: this.form.nickname,
         email: this.form.email,
         password: this.form.password,
-        date_of_birth: newDate,
-        nationality_id: 1
+        date_of_birth: newDate
       }
 
       this.$v.form.$touch()
