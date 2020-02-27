@@ -28,12 +28,6 @@
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card">
-        <q-card-section class="m-settings_info" @click="openDlg('email', 'E-mail', getUser.email)">
-            <p class="m-settings_info-account">E-mail:</p>
-            <q-input borderless v-model="getUser.email" disable />
-        </q-card-section>
-      </q-card>
-      <q-card class="m-card m-settings_card">
         <q-card-section class="m-settings_info" @click="changePassword.isOpen = true">
             <p class="m-settings_info-account">Senha:</p>
             <q-input borderless v-model="secretPass" disable type="password" />
@@ -55,9 +49,26 @@
         </q-card-section>
       </q-card>
     </div>
+    <div class="m-settings_notification">
+      <h2 class="m-settings_title">Sobre nós</h2>
+      <q-card class="m-card m-settings_card">
+        <router-link class="m-settings_link-about" :to="{ name: 'terms' }">
+        <q-card-section class="m-settings_info">
+          Termos de política e privacidade
+        </q-card-section>
+        </router-link>
+      </q-card>
+      <q-card class="m-card m-settings_card">
+        <router-link class="m-settings_link-about" :to="{ name: 'credits' }">
+        <q-card-section class="m-settings_info">
+            Créditos de mídias
+        </q-card-section>
+        </router-link>
+      </q-card>
+    </div>
     <div class="m-settings_actions">
-      <q-btn no-caps rounded class="m-setting_actions-item" label="Salvar todas as alterações" @click="closeSettings"/>
-      <q-btn no-caps rounded class="m-setting_actions-item" label="Trocar de conta" @click="loggout"/>
+      <q-btn no-caps rounded class="m-settings_actions-item" label="Salvar todas as alterações" @click="closeSettings"/>
+      <q-btn no-caps rounded class="m-settings_actions-item" label="Trocar de conta" @click="loggout"/>
     </div>
     <qprompt :prompt="prompt" @isClose="isClose"></qprompt>
     <changeAvatar :selectAvatar="selectAvatar" @selectedAvatar="selectedAvatar"></changeAvatar>

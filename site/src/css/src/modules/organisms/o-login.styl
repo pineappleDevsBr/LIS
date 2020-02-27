@@ -1,9 +1,23 @@
 .o-login {
-  padding: 0 rem(20);
   background: url('~assets/login/login-ilustra.png') no-repeat;
-  background-position: center rem(180);
+  background-size: contain;
+  background-position: right em(170);
+  padding-bottom: em(20);
+  font-size: 1rem;
 }
 
 .o-login_btn {
-  margin-top: rem(350);
+  margin-top: em(290);
+}
+
+@media only screen and (max-width: $media.mb) {
+  .o-login_btn {
+    margin-top: em(205);
+  }
+}
+
+@media only screen and (min-width: $media.xs) {
+  .o-login {
+    background-size: initial;
+  }
 }

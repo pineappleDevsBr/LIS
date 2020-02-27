@@ -1,6 +1,6 @@
 <template>
   <div id="q-app" class="bg-primary">
-    <div class=" v-hld_mobile">
+    <div class="v-hld_mobile">
       <router-view />
     </div>
   </div>
