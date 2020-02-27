@@ -23,8 +23,8 @@ const Route = use('Route')
 */
 
 Route.group(() => {
-  Route.get('/user/:id', 'Api/UserController.index')
   Route.get('/user/theme', 'Api/ThemeController.indexUser')
+  Route.get('/user/:id', 'Api/UserController.index')
   Route.get('/user', 'Api/UserController.get')
   Route.put('/user', 'Api/UserController.update').validator(['User'])
 }).prefix('api/v1').middleware(['auth:jwt']);
@@ -57,7 +57,7 @@ Route.group(() => {
 
   // Admin -> Users
   Route.get('/users', 'Admin/UserController.index').as('admin.users')
-  
+
 }).prefix('admin').middleware(['admin', 'auth:session'])
 
 Route.group(() => {

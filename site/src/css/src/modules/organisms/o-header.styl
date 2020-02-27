@@ -1,12 +1,15 @@
 .o-header {
+  font-size: 1rem;
+  max-width em(526);
+
   &::before {
     content: '';
     display: block;
     position: absolute;
     left: 0;
-    bottom: -39px;
-    width: 40px;
-    height: 40px;
+    bottom: em(-39);
+    width: em(40);
+    height: em(40);
     background: url('~assets/header/border.svg');
     background-size: cover;
   }
@@ -16,7 +19,8 @@
   display: flex;
   align-items: center;
   width: 100%;
-  min-height: em(80);
+  min-height: em(70);
+  max-height: em(70);
   padding: em(20) em(20) 0;
 }
 
@@ -48,19 +52,18 @@
   display: block;
 
   &.-active {
-    // transform: translateZ(0) scale(1);
     font-weight: $fontweight.bold;
   }
 }
 
 .o-header_money {
   display: flex;
-  height: em(45);
+  height: em(30);
   align-items: center;
 }
 
 .o-header_coin {
-  max-width: em(30);
+  max-width: em(20);
   margin-right: em(20);
   margin-left: em(10);
 }

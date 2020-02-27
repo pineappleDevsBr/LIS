@@ -7,7 +7,7 @@
     no-caps
     narrow-indicator
     class="m-text_tabs">
-      <q-tab v-for="tab in tabs" :key="tab.name" v-bind="tab" class="m-text_tab" />
+      <q-tab v-for="tab in getMyThemes" v-bind:key="tab.id" :label="tab.name" :name="tab.id" class="m-text_tab" />
     </q-tabs>
     <div v-for="item in texts" v-bind:key="item.id">
       <q-card class="m-card" v-if="item.theme === tab" @click="openReadingActive(item.id)">
@@ -23,6 +23,8 @@
 
 <script>
 import reading from '../../components/reading'
+import { mapGetters } from 'vuex'
+
 const allTabs = [
   { name: 'books', label: 'Livros' },
   { name: 'movies', label: 'Filmes' }
@@ -34,13 +36,17 @@ export default {
   },
   data () {
     return {
-      tab: 'books',
+      tab: 1,
       openReading: false,
       tabs: allTabs.slice(0, 2),
       texts: [
-        { id: 1, title: 'Harry Potter', xp: '15', theme: 'books' },
-        { id: 2, title: 'Vingadores: Guerra infinita', xp: '15', theme: 'movies' },
-        { id: 3, title: 'Coração de tinta', xp: '15', theme: 'books' }
+        { id: 1, title: 'Harry Potter', xp: '15', theme: 1 },
+        { id: 2, title: 'Harry Potter', xp: '15', theme: 1 },
+        { id: 3, title: 'Harry Potter', xp: '15', theme: 2 },
+        { id: 3, title: 'Harry Potter', xp: '15', theme: 2 },
+        { id: 3, title: 'Harry Potter', xp: '15', theme: 2 },
+        { id: 3, title: 'Harry Potter', xp: '15', theme: 2 },
+        { id: 3, title: 'Harry Potter', xp: '15', theme: 3 }
       ]
     }
   },
@@ -51,6 +57,9 @@ export default {
     closeReading () {
       this.openReading = false
     }
+  },
+  computed: {
+    ...mapGetters('theme', ['getMyThemes'])
   }
 }
 </script>

@@ -5,12 +5,12 @@
   .m-card {
     min-width: 130px;
     &:not(:last-child) {
-    margin-right: 20px;
-  }
+      margin-right: 20px;
+    }
 
-  &:nth-child(2n) {
-    margin-right: 0;
-  }
+    &:nth-child(2n) {
+      margin-right: 0;
+    }
   }
 }
 
@@ -19,4 +19,18 @@
   box-shadow: 0px 5px 20px -5px rgba(0,0,0,0.20);
   margin-bottom: em(20);
   flex-grow: 1;
+}
+
+@media only screen and (min-width: $media.xs) {
+  .m-cards {
+    .m-card {
+      &:nth-child(2n) {
+        margin-right: em(20);
+      }
+
+      &:nth-child(3n) {
+        margin-right: 0;
+      }
+    }
+  }
 }

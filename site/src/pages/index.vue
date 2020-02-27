@@ -17,6 +17,7 @@
 
 <script>
 import progressBar from '../components/progress-bar'
+import store from '../store'
 
 export default {
   name: 'Activities',
@@ -36,6 +37,10 @@ export default {
     startLearn (next) {
       this.$router.push({ name: next })
     }
+  },
+
+  async mounted () {
+    await store().dispatch('theme/getMyThemes')
   }
 }
 </script>
