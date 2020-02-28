@@ -1,7 +1,7 @@
 <template>
   <div class="o-withoutInternet">
     <p class="a-title -white o-withoutInternet_title"><strong>Sem Internet</strong></p>
-    <p class="a-text o-withoutInternet_text">
+    <p class="a-text -white o-withoutInternet_text">
       Você está desconectado! Conecte-se
       novamente para voltar aos estudos!
     </p>

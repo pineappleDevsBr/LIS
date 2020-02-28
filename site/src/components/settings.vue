@@ -51,20 +51,8 @@
     </div>
     <div class="m-settings_notification">
       <h2 class="m-settings_title">Sobre nós</h2>
-      <q-card class="m-card m-settings_card">
-        <router-link class="m-settings_link-about" :to="{ name: 'terms' }">
-        <q-card-section class="m-settings_info">
-          Termos de política e privacidade
-        </q-card-section>
-        </router-link>
-      </q-card>
-      <q-card class="m-card m-settings_card">
-        <router-link class="m-settings_link-about" :to="{ name: 'credits' }">
-        <q-card-section class="m-settings_info">
-            Créditos de mídias
-        </q-card-section>
-        </router-link>
-      </q-card>
+      <q-btn no-caps align="left" flat class="m-card m-settings_link-about" label="Termos de uso e privacidade"/>
+      <q-btn no-caps align="left" flat class="m-card m-settings_link-about" label="Créditos de mídias" @click="creditsOpen = true"/>
     </div>
     <div class="m-settings_actions">
       <q-btn no-caps rounded class="m-settings_actions-item" label="Salvar todas as alterações" @click="closeSettings"/>
@@ -73,6 +61,7 @@
     <qprompt :prompt="prompt" @isClose="isClose"></qprompt>
     <changeAvatar :selectAvatar="selectAvatar" @selectedAvatar="selectedAvatar"></changeAvatar>
     <changePassword :isOpen="changePassword.isOpen" @close="changePassword.isOpen = false"></changePassword>
+    <credits :credits="creditsOpen" @closeCredits="closeCredits"></credits>
     </div>
   </q-dialog>
 </template>
@@ -81,6 +70,7 @@
 import qprompt from './ui/dlg-prompt'
 import changeAvatar from './ui/changeAvatar'
 import changePassword from './ui/changePassword'
+import credits from './credits'
 import store from '../store/index'
 import { mapGetters } from 'vuex'
 
@@ -89,13 +79,16 @@ export default {
   components: {
     qprompt,
     changeAvatar,
-    changePassword
+    changePassword,
+    credits
+
   },
   props: {
     settings: Boolean
   },
   data () {
     return {
+      creditsOpen: false,
       notifications: {
         update: false,
         changeData: true
@@ -136,6 +129,9 @@ export default {
     },
     closeSettings () {
       this.$emit('closeSettings')
+    },
+    closeCredits () {
+      this.creditsOpen = false
     }
   },
   computed: {

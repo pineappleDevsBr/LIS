@@ -1,7 +1,7 @@
 <template>
   <q-page class="o-forgot">
     <div class="a-title -white o-forgot_title">{{ $t('forgot.title') }}</div>
-    <div class="a-text">
+    <div class="a-text -white">
       {{ $t('forgot.info') }}
     </div>
     <q-form

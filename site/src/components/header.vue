@@ -3,7 +3,7 @@
     <q-header class="o-header v-hld_mobile">
       <q-toolbar class="flex column">
         <div class="o-header_head">
-          <q-toolbar-title class="a-text o-header_title">
+          <q-toolbar-title class="a-text -white o-header_title">
             {{ title }}
           </q-toolbar-title>
           <component :is="activeAction"></component>
