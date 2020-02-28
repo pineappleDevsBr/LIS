@@ -30,7 +30,8 @@ const routes = [
       { path: 'access', name: 'access', component: () => import('pages/access.vue') },
       { path: 'login', name: 'login', component: () => import('pages/login.vue') },
       { path: 'forgot', name: 'forgot-password', component: () => import('pages/forgot.vue') },
-      { path: 'reset', name: 'reset-password', component: () => import('pages/reset.vue') }
+      { path: 'reset', name: 'reset-password', component: () => import('pages/reset.vue') },
+      { path: 'without-internet', name: 'without-internet', component: () => import('pages/without-internet') }
     ]
   }
 ]
