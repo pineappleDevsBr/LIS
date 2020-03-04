@@ -1,5 +1,6 @@
 <template>
   <div>
+    {{ getMyThemes }}
     <q-tabs
     v-model="tab"
     inline-label
@@ -17,36 +18,34 @@
         </q-card-section>
       </q-card>
     </div>
-    <reading :reading="openReading" @closeReading="closeReading"></reading>
+    <btnBack @back="back"/>
+    <reading :reading="openReading" @closeReading="closeReading"/>
   </div>
 </template>
 
 <script>
 import reading from '../../components/reading'
+import btnBack from '../../components/ui/btnBack'
 import { mapGetters } from 'vuex'
 
-const allTabs = [
-  { name: 'books', label: 'Livros' },
-  { name: 'movies', label: 'Filmes' }
-]
 export default {
-  name: 'Hub',
+  name: 'Texts',
   components: {
-    reading
+    reading,
+    btnBack
   },
   data () {
     return {
       tab: 1,
       openReading: false,
-      tabs: allTabs.slice(0, 2),
       texts: [
         { id: 1, title: 'Harry Potter', xp: '15', theme: 1 },
         { id: 2, title: 'Harry Potter', xp: '15', theme: 1 },
         { id: 3, title: 'Harry Potter', xp: '15', theme: 2 },
-        { id: 3, title: 'Harry Potter', xp: '15', theme: 2 },
-        { id: 3, title: 'Harry Potter', xp: '15', theme: 2 },
-        { id: 3, title: 'Harry Potter', xp: '15', theme: 2 },
-        { id: 3, title: 'Harry Potter', xp: '15', theme: 3 }
+        { id: 4, title: 'Harry Potter', xp: '15', theme: 2 },
+        { id: 5, title: 'Harry Potter', xp: '15', theme: 2 },
+        { id: 6, title: 'Harry Potter', xp: '15', theme: 2 },
+        { id: 7, title: 'Harry Potter', xp: '15', theme: 3 }
       ]
     }
   },
@@ -56,6 +55,9 @@ export default {
     },
     closeReading () {
       this.openReading = false
+    },
+    back () {
+      this.$router.push({ name: 'home' })
     }
   },
   computed: {

@@ -14,12 +14,12 @@ const routes = [
     beforeEnter: requireAuth,
     component: () => import('layouts/index.vue'),
     children: [
-      { path: '', name: 'home', component: () => import('pages/index.vue') },
-      { path: 'store', name: 'store', component: () => import('pages/store.vue') },
-      { path: 'profile', name: 'profile', component: () => import('pages/profile.vue') },
+      { path: '', name: 'home', component: () => import('pages/auth/index.vue') },
+      { path: 'store', name: 'store', component: () => import('pages/auth/store.vue') },
+      { path: 'profile', name: 'profile', component: () => import('pages/auth/profile.vue') },
       { path: 'profile/:id', component: () => import('pages/internal-pages/profile-friend.vue') },
       { path: 'texts', name: 'texts', component: () => import('pages/activities/texts.vue') },
-      { path: 'hub', name: 'hub', component: () => import('pages/hub.vue') }
+      { path: 'hub', name: 'hub', component: () => import('pages/auth/hub.vue') }
     ]
   },
   {

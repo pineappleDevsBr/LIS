@@ -16,8 +16,8 @@
 </template>
 
 <script>
-import progressBar from '../components/progress-bar'
-import store from '../store'
+import progressBar from '../../components/progress-bar'
+import store from '../../store'
 
 export default {
   name: 'Activities',

@@ -43,16 +43,19 @@
         </q-card-section>
       </q-card>
     </div>
+    <btnBack @back="back"/>
   </div>
 </template>
 
 <script>
 import progressBar from '../../components/progress-bar'
+import btnBack from '../../components/ui/btnBack'
 
 export default {
   name: 'friend',
   components: {
-    progressBar
+    progressBar,
+    btnBack
   },
   data () {
     return {
