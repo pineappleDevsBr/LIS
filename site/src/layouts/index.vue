@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf" class="bg-white">
+  <q-layout view="lHh Lpr lFf" class="bg-white" :class="{ 'q-dark': $q.dark.isActive }">
     <qheader></qheader>
     <q-page-container>
       <div class="v-container">

@@ -1,5 +1,5 @@
 <template>
-  <div id="q-app" class="bg-primary">
+  <div id="q-app" class="bg-primary" :class="{ 'q-dark': $q.dark.isActive }">
     <div class="v-hld_mobile">
       <router-view />
     </div>
@@ -14,6 +14,7 @@ export default {
   async mounted () {
     await store().dispatch('user/getUser')
     await store().dispatch('theme/getTheme')
+    // this.$q.dark.set(false)
   }
 }
 </script>

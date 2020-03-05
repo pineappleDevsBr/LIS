@@ -4,7 +4,7 @@
     <div class="a-title -white -sub">
       Learn is Simple
     </div>
-    <q-btn no-caps rounded outline color="primary" class="bg-white o-welcome_btn" size="lg" :label="$t('welcome.btn')"  :to="{name: 'access'}" />
+    <q-btn no-caps rounded outline color="primary" class="bg-white o-welcome_btn" :class="{ 'q-dark': $q.dark.isActive }" size="lg" :label="$t('welcome.btn')"  :to="{name: 'access'}" />
   </q-page>
 </template>
 
