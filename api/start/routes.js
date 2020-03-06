@@ -23,10 +23,7 @@ const Route = use('Route')
 */
 
 Route.group(() => {
-<<<<<<< HEAD
   // App -> Themes
-=======
->>>>>>> 27ac1d12a3b5e067e24ef719765b4bf2bc664c27
   Route.get('/user/theme', 'Api/ThemeController.indexUser')
   Route.get('/user/:id', 'Api/UserController.index')
   Route.get('/user', 'Api/UserController.get')
@@ -65,12 +62,9 @@ Route.group(() => {
   // Admin -> Users
   Route.get('/users', 'Admin/UserController.index').as('admin.users')
 
-<<<<<<< HEAD
   // Admin -> Tasks
   Route.get('/tasks', 'Admin/TaskController.index').as('admin.tasks')
-  
-=======
->>>>>>> 27ac1d12a3b5e067e24ef719765b4bf2bc664c27
+
 }).prefix('admin').middleware(['admin', 'auth:session'])
 
 Route.group(() => {
