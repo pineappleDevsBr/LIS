@@ -43,6 +43,12 @@ Factory.blueprint('App/Models/Nationality', async (faker, i) => {
   }
 })
 
+Factory.blueprint('App/Models/TaskType', async (faker, i, data) => {
+  return {
+    name: data || faker.word()
+  }
+})
+
 Factory.blueprint('App/Models/User', async (faker, i) => {
   return {
     name: faker.name(),
@@ -51,5 +57,14 @@ Factory.blueprint('App/Models/User', async (faker, i) => {
     password: faker.password(),
     date_of_birth: new Date(),
     ...i
+  }
+})
+
+Factory.blueprint('App/Models/Task', async (faker, i, data) => {
+  return {
+    name: faker.name(),
+    title: faker.username(),
+    task_type_id: data.type,
+    theme_id: data.theme
   }
 })

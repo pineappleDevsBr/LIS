@@ -4,6 +4,10 @@
 const Model = use('Model')
 
 class Theme extends Model {
+  theme_lists() {
+    return this.hasMany('App/Models/ThemeList')
+  }
+
   static get hidden() {
     return ['created_at', 'updated_at'];
   }

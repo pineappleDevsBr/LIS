@@ -10,7 +10,7 @@ test('It should return JWT token when session created', async ({ assert, client 
   }
 
   const response = await client
-    .post('/login')
+    .post('/api/v1/login')
     .send(user_data)
     .end()
 

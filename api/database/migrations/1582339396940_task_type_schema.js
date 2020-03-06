@@ -3,7 +3,7 @@
 /** @type {import('@adonisjs/lucid/src/Schema')} */
 const Schema = use('Schema')
 
-class TakTypeSchema extends Schema {
+class TaskTypeSchema extends Schema {
   up () {
     this.create('task_types', (table) => {
       table.increments('id')
@@ -17,4 +17,4 @@ class TakTypeSchema extends Schema {
   }
 }
 
-module.exports = TakTypeSchema
+module.exports = TaskTypeSchema

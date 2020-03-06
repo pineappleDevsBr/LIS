@@ -27,7 +27,7 @@ async function generateForgotPasswordToken(client, email) {
   
 
   await client
-    .post('/forgot')
+    .post('/api/v1/forgot')
     .send(forgot_payload)
     .end();
 
@@ -56,7 +56,7 @@ test('It should be able to reset password', async ({ assert, client }) => {
   
 
   await client
-    .post('/reset')
+    .post('/api/v1/reset')
     .send(payload)
     .end()
 

@@ -9,14 +9,13 @@ trait('Auth/Client')
 
 
 test('It should return theme list of the user', async ({ assert, client }) => {
-  const user = await User.find(2);
+  const user = await User.findBy('email', 'leandro@lis.com');
 
   const response = await client
-    .get('/theme/all')
+    .get('/api/v1/user/theme')
     .loginVia(user, 'jwt')
     .end()
 
-    response.assertStatus(200);
-    assert.isArray(response.body);
+  assert.isArray(response.body);
 });
 

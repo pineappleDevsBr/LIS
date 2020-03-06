@@ -8,8 +8,8 @@ class ThemeList extends Model {
     return this.belongsToMany('App/Models/User')
   }
 
-  theme() {
-    return this.belongsToMany('App/Models/Theme')
+  themes() {
+    return this.belongsToMany('App/Models/Theme', 'theme');
   }
 }
 

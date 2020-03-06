@@ -63,10 +63,26 @@ class DatabaseSeeder {
     // -------------------------------------------------------------------------- //
 
     await Factory.model('App/Models/Theme').createMany(5)
-    const theme_1 = await Theme.find(1);
 
     await Factory.model('App/Models/ThemeList')
-      .create(0, { user_id: 1, theme_id: theme_1.id })
+      .create(0, { user_id: 1, theme_id: 1 })
+
+    await Factory.model('App/Models/ThemeList')
+      .create(0, { user_id: 1, theme_id: 2 })
+
+    await Factory.model('App/Models/ThemeList')
+      .create(0, { user_id: 1, theme_id: 3 })
+
+    // -------------------------------------------------------------------------- //
+
+    await Factory.model('App/Models/TaskType').create('quiz')
+    await Factory.model('App/Models/TaskType').create('complete')
+    await Factory.model('App/Models/TaskType').create('reading')
+
+    await Factory.model('App/Models/Task').create({ theme: 1, type: 1 });
+    await Factory.model('App/Models/Task').create({ theme: 2, type: 1 });
+    await Factory.model('App/Models/Task').create({ theme: 2, type: 2 });
+    await Factory.model('App/Models/Task').create({ theme: 3, type: 3 });
   }
 }
 

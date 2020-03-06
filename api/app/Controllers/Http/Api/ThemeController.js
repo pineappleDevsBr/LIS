@@ -21,6 +21,7 @@ class ThemeController {
         .innerJoin('themes', 'theme_lists.theme_id', 'themes.id')
         .fetch()
 
+
       response.send(data);
     } catch(err) {
       response.send(err);
