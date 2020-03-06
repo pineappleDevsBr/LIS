@@ -15,6 +15,25 @@ const actions = {
     } catch (err) {
       return err
     }
+  },
+
+  async checkUser ({ commit }, payload) {
+    try {
+      const response = await user.check(payload)
+      return response.status
+    } catch (err) {
+      return err
+    }
+  },
+
+  async createUser ({ commit }, payload) {
+    try {
+      const response = await user.create(payload)
+      console.log(response)
+      return response
+    } catch (err) {
+      return err
+    }
   }
 }
 
@@ -31,7 +50,7 @@ const state = {
   id: 1,
   nickname: '',
   email: '',
-  date_of_birth: '',
+  dateOfBirth: '',
   xp: 0,
   money: 100,
   nationality: {

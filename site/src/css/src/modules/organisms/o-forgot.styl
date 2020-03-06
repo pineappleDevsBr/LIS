@@ -1,13 +1,29 @@
 .o-forgot {
-  padding: 0 rem(20);
   background: url('~assets/forgot/forgot-ilustra.png') no-repeat;
-  background-position: center rem(220);
+  background-size: contain;
+  background-position: right em(210);
 }
 
 .o-forgot_title {
-  margin-bottom: rem(20);
+  margin-bottom: em(20);
 }
 
 .o-forgot_btn {
-  margin-top: rem(240);
+  margin-top: em(185);
+}
+
+@media only screen and (max-width: $media.mb) {
+  .o-forgot {
+    background-position: right em(230);
+  }
+
+  .o-forgot_btn {
+    margin-top: em(140);
+  }
+}
+
+@media only screen and (min-width: $media.xs) {
+  .o-forgot {
+    background-size: initial;
+  }
 }

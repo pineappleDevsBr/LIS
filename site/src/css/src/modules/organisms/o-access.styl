@@ -1,5 +1,6 @@
 .o-access {
   background: $primary;
+  font-size: 1rem;
 }
 
 .o-access_step1,
@@ -11,31 +12,75 @@
 
 .o-access_step1 {
   background: url('~assets/access/ilustra_step-1.png') no-repeat;
-  background-position: center rem(150);
+  background-size: contain;
+  background-position: center em(130);
 
   & .o-access_btn:nth-child(3) {
-    margin-top: rem(400);
-    margin-bottom: rem(10);
+    margin-top: em(310);
+    margin-bottom: em(10);
   }
 }
 
 .o-access_step2 {
   background: url('~assets/access/ilustra_step-2.png') no-repeat;
-  background-position: right rem(450);
-  background-size: rem(275);
+  background-size: contain;
+  background-position: right em(460);
+  background-size: em(275);
 
   & .o-access_btn {
-    margin-top: rem(220);
+    margin-top: em(190);
   }
 }
 
 
 .o-access_step3 {
-  background: url('~assets/access/ilustra_step-3.png') no-repeat;
-  background-position: center 82%;
-  background-size: rem(275);
+  position: relative;
 
+  &::before {
+    content: '';
+    display: block;
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: em(50);
+    right: 0;
+    background: url('~assets/access/ilustra_step-3.png') no-repeat;
+    background-size: contain;
+    background-position: center bottom;
+  }
   & .o-access_btn {
-    margin-top: rem(350);
+    margin-top: em(350);
+  }
+}
+
+@media only screen and (max-width: $media.mb) {
+  .o-access_step1 {
+    & .o-access_btn:nth-child(3) {
+      margin-top: em(240);
+    }
+  }
+
+  .o-access_step3 {
+    & .o-access_btn {
+      margin-top: em(265);
+    }
+  }
+}
+
+@media only screen and (min-width: $media.xs) {
+  .o-access_step1,
+  .o-access_step2,
+  .o-access_step3::before {
+    background-size: initial;
+  }
+
+  .o-access_step2 {
+    & .o-access_btn {
+      margin-top: em(250);
+    }
+  }
+
+  .o-access_step3 {
+    background-size: em(255);
   }
 }

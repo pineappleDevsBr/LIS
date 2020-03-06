@@ -1,4 +1,29 @@
+.a-btn {
+  background: $white;
+  color: $primary;
+
+  &.-dark {
+    background: $primary;
+    color: $white;
+  }
+
+  &.-back {
+    position: fixed;
+    bottom: em(50);
+    right: em(30);
+  }
+}
+
 .a-btn_actions {
   color: $primary;
   font-weight: $fontweight.bold;
+}
+
+@media only screen and (min-width: $media.xs) {
+  .a-btn.-back {
+    position: fixed;
+    bottom: em(50);
+    right: 50%;
+    transform: translateX(50%);
+  }
 }

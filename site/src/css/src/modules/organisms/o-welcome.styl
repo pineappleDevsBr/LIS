@@ -1,9 +1,22 @@
 .o-welcome {
-  padding: 0 rem(20);
   background: url('~assets/welcome/ilustra.png') no-repeat;
-  background-position: center rem(150);
+  background-size: contain;
+  background-position: center em(140);
+  font-size: 1rem;
 }
 
 .o-welcome_btn {
-  margin-top: rem(360);
+  margin-top: em(260);
+}
+
+@media only screen and (max-width: $media.mb) {
+  .o-welcome_btn {
+    margin-top: em(220);
+  }
+}
+
+@media only screen and (min-width: $media.xs) {
+  .o-welcome {
+    background-size: initial;
+  }
 }

@@ -17,7 +17,7 @@
 </template>
 
 <script>
-import buy from '../components/buy-product'
+import buy from '../../components/buy-product'
 import { mapGetters } from 'vuex'
 
 export default {

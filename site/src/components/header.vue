@@ -1,9 +1,9 @@
 <template>
   <div>
-    <q-header class="o-header v-hld_mobile">
+    <q-header class="bg-primary o-header v-hld_mobile" :class="{ 'q-dark': $q.dark.isActive }">
       <q-toolbar class="flex column">
         <div class="o-header_head">
-          <q-toolbar-title class="a-text o-header_title">
+          <q-toolbar-title class="a-text -white o-header_title">
             {{ title }}
           </q-toolbar-title>
           <component :is="activeAction"></component>
@@ -16,6 +16,11 @@
           </swiper>
         </div>
       </q-toolbar>
+      <div class="o-header_border">
+        <svg id="Camada_1" data-name="Camada 1" xmlns="http://www.w3.org/2000/svg" width="234" height="232" viewBox="0 0 234 232">
+          <path class="fill" d="M559.5,463.5h-234v232C328.08,689.9,339.5,499.5,559.5,463.5Z" transform="translate(-325.5 -463.5)"/>
+        </svg>
+      </div>
     </q-header>
   </div>
 </template>
@@ -50,9 +55,10 @@ export default {
         home: { name: 'home', label: 'Atividades', action: 'qprogress' },
         store: { name: 'store', label: 'Loja', action: 'qstore' },
         profile: { name: 'profile', label: 'Perfil', action: 'qsettings' },
-        hub: { name: 'hub', label: 'Hub de amigos', action: 'qfriends' }
+        hub: { name: 'hub', label: 'Hub de amigos', action: 'qfriends' },
+        settings: { name: 'settings', label: 'Ajustes gerais', action: '' }
       },
-      default: { name: 'home', label: 'Atividades', action: 'qprogress' }
+      default: { name: 'home', label: 'Atividades', action: '' }
     }
   },
   computed: {

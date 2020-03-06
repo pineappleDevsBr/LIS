@@ -5,21 +5,23 @@
       Learn is Simple
     </div>
     <q-btn
+    no-caps
     rounded
     outline
     color="primary"
     class="bg-white o-access_btn"
     size="lg"
-    label="Cadastrar-se"
+    :label="$t('access.btnRegister')"
     @click="next"/>
 
     <q-btn
+    no-caps
     rounded
     outline
     color="primary"
     class="bg-white o-access_btn"
     size="lg"
-    label="Login"
+    :label="$t('access.btnLogin')"
     :to="{name: 'login'}"/>
   </div>
 </template>

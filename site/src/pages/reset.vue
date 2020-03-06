@@ -1,6 +1,6 @@
 <template>
   <q-page class="o-reset">
-    <div class="a-title -white">Alterar minha senha</div>
+    <div class="a-title -white">{{ $t('reset.title') }}</div>
     <q-form
     @submit.prevent="submit"
     class="q-gutter-md column">
@@ -9,32 +9,31 @@
       dark
       color="white"
       label-color="white"
-      style="color: white;"
+      class="primary-error"
       :type="isPwd ? 'password' : 'text'"
       v-model="form.password"
-      @blur="$v.form.password.$touch"
-      :error="$v.form.password.$error"
-      error-message="Campo obrigatório"
-      label="Senha"/>
+      :error="!validationPassword"
+      :error-message="$t('reset.errors.required')"
+      :label="$t('reset.password')"/>
 
       <q-input
       dark
       color="white"
       label-color="white"
-      style="color: white;"
+      class="primary-error"
       :type="isPwd ? 'password' : 'text'"
       v-model="form.confirmPassword"
       @blur="$v.form.confirmPassword.$touch"
       :error="$v.form.confirmPassword.$error"
-      error-message="A senha deve ser igual à de cima"
-      label="Confirmação da senha"/>
-      <q-btn rounded no-caps outline color="primary" class="bg-white o-reset_btn" size="lg" type="submit" label="Alterar senha"/>
+      :error-message="$t('reset.errors.same')"
+      :label="$t('reset.passwordConfirmation')"/>
+      <q-btn rounded no-caps outline color="primary" class="bg-white o-reset_btn" size="lg" type="submit" :label="$t('reset.btn')"/>
     </q-form>
   </q-page>
 </template>
 
 <script>
-import { required, sameAs } from 'vuelidate/lib/validators'
+import { sameAs } from 'vuelidate/lib/validators'
 import store from '../store/index'
 
 export default {
@@ -51,7 +50,6 @@ export default {
   },
   validations: {
     form: {
-      password: { required },
       confirmPassword: { sameAsPassword: sameAs('password') }
     }
   },
@@ -81,6 +79,12 @@ export default {
 
         this.$q.loading.hide()
       }
+    }
+  },
+  computed: {
+    validationPassword () {
+      const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/
+      return reg.test(this.form.password)
     }
   }
 }

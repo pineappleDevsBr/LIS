@@ -1,0 +1,29 @@
+.bg-white {
+  background: $white !important;
+  transition: background 0.4s ease;
+
+  &.q-dark {
+    background: $l-dark !important;
+
+    .q-btn {
+      color: $white;
+    }
+
+    .m-activities_title {
+      color: $primary;
+    }
+  }
+}
+
+.bg-primary {
+  background: $primary !important;
+  transition: background fill 0.4s ease;
+
+  &.q-dark {
+    background: $dark-primary !important;
+
+    .fill {
+      fill: $dark-primary !important;
+    }
+  }
+}

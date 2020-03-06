@@ -7,7 +7,7 @@
       size="60px"
       :thickness="0.12"
       color="white"
-      track-color="grey-11">
+      track-color="gray-11">
       {{ getUser.xp }}XP
     </q-circular-progress>
   </div>

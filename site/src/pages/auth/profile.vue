@@ -40,7 +40,7 @@
 </template>
 
 <script>
-import progressBar from '../components/progress-bar'
+import progressBar from '../../components/progress-bar'
 import { mapGetters } from 'vuex'
 
 export default {

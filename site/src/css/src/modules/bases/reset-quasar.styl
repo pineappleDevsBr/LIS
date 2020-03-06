@@ -1,3 +1,26 @@
 .q-stepper__header {
   display: none;
 }
+
+.primary-error {
+  & + .q-field--error .q-field__bottom {
+    color: $white;
+  }
+
+  & + .q-field--focused .q-field__label {
+    color: $white;
+  }
+}
+
+.q-dialog__inner--maximized > div {
+  max-width: em(600) !important;
+}
+
+.q-page-container {
+  padding-left: em(20);
+  padding-right: em(20);
+}
+
+.q-stepper--horizontal .q-stepper__step-inner {
+  padding: em(24) 0 !important;
+}

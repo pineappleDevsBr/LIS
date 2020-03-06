@@ -5,8 +5,8 @@
   :maximized="true"
   transition-show="slide-up"
   transition-hide="slide-down">
-  <div class="o-modal">
-    <div class="o-modal_header">
+  <div class="o-modal bg-white" :class="{ 'q-dark': $q.dark.isActive }">
+    <div class="o-modal_header bg-primary" :class="{ 'q-dark': $q.dark.isActive }">
       <h2 class="o-modal_title">Configurações</h2>
       <q-btn
       flat
@@ -25,12 +25,6 @@
         <q-card-section class="m-settings_info" @click="openDlg('name', 'Nome', getUser.nickname)">
           <p class="m-settings_info-account">Nome:</p>
           <q-input borderless v-model="getUser.nickname" disable />
-        </q-card-section>
-      </q-card>
-      <q-card class="m-card m-settings_card">
-        <q-card-section class="m-settings_info" @click="openDlg('email', 'E-mail', getUser.email)">
-            <p class="m-settings_info-account">E-mail:</p>
-            <q-input borderless v-model="getUser.email" disable />
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card">
@@ -55,13 +49,27 @@
         </q-card-section>
       </q-card>
     </div>
+    <div class="m-settings_notification">
+      <h2 class="m-settings_title">Sobre nós</h2>
+      <q-card class="m-card m-settings_card">
+        <q-card-section class="m-settings_info">
+          <p class="m-settings_info-account">Termos de uso e privacidade</p>
+        </q-card-section>
+      </q-card>
+      <q-card class="m-card m-settings_card" @click="creditsOpen = true">
+        <q-card-section class="m-settings_info">
+          <p class="m-settings_info-account">Créditos de mídia</p>
+        </q-card-section>
+      </q-card>
+    </div>
     <div class="m-settings_actions">
-      <q-btn no-caps rounded class="m-setting_actions-item" label="Salvar todas as alterações" @click="closeSettings"/>
-      <q-btn no-caps rounded class="m-setting_actions-item" label="Trocar de conta" @click="loggout"/>
+      <q-btn no-caps rounded class="m-settings_actions-item" label="Salvar todas as alterações" @click="closeSettings"/>
+      <q-btn no-caps rounded class="m-settings_actions-item" label="Trocar de conta" @click="loggout"/>
     </div>
     <qprompt :prompt="prompt" @isClose="isClose"></qprompt>
     <changeAvatar :selectAvatar="selectAvatar" @selectedAvatar="selectedAvatar"></changeAvatar>
     <changePassword :isOpen="changePassword.isOpen" @close="changePassword.isOpen = false"></changePassword>
+    <credits :credits="creditsOpen" @closeCredits="closeCredits"></credits>
     </div>
   </q-dialog>
 </template>
@@ -70,6 +78,7 @@
 import qprompt from './ui/dlg-prompt'
 import changeAvatar from './ui/changeAvatar'
 import changePassword from './ui/changePassword'
+import credits from './credits'
 import store from '../store/index'
 import { mapGetters } from 'vuex'
 
@@ -78,13 +87,16 @@ export default {
   components: {
     qprompt,
     changeAvatar,
-    changePassword
+    changePassword,
+    credits
+
   },
   props: {
     settings: Boolean
   },
   data () {
     return {
+      creditsOpen: false,
       notifications: {
         update: false,
         changeData: true
@@ -125,6 +137,9 @@ export default {
     },
     closeSettings () {
       this.$emit('closeSettings')
+    },
+    closeCredits () {
+      this.creditsOpen = false
     }
   },
   computed: {

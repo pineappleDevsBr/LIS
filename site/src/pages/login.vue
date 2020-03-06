@@ -1,6 +1,6 @@
 <template>
   <q-page class="o-login">
-      <div class="a-title -white">Login</div>
+      <div class="a-title -white">{{ $t('login.title')}}</div>
       <q-form
       @submit.prevent="submit"
       class="q-gutter-md column">
@@ -9,24 +9,24 @@
         dark
         color="white"
         label-color="white"
-        style="color: white;"
+        class="primary-error"
         v-model="form.email"
         @blur="$v.form.email.$touch"
         :error="$v.form.email.$error"
-        error-message="Campo obrigatório"
-        label="E-mail" />
+        :error-message="$t('login.errors.required')"
+        :label="$t('login.email')" />
 
         <q-input
         dark
         color="white"
         label-color="white"
-        style="color: white;"
+        class="primary-error"
         :type="isPwd ? 'password' : 'text'"
         v-model="form.password"
         @blur="$v.form.password.$touch"
         :error="$v.form.password.$error"
-        error-message="Campo obrigatório"
-        label="Senha">
+        :error-message="$t('login.errors.required')"
+        :label="$t('login.password')">
           <template v-slot:append>
             <q-icon
               :name="isPwd ? 'visibility_off' : 'visibility'"
@@ -35,9 +35,9 @@
             />
           </template>
         </q-input>
-        <q-btn rounded no-caps outline color="primary" class="bg-white o-login_btn" size="lg" type="submit" label="Login"/>
+        <q-btn rounded no-caps outline color="primary" class="bg-white o-login_btn" size="lg" type="submit" :label="$t('login.btn')"/>
         <router-link :to="{name: 'forgot-password'}" class="q-mt-md text-white a-link">
-        Esqueci minha senha
+        {{ $t('login.forgot') }}
       </router-link>
       </q-form>
   </q-page>

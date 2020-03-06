@@ -1,90 +1,38 @@
-import store from '../store'
+// import store from '../store'
 
-function requireAuth (to, from, next) {
-  if (!store().state.auth.isUserLogged) {
-    next({ path: '/login' })
-  } else {
-    next()
-  }
-}
+// function requireAuth (to, from, next) {
+//   if (!store().state.auth.isUserLogged) {
+//     next({ name: 'welcome' })
+//   } else {
+//     next()
+//   }
+// }
 
 const routes = [
   {
     path: '/',
-    beforeEnter: requireAuth,
+    // beforeEnter: requireAuth,
     component: () => import('layouts/index.vue'),
     children: [
-      { path: '', name: 'home', component: () => import('pages/index.vue') }
+      { path: '', name: 'home', component: () => import('pages/auth/index.vue') },
+      { path: 'store', name: 'store', component: () => import('pages/auth/store.vue') },
+      { path: 'profile', name: 'profile', component: () => import('pages/auth/profile.vue') },
+      { path: 'profile/:id', component: () => import('pages/internal-pages/profile-friend.vue') },
+      { path: 'texts', name: 'texts', component: () => import('pages/activities/texts.vue') },
+      { path: 'hub', name: 'hub', component: () => import('pages/auth/hub.vue') },
+      { path: 'settings', name: 'settings', component: () => import('pages/auth/settings.vue') }
     ]
   },
   {
-    path: '/store',
-    component: () => import('layouts/index.vue'),
-    children: [
-      { path: '', name: 'store', component: () => import('pages/store.vue') }
-    ]
-  },
-  {
-    path: '/profile',
-    component: () => import('layouts/index.vue'),
-    children: [
-      { path: '', name: 'profile', component: () => import('pages/profile.vue') }
-    ]
-  },
-  {
-    path: '/profile/:id',
-    component: () => import('layouts/index.vue'),
-    children: [
-      { path: '', component: () => import('pages/internal-pages/profile-friend.vue') }
-    ]
-  },
-  {
-    path: '/texts',
-    component: () => import('layouts/index.vue'),
-    children: [
-      { path: '', name: 'texts', component: () => import('pages/activities/texts.vue') }
-    ]
-  },
-  {
-    path: '/hub',
-    component: () => import('layouts/index.vue'),
-    children: [
-      { path: '', name: 'hub', component: () => import('pages/hub.vue') }
-    ]
-  },
-  {
-    path: '/welcome',
+    path: '/',
     component: () => import('layouts/withoutHeader.vue'),
     children: [
-      { path: '', name: 'welcome', component: () => import('pages/Welcome.vue') }
-    ]
-  },
-  {
-    path: '/access',
-    component: () => import('layouts/withoutHeader.vue'),
-    children: [
-      { path: '', name: 'access', component: () => import('pages/access.vue') }
-    ]
-  },
-  {
-    path: '/login',
-    component: () => import('layouts/withoutHeader.vue'),
-    children: [
-      { path: '', name: 'login', component: () => import('pages/login.vue') }
-    ]
-  },
-  {
-    path: '/forgot',
-    component: () => import('layouts/withoutHeader.vue'),
-    children: [
-      { path: '', name: 'forgot-password', component: () => import('pages/forgot.vue') }
-    ]
-  },
-  {
-    path: '/reset',
-    component: () => import('layouts/withoutHeader.vue'),
-    children: [
-      { path: '', name: 'reset-password', component: () => import('pages/reset.vue') }
+      { path: 'welcome', name: 'welcome', component: () => import('pages/Welcome.vue') },
+      { path: 'access', name: 'access', component: () => import('pages/access.vue') },
+      { path: 'login', name: 'login', component: () => import('pages/login.vue') },
+      { path: 'forgot', name: 'forgot-password', component: () => import('pages/forgot.vue') },
+      { path: 'reset', name: 'reset-password', component: () => import('pages/reset.vue') },
+      { path: 'without-internet', name: 'without-internet', component: () => import('pages/without-internet') }
     ]
   }
 ]
