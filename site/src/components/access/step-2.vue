@@ -81,7 +81,6 @@
     outline
     color="primary"
     class="bg-white o-access_btn"
-    :class="{ 'q-dark': $q.dark.isActive }"
     size="lg"
     :label="$t('access.personalData.btn')"
     @click="next"/>

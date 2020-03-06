@@ -6,7 +6,7 @@
   transition-show="slide-up"
   transition-hide="slide-down">
   <div class="o-modal bg-white" :class="{ 'q-dark': $q.dark.isActive }">
-    <div class="o-modal_header">
+    <div class="o-modal_header bg-primary" :class="{ 'q-dark': $q.dark.isActive }">
       <h2 class="o-modal_title">Configurações</h2>
       <q-btn
       flat
@@ -51,8 +51,16 @@
     </div>
     <div class="m-settings_notification">
       <h2 class="m-settings_title">Sobre nós</h2>
-      <q-btn no-caps align="left" flat class="m-card m-settings_link-about" label="Termos de uso e privacidade"/>
-      <q-btn no-caps align="left" flat class="m-card m-settings_link-about" label="Créditos de mídias" @click="creditsOpen = true"/>
+      <q-card class="m-card m-settings_card">
+        <q-card-section class="m-settings_info">
+          <p class="m-settings_info-account">Termos de uso e privacidade</p>
+        </q-card-section>
+      </q-card>
+      <q-card class="m-card m-settings_card" @click="creditsOpen = true">
+        <q-card-section class="m-settings_info">
+          <p class="m-settings_info-account">Créditos de mídia</p>
+        </q-card-section>
+      </q-card>
     </div>
     <div class="m-settings_actions">
       <q-btn no-caps rounded class="m-settings_actions-item" label="Salvar todas as alterações" @click="closeSettings"/>

@@ -1,17 +1,17 @@
-import store from '../store'
+// import store from '../store'
 
-function requireAuth (to, from, next) {
-  if (!store().state.auth.isUserLogged) {
-    next({ name: 'welcome' })
-  } else {
-    next()
-  }
-}
+// function requireAuth (to, from, next) {
+//   if (!store().state.auth.isUserLogged) {
+//     next({ name: 'welcome' })
+//   } else {
+//     next()
+//   }
+// }
 
 const routes = [
   {
     path: '/',
-    beforeEnter: requireAuth,
+    // beforeEnter: requireAuth,
     component: () => import('layouts/index.vue'),
     children: [
       { path: '', name: 'home', component: () => import('pages/auth/index.vue') },
@@ -19,7 +19,8 @@ const routes = [
       { path: 'profile', name: 'profile', component: () => import('pages/auth/profile.vue') },
       { path: 'profile/:id', component: () => import('pages/internal-pages/profile-friend.vue') },
       { path: 'texts', name: 'texts', component: () => import('pages/activities/texts.vue') },
-      { path: 'hub', name: 'hub', component: () => import('pages/auth/hub.vue') }
+      { path: 'hub', name: 'hub', component: () => import('pages/auth/hub.vue') },
+      { path: 'settings', name: 'settings', component: () => import('pages/auth/settings.vue') }
     ]
   },
   {

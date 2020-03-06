@@ -18,8 +18,7 @@
       :error="$v.form.email.$error"
       :error-message="$t('forgot.errors.required')"
       :label="$t('forgot.email')" />
-      <q-btn rounded no-caps outline color="primary" class="bg-white o-forgot_btn"
-      :class="{ 'q-dark': $q.dark.isActive }" size="lg" type="submit" :label="$t('forgot.btn')"/>
+      <q-btn rounded no-caps outline color="primary" class="bg-white o-forgot_btn" size="lg" type="submit" :label="$t('forgot.btn')"/>
       <router-link :to="{name: 'login'}" class="q-mt-md text-white a-link">
       {{ $t('forgot.backToLogin') }}
     </router-link>

@@ -6,7 +6,7 @@
   transition-show="slide-up"
   transition-hide="slide-down">
   <div class="o-modal bg-white" :class="{ 'q-dark': $q.dark.isActive }">
-    <div class="o-modal_header">
+    <div class="o-modal_header bg-primary" :class="{ 'q-dark': $q.dark.isActive }">
       <h2 class="o-modal_title">Créditos</h2>
       <q-btn
       flat

@@ -1,5 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
+import darkMode from './modules/dark-mode'
 import auth from './modules/auth'
 import user from './modules/user'
 import theme from './modules/theme'
@@ -18,7 +19,8 @@ export default function (/* { ssrContext } */) {
     modules: {
       auth,
       user,
-      theme
+      theme,
+      darkMode
     },
 
     // enable strict mode (adds overhead!)

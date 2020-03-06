@@ -27,7 +27,7 @@
       :error="$v.form.confirmPassword.$error"
       :error-message="$t('reset.errors.same')"
       :label="$t('reset.passwordConfirmation')"/>
-      <q-btn rounded no-caps outline color="primary" class="bg-white o-reset_btn" :class="{ 'q-dark': $q.dark.isActive }" size="lg" type="submit" :label="$t('reset.btn')"/>
+      <q-btn rounded no-caps outline color="primary" class="bg-white o-reset_btn" size="lg" type="submit" :label="$t('reset.btn')"/>
     </q-form>
   </q-page>
 </template>

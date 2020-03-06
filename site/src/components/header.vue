@@ -55,9 +55,10 @@ export default {
         home: { name: 'home', label: 'Atividades', action: 'qprogress' },
         store: { name: 'store', label: 'Loja', action: 'qstore' },
         profile: { name: 'profile', label: 'Perfil', action: 'qsettings' },
-        hub: { name: 'hub', label: 'Hub de amigos', action: 'qfriends' }
+        hub: { name: 'hub', label: 'Hub de amigos', action: 'qfriends' },
+        settings: { name: 'settings', label: 'Ajustes gerais', action: '' }
       },
-      default: { name: 'home', label: 'Atividades', action: 'qprogress' }
+      default: { name: 'home', label: 'Atividades', action: '' }
     }
   },
   computed: {

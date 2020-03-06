@@ -6,7 +6,6 @@
       animated
       contracted
       class="bg-primary no-shadow"
-      :class="{ 'q-dark': $q.dark.isActive }"
     >
       <q-step :name="1" title="Register" :done="step > 1">
         <step1 @next="next"></step1>

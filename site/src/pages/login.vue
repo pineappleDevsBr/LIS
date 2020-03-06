@@ -35,8 +35,7 @@
             />
           </template>
         </q-input>
-        <q-btn rounded no-caps outline color="primary" class="bg-white o-login_btn"
-        :class="{ 'q-dark': $q.dark.isActive }" size="lg" type="submit" :label="$t('login.btn')"/>
+        <q-btn rounded no-caps outline color="primary" class="bg-white o-login_btn" size="lg" type="submit" :label="$t('login.btn')"/>
         <router-link :to="{name: 'forgot-password'}" class="q-mt-md text-white a-link">
         {{ $t('login.forgot') }}
       </router-link>
