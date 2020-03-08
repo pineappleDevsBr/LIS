@@ -3,7 +3,9 @@ const ThemeList = use('App/Models/ThemeList');
 const Task = use('App/Models/Task');
 
 class TaskController {
-  async index({ response, auth }) {
+  async index({ response, request, auth }) {
+    const { type } = request.only(['type']);
+
     try {
       const themes = await ThemeList
         .query()
@@ -16,6 +18,7 @@ class TaskController {
       const tasks = await Task
         .query()
         .whereIn('theme_id', themes_id)
+        .where('task_type_id', type)
         .innerJoin('task_types', 'tasks.task_type_id', 'task_types.id')
         .fetch();
 
