@@ -5,6 +5,15 @@
           <p class="m-settings_info-account">Atualizar meus temas</p>
         </q-card-section>
       </q-card>
+      <q-card class="m-card -translate">
+      <q-card-section>
+        <q-select class="no-border" text-bold dense v-model="lang" :options="options" label="Idioma">
+          <template v-slot:append>
+            <q-icon name="translate" class="cursor-pointer" />
+          </template>
+        </q-select>
+      </q-card-section>
+    </q-card>
     <q-card class="m-card">
       <q-card-section class="m-settings_info -between">
         <p class="m-settings_info-notifications">Tema escuro</p>
@@ -28,7 +37,11 @@ export default {
   name: 'pageSettings',
   data () {
     return {
-      isDark: false
+      isDark: false,
+      lang: this.$i18n.locale,
+      options: [
+        'pt-br', 'en-us'
+      ]
     }
   },
   methods: {
@@ -43,6 +56,9 @@ export default {
   watch: {
     isDark (value) {
       store().dispatch('darkMode/setDarkMode', value)
+    },
+    lang (value) {
+      this.$i18n.locale = value
     }
   },
   computed: {
