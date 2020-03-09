@@ -1,6 +1,5 @@
 <template>
   <div>
-    {{ getMyThemes }}
     <q-tabs
     v-model="tab"
     inline-label

@@ -41,6 +41,7 @@ export default {
 
   async mounted () {
     await store().dispatch('theme/getMyThemes')
+    await store().dispatch('task/getTask')
   }
 }
 </script>

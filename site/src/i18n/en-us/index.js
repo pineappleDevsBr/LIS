@@ -77,5 +77,12 @@ export default {
       required: 'Required field',
       same: 'Password must be the same as above'
     }
+  },
+  header: {
+    home: 'Activities',
+    store: 'Store',
+    profile: 'Profile',
+    hub: 'Friends Hub',
+    settings: 'General adjustments'
   }
 }

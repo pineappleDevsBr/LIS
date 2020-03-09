@@ -7,7 +7,7 @@
       </q-card>
       <q-card class="m-card -translate">
       <q-card-section>
-        <q-select class="no-border" text-bold dense v-model="lang" :options="options" label="Idioma">
+        <q-select class="no-border" dense v-model="lang" :options="options" label="Idioma">
           <template v-slot:append>
             <q-icon name="translate" class="cursor-pointer" />
           </template>
@@ -38,7 +38,7 @@ export default {
   data () {
     return {
       isDark: false,
-      lang: this.$i18n.locale,
+      lang: 'pt-br',
       options: [
         'pt-br', 'en-us'
       ]

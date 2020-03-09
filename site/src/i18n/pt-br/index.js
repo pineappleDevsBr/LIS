@@ -77,5 +77,12 @@ export default {
       required: 'Campo obrigatório',
       same: 'A senha deve ser igual à de cima'
     }
+  },
+  header: {
+    home: 'Atividades',
+    store: 'Loja',
+    profile: 'Perfil',
+    hub: 'Hub de amigos',
+    settings: 'Ajustes gerais'
   }
 }

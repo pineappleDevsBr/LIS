@@ -52,11 +52,11 @@ export default {
         freeModeMomentum: false
       },
       routes: {
-        home: { name: 'home', label: 'Atividades', action: 'qprogress' },
-        store: { name: 'store', label: 'Loja', action: 'qstore' },
-        profile: { name: 'profile', label: 'Perfil', action: 'qsettings' },
-        hub: { name: 'hub', label: 'Hub de amigos', action: 'qfriends' },
-        settings: { name: 'settings', label: 'Ajustes gerais', action: '' }
+        home: { name: 'home', label: this.$i18n.t('header.home'), action: 'qprogress' },
+        store: { name: 'store', label: this.$i18n.t('header.store'), action: 'qstore' },
+        profile: { name: 'profile', label: this.$i18n.t('header.profile'), action: 'qsettings' },
+        hub: { name: 'hub', label: this.$i18n.t('header.hub'), action: 'qfriends' },
+        settings: { name: 'settings', label: this.$i18n.t('header.settings'), action: '' }
       },
       default: { name: 'home', label: 'Atividades', action: '' }
     }

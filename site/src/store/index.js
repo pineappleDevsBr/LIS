@@ -4,6 +4,7 @@ import darkMode from './modules/dark-mode'
 import auth from './modules/auth'
 import user from './modules/user'
 import theme from './modules/theme'
+import task from './modules/task'
 
 // import example from './module-example'
 
@@ -20,7 +21,8 @@ export default function (/* { ssrContext } */) {
       auth,
       user,
       theme,
-      darkMode
+      darkMode,
+      task
     },
 
     // enable strict mode (adds overhead!)
