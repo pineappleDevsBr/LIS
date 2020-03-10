@@ -68,3 +68,11 @@ Factory.blueprint('App/Models/Task', async (faker, i, data) => {
     theme_id: data.theme
   }
 })
+
+Factory.blueprint('App/Models/Question', async (faker, i, data) => {
+  return {
+    question: faker.username(),
+    text: faker.name(),
+    ...data
+  }
+})

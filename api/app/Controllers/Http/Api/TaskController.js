@@ -19,7 +19,6 @@ class TaskController {
         .query()
         .whereIn('theme_id', themes_id)
         .where('task_type_id', type)
-        .innerJoin('task_types', 'tasks.task_type_id', 'task_types.id')
         .fetch();
 
       const data = themes.toJSON().map(theme => ({
