@@ -53,10 +53,10 @@ export default {
       },
       routes: {
         home: { name: 'home', label: this.$i18n.t('header.home'), action: 'qprogress' },
-        store: { name: 'store', label: this.$i18n.t('header.store'), action: 'qstore' },
-        profile: { name: 'profile', label: this.$i18n.t('header.profile'), action: 'qsettings' },
-        hub: { name: 'hub', label: this.$i18n.t('header.hub'), action: 'qfriends' },
-        settings: { name: 'settings', label: this.$i18n.t('header.settings'), action: '' }
+        store: { name: 'store', label: this.$i18n.t('header.store'), action: 'qprogress' },
+        profile: { name: 'profile', label: this.$i18n.t('header.profile'), action: 'qprogress' },
+        hub: { name: 'hub', label: this.$i18n.t('header.hub'), action: 'qprogress' },
+        settings: { name: 'settings', label: this.$i18n.t('header.settings'), action: 'qprogress' }
       },
       default: { name: 'home', label: 'Atividades', action: '' }
     }
