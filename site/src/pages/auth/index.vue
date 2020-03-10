@@ -4,7 +4,7 @@
       <q-card-section class="m-activities_information">
         <img class="m-activities_icon" :src="`statics/activities/${item.icon}`" alt="">
         <div>
-          <h2 class="m-activities_title">{{item.title}}</h2>
+          <h2 class="m-activities_title q-dark_title">{{item.title}}</h2>
           <p class="m-activities_activitie">{{item.activitie}}</p>
         </div>
       </q-card-section>

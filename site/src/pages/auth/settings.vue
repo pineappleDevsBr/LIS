@@ -1,5 +1,9 @@
 <template>
   <div>
+    <div class="m-spotlight">
+      <img class="m-spotlight_icon" src="statics/settings/gear.svg" alt="settings">
+      Deixe seus estudos com a sua cara!
+    </div>
     <q-card class="m-card">
         <q-card-section class="m-settings_info">
           <p class="m-settings_info-account">Atualizar meus temas</p>
@@ -20,7 +24,7 @@
         <q-toggle v-model="isDark" color="primary"/>
       </q-card-section>
     </q-card>
-    <q-card class="m-card -blocked" @click="alertNewVersion">
+    <q-card class="m-card -blocked">
       <q-card-section class="m-settings_info -between">
         <p class="m-settings_info-notifications">Alto contraste</p>
         <q-icon name="lock"/>
@@ -42,15 +46,6 @@ export default {
       options: [
         'pt-br', 'en-us'
       ]
-    }
-  },
-  methods: {
-    alertNewVersion () {
-      this.$q.notify({
-        color: 'negative',
-        message: 'Funcionalidade em desenvolvimento, na próxima versão será disponibilizada para você!',
-        icon: 'update'
-      })
     }
   },
   watch: {

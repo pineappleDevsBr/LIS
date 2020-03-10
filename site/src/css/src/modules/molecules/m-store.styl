@@ -1,16 +1,47 @@
+.m-store {
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+.m-store_money {
+  font-size: em(30);
+  font-weight: $fontweight.bold;
+  display: flex;
+  height: em(30, 30);
+  align-items: center;
+  margin-bottom: em(20, 30);
+  position: absolute;
+  top: 0;
+  right: 0;
+}
+
+.m-store_coin {
+  max-width: em(20);
+  margin-right: em(20);
+  margin-left: em(5);
+}
+
+.m-store_group {
+  margin-bottom: em(20);
+}
+
+.m-store_title {
+  font-weight: $fontweight.bold;
+  font-size: em(26);
+  line-height: 1;
+  margin-top: 0;
+  margin-bottom: em(30, 26);
+}
+
 .m-store_price {
   font-size: em(18);
   font-weight: $fontweight.bold;
-  color: $primary
+  color: $gold;
   margin-bottom: em(5);
   height: 25px;
   display: flex;
   align-items: center;
-}
-
-.m-store_coin {
-  margin-left: em(5);
-  max-width: em(18);
 }
 
 .m-store_box-product {
@@ -24,7 +55,7 @@
   max-width: em(60);
 }
 
-.m-store_title {
+.m-store_subtitle {
   margin-top em(10);
   margin-bottom em(10);
   line-height: 1;
