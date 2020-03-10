@@ -32,7 +32,7 @@ export default {
   .slideUp-enter,
   .slideUp-leave-to {
     opacity: 0;
-    transform: translateX(-30%);
+    transform: translateY(30%);
   }
 
 </style>
