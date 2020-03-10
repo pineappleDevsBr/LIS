@@ -63,6 +63,7 @@ Route.group(() => {
   Route.get('/users', 'Admin/UserController.index').as('admin.users')
 
   // Admin -> Tasks
+  Route.get('/tasks/:id', 'Admin/TaskController.get')
   Route.get('/tasks', 'Admin/TaskController.index').as('admin.tasks')
 
 }).prefix('admin').middleware(['admin', 'auth:session'])

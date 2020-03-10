@@ -7,6 +7,10 @@ class Task extends Model {
   theme() {
     return this.belongsToMany('App/Models/Theme')
   }
+
+  questions() {
+    return this.hasMany('App/Models/Question');
+  }
 }
 
 module.exports = Task
