@@ -19,6 +19,7 @@ const routes = [
       { path: 'profile', name: 'profile', component: () => import('pages/auth/profile.vue') },
       { path: 'profile/:id', component: () => import('pages/internal-pages/profile-friend.vue') },
       { path: 'texts', name: 'texts', component: () => import('pages/activities/texts.vue') },
+      { path: 'quiz', name: 'quiz', component: () => import('pages/activities/quiz.vue') },
       { path: 'hub', name: 'hub', component: () => import('pages/auth/hub.vue') },
       { path: 'settings', name: 'settings', component: () => import('pages/auth/settings.vue') }
     ]

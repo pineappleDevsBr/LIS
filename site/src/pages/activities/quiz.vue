@@ -30,9 +30,10 @@ import reading from '../../components/reading'
 import btnBack from '../../components/ui/btnBack'
 import { mapGetters } from 'vuex'
 import store from '../../store'
+import typeTask from '../../utils/type_task'
 
 export default {
-  name: 'Texts',
+  name: 'Quiz',
   components: {
     reading,
     btnBack
@@ -40,6 +41,7 @@ export default {
   data () {
     return {
       tab: 1,
+      activitie: this.$router.name,
       openReading: false
     }
   },
@@ -58,7 +60,7 @@ export default {
     ...mapGetters('task', ['getTask'])
   },
   async mounted () {
-    await store().dispatch('task/getTask')
+    await store().dispatch('task/getTask', typeTask.quiz)
   }
 }
 </script>

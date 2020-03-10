@@ -5,11 +5,10 @@ const getters = {
 }
 
 const actions = {
-  async getTask ({ commit }) {
+  async getTask ({ commit }, type) {
     try {
-      const { data: tasks } = await task.get(1)
-      console.log(tasks)
-      commit('GET_TASK', tasks)
+      const { data: tasks } = await task.get(type)
+      commit('UPDATE_TASK', tasks)
       return tasks
     } catch (error) {
       return { status: false, error }
@@ -18,8 +17,8 @@ const actions = {
 }
 
 const mutations = {
-  GET_TASK (state, tasks) {
-    state.darkMode = tasks
+  UPDATE_TASK (state, tasks) {
+    state.tasks = tasks
   }
 }
 
