@@ -76,3 +76,11 @@ Factory.blueprint('App/Models/Question', async (faker, i, data) => {
     ...data
   }
 })
+
+Factory.blueprint('App/Models/Answer', async (faker, i, data) => {
+  return {
+    answer: faker.username(),
+    right: faker.bool(),
+    ...data
+  }
+})

@@ -8,7 +8,7 @@ class TaskController {
       .query()
       .with(['questions'])
       .fetch();
-    
+
     return view.render('pages.task.index', { tasks: data.toJSON() });
   }
 
@@ -20,9 +20,13 @@ class TaskController {
       .query()
       .where('task_id', params.id)
       .with(['answers'])
-      .first()
+      .fetch()
 
-    return { task: data, questions };
+    return view.render('pages.task.task', { task: data, questions: questions.toJSON() });
+  }
+
+  async test({ request }) {
+    return request.all();
   }
 }
 
