@@ -33,7 +33,7 @@ import store from '../../store'
 import typeTask from '../../utils/type_task'
 
 export default {
-  name: 'Quiz',
+  name: 'Listen',
   components: {
     quiz,
     btnBack
