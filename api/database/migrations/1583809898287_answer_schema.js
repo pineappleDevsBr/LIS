@@ -8,12 +8,13 @@ class AnswerSchema extends Schema {
     this.create('answers', (table) => {
       table.increments()
       table.string('answer')
-      table.boolean('right')
+      table.boolean('right').defaultTo(null)
       table.integer('question_id')
         .unsigned()
         .notNullable()
         .references('id')
-        .inTable('tasks')
+        .inTable('questions')
+      table.unique(['question_id', 'right'])
       table.timestamps()
     })
   }

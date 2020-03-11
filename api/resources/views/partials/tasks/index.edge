@@ -2,18 +2,18 @@
   <div class="col">
     <div class="table-responsive table--no-card m-b-30">
       <div class="accordion" id="accordionExample">
-        @each(item in tasks)  
+        @each(item in tasks)
           <div class="card mb-0">
-            <div class="card-header" id="headingOne">
+            <div class="card-header" id="heading{{ item.id }}">
               <h2 class="mb-0 d-flex justify-content-between">
-                <button class="btn flex-grow-1 text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="btn flex-grow-1 text-left" type="button" data-toggle="collapse" data-target="#collapse{{ item.id }}" aria-expanded="true" aria-controls="collapse{{ item.id }}">
                   {{ item.name }}
                 </button>
                 <a href="{{ route('admin.tasks') }}/{{ item.id }}" class="btn btn-outline-primary">Detalhes</a>
               </h2>
             </div>
-        
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+
+            <div id="collapse{{ item.id }}" class="collapse" aria-labelledby="heading{{ item.id }}" data-parent="#accordionExample">
               <div class="card-body">
                 @if(item.questions)
                   <ul>

@@ -63,6 +63,8 @@ Route.group(() => {
   Route.get('/users', 'Admin/UserController.index').as('admin.users')
 
   // Admin -> Tasks
+  Route.on('/tasks/new').render('pages.task.store')
+  Route.post('/tasks/new', 'Admin/TaskController.store').as('admin.tasks.store')
   Route.get('/tasks/:id', 'Admin/TaskController.get')
   Route.get('/tasks', 'Admin/TaskController.index').as('admin.tasks')
 

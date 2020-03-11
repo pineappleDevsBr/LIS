@@ -85,7 +85,7 @@ class DatabaseSeeder {
     const question_1 = await Factory.model('App/Models/Question').make();
     const question_2 = await Factory.model('App/Models/Question').make();
     const answer_1 = await Factory.model('App/Models/Answer').make({ right: true });
-    const answer_2 = await Factory.model('App/Models/Answer').make({ right: false });
+    const answer_2 = await Factory.model('App/Models/Answer').make({ right: null });
 
     await task_1.questions().save(question_1);
     await task_1.questions().save(question_2);

@@ -8,7 +8,7 @@ class TaskController {
       .query()
       .with(['questions'])
       .fetch();
-    
+
     return view.render('pages.task.index', { tasks: data.toJSON() });
   }
 
@@ -23,6 +23,10 @@ class TaskController {
       .fetch()
 
     return view.render('pages.task.task', { task: data, questions: questions.toJSON() });
+  }
+
+  async test({ request }) {
+    return request.all();
   }
 }
 
