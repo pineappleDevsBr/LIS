@@ -79,11 +79,20 @@ class DatabaseSeeder {
     await Factory.model('App/Models/TaskType').create('complete')
     await Factory.model('App/Models/TaskType').create('reading')
 
+    // -------------------------------------------------------------------------- //
+
     const task_1 = await Factory.model('App/Models/Task').create({ theme: 1, type: 1 });
     const question_1 = await Factory.model('App/Models/Question').make();
     const question_2 = await Factory.model('App/Models/Question').make();
+    const answer_1 = await Factory.model('App/Models/Answer').make({ right: true });
+    const answer_2 = await Factory.model('App/Models/Answer').make({ right: false });
+
     await task_1.questions().save(question_1);
     await task_1.questions().save(question_2);
+    await question_1.answers().save(answer_1);
+    await question_1.answers().save(answer_2);
+
+    // -------------------------------------------------------------------------- //
 
     await Factory.model('App/Models/Task').create({ theme: 2, type: 1 });
     await Factory.model('App/Models/Task').create({ theme: 2, type: 2 });

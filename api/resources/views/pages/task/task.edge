@@ -1,0 +1,48 @@
+@layout('layout.index')
+
+@section('content')
+  <div class="card border-top primary">
+    <div class="card-header">
+      <h1 class="card-title">{{ task.title }}</h1>
+    </div>
+    <div class="card-body">
+      <p>Name: {{ task.name }}</p>
+      <p>Dificuldade: 0</p>
+      <p>Avaliações: 0</p>
+      <p>Média: 0</p>
+    </div>
+  </div>
+
+  @if(questions)
+    <div class="card">
+      <div class="card-header">Questions</div>
+      <div class="card-body">
+        @each(item in questions)  
+          <div class="card mb-0">
+            <div class="card-header" id="headingOne">
+              <h2 class="mb-0 d-flex justify-content-between">
+                <button class="btn flex-grow-1 text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                  {{ item.question }}
+                </button>
+              </h2>
+            </div>
+        
+            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+              <div class="card-body p-0">
+                @if(item.answers)
+                  <ul>
+                    @each(answer in item.answers)
+                      <li class="text-light p-2 {{ answer.right == 1 ? 'bg-success' : 'bg-danger' }}">
+                        {{ answer.answer }}
+                      </li>
+                    @endeach
+                  </ul>
+                @endif
+              </div>
+            </div>
+          </div>
+        @endeach
+      </div>
+    </div>
+  @endif
+@endsection
