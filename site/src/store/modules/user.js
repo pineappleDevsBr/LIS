@@ -29,7 +29,6 @@ const actions = {
   async createUser ({ commit }, payload) {
     try {
       const response = await user.create(payload)
-      console.log(response)
       return response
     } catch (err) {
       return err

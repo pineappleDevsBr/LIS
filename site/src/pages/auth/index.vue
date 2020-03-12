@@ -35,7 +35,6 @@ export default {
   },
   methods: {
     startLearn (next) {
-      console.log(next)
       this.$router.push({ name: next })
     }
   }

@@ -12,7 +12,7 @@
 
     <q-tab-panels v-model="tab" animated>
       <q-tab-panel :name="tasks.theme_id" v-for="tasks in getTask" v-bind:key="tasks.theme_id">
-        <q-card class="m-card" v-for="task in tasks.tasks" v-bind:key="task.id"  @click="openQuizActive(task.id)">
+        <q-card class="m-card" v-for="task in tasks.tasks" v-bind:key="task.id"  @click="openActivitie(task.id, task.task_type_id)">
           <q-card-section class="m-text_card">
             <div class="m-text_title">{{task.title}}</div>
             <div class="m-text_xp">{{task.xp}} XP</div>
@@ -21,36 +21,61 @@
       </q-tab-panel>
     </q-tab-panels>
     <btnBack @back="back"/>
-    <quiz :quiz="openQuiz" @closeQuiz="closeQuiz"/>
+    <quiz :quiz="openQuiz" @closeQuiz="closeActivitie"/>
+    <reading :reading="openRead" @closeReading="closeActivitie"/>
   </div>
 </template>
 
 <script>
 import quiz from '../../components/quiz'
+import reading from '../../components/reading'
 import btnBack from '../../components/ui/btnBack'
-import { mapGetters } from 'vuex'
-import store from '../../store'
 import typeTask from '../../utils/type_task'
+import store from '../../store'
+import { mapGetters } from 'vuex'
 
 export default {
-  name: 'Listen',
+  name: 'ThemeFilter',
   components: {
     quiz,
+    reading,
     btnBack
   },
   data () {
     return {
       tab: 1,
-      activitie: this.$router.name,
-      openQuiz: false
+      activitie: this.$route.name,
+      openQuiz: false,
+      openRead: false,
+      openListen: false,
+      openComplete: false
     }
   },
   methods: {
-    openQuizActive (id) {
-      this.openQuiz = true
+    openActivitie (id, typeId) {
+      switch (typeId) {
+        case 1:
+          this.openQuiz = true
+          break
+        case 2:
+          this.openListen = true
+          break
+        case 3:
+          this.openComplete = true
+          break
+        case 4:
+          this.openRead = true
+          break
+        default:
+          this.openQuiz = true
+          break
+      }
     },
-    closeQuiz () {
+    closeActivitie () {
       this.openQuiz = false
+      this.openListen = false
+      this.openComplete = false
+      this.openRead = false
     },
     back () {
       this.$router.push({ name: 'home' })
@@ -60,7 +85,7 @@ export default {
     ...mapGetters('task', ['getTask'])
   },
   async mounted () {
-    await store().dispatch('task/getTask', typeTask.quiz)
+    await store().dispatch('task/getTask', typeTask[this.activitie])
   }
 }
 </script>

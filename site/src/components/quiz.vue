@@ -21,7 +21,6 @@
         <div>
           I am from Brazil!
         </div>
-
         <div>
           <q-card class="m-card">
             <q-radio keep-color v-model="answer" val="1" label="Eu sou do Brasil!" class="full-width" color="accent" />

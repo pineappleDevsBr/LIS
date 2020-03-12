@@ -70,8 +70,6 @@ const actions = {
 
 const mutations = {
   LOGIN_SUCCESSFUL (state, data) {
-    console.log(state)
-
     state.isUserLogged = true
     state.user.token = data.token
   },
