@@ -34,6 +34,7 @@ Route.group(() => {
 }).prefix('api/v1').middleware(['auth:jwt']);
 
 Route.group(() => {
+  Route.get('/friends', 'Api/FriendListController.index')
   Route.get('/theme', 'Api/ThemeController.index')
   Route.post('/check', 'Api/UserController.check')
   Route.post('/user', 'Api/UserController.store').validator(['User'])

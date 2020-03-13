@@ -4,6 +4,9 @@
 const Model = use('Model')
 
 class FriendList extends Model {
+  users() {
+    return this.hasOne('App/Models/FriendList')
+  }
 }
 
 module.exports = FriendList

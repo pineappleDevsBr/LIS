@@ -25,6 +25,10 @@ class User extends Model {
     return ['created_at', 'updated_at'];
   }
 
+  friends() {
+    return this.hasMany('App/Models/FriendList')
+  }
+
   nationality() {
     return this.belongsTo('App/Models/Nationality')
   }
