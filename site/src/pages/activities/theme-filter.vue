@@ -22,13 +22,15 @@
     </q-tab-panels>
     <btnBack @back="back"/>
     <quiz :quiz="openQuiz" @closeQuiz="closeActivitie"/>
-    <reading :reading="openRead" @closeReading="closeActivitie"/>
+    <reading :reading="openReading" @closeReading="closeActivitie"/>
+    <listening :listening="openListening" @closeReading="closeActivitie"/>
   </div>
 </template>
 
 <script>
 import quiz from '../../components/quiz'
 import reading from '../../components/reading'
+import listening from '../../components/listening'
 import btnBack from '../../components/ui/btnBack'
 import typeTask from '../../utils/type_task'
 import store from '../../store'
@@ -39,6 +41,7 @@ export default {
   components: {
     quiz,
     reading,
+    listening,
     btnBack
   },
   data () {
@@ -46,8 +49,8 @@ export default {
       tab: 1,
       activitie: this.$route.name,
       openQuiz: false,
-      openRead: false,
-      openListen: false,
+      openReading: false,
+      openListening: false,
       openComplete: false
     }
   },
@@ -58,13 +61,13 @@ export default {
           this.openQuiz = true
           break
         case 2:
-          this.openListen = true
+          this.openListening = true
           break
         case 3:
           this.openComplete = true
           break
         case 4:
-          this.openRead = true
+          this.openReading = true
           break
         default:
           this.openQuiz = true
@@ -73,9 +76,9 @@ export default {
     },
     closeActivitie () {
       this.openQuiz = false
-      this.openListen = false
+      this.openListening = false
       this.openComplete = false
-      this.openRead = false
+      this.openReading = false
     },
     back () {
       this.$router.push({ name: 'home' })

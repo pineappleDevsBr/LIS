@@ -75,6 +75,19 @@ class DatabaseSeeder {
 
     // -------------------------------------------------------------------------- //
 
+    await Factory.model('App/Models/Theme').createMany(5)
+
+    await Factory.model('App/Models/ThemeList')
+      .create(0, { user_id: 2, theme_id: 1 })
+
+    await Factory.model('App/Models/ThemeList')
+      .create(0, { user_id: 2, theme_id: 2 })
+
+    await Factory.model('App/Models/ThemeList')
+      .create(0, { user_id: 2, theme_id: 3 })
+
+    // -------------------------------------------------------------------------- //
+
     await Factory.model('App/Models/TaskType').create('quiz')
     await Factory.model('App/Models/TaskType').create('complete')
     await Factory.model('App/Models/TaskType').create('reading')

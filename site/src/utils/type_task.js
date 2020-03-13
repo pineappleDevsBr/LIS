@@ -1,6 +1,6 @@
 export default {
   quiz: 1,
-  listen: 2,
+  listening: 2,
   complete: 3,
-  read: 4
+  reading: 4
 }
