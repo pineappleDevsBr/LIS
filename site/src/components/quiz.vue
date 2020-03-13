@@ -14,50 +14,164 @@
         @click="closeQuiz"/>
       </div>
       <div class="o-modal_content">
-        <qprogress :progress="progress"/>
-        <div>
-          Qual a melhor tradução para:
-        </div>
-        <div>
-          I am from Brazil!
-        </div>
-        <div>
-          <q-card class="m-card">
-            <q-radio keep-color v-model="answer" val="1" label="Eu sou do Brasil!" class="full-width" color="accent" />
-          </q-card>
-
-          <q-card class="m-card">
-            <q-radio keep-color v-model="answer" val="2" label="Eu vou para o Brasil!" class="full-width" color="accent" />
-          </q-card>
-
-          <q-card class="m-card">
-            <q-radio keep-color v-model="answer" val="3" label="Meus pais são do Brasil!" class="full-width" color="accent" />
-          </q-card>
-
-          <q-card class="m-card">
-            <q-radio keep-color v-model="answer" val="4" label="Vamos para o Brasil!" class="full-width" color="accent" />
-          </q-card>
-        </div>
-        <q-btn no-caps rounded class="m-reading_btn" label="Próximo" @click="next"/>
+        <q-stepper
+          v-model="step"
+          ref="stepper"
+          contracted
+          dense
+          flat
+          color="primary"
+          animated
+        >
+          <q-step :name="question.id" :title="`Question ${question.id}`" icon="edit" :done="step > index" v-for="(question, index) in questions" v-bind:key="question.id">
+            <div class="quiz">
+              <div class="m-quiz_title">
+                <div>
+                  {{ question.question }}
+                </div>
+                {{ question.text }}
+              </div>
+              <div>
+                <q-card class="m-card" v-for="item in question.answers" v-bind:key="item.id">
+                  <q-radio keep-color v-model="question.answer" :val="item.id" :label="item.answer" class="full-width" color="accent" />
+                </q-card>
+              </div>
+            </div>
+          </q-step>
+          <template v-slot:navigation>
+            <q-stepper-navigation>
+              <q-btn @click="$refs.stepper.next()" color="primary" :label="step === 10 ? 'Finalizar' : 'Próximo'" />
+              <q-btn v-if="step > 1 " flat color="primary" @click="$refs.stepper.previous()" label="Back" class="q-ml-sm"/>
+            </q-stepper-navigation>
+        </template>
+      </q-stepper>
       </div>
     </div>
   </q-dialog>
 </template>
 
 <script>
-import qprogress from './progress-bar'
 export default {
   name: 'Quiz',
-  components: {
-    qprogress
-  },
   props: {
     quiz: Boolean
   },
   data () {
     return {
+      step: 1,
       progress: { showValue: true, levelUp: 10, xp: 0 },
-      answer: null
+      questions: [
+        { id: 1,
+          question: 'Qual a melhor tradução para:',
+          text: 'I am from Brazil!',
+          answer: null,
+          answers: [
+            { id: 1, answer: 'Eu sou do Brasil!' },
+            { id: 2, answer: 'Eu vou para o Brasil!' },
+            { id: 3, answer: 'Meus pais são do Brasil!' },
+            { id: 4, answer: 'Vamos para o Brasil!' }
+          ]
+        },
+        { id: 2,
+          question: 'Qual a melhor tradução para:',
+          text: 'I am from Brazil!',
+          answer: null,
+          answers: [
+            { id: 1, answer: 'Eu sou do Brasil!' },
+            { id: 2, answer: 'Eu vou para o Brasil!' },
+            { id: 3, answer: 'Meus pais são do Brasil!' },
+            { id: 4, answer: 'Vamos para o Brasil!' }
+          ]
+        },
+        { id: 3,
+          question: 'Qual a melhor tradução para:',
+          text: 'I am from Brazil!',
+          answer: null,
+          answers: [
+            { id: 1, answer: 'Eu sou do Brasil!' },
+            { id: 2, answer: 'Eu vou para o Brasil!' },
+            { id: 3, answer: 'Meus pais são do Brasil!' },
+            { id: 4, answer: 'Vamos para o Brasil!' }
+          ]
+        },
+        { id: 4,
+          question: 'Qual a melhor tradução para:',
+          text: 'I am from Brazil!',
+          answer: null,
+          answers: [
+            { id: 1, answer: 'Eu sou do Brasil!' },
+            { id: 2, answer: 'Eu vou para o Brasil!' },
+            { id: 3, answer: 'Meus pais são do Brasil!' },
+            { id: 4, answer: 'Vamos para o Brasil!' }
+          ]
+        },
+        { id: 5,
+          question: 'Qual a melhor tradução para:',
+          text: 'I am from Brazil!',
+          answer: null,
+          answers: [
+            { id: 1, answer: 'Eu sou do Brasil!' },
+            { id: 2, answer: 'Eu vou para o Brasil!' },
+            { id: 3, answer: 'Meus pais são do Brasil!' },
+            { id: 4, answer: 'Vamos para o Brasil!' }
+          ]
+        },
+        { id: 6,
+          question: 'Qual a melhor tradução para:',
+          text: 'I am from Brazil!',
+          answer: null,
+          answers: [
+            { id: 1, answer: 'Eu sou do Brasil!' },
+            { id: 2, answer: 'Eu vou para o Brasil!' },
+            { id: 3, answer: 'Meus pais são do Brasil!' },
+            { id: 4, answer: 'Vamos para o Brasil!' }
+          ]
+        },
+        { id: 7,
+          question: 'Qual a melhor tradução para:',
+          text: 'I am from Brazil!',
+          answer: null,
+          answers: [
+            { id: 1, answer: 'Eu sou do Brasil!' },
+            { id: 2, answer: 'Eu vou para o Brasil!' },
+            { id: 3, answer: 'Meus pais são do Brasil!' },
+            { id: 4, answer: 'Vamos para o Brasil!' }
+          ]
+        },
+        { id: 8,
+          question: 'Qual a melhor tradução para:',
+          text: 'I am from Brazil!',
+          answer: null,
+          answers: [
+            { id: 1, answer: 'Eu sou do Brasil!' },
+            { id: 2, answer: 'Eu vou para o Brasil!' },
+            { id: 3, answer: 'Meus pais são do Brasil!' },
+            { id: 4, answer: 'Vamos para o Brasil!' }
+          ]
+        },
+        { id: 9,
+          question: 'Qual a melhor tradução para:',
+          text: 'I am from Brazil!',
+          answer: null,
+          answers: [
+            { id: 1, answer: 'Eu sou do Brasil!' },
+            { id: 2, answer: 'Eu vou para o Brasil!' },
+            { id: 3, answer: 'Meus pais são do Brasil!' },
+            { id: 4, answer: 'Vamos para o Brasil!' }
+          ]
+        },
+        { id: 10,
+          question: 'Qual a melhor tradução para:',
+          text: 'I am from Brazil!',
+          answer: null,
+          answers: [
+            { id: 1, answer: 'Eu sou do Brasil!' },
+            { id: 2, answer: 'Eu vou para o Brasil!' },
+            { id: 3, answer: 'Meus pais são do Brasil!' },
+            { id: 4, answer: 'Vamos para o Brasil!' }
+          ]
+        }
+      ]
     }
   },
   methods: {
