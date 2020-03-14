@@ -13,7 +13,8 @@
         icon="close"
         @click="closeQuiz"/>
       </div>
-      <div class="o-modal_content">
+      <div class="o-modal_content m-quiz">
+        <progressBar :progress="progress"></progressBar>
         <q-stepper
           v-model="step"
           ref="stepper"
@@ -33,15 +34,15 @@
               </div>
               <div>
                 <q-card class="m-card" v-for="item in question.answers" v-bind:key="item.id">
-                  <q-radio keep-color v-model="question.answer" :val="item.id" :label="item.answer" class="full-width" color="accent" />
+                  <q-radio keep-color v-model="answers[index].awnsware" :val="item.id" :label="item.answer" class="full-width" color="accent" />
                 </q-card>
               </div>
             </div>
           </q-step>
           <template v-slot:navigation>
             <q-stepper-navigation>
-              <q-btn @click="$refs.stepper.next()" color="primary" :label="step === 10 ? 'Finalizar' : 'Próximo'" />
-              <q-btn v-if="step > 1 " flat color="primary" @click="$refs.stepper.previous()" label="Back" class="q-ml-sm"/>
+              <q-btn @click="next()" color="primary" :label="step === 10 ? 'Finalizar' : 'Próximo'" />
+              <q-btn v-if="step > 1 " flat color="primary" @click="back()" label="Back" class="q-ml-sm"/>
             </q-stepper-navigation>
         </template>
       </q-stepper>
@@ -51,20 +52,24 @@
 </template>
 
 <script>
+import progressBar from './progress-bar'
+
 export default {
   name: 'Quiz',
+  components: {
+    progressBar
+  },
   props: {
     quiz: Boolean
   },
   data () {
     return {
       step: 1,
-      progress: { showValue: true, levelUp: 10, xp: 0 },
+      progress: { showValue: false, levelUp: 10, xp: 0 },
       questions: [
         { id: 1,
           question: 'Qual a melhor tradução para:',
           text: 'I am from Brazil!',
-          answer: null,
           answers: [
             { id: 1, answer: 'Eu sou do Brasil!' },
             { id: 2, answer: 'Eu vou para o Brasil!' },
@@ -75,7 +80,6 @@ export default {
         { id: 2,
           question: 'Qual a melhor tradução para:',
           text: 'I am from Brazil!',
-          answer: null,
           answers: [
             { id: 1, answer: 'Eu sou do Brasil!' },
             { id: 2, answer: 'Eu vou para o Brasil!' },
@@ -86,7 +90,6 @@ export default {
         { id: 3,
           question: 'Qual a melhor tradução para:',
           text: 'I am from Brazil!',
-          answer: null,
           answers: [
             { id: 1, answer: 'Eu sou do Brasil!' },
             { id: 2, answer: 'Eu vou para o Brasil!' },
@@ -97,7 +100,6 @@ export default {
         { id: 4,
           question: 'Qual a melhor tradução para:',
           text: 'I am from Brazil!',
-          answer: null,
           answers: [
             { id: 1, answer: 'Eu sou do Brasil!' },
             { id: 2, answer: 'Eu vou para o Brasil!' },
@@ -108,7 +110,6 @@ export default {
         { id: 5,
           question: 'Qual a melhor tradução para:',
           text: 'I am from Brazil!',
-          answer: null,
           answers: [
             { id: 1, answer: 'Eu sou do Brasil!' },
             { id: 2, answer: 'Eu vou para o Brasil!' },
@@ -119,7 +120,6 @@ export default {
         { id: 6,
           question: 'Qual a melhor tradução para:',
           text: 'I am from Brazil!',
-          answer: null,
           answers: [
             { id: 1, answer: 'Eu sou do Brasil!' },
             { id: 2, answer: 'Eu vou para o Brasil!' },
@@ -130,7 +130,6 @@ export default {
         { id: 7,
           question: 'Qual a melhor tradução para:',
           text: 'I am from Brazil!',
-          answer: null,
           answers: [
             { id: 1, answer: 'Eu sou do Brasil!' },
             { id: 2, answer: 'Eu vou para o Brasil!' },
@@ -141,7 +140,6 @@ export default {
         { id: 8,
           question: 'Qual a melhor tradução para:',
           text: 'I am from Brazil!',
-          answer: null,
           answers: [
             { id: 1, answer: 'Eu sou do Brasil!' },
             { id: 2, answer: 'Eu vou para o Brasil!' },
@@ -152,7 +150,6 @@ export default {
         { id: 9,
           question: 'Qual a melhor tradução para:',
           text: 'I am from Brazil!',
-          answer: null,
           answers: [
             { id: 1, answer: 'Eu sou do Brasil!' },
             { id: 2, answer: 'Eu vou para o Brasil!' },
@@ -163,7 +160,6 @@ export default {
         { id: 10,
           question: 'Qual a melhor tradução para:',
           text: 'I am from Brazil!',
-          answer: null,
           answers: [
             { id: 1, answer: 'Eu sou do Brasil!' },
             { id: 2, answer: 'Eu vou para o Brasil!' },
@@ -171,6 +167,18 @@ export default {
             { id: 4, answer: 'Vamos para o Brasil!' }
           ]
         }
+      ],
+      answers: [
+        { answer: null },
+        { answer: null },
+        { answer: null },
+        { answer: null },
+        { answer: null },
+        { answer: null },
+        { answer: null },
+        { answer: null },
+        { answer: null },
+        { answer: null }
       ]
     }
   },
@@ -179,7 +187,19 @@ export default {
       this.$emit('closeQuiz')
     },
     next () {
-      console.log('Próximo')
+      if (this.step < 10) {
+        this.$refs.stepper.next()
+        this.progress.xp += 1
+      } else {
+        this.progress.xp += 1
+        this.$emit('closeQuiz')
+      }
+    },
+    back () {
+      if (this.step > 1) {
+        this.$refs.stepper.previous()
+        this.progress.xp -= 1
+      }
     }
   }
 }
