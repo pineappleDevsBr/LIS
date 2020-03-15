@@ -1,19 +1,7 @@
 <template>
   <q-dialog v-model="isOpen" persistent>
     <q-card class="m-card">
-      <q-stepper
-      v-model="step"
-      ref="stepper"
-      contracted
-      color="primary"
-      animated
-    >
-      <q-step
-        :name="1"
-        title="Password"
-        :done="step > 1"
-      >
-        <q-card-section>
+      <q-card-section>
           <q-input
           color="primary"
           v-model="currentPassword"
@@ -27,29 +15,14 @@
             />
           </template>
         </q-input>
-        </q-card-section>
-        <q-card-actions align="left">
-          <q-btn flat class="a-btn_actions" @click="close" label="Cancelar"/>
-          <q-btn flat class="a-btn_actions" @click="next" label="Próximo"/>
-        </q-card-actions>
-      </q-step>
-
-      <q-step
-        :name="2"
-        title="New Password"
-        :done="step > 2"
-      >
-        <q-card-section>
-          <q-input color="primary" type="password" v-model="newPassword" label="Nova senha" />
-          <q-input color="primary" type="password" v-model="confirmPassword" label="Confirmar nova senha" />
-        </q-card-section>
-        <q-card-actions align="left">
-          <q-btn flat class="a-btn_actions" @click="save" label="Alterar senha"/>
-        </q-card-actions>
-      </q-step>
-      </q-stepper>
-      </q-card>
-    </q-dialog>
+        <q-input color="primary" type="password" v-model="newPassword" label="Nova senha" />
+        <q-input color="primary" type="password" v-model="confirmPassword" label="Confirmar nova senha" />
+      </q-card-section>
+      <q-card-actions align="left">
+        <q-btn flat class="a-btn_actions" @click="save" label="Alterar senha"/>
+      </q-card-actions>
+    </q-card>
+  </q-dialog>
 </template>
 
 <script>

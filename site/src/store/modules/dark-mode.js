@@ -9,7 +9,11 @@ const actions = {
   setDarkMode ({ commit }, isDark) {
     try {
       Dark.set(isDark)
-      cookie('darkmode', 'set', isDark)
+      if (isDark) {
+        cookie('darkmode', 'set', isDark)
+      } else {
+        cookie('darkmode', 'remove')
+      }
       commit('DARK_MODE', isDark)
       return { status: true }
     } catch (error) {

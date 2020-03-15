@@ -60,7 +60,7 @@ export default {
     ...mapGetters('darkMode', ['getDarkMode'])
   },
   mounted () {
-    this.isDark = this.getDarkMode
+    this.isDark = this.getDarkMode ? this.getDarkMode : false
   }
 }
 </script>

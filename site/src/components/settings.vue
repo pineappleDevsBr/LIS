@@ -22,9 +22,9 @@
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card">
-        <q-card-section class="m-settings_info" @click="openDlg('name', 'Nome', getUser.nickname)">
+        <q-card-section class="m-settings_info" @click="openDlg('name', 'Nome', getUser.name)">
           <p class="m-settings_info-account">Nome:</p>
-          <q-input borderless v-model="getUser.nickname" disable />
+          <q-input borderless v-model="getUser.name" disable />
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card">
