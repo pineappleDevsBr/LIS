@@ -8,11 +8,10 @@
       <q-card-section class="m-buy_product">
         <h2 class="m-buy_product-name">{{product.name}}</h2>
         <img class="m-buy_product_icon" :src="`statics/store/products/${product.icon}`" alt="">
-        <p class="m-buy_product_description">{{product.description}}</p>
+        <p class="m-buy_product_description"><strong>{{product.name}}: </strong>{{product.description}}</p>
       </q-card-section>
-
       <q-card-actions class="m-buy_add">
-        Quantidade: {{qtde}}
+        <span><strong>Quantidade:</strong> {{qtde}}</span>
         <div>
           <q-btn class="m-buy_add-btn" push round dense icon="remove" @click="remove" />
           <q-btn class="m-buy_add-btn" push round dense icon="add" @click="add" />

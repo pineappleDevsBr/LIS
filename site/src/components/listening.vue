@@ -15,10 +15,10 @@
       </div>
       <div class="o-modal_content">
         <qprogress :progress="progress"/>
-        <q-card class="m-card">
+        <q-card class="m-card m-listening_card">
           Escolha a tradução que você ouvir:
-          <q-btn flat icon="volume_up" @click="playListening"/>
-          <video data-audio src="statics/activities/listening/listen-1.mp3"></video>
+          <q-btn flat icon="volume_up" class="m-listening_btn" @click="playListening"/>
+          <video data-audio class="m-listening_audio" src="statics/activities/listening/listen-1.mp3"></video>
         </q-card>
         <div>
           <q-card class="m-card">

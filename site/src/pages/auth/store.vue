@@ -57,15 +57,13 @@ export default {
       buyConfirm: false,
       productId: 0,
       products: [
-        { id: 1, name: 'Vale-presente', price: 100, icon: 'gift-card.svg', qtde: 2, description: 'Vale-presente: você pode comprar para presentear um amigo com um item surpresa 😁' },
-        { id: 2, name: 'Vale-presente', price: 100, icon: 'gift-card.svg', qtde: 2, description: 'Vale-presente: você pode comprar para presentear um amigo com um item surpresa 😁' },
-        { id: 3, name: 'Vale-presente', price: 100, icon: 'gift-card.svg', qtde: 2, description: 'Vale-presente: você pode comprar para presentear um amigo com um item surpresa 😁' },
-        { id: 4, name: 'Vale-presente', price: 100, icon: 'gift-card.svg', qtde: 2, description: 'Vale-presente: você pode comprar para presentear um amigo com um item surpresa 😁' },
-        { id: 5, name: 'Vale-presente', price: 100, icon: 'gift-card.svg', qtde: 2, description: 'Vale-presente: você pode comprar para presentear um amigo com um item surpresa 😁' }
+        { id: 1, name: 'Vale-presente', price: 100, icon: 'gift-card.svg', qtde: 2, description: 'Você pode comprar para presentear um amigo com um item surpresa 😁' },
+        { id: 2, name: 'Dobro de XP', price: 120, icon: 'magic.svg', qtde: 2, description: 'Durante 24h você vai duplicar todo o xp que você ganhar!' },
+        { id: 3, name: '10% dinheiro', price: 220, icon: 'money.svg', qtde: 2, description: '10% dinheiro: você receberá 10% a mais de todo o dinheiro que você ganhar nas próximas 12h!' }
       ],
       myItems: [
-        { id: 1, name: 'Vale-presente', qtde: 1, icon: 'gift-card.svg', description: 'Vale-presente: você pode comprar para presentear um amigo com um item surpresa 😁' },
-        { id: 2, name: 'Vale-presente', qtde: 5, icon: 'gift-card.svg', description: 'Vale-presente: você pode comprar para presentear um amigo com um item surpresa 😁' }
+        { id: 1, name: 'Vale-presente', qtde: 1, icon: 'gift-card.svg', description: 'Você pode comprar para presentear um amigo com um item surpresa 😁' },
+        { id: 2, name: 'Dobro de XP', price: 120, icon: 'magic.svg', qtde: 3, description: 'Durante 24h você vai duplicar todo o xp que você ganhar!' }
       ]
     }
   },

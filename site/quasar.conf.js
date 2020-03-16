@@ -69,7 +69,8 @@ module.exports = function (ctx) {
         'QField',
         'QStepper',
         'QStep',
-        'QStepperNavigation'
+        'QStepperNavigation',
+        'QSpace'
       ],
       directives: [
         'ClosePopup'

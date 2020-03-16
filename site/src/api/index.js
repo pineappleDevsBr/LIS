@@ -2,6 +2,7 @@ import axios from 'axios'
 import { Cookies } from 'quasar'
 import authAPI from './modules/auth'
 import userAPI from './modules/user'
+import friendsAPI from './modules/friends'
 import themeAPI from './modules/theme'
 import taskAPI from './modules/task'
 
@@ -22,5 +23,6 @@ api.interceptors.request.use(
 
 export const auth = authAPI(api)
 export const user = userAPI(api)
+export const friends = friendsAPI(api)
 export const theme = themeAPI(api)
 export const task = taskAPI(api)
