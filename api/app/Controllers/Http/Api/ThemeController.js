@@ -27,6 +27,37 @@ class ThemeController {
       response.send(err);
     }
   }
+
+  async update({ request, auth }) {
+    const { themes } = request.all();
+    let currentThemes;
+
+    currentThemes = await ThemeList
+      .query()
+      .where('user_id', auth.user.id)
+      .fetch();
+
+    const deleteList = (currentThemes.toJSON().filter(item => !themes.includes(item.theme_id))).map(del => (del.theme_id));
+    const createdList = themes.filter(theme => {
+      const finded = currentThemes.toJSON().find(thm => thm.theme_id === theme);
+      return finded ? false : true;
+    }).map(item => ({ theme_id: item, user_id: auth.user.id }));
+
+    await ThemeList
+      .query()
+      .where('user_id', auth.user.id)
+      .whereIn('theme_id', deleteList)
+      .delete()
+
+    await ThemeList.createMany(createdList);
+
+    currentThemes = await ThemeList
+      .query()
+      .where('user_id', auth.user.id)
+      .fetch()
+
+    return currentThemes;
+  }
 }
 
 module.exports = ThemeController

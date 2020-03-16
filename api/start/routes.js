@@ -23,8 +23,9 @@ const Route = use('Route')
 */
 
 Route.group(() => {
-  // App -> Themes
+  // App -> User
   Route.get('/user/theme', 'Api/ThemeController.indexUser')
+  Route.put('/user/theme', 'Api/ThemeController.update')
   Route.get('/user/:id', 'Api/UserController.index')
   Route.get('/user', 'Api/UserController.get')
   Route.put('/user', 'Api/UserController.update').validator(['User'])
