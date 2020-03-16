@@ -17,7 +17,7 @@
     <div class="card">
       <div class="card-header">Questions</div>
       <div class="card-body">
-        @each(item in questions)  
+        @each(item in questions)
           <div class="card mb-0">
             <div class="card-header" id="headingOne">
               <h2 class="mb-0 d-flex justify-content-between">
@@ -26,13 +26,13 @@
                 </button>
               </h2>
             </div>
-        
+
             <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
               <div class="card-body p-0">
                 @if(item.answers)
-                  <ul>
+                  <ul class="list-group list-group-flush">
                     @each(answer in item.answers)
-                      <li class="text-light p-2 {{ answer.right == 1 ? 'bg-success' : 'bg-danger' }}">
+                      <li class="list-group-item {{ answer.right == 1 ? 'list-group-item-success' : 'list-group-item-danger' }}">
                         {{ answer.answer }}
                       </li>
                     @endeach
