@@ -16,9 +16,9 @@
             <div id="collapse{{ item.id }}" class="collapse" aria-labelledby="heading{{ item.id }}" data-parent="#accordionExample">
               <div class="card-body">
                 @if(item.questions)
-                  <ul>
+                  <ul class="list-group list-group-flush">
                     @each(question in item.questions)
-                    <li>{{ question.question }}</li>
+                    <li class="list-group-item">{{ question.question }}</li>
                     @endeach
                   </ul>
                 @endif
