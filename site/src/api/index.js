@@ -7,7 +7,7 @@ import themeAPI from './modules/theme'
 import taskAPI from './modules/task'
 
 const api = axios.create({
-  baseURL: 'http://localhost:3333/api/v1',
+  baseURL: 'lis.working/api/v1',
   crossDomain: true,
   timeout: 10000
 })

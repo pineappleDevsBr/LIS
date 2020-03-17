@@ -13,7 +13,7 @@
 
   <div class="row">
     <div class="col">
-      <form action="{{ route('admin.tasks.store') }}" method="POST">
+      <form action="{{ route('admin.tasks.store') }}" method="POST" data-task-form>
         <div class="card">
           <div class="card-header">Task</div>
           <div class="card-body">
@@ -41,8 +41,8 @@
                   aria-invalid="false">
               </div>
               <div class="col form-group">
-                <label for="money" class="control-label mb-1">Tema</label>
-                <select name="select" id="select" class="form-control">
+                <label for="theme" class="control-label mb-1">Tema</label>
+                <select name="theme" id="theme" class="form-control">
                   <option value="0">Please select</option>
                   @each(item in themes)
                     <option value="{{ item.id }}">{{ item.name }}</option>
@@ -84,7 +84,13 @@
         </div>
       </form>
 
-      <script src="{{ assetsUrl('assets/js/task.js') }}"></script>
+      <div class="sufee-alert alert with-close alert-danger alert-dismissible fade" data-error>
+          <span class="badge badge-pill badge-danger">Failed</span>
+          Exactly 10 questions must be registered
+      </div>
+
+      <script src="{{ assetsUrl('assets/js/task/question.js') }}"></script>
+      <script src="{{ assetsUrl('assets/js/task/validation.js') }}"></script>
     </div>
   </div>
 @endsection
