@@ -1,6 +1,7 @@
 'use strict'
 const Task = use('App/Models/Task');
 const Question = use('App/Models/Question');
+const Theme = use('App/Models/Theme');
 
 class TaskController {
   async index({ view }) {
@@ -10,6 +11,12 @@ class TaskController {
       .fetch();
 
     return view.render('pages.task.index', { tasks: data.toJSON() });
+  }
+
+  async new({ view }) {
+    const themes = await Theme.all();
+
+    return view.render('pages.task.store', { themes: themes.toJSON() });
   }
 
   async get({ view, params }) {
@@ -25,7 +32,7 @@ class TaskController {
     return view.render('pages.task.task', { task: data, questions: questions.toJSON() });
   }
 
-  async test({ request }) {
+  async store({ request }) {
     return request.all();
   }
 }
