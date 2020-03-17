@@ -40,11 +40,22 @@
                 <input id="money" name="money" type="number" class="form-control" aria-required="true"
                   aria-invalid="false">
               </div>
+            </div>
+            <div class="row">
               <div class="col form-group">
-                <label for="theme" class="control-label mb-1">Tema</label>
-                <select name="theme" id="theme" class="form-control">
-                  <option value="0">Please select</option>
+                <label for="theme_id" class="control-label mb-1">Tema</label>
+                <select name="theme_id" id="theme_id" class="form-control">
+                  <option value="">Please select</option>
                   @each(item in themes)
+                    <option value="{{ item.id }}">{{ item.name }}</option>
+                  @endeach
+                </select>
+              </div>
+              <div class="col form-group">
+                <label for="task_type_id" class="control-label mb-1">Tipo</label>
+                <select name="task_type_id" id="task_type_id" class="form-control">
+                  <option value="">Please select</option>
+                  @each(item in types)
                     <option value="{{ item.id }}">{{ item.name }}</option>
                   @endeach
                 </select>

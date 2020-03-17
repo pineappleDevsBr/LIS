@@ -70,7 +70,7 @@ Route.group(() => {
   Route.get('/tasks/:id', 'Admin/TaskController.get')
   Route.get('/tasks', 'Admin/TaskController.index').as('admin.tasks')
 
-}).prefix('admin')
+}).prefix('admin').middleware(['admin', 'auth:session'])
 
 Route.group(() => {
   Route.on('/login').render('login').as('admin.login')

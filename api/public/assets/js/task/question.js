@@ -8,6 +8,11 @@ const questionTemplate = (idx) => {
         <input id="question_${idx}" name="questions[${idx}].question" type="text" class="form-control" aria-required="true"
           aria-invalid="false" required>
       </div>
+      <div class="form-group">
+        <label for="text_${idx}" class="control-label mb-1">Text*</label>
+        <input id="text_${idx}" name="questions[${idx}].text" type="text" class="form-control" aria-required="true"
+          aria-invalid="false" required>
+      </div>
 
       <p>Answers</p>
       <ul class="list-group list-group-flush">
