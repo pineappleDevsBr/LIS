@@ -1,9 +1,7 @@
 'use strict'
-const Database = use('Database');
 const Task = use('App/Models/Task');
 const Question = use('App/Models/Question');
 const Theme = use('App/Models/Theme');
-const Answer = use('App/Models/Answer');
 const TaskType = use('App/Models/TaskType');
 
 class TaskController {
@@ -36,47 +34,40 @@ class TaskController {
     return view.render('pages.task.task', { task: data, questions: questions.toJSON() });
   }
 
-  async store({ request, response }) {
+  async store({ request, response, view }) {
+    const { task_type_id } = request.only(['task_type_id']);
+    const type = await TaskType.find(task_type_id);
+    this[type.name]({ request, response, view });
+  }
+
+  async quiz({ request, response, view }) {
     const task = request.only(['name', 'title', 'xp', 'money', 'theme_id', 'task_type_id']);
     const { questions } = request.only(['questions']);
     let taskModel;
 
-    // if (questions.length < 10) {
-    //   return response.status(422).send('Exactly 10 questions must be registered')
-    // }
+    if (questions.length < 10) {
+      return response.status(422).send('Exactly 10 questions must be registered')
+    }
 
-    // const trx = await Database.beginTransaction();
+    try {
+      taskModel = await Task.create(task);
+    } catch (err) {
+      return response.send(err);
+    }
 
-    // try {
-    //   taskModel = await Task.create(task, trx);
+    questions.forEach(async item => {
+      console.log(item);
 
-    //   console.log(taskModel);
+      try {
+        const questionModel = await Question.create({ question: item.question, text: item.text, task_id: taskModel.id });
+        await questionModel.answers().createMany(item.answers.map(aws => ({ ...aws, right: (aws.right == 'true')})));
+      } catch (error) {
+        return response.send(error);
+      }
+    })
 
-
-    //   questions.forEach(async item => {
-    //     try {
-    //       const questionModel = await Question.create({ question: item.question, text: item.text, task_id: taskModel.id }, trx);
-
-    //       console.log(questionModel);
-
-    //       await Answer.createMany(item.answers.map(aws => ({ ...aws, question_id: questionModel.id })), trx);
-    //     } catch (er) {
-    //       await trx.rollback();
-    //       response.send(er);
-    //     }
-    //   });
-
-    //   await trx.commit();
-    // } catch (err) {
-    //   await trx.rollback();
-    //   response.send(err);
-    // }
-
-
-
-    // return { taskModel };
-
-    return;
+    session.flash({ result: 'created' });
+    return view.render('pages.task.index');
   }
 }
 

@@ -14,7 +14,6 @@ class AnswerSchema extends Schema {
         .notNullable()
         .references('id')
         .inTable('questions')
-      table.unique(['question_id', 'right'])
       table.timestamps()
     })
   }

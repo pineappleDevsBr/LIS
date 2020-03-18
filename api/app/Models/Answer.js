@@ -4,7 +4,7 @@
 const Model = use('Model')
 
 class Answer extends Model {
-  question() {
+  questions() {
     return this.belongsToMany('App/Models/Question');
   }
 }

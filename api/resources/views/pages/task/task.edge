@@ -19,15 +19,15 @@
       <div class="card-body">
         @each(item in questions)
           <div class="card mb-0">
-            <div class="card-header" id="headingOne">
+            <div class="card-header">
               <h2 class="mb-0 d-flex justify-content-between">
-                <button class="btn flex-grow-1 text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                <button class="btn flex-grow-1 text-left" type="button" data-toggle="collapse" data-target="#{{ item.id }}" aria-expanded="true" aria-controls="collapseOne">
                   {{ item.question }}
                 </button>
               </h2>
             </div>
 
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+            <div id="{{ item.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
               <div class="card-body p-0">
                 @if(item.answers)
                   <ul class="list-group list-group-flush">
