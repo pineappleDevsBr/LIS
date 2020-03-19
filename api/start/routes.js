@@ -65,12 +65,13 @@ Route.group(() => {
   Route.get('/users', 'Admin/UserController.index').as('admin.users')
 
   // Admin -> Tasks
-  Route.get('/tasks/new', 'Admin/TaskController.new')
+  Route.get('/tasks/:type/new', 'Admin/TaskController.new').as('admin.tasks.type.store')
   Route.post('/tasks/new', 'Admin/TaskController.store').as('admin.tasks.store')
-  Route.get('/tasks/:id', 'Admin/TaskController.get')
-  Route.get('/tasks', 'Admin/TaskController.index').as('admin.tasks')
+  Route.get('/tasks/type/:type', 'Admin/TaskController.index').as('admin.tasks')
+  Route.get('/tasks/:id', 'Admin/TaskController.get').as('admin.task')
 
-}).prefix('admin').middleware(['admin', 'auth:session'])
+}).prefix('admin')
+// }).prefix('admin').middleware(['admin', 'auth:session'])
 
 Route.group(() => {
   Route.on('/login').render('login').as('admin.login')

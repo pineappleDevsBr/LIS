@@ -21,10 +21,11 @@ Factory.blueprint('App/Models/ThemeList', async (faker, i) => {
   }
 })
 
-Factory.blueprint('App/Models/Theme', async (faker) => {
+Factory.blueprint('App/Models/Theme', async (faker, i, data) => {
   return {
     name: faker.first(),
-    description: faker.sentence({ words: 10 })
+    description: faker.sentence({ words: 10 }),
+    ...data
   }
 })
 
@@ -49,14 +50,14 @@ Factory.blueprint('App/Models/TaskType', async (faker, i, data) => {
   }
 })
 
-Factory.blueprint('App/Models/User', async (faker, i) => {
+Factory.blueprint('App/Models/User', async (faker, i, data) => {
   return {
     name: faker.name(),
     nickname: faker.username(),
     email: faker.email(),
     password: faker.password(),
     date_of_birth: new Date(),
-    ...i
+    ...data
   }
 })
 
@@ -64,8 +65,7 @@ Factory.blueprint('App/Models/Task', async (faker, i, data) => {
   return {
     name: faker.name(),
     title: faker.username(),
-    task_type_id: data.type,
-    theme_id: data.theme
+    ...data
   }
 })
 

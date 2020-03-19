@@ -5,25 +5,35 @@ const Theme = use('App/Models/Theme');
 const TaskType = use('App/Models/TaskType');
 
 class TaskController {
-  async index({ view }) {
+  async index({ view, params }) {
+    const types = await TaskType.all();
+    const type = types.toJSON().find(tp => tp.name === params.type);
+
     const data = await Task
       .query()
+      .where('task_type_id', type.id)
       .with(['questions'])
       .fetch();
 
-    return view.render('pages.task.index', { tasks: data.toJSON() });
+    return view.render('pages.task.index', { tasks: data.toJSON(), type });
   }
 
-  async new({ view }) {
+  async new({ view, params }) {
     const themes = await Theme.all();
     const types = await TaskType.all();
 
-    return view.render('pages.task.store', { themes: themes.toJSON(), types: types.toJSON() });
+    return view.render(`pages.task.store.${params.type}`, {
+      themes: themes.toJSON(),
+      task_type: types.toJSON().find(tp => tp.name == params.type)
+    });
   }
 
   async get({ view, params }) {
     const data = await Task
-      .find(params.id)
+      .query()
+      .where('id', params.id)
+      .with(['theme'])
+      .first()
 
     const questions = await Question
       .query()
@@ -31,7 +41,7 @@ class TaskController {
       .with(['answers'])
       .fetch()
 
-    return view.render('pages.task.task', { task: data, questions: questions.toJSON() });
+    return view.render('pages.task.task', { task: data.toJSON(), questions: questions.toJSON() });
   }
 
   async store({ request, response, view }) {
@@ -56,8 +66,6 @@ class TaskController {
     }
 
     questions.forEach(async item => {
-      console.log(item);
-
       try {
         const questionModel = await Question.create({ question: item.question, text: item.text, task_id: taskModel.id });
         await questionModel.answers().createMany(item.answers.map(aws => ({ ...aws, right: (aws.right == 'true')})));

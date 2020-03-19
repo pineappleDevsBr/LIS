@@ -1,11 +1,11 @@
 @layout('layout.index')
 
 @section('content')
-  <div class="row mb-3">
+  <div class="row">
     <div class="col d-flex align-items-center">
-      <a href="{{ route('admin.tasks.store') }}" class="btn btn-danger m-r-20">
+      <a href="{{ route('admin.tasks.type.store', { type: type.name }) }}" class="btn btn-danger m-b-20">
         <i class="fa fa-plus"></i>
-          New task
+          New {{ type.name }}
       </a>
       @if(old('result'))
         <div class="alert alert-success mb-0" role="alert">

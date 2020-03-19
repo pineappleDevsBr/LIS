@@ -20,7 +20,7 @@ class DatabaseSeeder {
   async run () {
 
     await Factory.model('App/Models/Nationality').create(0, { country: 'Brazil' });
-    const country_1 = await Nationality.find(1);
+    await Nationality.find(1);
 
     const admin_1 = new User();
     admin_1.nickname = '4stronaut4'
@@ -44,72 +44,11 @@ class DatabaseSeeder {
 
     // -------------------------------------------------------------------------- //
 
-    const user_model_1 = await Factory.model('App/Models/User').make();
-    const user_model_2 = await Factory.model('App/Models/User').make();
-
-    // -------------------------------------------------------------------------- //
-
-    await country_1.users().save(user_model_1);
-    await country_1.users().save(user_model_2);
-
-    // -------------------------------------------------------------------------- //
-
-    const user_1 = await User.find(2);
-    const user_2 = await User.find(3);
-
-    await Factory.model('App/Models/FriendList').create(0, { one: 1, two: user_2.id });
-    await Factory.model('App/Models/FriendList').create(0, { one: user_1.id, two: user_2.id });
-
-    // -------------------------------------------------------------------------- //
-
-    await Factory.model('App/Models/Theme').createMany(5)
-
-    await Factory.model('App/Models/ThemeList')
-      .create(0, { user_id: 1, theme_id: 1 })
-
-    await Factory.model('App/Models/ThemeList')
-      .create(0, { user_id: 1, theme_id: 2 })
-
-    await Factory.model('App/Models/ThemeList')
-      .create(0, { user_id: 1, theme_id: 3 })
-
-    // -------------------------------------------------------------------------- //
-
-    await Factory.model('App/Models/Theme').createMany(5)
-
-    await Factory.model('App/Models/ThemeList')
-      .create(0, { user_id: 2, theme_id: 1 })
-
-    await Factory.model('App/Models/ThemeList')
-      .create(0, { user_id: 2, theme_id: 2 })
-
-    await Factory.model('App/Models/ThemeList')
-      .create(0, { user_id: 2, theme_id: 3 })
-
-    // -------------------------------------------------------------------------- //
-
     await Factory.model('App/Models/TaskType').create('quiz')
     await Factory.model('App/Models/TaskType').create('complete')
     await Factory.model('App/Models/TaskType').create('reading')
 
     // -------------------------------------------------------------------------- //
-
-    const task_1 = await Factory.model('App/Models/Task').create({ theme: 1, type: 1 });
-    const question_1 = await Factory.model('App/Models/Question').make();
-    const question_2 = await Factory.model('App/Models/Question').make();
-    const answer_1 = await Factory.model('App/Models/Answer').make({ right: true });
-    const answer_2 = await Factory.model('App/Models/Answer').make({ right: null });
-
-    await task_1.questions().save(question_1);
-    await task_1.questions().save(question_2);
-    await question_1.answers().save(answer_1);
-    await question_1.answers().save(answer_2);
-
-    // -------------------------------------------------------------------------- //
-
-    await Factory.model('App/Models/Task').create({ theme: 2, type: 1 });
-    await Factory.model('App/Models/Task').create({ theme: 2, type: 2 });
-    await Factory.model('App/Models/Task').create({ theme: 3, type: 3 });
   }
 }
 

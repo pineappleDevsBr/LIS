@@ -11,6 +11,7 @@ class TaskSchema extends Schema {
       table.string('title').notNullable().unique()
       table.integer('xp').notNullable().defaultTo(0)
       table.integer('money').notNullable().defaultTo(0)
+      table.integer('difficulty').notNullable().defaultTo(1)
       table.integer('task_type_id')
         .unsigned()
         .notNullable()
