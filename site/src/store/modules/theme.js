@@ -20,7 +20,19 @@ const actions = {
   async getMyThemes ({ commit }) {
     try {
       const { data: themes } = await theme.mythemes()
-      commit('UPDATE_MYTHEME', themes)
+
+      const myThemes = []
+
+      themes.forEach(elm => {
+        myThemes.push({
+          id: elm.id,
+          name: elm.name,
+          description: elm.description,
+          have: true
+        })
+      })
+
+      commit('UPDATE_MYTHEME', myThemes)
       return themes
     } catch (err) {
       return err
