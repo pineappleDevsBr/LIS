@@ -28,6 +28,7 @@
 <script>
 import progressBar from '../../components/progress-bar'
 import settings from '../../components/settings'
+import store from '../../store'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -52,6 +53,9 @@ export default {
   },
   computed: {
     ...mapGetters('user', ['getUser'])
+  },
+  async mounted () {
+    await store().dispatch('user/getUser')
   }
 }
 </script>

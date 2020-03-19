@@ -5,7 +5,7 @@
       Deixe seus estudos com a sua cara!
     </div>
     <q-card class="m-card">
-        <q-card-section class="m-settings_info">
+        <q-card-section class="m-settings_info" @click="openThemes">
           <p class="m-settings_info-account">Atualizar meus temas</p>
         </q-card-section>
       </q-card>
@@ -30,22 +30,36 @@
         <q-icon name="lock"/>
       </q-card-section>
     </q-card>
+    <changeThemes :themesOpen="themesOpen" @closeThemes="closeThemes"></changeThemes>
   </div>
 </template>
 
 <script>
+import changeThemes from '../../components/changeThemes'
 import store from '../../store'
 import { mapGetters } from 'vuex'
 
 export default {
   name: 'pageSettings',
+  components: {
+    changeThemes
+  },
   data () {
     return {
+      themesOpen: false,
       isDark: false,
       lang: 'pt-br',
       options: [
         'pt-br', 'en-us'
       ]
+    }
+  },
+  methods: {
+    openThemes () {
+      this.themesOpen = true
+    },
+    closeThemes () {
+      this.themesOpen = false
     }
   },
   watch: {
