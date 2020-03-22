@@ -37,6 +37,15 @@ const actions = {
     } catch (err) {
       return err
     }
+  },
+
+  async updateTheme ({ commit }, payload) {
+    try {
+      const response = await theme.put(payload)
+      return response
+    } catch (err) {
+      return err
+    }
   }
 }
 
