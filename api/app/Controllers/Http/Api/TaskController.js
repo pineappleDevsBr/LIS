@@ -29,7 +29,7 @@ class TaskController {
           .toJSON()
           .filter(task => task.theme_id == theme.id)
           .map(task => Object.assign(task, {
-            evaluations: task.evaluations ?
+            evaluations: task.evaluations[0] ?
               task.evaluations.reduce((acc, { value }) => acc + parseInt(value), 0) / task.evaluations.length : 0
           }))
       }))

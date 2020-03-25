@@ -18,7 +18,16 @@
                 @if(item.questions)
                   <ul class="list-group list-group-flush">
                     @each(question in item.questions)
-                    <li class="list-group-item">{{ question.question }}</li>
+                      <li class="list-group-item">
+                        @if(question.file)
+                        <div class="d-flex align-items-center">
+                          <span class="mr-3">#{{ ($loop.index + 1) }}</span>
+                          <audio src="{{ assetsUrl('uploads/audios') }}/{{ question.file }}" controls></audio>
+                        </div>
+                        @else
+                          {{ question.question }}
+                        @endif
+                      </li>
                     @endeach
                   </ul>
                 @endif

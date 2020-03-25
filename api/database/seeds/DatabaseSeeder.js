@@ -45,6 +45,7 @@ class DatabaseSeeder {
     // -------------------------------------------------------------------------- //
 
     await Factory.model('App/Models/TaskType').create('quiz')
+    await Factory.model('App/Models/TaskType').create('listening')
     await Factory.model('App/Models/TaskType').create('complete')
     await Factory.model('App/Models/TaskType').create('reading')
 

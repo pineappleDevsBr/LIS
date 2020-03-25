@@ -9,8 +9,7 @@
       <p>Name: {{ task.name }}</p>
       <p>Dificuldade: {{ task.difficulty }}</p>
       <p>Theme: {{ task.theme.name }}</p>
-      <p>Avaliações: 0</p>
-      <p>Média: 0</p>
+      <p>Avaliações: {{ task.evaluations }}</p>
     </div>
   </div>
 
@@ -19,29 +18,42 @@
       <div class="card-header">Questions</div>
       <div class="card-body">
         @each(item in questions)
-          <div class="card mb-0">
-            <div class="card-header">
-              <h2 class="mb-0 d-flex justify-content-between">
-                <button class="btn flex-grow-1 text-left" type="button" data-toggle="collapse" data-target="#{{ item.id }}" aria-expanded="true" aria-controls="collapseOne">
-                  {{ item.question }}
-                </button>
-              </h2>
-            </div>
+          @if(task.task_type_id == 1)
+            <div class="card mb-0">
+              <div class="card-header">
+                <h2 class="mb-0 d-flex justify-content-between">
+                  <button class="btn flex-grow-1 text-left" type="button" data-toggle="collapse" data-target="#{{ item.id }}" aria-expanded="true" aria-controls="collapseOne">
+                    {{ item.question }}
+                  </button>
+                </h2>
+              </div>
 
-            <div id="{{ item.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-              <div class="card-body p-0">
-                @if(item.answers)
-                  <ul class="list-group list-group-flush">
-                    @each(answer in item.answers)
-                      <li class="list-group-item {{ answer.right == 1 ? 'list-group-item-success' : 'list-group-item-danger' }}">
-                        {{ answer.answer }}
-                      </li>
-                    @endeach
-                  </ul>
-                @endif
+              <div id="{{ item.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+                <div class="card-body p-0">
+                  @if(item.answers)
+                    <ul class="list-group list-group-flush">
+                      @each(answer in item.answers)
+                        <li class="list-group-item {{ answer.right == 1 ? 'list-group-item-success' : 'list-group-item-danger' }}">
+                          {{ answer.answer }}
+                        </li>
+                      @endeach
+                    </ul>
+                  @endif
+                </div>
               </div>
             </div>
-          </div>
+          @elseif(task.task_type_id == 2)
+            <div class="card">
+              <div class="card-header">
+                <audio src="{{ assetsUrl('uploads/audios') }}/{{ item.file }}" controls></audio>
+              </div>
+              <div class="card-body">
+                @each(answer in item.answers)
+                  {{ answer.answer }}
+                @endeach
+              </div>
+            </div>
+          @endif
         @endeach
       </div>
     </div>

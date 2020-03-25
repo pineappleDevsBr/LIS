@@ -56,6 +56,8 @@ class FakerSeeder {
       .create(0, { user_id: 2, theme_id: 3 })
 
 
+    // -------------------------------------------------------------------------- //
+
     const task_1 = await Factory.model('App/Models/Task').create({
       theme_id: 1,
       task_type_id: 1,
@@ -64,41 +66,63 @@ class FakerSeeder {
       difficulty: 1
     });
 
-    const question_1 = await Factory.model('App/Models/Question').make({
+    const question_01 = await Factory.model('App/Models/Question').make({
       question: 'Selecione o verbo'
     });
 
-    const answer_1 = await Factory.model('App/Models/Answer').make({
+    const answer_01 = await Factory.model('App/Models/Answer').make({
       answer: 'Go',
       right: true
     });
 
-    const answer_2 = await Factory.model('App/Models/Answer').make({
+    const answer_02 = await Factory.model('App/Models/Answer').make({
       answer: 'Bread',
       right: null
     });
 
-    const answer_3 = await Factory.model('App/Models/Answer').make({
+    const answer_03 = await Factory.model('App/Models/Answer').make({
       answer: 'Professor Girafales',
       right: null
     });
 
-    const answer_4 = await Factory.model('App/Models/Answer').make({
+    const answer_04 = await Factory.model('App/Models/Answer').make({
       answer: 'Sua mae <3',
       right: null
     });
 
 
-    await task_1.questions().save(question_1);
-    await question_1.answers().save(answer_1);
-    await question_1.answers().save(answer_2);
-    await question_1.answers().save(answer_3);
-    await question_1.answers().save(answer_4);
+    await task_1.questions().save(question_01);
+    await question_01.answers().save(answer_01);
+    await question_01.answers().save(answer_02);
+    await question_01.answers().save(answer_03);
+    await question_01.answers().save(answer_04);
+
+    // -------------------------------------------------------------------------- //
+
+    const task_2 = await Factory.model('App/Models/Task').create({
+      theme_id: 1,
+      task_type_id: 2,
+      title: 'Justin Bieber seloco',
+      name: 'Litening basico',
+      difficulty: 2,
+      xp: 200,
+    });
+
+    const question_11 = await Factory.model('App/Models/Question').make({
+      question: 'Digite o que escutou #1',
+      file: 'example.mp3'
+    });
+
+    const answer_11 = await Factory.model('App/Models/Answer').make({
+      answer: 'Louro jose fuma pao de queijo'
+    });
+
+    await task_2.questions().save(question_11);
+    await question_11.answers().save(answer_11);
 
     // -------------------------------------------------------------------------- //
 
     await Factory.model('App/Models/Task').create({ theme_id: 2, task_type_id: 1 });
-    await Factory.model('App/Models/Task').create({ theme_id: 2, task_type_id: 2 });
     await Factory.model('App/Models/Task').create({ theme_id: 3, task_type_id: 3 });
   }
 }
