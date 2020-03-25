@@ -55,20 +55,29 @@ export default {
     }
   },
   methods: {
-    submit () {
-      const themes = []
+    async submit () {
+      const newThemes = []
 
       for (let i = 0; i < this.allThemes.length; i += 1) {
-        if (this.allThemes[i].have) themes.push(this.allThemes[i].id)
+        if (this.allThemes[i].have) newThemes.push(this.allThemes[i].id)
       }
 
-      if (themes.length < 1) {
+      if (newThemes.length < 1) {
         this.$q.notify({
           color: 'negative',
           message: 'Você deve selecionar no mínimo um tema!',
           icon: 'report_problem'
         })
       }
+      this.$q.loading.show()
+      await store().dispatch('theme/updateTheme', { themes: newThemes })
+      this.$q.notify({
+        color: 'positive',
+        message: 'Seus temas foram atualizados!',
+        icon: 'sentiment_satisfied_alt'
+      })
+      this.closeThemes()
+      this.$q.loading.hide()
     },
     closeThemes () {
       this.$emit('closeThemes')
