@@ -19,12 +19,19 @@ class TaskController {
         .query()
         .whereIn('theme_id', themes_id)
         .where('task_type_id', type)
+        .with('evaluations')
         .fetch();
 
       const data = themes.toJSON().map(theme => ({
         theme: theme.name,
         theme_id : theme.id,
-        tasks: tasks.toJSON().filter(task => task.theme_id == theme.id),
+        tasks: tasks
+          .toJSON()
+          .filter(task => task.theme_id == theme.id)
+          .map(task => Object.assign(task, {
+            evaluations: task.evaluations ?
+              task.evaluations.reduce((acc, { value }) => acc + parseInt(value), 0) / task.evaluations.length : 0
+          }))
       }))
 
       response.send(data);

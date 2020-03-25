@@ -17,6 +17,14 @@
             <div class="m-text_title">{{task.title}}</div>
             <div class="m-text_xp">{{task.xp}} XP</div>
           </q-card-section>
+          <q-card-section class="m-text_card">
+            <q-rating
+              v-model="task.evaluations"
+              size="1.5em"
+              color="orange"
+              readonly
+            />
+          </q-card-section>
         </q-card>
       </q-tab-panel>
     </q-tab-panels>

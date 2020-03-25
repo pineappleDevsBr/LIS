@@ -11,6 +11,10 @@ class Task extends Model {
   questions() {
     return this.hasMany('App/Models/Question');
   }
+
+  evaluations() {
+    return this.hasMany('App/Models/Evaluation');
+  }
 }
 
 module.exports = Task
