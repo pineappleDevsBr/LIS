@@ -38,6 +38,33 @@ class TaskController {
     return this[task_type_name]({ request, response, session, type: task_type_name });
   }
 
+  async complete({ request, response, session, type }) {
+    const task = request.only(taskLabels);
+    const { questions } = request.only(['questions']);
+    let taskModel;
+
+    try {
+      taskModel = await Task.create(task);
+    } catch (err) {
+      return response.send(err);
+    }
+
+    questions.forEach(async item => {
+      try {
+        const questionModel = await Question.create({
+          text: item.text,
+          task_id: taskModel.id
+        });
+        await questionModel.answers().create({ answer: item.answer });
+      } catch (error) {
+        return response.send(error);
+      }
+    })
+
+    session.flash({ result: 'created' });
+    return response.route('admin.tasks', { type });
+  }
+
   async listening({ request, response, session, type }) {
     const task = request.only(taskLabels);
     const { questions } = request.only(['questions']);

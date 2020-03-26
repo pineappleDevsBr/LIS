@@ -7,9 +7,9 @@
     </div>
     <div class="card-body">
       <p>Name: {{ task.name }}</p>
-      <p>Dificuldade: {{ task.difficulty }}</p>
+      <p>Difficulty: {{ task.difficulty }}</p>
       <p>Theme: {{ task.theme.name }}</p>
-      <p>Avaliações: {{ task.evaluations }}</p>
+      <p>Average: {{ task.evaluations }}</p>
     </div>
   </div>
 
@@ -18,12 +18,12 @@
       <div class="card-header">Questions</div>
       <div class="card-body">
         @each(item in questions)
-          @if(task.task_type_id == 1)
+          @if(task.task_type_id == 1 || task.task_type_id == 3)
             <div class="card mb-0">
               <div class="card-header">
                 <h2 class="mb-0 d-flex justify-content-between">
                   <button class="btn flex-grow-1 text-left" type="button" data-toggle="collapse" data-target="#{{ item.id }}" aria-expanded="true" aria-controls="collapseOne">
-                    {{ item.question }}
+                    {{ item.question || item.text }}
                   </button>
                 </h2>
               </div>
@@ -33,7 +33,7 @@
                   @if(item.answers)
                     <ul class="list-group list-group-flush">
                       @each(answer in item.answers)
-                        <li class="list-group-item {{ answer.right == 1 ? 'list-group-item-success' : 'list-group-item-danger' }}">
+                        <li class="list-group-item {{ answer.right ? 'list-group-item-success' : '' }}">
                           {{ answer.answer }}
                         </li>
                       @endeach

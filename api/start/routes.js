@@ -33,6 +33,7 @@ Route.group(() => {
 
   // App -> Tasks
   Route.get('/task', 'Api/TaskController.index')
+  Route.get('/tasks/:id', 'Api/TaskController.get')
 }).prefix('api/v1').middleware(['auth:jwt']);
 
 Route.group(() => {

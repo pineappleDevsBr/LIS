@@ -15,6 +15,10 @@ class TaskController {
       response.status(500).send(error);
     }
   }
+
+  async get({ params }) {
+    return await TaskRepository.getById(params.id);
+  }
 }
 
 module.exports = TaskController
