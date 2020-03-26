@@ -60,114 +60,13 @@ export default {
     progressBar
   },
   props: {
-    quiz: Boolean
+    quiz: Boolean,
+    questions: Array
   },
   data () {
     return {
       step: 1,
       progress: { showValue: false, levelUp: 10, xp: 0 },
-      questions: [
-        { id: 1,
-          question: 'Qual a melhor tradução para:',
-          text: 'I am from Brazil!',
-          answers: [
-            { id: 1, answer: 'Eu sou do Brasil!' },
-            { id: 2, answer: 'Eu vou para o Brasil!' },
-            { id: 3, answer: 'Meus pais são do Brasil!' },
-            { id: 4, answer: 'Vamos para o Brasil!' }
-          ]
-        },
-        { id: 2,
-          question: 'Qual a melhor tradução para:',
-          text: 'I am from Brazil!',
-          answers: [
-            { id: 1, answer: 'Eu sou do Brasil!' },
-            { id: 2, answer: 'Eu vou para o Brasil!' },
-            { id: 3, answer: 'Meus pais são do Brasil!' },
-            { id: 4, answer: 'Vamos para o Brasil!' }
-          ]
-        },
-        { id: 3,
-          question: 'Qual a melhor tradução para:',
-          text: 'I am from Brazil!',
-          answers: [
-            { id: 1, answer: 'Eu sou do Brasil!' },
-            { id: 2, answer: 'Eu vou para o Brasil!' },
-            { id: 3, answer: 'Meus pais são do Brasil!' },
-            { id: 4, answer: 'Vamos para o Brasil!' }
-          ]
-        },
-        { id: 4,
-          question: 'Qual a melhor tradução para:',
-          text: 'I am from Brazil!',
-          answers: [
-            { id: 1, answer: 'Eu sou do Brasil!' },
-            { id: 2, answer: 'Eu vou para o Brasil!' },
-            { id: 3, answer: 'Meus pais são do Brasil!' },
-            { id: 4, answer: 'Vamos para o Brasil!' }
-          ]
-        },
-        { id: 5,
-          question: 'Qual a melhor tradução para:',
-          text: 'I am from Brazil!',
-          answers: [
-            { id: 1, answer: 'Eu sou do Brasil!' },
-            { id: 2, answer: 'Eu vou para o Brasil!' },
-            { id: 3, answer: 'Meus pais são do Brasil!' },
-            { id: 4, answer: 'Vamos para o Brasil!' }
-          ]
-        },
-        { id: 6,
-          question: 'Qual a melhor tradução para:',
-          text: 'I am from Brazil!',
-          answers: [
-            { id: 1, answer: 'Eu sou do Brasil!' },
-            { id: 2, answer: 'Eu vou para o Brasil!' },
-            { id: 3, answer: 'Meus pais são do Brasil!' },
-            { id: 4, answer: 'Vamos para o Brasil!' }
-          ]
-        },
-        { id: 7,
-          question: 'Qual a melhor tradução para:',
-          text: 'I am from Brazil!',
-          answers: [
-            { id: 1, answer: 'Eu sou do Brasil!' },
-            { id: 2, answer: 'Eu vou para o Brasil!' },
-            { id: 3, answer: 'Meus pais são do Brasil!' },
-            { id: 4, answer: 'Vamos para o Brasil!' }
-          ]
-        },
-        { id: 8,
-          question: 'Qual a melhor tradução para:',
-          text: 'I am from Brazil!',
-          answers: [
-            { id: 1, answer: 'Eu sou do Brasil!' },
-            { id: 2, answer: 'Eu vou para o Brasil!' },
-            { id: 3, answer: 'Meus pais são do Brasil!' },
-            { id: 4, answer: 'Vamos para o Brasil!' }
-          ]
-        },
-        { id: 9,
-          question: 'Qual a melhor tradução para:',
-          text: 'I am from Brazil!',
-          answers: [
-            { id: 1, answer: 'Eu sou do Brasil!' },
-            { id: 2, answer: 'Eu vou para o Brasil!' },
-            { id: 3, answer: 'Meus pais são do Brasil!' },
-            { id: 4, answer: 'Vamos para o Brasil!' }
-          ]
-        },
-        { id: 10,
-          question: 'Qual a melhor tradução para:',
-          text: 'I am from Brazil!',
-          answers: [
-            { id: 1, answer: 'Eu sou do Brasil!' },
-            { id: 2, answer: 'Eu vou para o Brasil!' },
-            { id: 3, answer: 'Meus pais são do Brasil!' },
-            { id: 4, answer: 'Vamos para o Brasil!' }
-          ]
-        }
-      ],
       answers: [
         { answer: null },
         { answer: null },

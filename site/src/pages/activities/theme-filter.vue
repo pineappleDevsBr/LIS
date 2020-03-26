@@ -29,7 +29,7 @@
       </q-tab-panel>
     </q-tab-panels>
     <btnBack @back="back"/>
-    <quiz :quiz="openQuiz" @closeQuiz="closeActivitie"/>
+    <quiz :quiz="openQuiz" :questions="questions" @closeQuiz="closeActivitie"/>
     <reading :reading="openReading" @closeReading="closeActivitie"/>
     <listening :listening="openListening" @closeReading="closeActivitie"/>
   </div>
@@ -59,11 +59,14 @@ export default {
       openQuiz: false,
       openReading: false,
       openListening: false,
-      openComplete: false
+      openComplete: false,
+      questions: null
     }
   },
   methods: {
-    openActivitie (id, typeId) {
+    async openActivitie (id, typeId) {
+      const { questions } = await store().dispatch('task/getQuestions', id)
+      this.questions = questions
       switch (typeId) {
         case 1:
           this.openQuiz = true
