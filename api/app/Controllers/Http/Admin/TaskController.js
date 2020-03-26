@@ -1,22 +1,21 @@
 'use strict'
+
+const TaskRepository = use('App/Repositories/TaskRepository')
+
 const Helpers = use('Helpers')
 const Task = use('App/Models/Task');
 const Question = use('App/Models/Question');
 const Theme = use('App/Models/Theme');
 const TaskType = use('App/Models/TaskType');
+const taskLabels = ['name', 'title', 'xp', 'money', 'theme_id', 'task_type_id'];
 
 class TaskController {
   async index({ view, params }) {
     const types = await TaskType.all();
     const type = types.toJSON().find(tp => tp.name === params.type);
+    const tasks = await TaskRepository.getByType(type.id);
 
-    const data = await Task
-      .query()
-      .where('task_type_id', type.id)
-      .with(['questions'])
-      .fetch();
-
-    return view.render('pages.task.index', { tasks: data.toJSON(), type });
+    return view.render('pages.task.index', { tasks, type });
   }
 
   async new({ view, params }) {
@@ -30,28 +29,8 @@ class TaskController {
   }
 
   async get({ view, params }) {
-    const data = await Task
-      .query()
-      .where('id', params.id)
-      .with(['theme'])
-      .with('evaluations')
-      .first()
-
-    const questions = await Question
-      .query()
-      .where('task_id', params.id)
-      .with(['answers'])
-      .fetch()
-
-    const dataTask = data.toJSON();
-
-    return view.render('pages.task.task', {
-      task: Object.assign(dataTask, {
-        evaluations: dataTask.evaluations[0] ?
-          dataTask.evaluations.reduce((acc, { value }) => acc + parseInt(value), 0) / dataTask.evaluations.length : 0
-      }),
-      questions: questions.toJSON()
-    });
+    const data = await TaskRepository.getById(params.id);
+    return view.render('pages.task.task', data);
   }
 
   async store({ request, response, session }) {
@@ -60,7 +39,7 @@ class TaskController {
   }
 
   async listening({ request, response, session, type }) {
-    const task = request.only(['name', 'title', 'xp', 'money', 'theme_id', 'task_type_id']);
+    const task = request.only(taskLabels);
     const { questions } = request.only(['questions']);
     let taskModel;
     const files = request.file('audio', {
@@ -104,7 +83,7 @@ class TaskController {
   }
 
   async quiz({ request, response, session, type }) {
-    const task = request.only(['name', 'title', 'xp', 'money', 'theme_id', 'task_type_id']);
+    const task = request.only(taskLabels);
     const { questions } = request.only(['questions']);
     let taskModel;
 

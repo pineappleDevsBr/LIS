@@ -10,7 +10,7 @@ test('It should return tasks of the user', async ({ assert, client }) => {
   const user = await User.findBy('email', 'leandro@lis.com');
 
   const response = await client
-    .get('/api/v1/task')
+    .get('/api/v1/task?type=1')
     .loginVia(user, 'jwt')
     .end()
 

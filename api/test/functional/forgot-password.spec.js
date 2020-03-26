@@ -16,6 +16,9 @@ afterEach(() => Mail.restore());
 async function generateForgotPasswordToken(client, email) {
   await Factory.model('App/Models/Nationality').create();
   const nat_1 = await Nationality.query().first();
+
+  console.log(nat_1.id);
+
   const forgot_payload = {
     email,
     nationality_id: nat_1.id
@@ -23,8 +26,8 @@ async function generateForgotPasswordToken(client, email) {
 
   const user = await Factory
     .model('App/Models/User')
-    .create(0, forgot_payload);
-  
+    .create(forgot_payload);
+
 
   await client
     .post('/api/v1/forgot')
@@ -53,14 +56,14 @@ test('It should be able to reset password', async ({ assert, client }) => {
     password: '123456',
     password_confirmation: '123456'
   }
-  
+
 
   await client
     .post('/api/v1/reset')
     .send(payload)
     .end()
 
-  const user = await User.findBy('email', email);  
+  const user = await User.findBy('email', email);
   const passwordVerify = await Hash.verify(payload.password, user.password);
   assert.isTrue(passwordVerify);
 })
