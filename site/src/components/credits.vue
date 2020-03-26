@@ -57,7 +57,7 @@ export default {
   },
   methods: {
     closeCredits () {
-      this.$emit('closeCredits')
+      this.$emit('close')
     }
   }
 }

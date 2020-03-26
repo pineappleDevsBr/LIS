@@ -51,7 +51,7 @@
     </div>
     <div class="m-settings_notification">
       <h2 class="m-settings_title">Sobre nós</h2>
-      <q-card class="m-card m-settings_card">
+      <q-card class="m-card m-settings_card" @click="termsOpen = true">
         <q-card-section class="m-settings_info">
           <p class="m-settings_info-account">Termos de uso e privacidade</p>
         </q-card-section>
@@ -69,7 +69,8 @@
     <qprompt :prompt="prompt" @isClose="isClose"></qprompt>
     <changeAvatar :selectAvatar="selectAvatar" @selectedAvatar="selectedAvatar"></changeAvatar>
     <changePassword :isOpen="changePassword.isOpen" @close="changePassword.isOpen = false"></changePassword>
-    <credits :credits="creditsOpen" @closeCredits="closeCredits"></credits>
+    <credits :credits="creditsOpen" @close="close"></credits>
+    <terms :terms="termsOpen" @close="close"></terms>
     </div>
   </q-dialog>
 </template>
@@ -79,6 +80,7 @@ import qprompt from './ui/dlg-prompt'
 import changeAvatar from './ui/changeAvatar'
 import changePassword from './ui/changePassword'
 import credits from './credits'
+import terms from './terms'
 import store from '../store/index'
 import { mapGetters } from 'vuex'
 
@@ -88,8 +90,8 @@ export default {
     qprompt,
     changeAvatar,
     changePassword,
-    credits
-
+    credits,
+    terms
   },
   props: {
     settings: Boolean
@@ -97,6 +99,7 @@ export default {
   data () {
     return {
       creditsOpen: false,
+      termsOpen: false,
       notifications: {
         update: false,
         changeData: true
@@ -138,8 +141,9 @@ export default {
     closeSettings () {
       this.$emit('closeSettings')
     },
-    closeCredits () {
+    close () {
       this.creditsOpen = false
+      this.termsOpen = false
     }
   },
   computed: {
