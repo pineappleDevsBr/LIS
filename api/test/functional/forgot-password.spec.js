@@ -63,7 +63,12 @@ test('It should be able to reset password', async ({ assert, client }) => {
     .send(payload)
     .end()
 
-  const user = await User.findBy('email', email);
+  const user = await User
+    .query()
+    .select('id', 'name', 'password')
+    .where('email', email)
+    .first()
+
   const passwordVerify = await Hash.verify(payload.password, user.password);
   assert.isTrue(passwordVerify);
 })
