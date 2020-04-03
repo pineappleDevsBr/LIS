@@ -19,7 +19,6 @@ const actions = {
   async getQuestions ({ commit }, id) {
     try {
       const { data: questions } = await task.questions(id)
-      console.log(questions)
       commit('UPDATE_QUESTIONS', questions)
       return questions
     } catch (error) {

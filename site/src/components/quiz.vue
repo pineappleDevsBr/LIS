@@ -24,7 +24,7 @@
           color="primary"
           animated
         >
-          <q-step :name="question.id" :title="`Question ${question.id}`" icon="edit" :done="step > index" v-for="(question, index) in questions" v-bind:key="question.id">
+          <q-step :name="index + 1" :title="`Question ${question.id}`" icon="edit" :done="step > index" v-for="(question, index) in questions" v-bind:key="question.id">
             <div class="quiz">
               <div class="m-quiz_title">
                 <div>
@@ -34,7 +34,7 @@
               </div>
               <div>
                 <q-card class="m-card" v-for="item in question.answers" v-bind:key="item.id">
-                  <q-radio keep-color v-model="answers[index].awnsware" :val="item.id" :label="item.answer" class="full-width" color="accent" />
+                  <q-radio keep-color v-model="answers[index].answer" :val="item.id" :label="item.answer" class="full-width" color="accent" />
                 </q-card>
               </div>
             </div>
@@ -83,6 +83,7 @@ export default {
   },
   methods: {
     closeQuiz () {
+      this.step = 1
       this.$emit('closeQuiz')
     },
     next () {
@@ -90,8 +91,10 @@ export default {
         this.$refs.stepper.next()
         this.progress.xp += 1
       } else {
-        this.progress.xp += 1
+        console.log(this.answers)
+        this.step = 1
         this.$emit('closeQuiz')
+        this.progress.xp = 0
       }
     },
     back () {
