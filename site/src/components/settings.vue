@@ -24,7 +24,7 @@
       <q-card class="m-card m-settings_card">
         <q-card-section class="m-settings_info" @click="openDlg('name', 'Nome', getUser.name)">
           <p class="m-settings_info-account">Nome:</p>
-          <q-input borderless v-model="getUser.name" disable />
+          <p class="m-settings_info-account">{{getUser.name}}</p>
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card">
@@ -114,7 +114,8 @@ export default {
       selectAvatar: false,
       changePassword: {
         isOpen: false
-      }
+      },
+      name: null
     }
   },
   methods: {
@@ -131,14 +132,22 @@ export default {
 
     isClose (event) {
       const { type, newValue } = event
-      if (type === 'name') this.getUser.nickname = newValue
-      else this.getUser.email = newValue
+      if (type === 'name') {
+        this.name = newValue
+      }
     },
     selectedAvatar (event) {
       this.selectAvatar = false
       if (event !== undefined) this.getUser.avatar = event.avatar
     },
-    closeSettings () {
+    async closeSettings () {
+      if (this.name) {
+        console.log(this.save)
+        const payload = {
+          name: this.name
+        }
+        await store().dispatch('user/updateUser', payload)
+      }
       this.$emit('closeSettings')
     },
     close () {
