@@ -44,10 +44,11 @@
     class="primary-error"
     v-model="form.password"
     @blur="$v.form.password.$touch"
-    :error="!validationPassword"
-    :error-message="$t('access.personalData.errors.required')"
+    :error="$v.form.password.$error"
+    :error-message="$t('access.personalData.errors.minLength')"
     type="password"
-    :label="$t('access.personalData.password')" />
+    :label="$t('access.personalData.password')"
+    :hint="$t('access.personalData.sixCharacters')" />
 
     <q-input
     dark
@@ -57,14 +58,20 @@
     v-model="form.confirm_password"
     @blur="$v.form.confirm_password.$touch"
     :error="$v.form.confirm_password.$error"
-    :error-message="$t('access.personalData.errors.required')"
+    :error-message="$t('access.personalData.errors.sameAs')"
     type="password"
     :label="$t('access.personalData.passwordConfirmation')" />
 
     <q-input
     :label="$t('access.personalData.dateOfBirth')"
-    dark color="white" label-color="white" class="primary-error"
-    v-model="form.dateOfBirth" mask="##/##/####">
+    dark color="white"
+    label-color="white"
+    class="primary-error"
+    v-model="form.dateOfBirth"
+    mask="##/##/####"
+    @blur="$v.form.dateOfBirth.$touch"
+    :error="$v.form.dateOfBirth.$error"
+    :error-message="$t('access.personalData.errors.required')">
       <template v-slot:append>
         <q-icon name="event" class="cursor-pointer">
           <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
@@ -88,7 +95,7 @@
 </template>
 
 <script>
-import { required, email, sameAs } from 'vuelidate/lib/validators'
+import { required, email, sameAs, minLength } from 'vuelidate/lib/validators'
 import store from '../../store/index'
 
 export default {
@@ -118,7 +125,7 @@ export default {
   validations: {
     form: {
       email: { required, email },
-      password: { required },
+      password: { required, minLength: minLength(4) },
       confirm_password: { required, sameAsPassword: sameAs('password') },
       name: { required },
       nickname: { required },
@@ -172,10 +179,6 @@ export default {
     disabled () {
       const verify = this.errors.nicknameCheck || this.errors.emailCheck
       return verify
-    },
-    validationPassword () {
-      const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/
-      return reg.test(this.form.password)
     }
   }
 }

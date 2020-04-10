@@ -2,11 +2,11 @@
   <div>
     <div class="m-spotlight m-friends_spotlight">
       <img class="m-spotlight_icon" src="statics/hub/bracelet.svg" alt="Friends">
-      Descubra novos amigos! Aprender junto é mais divertido!
-      <q-btn class="m-friends_search" no-caps flat label="Pesquisar amigos"/>
+      {{ $t('hub.title') }}
+      <q-btn class="m-friends_search" no-caps flat :label="$t('hub.search')"/>
     </div>
     <div>
-      <h2 class="m-friends_title">Solicitações de amizade</h2>
+      <h2 class="m-friends_title">{{ $t('hub.requests') }}</h2>
       <q-card class="m-card" v-for="item in getFriends" v-bind:key="item.id" @click="viewFriend(item.id)">
         <q-card-section class="m-friends_card">
           <div class="m-friends_profile">
@@ -23,7 +23,7 @@
         </q-card-section>
       </q-card>
     </div>
-    <h2 class="m-friends_title">Meus amigos</h2>
+    <h2 class="m-friends_title">{{ $t('hub.myFriends') }}</h2>
     <q-card class="m-card" v-for="item in getFriends" v-bind:key="item.id" @click="viewFriend(item.id)">
       <q-card-section class="m-friends_card">
         <div class="m-friends_profile">

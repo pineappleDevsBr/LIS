@@ -60,7 +60,7 @@ export default {
         if (response.status) {
           this.$q.notify({
             color: 'positive',
-            message: this.$i18n.t(`forgot.send_email`),
+            message: this.$i18n.t(`forgot.sendEmail`),
             icon: 'email'
           })
           this.$router.push({ name: 'welcome' })
