@@ -61,6 +61,7 @@ export default {
   },
   props: {
     quiz: Boolean,
+    taskType: Number,
     questions: Array
   },
   data () {
@@ -68,16 +69,16 @@ export default {
       step: 1,
       progress: { showValue: false, levelUp: 10, xp: 0 },
       answers: [
-        { answer: null },
-        { answer: null },
-        { answer: null },
-        { answer: null },
-        { answer: null },
-        { answer: null },
-        { answer: null },
-        { answer: null },
-        { answer: null },
-        { answer: null }
+        { question_id: null, answer: null },
+        { question_id: null, answer: null },
+        { question_id: null, answer: null },
+        { question_id: null, answer: null },
+        { question_id: null, answer: null },
+        { question_id: null, answer: null },
+        { question_id: null, answer: null },
+        { question_id: null, answer: null },
+        { question_id: null, answer: null },
+        { question_id: null, answer: null }
       ]
     }
   },
@@ -91,7 +92,13 @@ export default {
         this.$refs.stepper.next()
         this.progress.xp += 1
       } else {
-        console.log(this.answers)
+        this.setQuestions()
+        const payload = {
+          task_id: this.questions[0].task_id,
+          task_type_id: this.taskType,
+          answers: this.answers
+        }
+        console.log(payload)
         this.step = 1
         this.$emit('closeQuiz')
         this.progress.xp = 0
@@ -101,6 +108,11 @@ export default {
       if (this.step > 1) {
         this.$refs.stepper.previous()
         this.progress.xp -= 1
+      }
+    },
+    setQuestions () {
+      for (let i = 0; i < this.questions.length; i += 1) {
+        this.answers[i].question_id = this.questions[i].id
       }
     }
   }
