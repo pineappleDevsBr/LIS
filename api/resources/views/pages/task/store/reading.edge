@@ -5,7 +5,7 @@
     <div class="col">
       <div class="card">
         <div class="card-header">
-          <h2>New Complete the phrase</h2>
+          <h2>New Reading</h2>
         </div>
       </div>
     </div>
@@ -58,15 +58,16 @@
         </div>
 
         <div class="card">
-          <div class="card-header">Questions</div>
-          <div class="card-body" data-questions>
-            <ul class="list-group list-group-flush" data-questions-holder>
-            </ul>
-            <div class="row mt-20 d-flex justify-content-center">
-              <button type="button" class="btn btn-info" data-questions-btn>
-                <i class="fa fa-plus"></i>
-                Add
-              </button>
+          <div class="card-header">Question</div>
+          <div class="card-body">
+            <div class="form-group d-flex align-items-center">
+              <label for="asnwer" class="flex-grow-0 control-label mb-1 mr-2">answer*</label>
+              <input id="answer" name="question.question" type="text" class="form-control">
+            </div>
+            <div class="form-group d-flex align-items-center">
+              <label for="text" class="flex-grow-0 control-label mb-1 mr-2">text*</label>
+              <textarea id="text" name="question.text" type="file" class="flex-grow-1 form-control" aria-required="true"
+              aria-invalid="false" required></textarea>
             </div>
           </div>
         </div>
@@ -93,7 +94,6 @@
           Exactly 10 questions must be registered
       </div>
 
-      <script src="{{ assetsUrl('assets/js/task/complete.js') }}"></script>
       <script src="{{ assetsUrl('assets/js/task/validation.js') }}"></script>
     </div>
   </div>

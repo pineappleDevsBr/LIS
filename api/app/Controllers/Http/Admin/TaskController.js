@@ -132,6 +132,22 @@ class TaskController {
     session.flash({ result: 'created' });
     return response.route('admin.tasks', { type });
   }
+
+  async reading({ request, response, session, type }) {
+    const task = request.only(taskLabels);
+    const { question } = request.only(['question']);
+    let taskModel;
+
+    try {
+      taskModel = await Task.create(task);
+      await Question.create({ ...question, task_id: taskModel.id });
+    } catch (err) {
+      return response.send(err);
+    }
+
+    session.flash({ result: 'created' });
+    return response.route('admin.tasks', { type });
+  }
 }
 
 module.exports = TaskController

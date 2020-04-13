@@ -90,8 +90,10 @@ class FakerSeeder {
       right: null
     });
 
+    const evaluation_1 = await Factory.model('App/Models/Evaluation').make({ value: 4, user_id: user_1.id })
 
     await task_1.questions().save(question_01);
+    await task_1.evaluations().save(evaluation_1);
     await question_01.answers().save(answer_01);
     await question_01.answers().save(answer_02);
     await question_01.answers().save(answer_03);
@@ -122,8 +124,43 @@ class FakerSeeder {
 
     // -------------------------------------------------------------------------- //
 
-    await Factory.model('App/Models/Task').create({ theme_id: 2, task_type_id: 1 });
-    await Factory.model('App/Models/Task').create({ theme_id: 3, task_type_id: 3 });
+    const task_4 = await Factory.model('App/Models/Task').create({
+      theme_id: 1,
+      task_type_id: 3,
+      title: 'Minha bunda caiu',
+      name: 'Complete basico',
+      difficulty: 1,
+      xp: 200,
+    });
+
+    const question_21 = await Factory.model('App/Models/Question').make({
+      question: 'I\'m a ______'
+    });
+
+    const answer_22 = await Factory.model('App/Models/Answer').make({
+      answer: 'virgin'
+    });
+
+    await task_4.questions().save(question_21);
+    await question_21.answers().save(answer_22);
+
+    // -------------------------------------------------------------------------- //
+
+    const task_3 = await Factory.model('App/Models/Task').create({
+      theme_id: 1,
+      task_type_id: 4,
+      title: 'Pindamonhangaba',
+      name: 'Reading basico',
+      difficulty: 1,
+      xp: 200,
+    });
+
+    const question_12 = await Factory.model('App/Models/Question').make({
+      question: 'História da franca',
+      text: 'Franca is a Brazilian municipality in the interior of the state of São Paulo, home to the Administrative Region of Franca (14th Administrative Region of the state of São Paulo) and the Urban Agglomeration of Franca [8]. It is the 74th most populous Brazilian city and the 9th most populous in the interior of the state of São Paulo. It is located at 20º32\'19 "south latitude and 47º24\'03" west longitude, 401 km away from the state capital and 676 km from Brasília. It has an area of 605,679 km², of which 86.92 km² are in urban areas, and its estimated population in August 2019 was 353 187 inhabitants. [5] It is known throughout Brazil as the National Capital of Footwear and the National Capital of Basketball.'
+    });
+
+    await task_3.questions().save(question_12);
   }
 }
 

@@ -84,3 +84,9 @@ Factory.blueprint('App/Models/Answer', async (faker, i, data) => {
     ...data
   }
 })
+
+Factory.blueprint('App/Models/Evaluation', async (faker, i, data) => {
+  return {
+    ...data
+  }
+})

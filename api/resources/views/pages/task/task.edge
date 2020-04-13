@@ -15,7 +15,7 @@
 
   @if(questions)
     <div class="card">
-      <div class="card-header">Questions</div>
+      <div class="card-header">{{ task.task_type_id == 4 ? 'Data' : 'Questions' }}</div>
       <div class="card-body">
         @each(item in questions)
           @if(task.task_type_id == 1 || task.task_type_id == 3)
@@ -51,6 +51,13 @@
                 @each(answer in item.answers)
                   {{ answer.answer }}
                 @endeach
+              </div>
+            </div>
+          @else
+            <div class="card">
+              <div class="card-header">{{ item.question }}</div>
+              <div class="card-body">
+                {{ item.text }}
               </div>
             </div>
           @endif

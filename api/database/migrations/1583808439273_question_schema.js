@@ -8,7 +8,7 @@ class QuestionSchema extends Schema {
     this.create('questions', (table) => {
       table.increments()
       table.string('question')
-      table.string('text')
+      table.string('text', 2000)
       table.string('file')
       table.integer('task_id')
         .unsigned()
