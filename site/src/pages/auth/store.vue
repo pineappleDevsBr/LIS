@@ -6,10 +6,10 @@
     </div>
     <div class="m-spotlight">
       <img class="m-spotlight_icon" src="statics/store/online-store.svg" alt="Store">
-      Suba de nível mais rápido com nossos itens!
+      {{ $t('store.title') }}
     </div>
     <div class="m-store_group" v-if="myItems.length > 0">
-    <h2 class="m-store_title">Meus itens</h2>
+    <h2 class="m-store_title">{{ $t('store.myItems') }}</h2>
       <div class="m-cards">
         <q-card class="m-card" v-for="item in myItems" v-bind:key="item.id">
           <q-card-section class="m-store_box-product">
@@ -24,7 +24,7 @@
         </q-card>
       </div>
     </div>
-    <h2 class="m-store_title">Itens disponíveis</h2>
+    <h2 class="m-store_title">{{ $t('store.availableItems') }}</h2>
     <div class="m-cards">
       <q-card class="m-card" v-for="item in products" v-bind:key="item.id" @click="buyProduct(item.id)">
         <q-card-section class="m-store_box-product">

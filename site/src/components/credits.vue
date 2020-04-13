@@ -7,7 +7,7 @@
   transition-hide="slide-down">
   <div class="o-modal bg-white" :class="{ 'q-dark': $q.dark.isActive }">
     <div class="o-modal_header bg-primary" :class="{ 'q-dark': $q.dark.isActive }">
-      <h2 class="o-modal_title">Créditos</h2>
+      <h2 class="o-modal_title">{{ $t('profile.credits.header') }}</h2>
       <q-btn
       flat
       icon="close"
@@ -15,20 +15,14 @@
     </div>
     <div class="o-modal_content m-credits">
       <div class="a-text m-credits_text">
-        LIS é um projeto open souce na qual utiliza como
-        grande parte de sua mídia, fontes externas
-        reproduzidas por artistas não ligados a nós.
-        Sendo assim, temos o dever de citá-los em
-        nossa plataforma com créditos à seu trabalho,
-        pelo seu apoio de forma indireta ao
-        desenvolvimento do app.
+        {{ $t('profile.credits.text') }}
       </div>
-      <div class="a-title -sub m-credits_title">Ícones</div>
+      <div class="a-title -sub m-credits_title">{{ $t('profile.credits.icons') }}</div>
       <div v-for="icon in icons" v-bind:key="icon.id" class="m-credits_icons">
         <img class="m-credits_image" :src="`statics/credits/icons/${icon.name}.svg`" alt="">
         <span class="m-credits_credit" v-html="icon.credit"/>
       </div>
-      <div class="a-title -sub m-credits_title">Ilustrações</div>
+      <div class="a-title -sub m-credits_title">{{ $t('profile.credits.vectors') }}</div>
       <div v-for="illustration in illustrations" v-bind:key="illustration.id" class="m-credits_icons">
         <img class="m-credits_image -big" :src="`statics/credits/illustrations/${illustration.name}.jpg`" alt="">
         <span class="m-credits_credit" v-html="illustration.credit"/>

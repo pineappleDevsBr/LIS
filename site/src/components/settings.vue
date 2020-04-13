@@ -7,64 +7,64 @@
   transition-hide="slide-down">
   <div class="o-modal bg-white" :class="{ 'q-dark': $q.dark.isActive }">
     <div class="o-modal_header bg-primary" :class="{ 'q-dark': $q.dark.isActive }">
-      <h2 class="o-modal_title">Configurações</h2>
+      <h2 class="o-modal_title">{{ $t('profile.settings.header') }}</h2>
       <q-btn
       flat
       icon="close"
       @click="closeSettings"/>
     </div>
     <div class="o-modal_content">
-      <h2 class="m-settings_title">Conta</h2>
+      <h2 class="m-settings_title">{{ $t('profile.settings.account') }}</h2>
       <q-card class="m-card m-settings_card">
         <q-card-section class="m-settings_info" @click="selectAvatar = true">
-          <p class="m-settings_info-account">Imagem de perfil:</p>
+          <p class="m-settings_info-account">{{ $t('profile.settings.avatar') }}</p>
           <img class="m-profile_avatar" :src="`https://api.adorable.io/avatars/35/lis-avatar${getUser.id}.png`" alt="avatar adorable">
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card">
         <q-card-section class="m-settings_info" @click="openDlg('name', 'Nome', getUser.name)">
-          <p class="m-settings_info-account">Nome:</p>
-          <q-input borderless v-model="getUser.name" disable />
+          <p class="m-settings_info-account">{{ $t('profile.settings.name') }}</p>
+          <p class="m-settings_info-account">{{getUser.name}}</p>
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card">
         <q-card-section class="m-settings_info" @click="changePassword.isOpen = true">
-            <p class="m-settings_info-account">Senha:</p>
+            <p class="m-settings_info-account">{{ $t('profile.settings.password') }}</p>
             <q-input borderless v-model="secretPass" disable type="password" />
         </q-card-section>
       </q-card>
     </div>
     <div class="m-settings_notification">
-      <h2 class="m-settings_title">Notificações por email</h2>
+      <h2 class="m-settings_title">{{ $t('profile.settings.notifications') }}</h2>
       <q-card class="m-card m-settings_card">
         <q-card-section class="m-settings_info -between">
-          <p class="m-settings_info-notifications">Atualizações</p>
+          <p class="m-settings_info-notifications">{{ $t('profile.settings.update') }}</p>
           <q-toggle v-model="notifications.update" color="primary"/>
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card">
         <q-card-section class="m-settings_info -between">
-          <p class="m-settings_info-notifications">Alteração de seu email e/ou senha</p>
+          <p class="m-settings_info-notifications">{{ $t('profile.settings.changeData') }}</p>
           <q-toggle v-model="notifications.changeData" color="primary"/>
         </q-card-section>
       </q-card>
     </div>
     <div class="m-settings_notification">
-      <h2 class="m-settings_title">Sobre nós</h2>
+      <h2 class="m-settings_title">{{ $t('profile.settings.about') }}</h2>
       <q-card class="m-card m-settings_card" @click="termsOpen = true">
         <q-card-section class="m-settings_info">
-          <p class="m-settings_info-account">Termos de uso e privacidade</p>
+          <p class="m-settings_info-account">{{ $t('profile.settings.terms') }}</p>
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card" @click="creditsOpen = true">
         <q-card-section class="m-settings_info">
-          <p class="m-settings_info-account">Créditos de mídia</p>
+          <p class="m-settings_info-account">{{ $t('profile.settings.credits') }}</p>
         </q-card-section>
       </q-card>
     </div>
     <div class="m-settings_actions">
-      <q-btn no-caps rounded class="m-settings_actions-item" label="Salvar todas as alterações" @click="closeSettings"/>
-      <q-btn no-caps rounded class="m-settings_actions-item" label="Trocar de conta" @click="loggout"/>
+      <q-btn no-caps rounded class="m-settings_actions-item" :label="$t('profile.settings.save')" @click="closeSettings"/>
+      <q-btn no-caps rounded class="m-settings_actions-item" :label="$t('profile.settings.changeAccount')" @click="loggout"/>
     </div>
     <qprompt :prompt="prompt" @isClose="isClose"></qprompt>
     <changeAvatar :selectAvatar="selectAvatar" @selectedAvatar="selectedAvatar"></changeAvatar>
@@ -114,7 +114,8 @@ export default {
       selectAvatar: false,
       changePassword: {
         isOpen: false
-      }
+      },
+      name: null
     }
   },
   methods: {
@@ -131,14 +132,22 @@ export default {
 
     isClose (event) {
       const { type, newValue } = event
-      if (type === 'name') this.getUser.nickname = newValue
-      else this.getUser.email = newValue
+      if (type === 'name') {
+        this.name = newValue
+      }
     },
     selectedAvatar (event) {
       this.selectAvatar = false
       if (event !== undefined) this.getUser.avatar = event.avatar
     },
-    closeSettings () {
+    async closeSettings () {
+      if (this.name) {
+        console.log(this.save)
+        const payload = {
+          name: this.name
+        }
+        await store().dispatch('user/updateUser', payload)
+      }
       this.$emit('closeSettings')
     },
     close () {

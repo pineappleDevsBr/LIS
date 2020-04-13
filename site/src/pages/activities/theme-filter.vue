@@ -29,7 +29,7 @@
       </q-tab-panel>
     </q-tab-panels>
     <btnBack @back="back"/>
-    <quiz :quiz="openQuiz" :questions="questions" @closeQuiz="closeActivitie"/>
+    <quiz :quiz="openQuiz" :questions="questions" :taskType="taskType" @closeQuiz="closeActivitie"/>
     <reading :reading="openReading" @closeReading="closeActivitie"/>
     <listening :listening="openListening" @closeReading="closeActivitie"/>
   </div>
@@ -40,7 +40,7 @@ import quiz from '../../components/quiz'
 import reading from '../../components/reading'
 import listening from '../../components/listening'
 import btnBack from '../../components/ui/btnBack'
-import typeTask from '../../utils/type_task'
+import taskType from '../../utils/type_task'
 import store from '../../store'
 import { mapGetters } from 'vuex'
 
@@ -60,13 +60,16 @@ export default {
       openReading: false,
       openListening: false,
       openComplete: false,
+      taskType: null,
       questions: null
     }
   },
   methods: {
     async openActivitie (id, typeId) {
-      const { questions } = await store().dispatch('task/getQuestions', id)
+      const { questions, task } = await store().dispatch('task/getQuestions', id)
       this.questions = questions
+      console.log(questions)
+      this.taskType = task.task_type_id
       switch (typeId) {
         case 1:
           this.openQuiz = true
@@ -99,7 +102,7 @@ export default {
     ...mapGetters('task', ['getTask'])
   },
   async mounted () {
-    await store().dispatch('task/getTask', typeTask[this.activitie])
+    await store().dispatch('task/getTask', taskType[this.activitie])
   }
 }
 </script>

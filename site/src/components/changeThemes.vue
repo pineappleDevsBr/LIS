@@ -7,14 +7,14 @@
   transition-hide="slide-down">
     <div class="o-modal bg-white" :class="{ 'q-dark': $q.dark.isActive }">
       <div class="o-modal_header bg-primary" :class="{ 'q-dark': $q.dark.isActive }">
-        <h2 class="o-modal_title">Temas</h2>
+        <h2 class="o-modal_title">{{ $t('generalAdjustments.themes.header') }}</h2>
         <q-btn
         flat
         icon="close"
         @click="closeThemes"/>
       </div>
       <div class="o-modal_content">
-        <h2>Meus temas</h2>
+        <h2>{{ $t('generalAdjustments.themes.myThemes') }}</h2>
         <div v-for="myTheme in getMyThemes" v-bind:key="`my_${myTheme.id}`">
           <q-card class="m-card m-settings_card">
             <q-card-section class="m-settings_info -between">
@@ -23,7 +23,7 @@
           </q-card>
         </div>
 
-        <h2>Temas disponíveis</h2>
+        <h2>{{ $t('generalAdjustments.themes.availableThemes') }}</h2>
         <q-input dense v-model="filter" :label="$t('access.choiceOfThemes.search')" />
         <div v-for="theme in allThemes" v-bind:key="theme.id">
           <q-card class="m-card m-settings_card">
@@ -34,7 +34,7 @@
           </q-card>
         </div>
       </div>
-    <q-btn @click="submit" label="Alterar"/>
+    <q-btn @click="submit" :label="$t('generalAdjustments.themes.save')"/>
     </div>
   </q-dialog>
 </template>

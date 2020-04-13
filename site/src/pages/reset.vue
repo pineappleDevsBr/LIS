@@ -12,9 +12,10 @@
       class="primary-error"
       :type="isPwd ? 'password' : 'text'"
       v-model="form.password"
-      :error="!validationPassword"
+      :error="$v.form.password.$error"
       :error-message="$t('reset.errors.required')"
-      :label="$t('reset.password')"/>
+      :label="$t('reset.password')"
+      hint="Utilize uma senha com seis ou mais caracteres"/>
 
       <q-input
       dark
@@ -33,7 +34,7 @@
 </template>
 
 <script>
-import { sameAs } from 'vuelidate/lib/validators'
+import { required, sameAs, minLength } from 'vuelidate/lib/validators'
 import store from '../store/index'
 
 export default {
@@ -50,6 +51,7 @@ export default {
   },
   validations: {
     form: {
+      password: { required, minLength: minLength(4) },
       confirmPassword: { sameAsPassword: sameAs('password') }
     }
   },
@@ -79,12 +81,6 @@ export default {
 
         this.$q.loading.hide()
       }
-    }
-  },
-  computed: {
-    validationPassword () {
-      const reg = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/
-      return reg.test(this.form.password)
     }
   }
 }

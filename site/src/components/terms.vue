@@ -7,7 +7,7 @@
   transition-hide="slide-down">
   <div class="o-modal bg-white" :class="{ 'q-dark': $q.dark.isActive }">
     <div class="o-modal_header bg-primary" :class="{ 'q-dark': $q.dark.isActive }">
-      <h2 class="o-modal_title">Política e privacidade de uso</h2>
+      <h2 class="o-modal_title">{{ $t('profile.terms.header') }}</h2>
       <q-btn
       flat
       icon="close"
@@ -16,7 +16,7 @@
     <div class="o-modal_content m-terms">
       <q-card class="m-card">
         <q-card-section>
-          <div class="a-title -primary -left">Termos de uso</div>
+          <div class="a-title -primary -left">{{ $t('profile.terms.terms') }}</div>
           <div class="a-text m-terms_text">
             Lorem ipsum dolor sit amet, consectetur
             adipisicing elit, sed do eiusmod tempor incididunt
@@ -32,7 +32,7 @@
             est laborum.
           </div>
 
-          <div class="a-title -primary -left">Copyright</div>
+          <div class="a-title -primary -left">{{ $t('profile.terms.copy') }}</div>
           <div class="a-text m-terms_text">
             Lorem ipsum dolor sit amet, consectetur
             adipisicing elit, sed do eiusmod tempor incididunt

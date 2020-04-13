@@ -3,7 +3,7 @@
     <div class="m-profile_info">
       <img class="m-profile_avatar" :src="`https://api.adorable.io/avatars/75/lis-avatar${getUser.id}.png`" alt="avatar adorable">
       <p class="m-profile_username">{{ getUser.nickname }}</p>
-      <q-btn class="m-profile_edit" no-caps flat label="Clique aqui para editar seus dados" @click="openSettings = true"/>
+      <q-btn class="m-profile_edit" no-caps flat :label="$t('profile.editData')" @click="openSettings = true"/>
     </div>
     <div class="m-profile_achievements" v-if="achievements.length > 0">
       <h2 class="m-profile_title">Conquistas</h2>
