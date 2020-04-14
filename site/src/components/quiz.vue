@@ -53,6 +53,7 @@
 
 <script>
 import progressBar from './progress-bar'
+import store from '../store/index'
 
 export default {
   name: 'Quiz',
@@ -87,21 +88,27 @@ export default {
       this.step = 1
       this.$emit('closeQuiz')
     },
-    next () {
+    async next () {
       if (this.step < 10) {
         this.$refs.stepper.next()
         this.progress.xp += 1
       } else {
+        this.$q.loading.show()
         this.setQuestions()
         const payload = {
           task_id: this.questions[0].task_id,
           task_type_id: this.taskType,
           answers: this.answers
         }
-        console.log(payload)
+        const { approved, results } = await store().dispatch('task/sendAnswers', payload)
+        console.log(approved)
+        if (approved) {
+          console.log(results)
+        }
         this.step = 1
         this.$emit('closeQuiz')
         this.progress.xp = 0
+        this.$q.loading.hide()
       }
     },
     back () {

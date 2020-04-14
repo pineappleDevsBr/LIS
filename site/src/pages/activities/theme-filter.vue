@@ -68,7 +68,6 @@ export default {
     async openActivitie (id, typeId) {
       const { questions, task } = await store().dispatch('task/getQuestions', id)
       this.questions = questions
-      console.log(questions)
       this.taskType = task.task_type_id
       switch (typeId) {
         case 1:
