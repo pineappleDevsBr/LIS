@@ -25,7 +25,7 @@
 
         <h2>{{ $t('generalAdjustments.themes.availableThemes') }}</h2>
         <q-input dense v-model="filter" :label="$t('access.choiceOfThemes.search')" />
-        <div v-for="theme in allThemes" v-bind:key="theme.id">
+        <div v-for="theme in filterThemes" v-bind:key="theme.id">
           <q-card class="m-card m-settings_card">
             <q-card-section class="m-settings_info -between">
               <p class="m-settings_info-notifications">{{theme.name}}</p>
@@ -101,7 +101,12 @@ export default {
   },
   computed: {
     ...mapGetters('theme', ['getTheme']),
-    ...mapGetters('theme', ['getMyThemes'])
+    ...mapGetters('theme', ['getMyThemes']),
+    filterThemes () {
+      return this.filter ? this.allThemes.filter(theme => {
+        return theme.name.toLowerCase().includes(this.filter.toLowerCase())
+      }) : this.allThemes
+    }
   },
   async mounted () {
     await store().dispatch('theme/getMyThemes')
