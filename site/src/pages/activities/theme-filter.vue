@@ -32,6 +32,7 @@
     <quiz :quiz="openQuiz" :questions="questions" :taskType="taskType" @closeQuiz="closeActivitie"/>
     <reading :reading="openReading" @closeReading="closeActivitie"/>
     <listening :listening="openListening" @closeReading="closeActivitie"/>
+    <feedback :feedback="openFeedback" :feedbackResults="feedbackResults" :questions="questions"/>
   </div>
 </template>
 
@@ -39,6 +40,7 @@
 import quiz from '../../components/quiz'
 import reading from '../../components/reading'
 import listening from '../../components/listening'
+import feedback from '../../components/feedback'
 import btnBack from '../../components/ui/btnBack'
 import taskType from '../../utils/type_task'
 import store from '../../store'
@@ -50,6 +52,7 @@ export default {
     quiz,
     reading,
     listening,
+    feedback,
     btnBack
   },
   data () {
@@ -61,7 +64,9 @@ export default {
       openListening: false,
       openComplete: false,
       taskType: null,
-      questions: null
+      questions: null,
+      openFeedback: false,
+      feedbackResults: {}
     }
   },
   methods: {
@@ -87,11 +92,13 @@ export default {
           break
       }
     },
-    closeActivitie () {
+    closeActivitie (event) {
       this.openQuiz = false
       this.openListening = false
       this.openComplete = false
       this.openReading = false
+      this.openFeedback = true
+      this.feedbackResults = event
     },
     back () {
       this.$router.push({ name: 'home' })

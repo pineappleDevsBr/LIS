@@ -1,0 +1,24 @@
+.m-feedback {
+  padding: em(15);
+}
+
+.m-feedback_status {
+  margin-bottom: em(20);
+}
+
+.m-feedback_answere {
+  font-size: em(20);
+  margin-top: em(15, 20);
+  line-height: 1;
+}
+
+.m-feedback_status,
+.m-feedback_answere {
+  &.-positive {
+    color: $positive;
+  }
+
+  &.-negative {
+    color: $negative;
+  }
+}

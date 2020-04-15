@@ -101,12 +101,8 @@ export default {
           answers: this.answers
         }
         const { approved, results } = await store().dispatch('task/sendAnswers', payload)
-        console.log(approved)
-        if (approved) {
-          console.log(results)
-        }
+        this.$emit('closeQuiz', { approved, results })
         this.step = 1
-        this.$emit('closeQuiz')
         this.progress.xp = 0
         this.$q.loading.hide()
       }
