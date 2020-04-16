@@ -9,7 +9,8 @@
                 <button class="btn flex-grow-1 text-left" type="button" data-toggle="collapse" data-target="#collapse{{ item.id }}" aria-expanded="true" aria-controls="collapse{{ item.id }}">
                   {{ item.name }}
                 </button>
-                <a href="{{ route('admin.task', { id: item.id }) }}" class="btn btn-outline-primary">Detalhes</a>
+                <a href="{{ route('admin.task.update', { id: item.id }) }}" class="btn btn-outline-primary mr-1">Update</a>
+                <a href="{{ route('admin.task', { id: item.id }) }}" class="btn btn-outline-primary">Details</a>
               </h2>
             </div>
 
@@ -22,7 +23,7 @@
                         @if(question.file)
                           <div class="d-flex align-items-center">
                             <span class="mr-3">#{{ ($loop.index + 1) }}</span>
-                            <audio src="{{ assetsUrl('uploads/audios') }}/{{ question.file }}" controls></audio>
+                            <audio src="{{ assetsUrl('uploads') }}/{{ question.file }}" controls></audio>
                           </div>
                         @elseif(!question.question)
                         {{ question.text }}

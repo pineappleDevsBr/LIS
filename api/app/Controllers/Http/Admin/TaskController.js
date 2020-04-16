@@ -75,7 +75,7 @@ class TaskController {
     })
 
     try {
-      await files.moveAll(Helpers.publicPath('uploads/audios'), file => ({
+      await files.moveAll(Helpers.publicPath('uploads'), file => ({
         name: `${Date.now()}-${file.clientName}`
       }))
 

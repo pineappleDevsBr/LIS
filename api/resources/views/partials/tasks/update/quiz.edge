@@ -1,0 +1,55 @@
+<li class="list-group-item rounded border mb-2 border-info">
+  <form action="#" method="PUT">
+    <strong># {{ ($loop.index + 1) }}</strong>
+    <div class="form-group">
+      <label for="question" class="control-label mb-1">Question*</label>
+      <input id="question" name="question" type="text" class="form-control" aria-required="true"
+        aria-invalid="false" required value="{{ question.question }}">
+    </div>
+    <div class="form-group">
+      <label for="text" class="control-label mb-1">Text*</label>
+      <input id="text" name="text" type="text" class="form-control"
+        aria-invalid="false" value="{{ question.text }}">
+    </div>
+    <div class="row">
+      <div class="col m-b-60">
+        <button id="payment-button" type="submit" data-reset class="btn btn-info">
+          <span id="payment-button-amount">Update question</span>
+        </button>
+      </div>
+    </div>
+  </form>
+
+  <strong>Answers</strong>
+  <ul class="list-group list-group-flush" data-radio>
+
+    @each(answer in question.answers)
+      <li class="list-group-item px-0">
+        <form action="" class="d-flex">
+          <div class="col-md-auto form-group mb-0">
+            <div class="row d-flex align-items-center">
+              <div class="col flex-grow-0">
+                <label for="asnwer" class="control-label mb-0">Answer</label>
+              </div>
+              <div class="col">
+                <input id="asnwer" name="asnwer" type="text" class="form-control"
+              aria-invalid="false" value="{{ answer.answer }}">
+              </div>
+            </div>
+          </div>
+          <div class="col form-group mb-0 d-flex align-items-center">
+            <div class="col col-md-9">
+              <div class="form-check">
+                <div class="radio">
+                  <label for="right-{{ ($loop.index + 1) }}" class="form-check-label ">
+                  <input data-radio-right type="radio" id="right-{{ ($loop.index + 1) }}" name="right" value="true" {{ answer.right ? 'checked' : '' }} class="form-check-input">Is right
+                  </label>
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </li>
+    @endeach
+  </ul>
+</li>

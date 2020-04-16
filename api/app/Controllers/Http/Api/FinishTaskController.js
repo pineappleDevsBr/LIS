@@ -3,26 +3,33 @@
 const TaskRepository = use('App/Repositories/TaskRepository');
 const UserRepository = use('App/Repositories/UserRepository');
 const TaskEnum = use('App/Enums/Task');
+const BaseTask = use('App/Base/Task');
 
 class FinishTaskController {
   async index({ request, response, auth }) {
     const requestData = request.all();
     const data = await TaskRepository.getById(requestData.task_id);
-    const result = await this[TaskEnum[requestData.task_type_id]](requestData, data);
+    const result = this[TaskEnum[requestData.task_type_id]](requestData, data);
 
 
     if (result.approved) {
-      await this.updateUser({ id: auth.user.id, data: data.task, response });
+      await this.updateUser({
+        id: auth.user.id,
+        data: data.task, response
+      });
     }
 
-    response.json(result);
+    response.json({
+      ...result,
+      task: data.task
+    });
   }
 
   quiz(req, data) {
     const { questions } = data;
     const results = [];
 
-    req.answers.forEach(async item => {
+    req.answers.forEach(item => {
       const { answers, id } = questions.find(quest => quest.id === item.question_id);
       const correctQuestion = answers.find(aws => ((aws.right) && (aws.right === 1)));
 
@@ -33,12 +40,64 @@ class FinishTaskController {
     })
 
     const hits = results
-    .reduce((acc, { status }) => acc + (status === true ? 1 : 0), 0)
+      .reduce((acc, { status }) => acc + (status === true ? 1 : 0), 0)
 
     return {
       results,
       hits,
-      approved: hits >= 6 ? true : false
+      approved: hits >= BaseTask.quiz.approvation
+    };
+  }
+
+  listening(req, data) {
+    const { questions } = data;
+    const results = [];
+
+    req.answers.forEach(item => {
+      const { answers, id } = questions.find(quest => quest.id === item.question_id);
+
+      results.push({
+        id,
+        status: item.answer === answers[0].answer
+      })
+    })
+
+    const hits = results
+      .reduce((acc, { status }) => acc + (status === true ? 1 : 0), 0)
+
+    return {
+      results,
+      hits,
+      approved: hits >= BaseTask.listening.approvation
+    };
+  }
+
+  complete(req, data) {
+    const { questions } = data;
+    const results = [];
+
+    req.answers.forEach(item => {
+      const { answers, id } = questions.find(quest => quest.id === item.question_id);
+
+      results.push({
+        id,
+        status: item.answer === answers[0].answer
+      })
+    })
+
+    const hits = results
+      .reduce((acc, { status }) => acc + (status === true ? 1 : 0), 0)
+
+    return {
+      results,
+      hits,
+      approved: hits >= BaseTask.complete.approvation
+    };
+  }
+
+  reading() {
+    return {
+      approved: true
     };
   }
 

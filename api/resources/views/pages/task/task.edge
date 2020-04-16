@@ -45,7 +45,7 @@
           @elseif(task.task_type_id == 2)
             <div class="card">
               <div class="card-header">
-                <audio src="{{ assetsUrl('uploads/audios') }}/{{ item.file }}" controls></audio>
+                <audio src="{{ assetsUrl('uploads') }}/{{ item.file }}" controls></audio>
               </div>
               <div class="card-body">
                 @each(answer in item.answers)
