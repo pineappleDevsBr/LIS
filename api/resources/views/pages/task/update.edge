@@ -5,7 +5,7 @@
     <div class="col">
       <div class="card">
         <div class="card-header">
-          <h2>Updating Quiz</h2>
+          <h2>Updating {{ task_type.name }}</h2>
         </div>
       </div>
     </div>
@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col">
       <div>
-        <form action="{{ route('admin.tasks.update') }}" method="POST" data-form class="card">
+        <form action="{{ route('admin.tasks.update') }}" method="PUT" data-form class="card">
           <div class="card-header">Task</div>
           <div class="card-body">
             <div class="row">
@@ -41,20 +41,25 @@
                   aria-invalid="false" value="{{ task.money }}">
               </div>
             </div>
+            <div class="row">
+              <div class="col">
+                <button id="payment-button" type="submit" data-reset class="btn btn-info">
+                  <span id="payment-button-amount">Update task</span>
+                </button>
+              </div>
+            </div>
           </div>
+          <input type="hidden" name="id" value="{{ task.id }}">
         </form>
 
         <div class="card">
           <div class="card-header">Questions</div>
           <div class="card-body" data-questions>
-            <ul class="list-group list-group-flush" data-questions-holder>
+            <ul class="list-group list-group-flush">
+              @if(question.task_type_id == 1)
+                @!each(question in questions, include = 'partials/tasks/update/quiz')
+              @endif
             </ul>
-            <div class="row mt-20 d-flex justify-content-center">
-              <button type="button" class="btn btn-info" data-questions-btn>
-                <i class="fa fa-plus"></i>
-                Add
-              </button>
-            </div>
           </div>
         </div>
       </div>

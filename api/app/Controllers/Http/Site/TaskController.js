@@ -8,9 +8,12 @@ class TaskController {
     const task = await Task.getById(params.id);
     const types = await TaskType.all();
 
+    console.log(task);
+
+
     return view.render('pages.task.update', {
-      task: task.toJSON(),
-      task_type: types.toJSON().find(tp => tp.name == params.type)
+      ...task,
+      task_type: types.toJSON().find(tp => tp.id == params.id)
     });
   }
 }

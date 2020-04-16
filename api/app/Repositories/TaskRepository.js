@@ -60,6 +60,9 @@ class TaskRepository {
       .with(['answers'])
       .fetch()
 
+    console.log(id);
+
+
     return {
       task: this.calcEvaluation(task.toJSON()),
       questions: questions.toJSON()
