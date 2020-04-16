@@ -81,7 +81,7 @@ export default {
     return {
       step: 1,
       confirm: false,
-      progress: { showValue: false, levelUp: this.questions.length, xp: 0 },
+      progress: { showValue: false, levelUp: 10, xp: 0 },
       answers: []
     }
   },
@@ -144,6 +144,7 @@ export default {
         amount.push({ question_id: null, answer: null })
       }
       this.answers = amount
+      this.progress.levelUp = value.length
     }
   }
 }
