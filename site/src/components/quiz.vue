@@ -11,7 +11,7 @@
         <q-btn
         flat
         icon="close"
-        @click="closeQuiz"/>
+        @click="confirm = true"/>
       </div>
       <div class="o-modal_content m-quiz">
         <progressBar :progress="progress"></progressBar>
@@ -48,11 +48,24 @@
       </q-stepper>
       </div>
     </div>
+    <q-dialog v-model="confirm" persistent>
+      <q-card class="m-card -limit">
+        <q-card-section class="row items-center">
+          <span class="q-ml-sm">Deseja mesmo abandonar essa atividade?<br>Suas respostas e recompensas serão perdidas</span>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat rounded label="Sim" class="a-btn -dark" v-close-popup @click="closeQuiz"/>
+          <q-btn flat rounded label="Não" class="a-btn -dark" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </q-dialog>
 </template>
 
 <script>
 import progressBar from './progress-bar'
+import store from '../store/index'
 
 export default {
   name: 'Quiz',
@@ -67,6 +80,7 @@ export default {
   data () {
     return {
       step: 1,
+      confirm: false,
       progress: { showValue: false, levelUp: 10, xp: 0 },
       answers: [
         { question_id: null, answer: null },
@@ -85,23 +99,31 @@ export default {
   methods: {
     closeQuiz () {
       this.step = 1
+      this.confirm = false
+      this.answers.forEach(elm => (elm.answer = null))
       this.$emit('closeQuiz')
     },
-    next () {
+    async next () {
       if (this.step < 10) {
         this.$refs.stepper.next()
         this.progress.xp += 1
       } else {
+        this.$q.loading.show()
         this.setQuestions()
         const payload = {
           task_id: this.questions[0].task_id,
           task_type_id: this.taskType,
           answers: this.answers
         }
-        console.log(payload)
+        const { approved, results } = await store().dispatch('task/sendAnswers', payload)
+        this.answers.forEach(elm => {
+          elm.question_id = null
+          elm.answer = null
+        })
+        this.$emit('closeQuiz', { approved, results })
         this.step = 1
-        this.$emit('closeQuiz')
         this.progress.xp = 0
+        this.$q.loading.hide()
       }
     },
     back () {

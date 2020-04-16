@@ -3,7 +3,7 @@
     <div class="a-title -white -sub">
       {{ $t('access.choiceOfThemes.title') }}
     </div>
-    <q-card class="my-card o-access_selectTheme" style="max-height: 400px; overflow-y: auto;">
+    <q-card class="my-card o-access_selectTheme" style="max-height: 400px; min-height: 400px; overflow-y: auto;">
       <q-card-section>
          <q-input dense v-model="filter" :label="$t('access.choiceOfThemes.search')" />
       </q-card-section>
@@ -11,7 +11,7 @@
         {{ $t('access.choiceOfThemes.info') }}
       </q-card-section>
       <q-card-section>
-        <q-card  class="m-card" v-for="theme in getTheme" v-bind:key="theme.id">
+        <q-card  class="m-card" v-for="theme in filterThemes" v-bind:key="theme.id">
           <q-slide-item @left="onLeft, addTheme(theme.id)" @right="onRight" right-color="negative">
             <template v-slot:left>
               <q-icon name="done" />
@@ -83,7 +83,12 @@ export default {
     clearTimeout(this.timer)
   },
   computed: {
-    ...mapGetters('theme', ['getTheme'])
+    ...mapGetters('theme', ['getTheme']),
+    filterThemes () {
+      return this.filter ? this.getTheme.filter(theme => {
+        return theme.name.toLowerCase().includes(this.filter.toLowerCase())
+      }) : this.getTheme
+    }
   }
 }
 </script>

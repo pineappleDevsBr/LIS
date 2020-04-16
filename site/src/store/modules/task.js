@@ -24,6 +24,15 @@ const actions = {
     } catch (error) {
       return { status: false, error }
     }
+  },
+
+  async sendAnswers ({ commit }, payload) {
+    try {
+      const { data } = await task.finish(payload)
+      return data
+    } catch (error) {
+      return { status: false, error }
+    }
   }
 }
 
