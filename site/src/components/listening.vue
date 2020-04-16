@@ -11,53 +11,73 @@
         <q-btn
         flat
         icon="close"
-        @click="closeListening"/>
+        @click="confirm = true"/>
       </div>
-      <div class="o-modal_content">
+      <div class="o-modal_content m-listening">
         <qprogress :progress="progress"/>
-        <q-card class="m-card m-listening_card">
-          Escolha a tradução que você ouvir:
-          <q-btn flat icon="volume_up" class="m-listening_btn" @click="playListening"/>
-          <video data-audio class="m-listening_audio" src="statics/activities/listening/listen-1.mp3"></video>
-        </q-card>
-        <div>
-          <q-card class="m-card">
-            <q-radio keep-color v-model="answer" val="1" label="Eu sou do Brasil!" class="full-width" color="accent" />
-          </q-card>
-
-          <q-card class="m-card">
-            <q-radio keep-color v-model="answer" val="2" label="Eu vou para o Brasil!" class="full-width" color="accent" />
-          </q-card>
-
-          <q-card class="m-card">
-            <q-radio keep-color v-model="answer" val="3" label="Meus pais são do Brasil!" class="full-width" color="accent" />
-          </q-card>
-
-          <q-card class="m-card">
-            <q-radio keep-color v-model="answer" val="4" label="Vamos para o Brasil!" class="full-width" color="accent" />
-          </q-card>
-        </div>
-        <q-btn no-caps rounded class="m-reading_btn" label="Próximo" @click="next"/>
+          <q-stepper
+            v-model="step"
+            ref="stepper"
+            contracted
+            dense
+            flat
+            color="primary"
+            animated
+          >
+            <q-step :name="index + 1" :title="`Question ${question.id}`" icon="edit" :done="step > index" v-for="(question, index) in questions" v-bind:key="question.id">
+              <q-card class="m-card m-listening_card">
+                Qual a frase dita no audio
+                <q-btn flat icon="volume_up" class="m-listening_btn" @click="playListening"/>
+                <video data-audio class="m-listening_audio" src="statics/activities/listening/listen-1.mp3"></video>
+              </q-card>
+              <div>
+                  <q-input label="Digite aqui sua resposta..."/>
+              </div>
+            </q-step>
+            <template v-slot:navigation>
+              <q-stepper-navigation>
+                <q-btn @click="next()" color="primary" :label="step === questions.length ? 'Finalizar' : 'Próximo'" />
+                <q-btn v-if="step > 1 " flat color="primary" @click="back()" label="Back" class="q-ml-sm"/>
+              </q-stepper-navigation>
+          </template>
+        </q-stepper>
       </div>
     </div>
+    <q-dialog v-model="confirm" persistent>
+      <q-card class="m-card -limit">
+        <q-card-section class="row items-center">
+          <span class="q-ml-sm">Deseja mesmo abandonar essa atividade?<br>Suas respostas e recompensas serão perdidas</span>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat rounded label="Sim" class="a-btn -dark" v-close-popup @click="closeListening"/>
+          <q-btn flat rounded label="Não" class="a-btn -dark" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </q-dialog>
 </template>
 
 <script>
 import qprogress from './progress-bar'
+import store from '../store/index'
+
 export default {
   name: 'Listening',
   components: {
     qprogress
   },
-  // props: {
-  //   listening: Boolean
-  // },
+  props: {
+    listening: Boolean,
+    taskType: Number,
+    questions: Array
+  },
   data () {
     return {
-      listening: false,
-      progress: { showValue: true, levelUp: 10, xp: 0 },
-      answer: null
+      step: 1,
+      confirm: false,
+      progress: { showValue: false, levelUp: 10, xp: 0 },
+      answers: []
     }
   },
   methods: {
@@ -66,10 +86,34 @@ export default {
       audio.play()
     },
     closeListening () {
+      this.step = 1
+      this.confirm = false
       this.$emit('closeListening')
     },
-    next () {
-      console.log('Próximo')
+    async next () {
+      if (this.step < this.questions.length) {
+        this.$refs.stepper.next()
+        this.progress.xp += 1
+      } else {
+        this.$q.loading.show()
+        this.setQuestions()
+
+        const payload = {
+          task_id: this.questions[0].task_id,
+          task_type_id: this.taskType,
+          answers: this.answers
+        }
+        const { approved, results } = await store().dispatch('task/sendAnswers', this.cleanAnswers(payload))
+
+        this.answers.forEach(elm => {
+          elm.question_id = null
+          elm.answer = null
+        })
+        this.$emit('closeQuiz', { approved, results })
+        this.step = 1
+        this.progress.xp = 0
+        this.$q.loading.hide()
+      }
     }
   }
 }

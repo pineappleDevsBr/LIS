@@ -30,8 +30,8 @@
     </q-tab-panels>
     <btnBack @back="back"/>
     <quiz :quiz="openQuiz" :questions="questions" :taskType="taskType" @closeQuiz="closeActivitie"/>
-    <reading :reading="openReading" @closeReading="closeActivitie"/>
-    <listening :listening="openListening" @closeReading="closeActivitie"/>
+    <reading :reading="openReading" :questions="questions" :taskType="taskType" @closeReading="closeActivitie"/>
+    <listening :listening="openListening" :questions="questions" :taskType="taskType" @closeListening="closeActivitie"/>
     <feedback
       :feedback="openFeedback"
       :feedbackResults="feedbackResults"
