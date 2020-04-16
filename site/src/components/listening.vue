@@ -28,7 +28,7 @@
               <q-card class="m-card m-listening_card">
                 Qual a frase dita no audio
                 <q-btn flat icon="volume_up" class="m-listening_btn" @click="playListening"/>
-                <video data-audio class="m-listening_audio" src="statics/activities/listening/listen-1.mp3"></video>
+                <video data-audio class="m-listening_audio" :src="question.filepath"></video>
               </q-card>
               <div>
                   <q-input label="Digite aqui sua resposta..."/>
