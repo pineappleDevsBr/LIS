@@ -7,7 +7,7 @@ class EvaluationSchema extends Schema {
   up () {
     this.create('evaluations', (table) => {
       table.increments('id')
-      table.enu('value', [0, 1, 2, 3, 4, 5]).notNullable().defaultTo(0)
+      table.enu('value', [1, 2, 3, 4, 5]).notNullable()
       table.integer('task_id')
         .unsigned()
         .notNullable()

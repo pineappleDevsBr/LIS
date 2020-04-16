@@ -6,7 +6,8 @@
           <q-toolbar-title class="a-text -white o-header_title q-dark_title">
             {{ title }}
           </q-toolbar-title>
-          <component :is="activeAction"></component>
+          <qprogress></qprogress>
+          <!-- <component :is="activeAction"></component> -->
         </div>
         <div class="o-header_menu" v-if="title === 'LIS'">
           <swiper :options="swiperOption" ref="mySwiper">
@@ -29,19 +30,19 @@
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import qprogress from './ui-header/progress'
-import qfriends from './ui-header/friends'
-import qstore from './ui-header/store'
-import qsettings from './ui-header/settings'
+// import qfriends from './ui-header/friends'
+// import qstore from './ui-header/store'
+// import qsettings from './ui-header/settings'
 
 export default {
   name: 'qheader',
   components: {
     swiper,
     swiperSlide,
-    qprogress,
-    qfriends,
-    qstore,
-    qsettings
+    qprogress
+    // qfriends,
+    // qstore,
+    // qsettings
   },
   data () {
     return {
