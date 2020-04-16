@@ -13,7 +13,7 @@
 
   <div class="row">
     <div class="col">
-      <form action="{{ route('admin.tasks.store') }}" method="POST" data-task-form>
+      <form action="{{ route('admin.tasks.store') }}" method="POST" data-validation="10">
         <div class="card">
           <div class="card-header">Task</div>
           <div class="card-body">
@@ -59,8 +59,11 @@
 
         <div class="card">
           <div class="card-header">Questions</div>
-          <div class="card-body" data-questions>
-            <ul class="list-group list-group-flush" data-questions-holder>
+          <div class="card-body" data-questions='{
+            "count": 10,
+            "template": "quiz"
+          }'>
+            <ul class="list-group list-group-flush" data-questions-holder data-radio>
             </ul>
             <div class="row mt-20 d-flex justify-content-center">
               <button type="button" class="btn btn-info" data-questions-btn>
@@ -76,7 +79,7 @@
           <div class="card-body">
             <div class="row">
               <div class="col">
-                <button id="payment-button" type="button" data-reset class="btn btn-lg btn-danger">
+                <button id="payment-button" type="button" data-reset-button class="btn btn-lg btn-danger">
                   <span id="payment-button-amount">Reset</span>
                 </button>
                 <button id="payment-button" type="submit" class="btn btn-lg btn-info">

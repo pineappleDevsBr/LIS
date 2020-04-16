@@ -1,24 +1,23 @@
-function validation() {
-  const ctx = document.querySelector('[data-task-form]');
+function validation(elm) {
+  const ctx = elm;
+  const quant = elm.dataset.validation;
   const error = document.querySelector('[data-error]');
 
-  // ctx.addEventListener('submit', (e) => {
-  //   e.preventDefault();
+  ctx.addEventListener('submit', (e) => {
+    e.preventDefault();
 
-  //   if (ctx.querySelectorAll('[data-questions-item]').length < 10) {
-  //     error.classList.add('show');
-  //   } else {
-  //     e.currentTarget.submit();
-  //   }
-  // })
+    if (ctx.querySelectorAll('[data-validation-item]').length < quant) {
+      error.classList.add('show');
+    } else {
+      e.currentTarget.submit();
+    }
+  })
 }
 
-function reset() {
-  const reset_button = document.querySelector('[data-reset]');
-  const form = document.querySelector('[data-task-form]');
-
-  if (reset_button) reset_button.addEventListener('click', () => form.reset());
+export default {
+  create(slc) {
+    const elms = Array.from(document.querySelectorAll(slc));
+    const instances = [];
+    elms.forEach(item => instances.push(validation(item)));
+  }
 }
-
-reset();
-validation()

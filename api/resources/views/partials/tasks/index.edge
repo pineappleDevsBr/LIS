@@ -23,7 +23,7 @@
                         @if(question.file)
                           <div class="d-flex align-items-center">
                             <span class="mr-3">#{{ ($loop.index + 1) }}</span>
-                            <audio src="{{ assetsUrl('uploads/audios') }}/{{ question.file }}" controls></audio>
+                            <audio src="{{ assetsUrl('uploads') }}/{{ question.file }}" controls></audio>
                           </div>
                         @elseif(!question.question)
                         {{ question.text }}
