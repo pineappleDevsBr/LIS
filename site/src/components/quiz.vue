@@ -41,7 +41,7 @@
           </q-step>
           <template v-slot:navigation>
             <q-stepper-navigation>
-              <q-btn @click="next()" color="primary" :label="step === 10 ? 'Finalizar' : 'Próximo'" />
+              <q-btn @click="next()" color="primary" :label="step === questions.length ? 'Finalizar' : 'Próximo'" />
               <q-btn v-if="step > 1 " flat color="primary" @click="back()" label="Back" class="q-ml-sm"/>
             </q-stepper-navigation>
         </template>
@@ -81,19 +81,8 @@ export default {
     return {
       step: 1,
       confirm: false,
-      progress: { showValue: false, levelUp: 10, xp: 0 },
-      answers: [
-        { question_id: null, answer: null },
-        { question_id: null, answer: null },
-        { question_id: null, answer: null },
-        { question_id: null, answer: null },
-        { question_id: null, answer: null },
-        { question_id: null, answer: null },
-        { question_id: null, answer: null },
-        { question_id: null, answer: null },
-        { question_id: null, answer: null },
-        { question_id: null, answer: null }
-      ]
+      progress: { showValue: false, levelUp: this.questions.length, xp: 0 },
+      answers: []
     }
   },
   methods: {
@@ -104,18 +93,20 @@ export default {
       this.$emit('closeQuiz')
     },
     async next () {
-      if (this.step < 10) {
+      if (this.step < this.questions.length) {
         this.$refs.stepper.next()
         this.progress.xp += 1
       } else {
         this.$q.loading.show()
         this.setQuestions()
+
         const payload = {
           task_id: this.questions[0].task_id,
           task_type_id: this.taskType,
           answers: this.answers
         }
-        const { approved, results } = await store().dispatch('task/sendAnswers', payload)
+        const { approved, results } = await store().dispatch('task/sendAnswers', this.cleanAnswers(payload))
+
         this.answers.forEach(elm => {
           elm.question_id = null
           elm.answer = null
@@ -125,6 +116,14 @@ export default {
         this.progress.xp = 0
         this.$q.loading.hide()
       }
+    },
+    cleanAnswers (payload) {
+      const newPayload = []
+      payload.answers.forEach(elm => {
+        if (elm.answer !== null) newPayload.push(elm)
+      })
+      payload.answers = newPayload
+      return payload
     },
     back () {
       if (this.step > 1) {
@@ -136,6 +135,15 @@ export default {
       for (let i = 0; i < this.questions.length; i += 1) {
         this.answers[i].question_id = this.questions[i].id
       }
+    }
+  },
+  watch: {
+    questions (value) {
+      const amount = []
+      for (let i = 0; i < value.length; i += 1) {
+        amount.push({ question_id: null, answer: null })
+      }
+      this.answers = amount
     }
   }
 }
