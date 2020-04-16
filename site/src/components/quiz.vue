@@ -11,7 +11,7 @@
         <q-btn
         flat
         icon="close"
-        @click="closeQuiz"/>
+        @click="confirm = true"/>
       </div>
       <div class="o-modal_content m-quiz">
         <progressBar :progress="progress"></progressBar>
@@ -48,6 +48,18 @@
       </q-stepper>
       </div>
     </div>
+    <q-dialog v-model="confirm" persistent>
+      <q-card class="m-card -limit">
+        <q-card-section class="row items-center">
+          <span class="q-ml-sm">Deseja mesmo abandonar essa atividade?<br>Suas respostas e recompensas serão perdidas</span>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat rounded label="Sim" class="a-btn -dark" v-close-popup @click="closeQuiz"/>
+          <q-btn flat rounded label="Não" class="a-btn -dark" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </q-dialog>
 </template>
 
@@ -68,6 +80,7 @@ export default {
   data () {
     return {
       step: 1,
+      confirm: false,
       progress: { showValue: false, levelUp: 10, xp: 0 },
       answers: [
         { question_id: null, answer: null },
@@ -86,6 +99,8 @@ export default {
   methods: {
     closeQuiz () {
       this.step = 1
+      this.confirm = false
+      this.answers.forEach(elm => (elm.answer = null))
       this.$emit('closeQuiz')
     },
     async next () {
@@ -101,6 +116,10 @@ export default {
           answers: this.answers
         }
         const { approved, results } = await store().dispatch('task/sendAnswers', payload)
+        this.answers.forEach(elm => {
+          elm.question_id = null
+          elm.answer = null
+        })
         this.$emit('closeQuiz', { approved, results })
         this.step = 1
         this.progress.xp = 0

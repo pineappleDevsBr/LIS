@@ -5,7 +5,7 @@ import { Quasar, Cookies } from 'quasar'
 const lang = Cookies.get('lis_lang')
 let locale = Quasar.lang.getLocale()
 
-if (lang !== locale) locale = lang
+if (lang !== locale && lang !== null) locale = lang
 
 export default ({ app, Vue }) => {
   Vue.use(VueI18n)

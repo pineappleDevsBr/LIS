@@ -3,7 +3,22 @@
 }
 
 .m-feedback_status {
-  margin-bottom: em(20);
+  margin-bottom: em(15, 22);
+}
+
+.m-feedback_reward {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: em(20, 18)
+}
+
+.m-feedback_text {
+  font-size: em(18);
+}
+
+.m-feedback_money {
+  display: flex;
+  align-items: center;
 }
 
 .m-feedback_answere {
@@ -21,4 +36,14 @@
   &.-negative {
     color: $negative;
   }
+}
+
+.m-feedback_actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.m-feedback_btn {
+  margin-top: em(20, 22);
 }
