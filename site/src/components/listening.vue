@@ -31,7 +31,7 @@
                 <video data-audio class="m-listening_audio" :src="question.filepath"></video>
               </q-card>
               <div>
-                  <q-input label="Digite aqui sua resposta..."/>
+                  <q-input v-model="answers[index].answer" label="Digite aqui sua resposta..."/>
               </div>
             </q-step>
             <template v-slot:navigation>
@@ -87,7 +87,9 @@ export default {
     },
     closeListening () {
       this.step = 1
+      this.progress.xp = 0
       this.confirm = false
+      this.answers.forEach(elm => (elm.answer = null))
       this.$emit('closeListening')
     },
     async next () {
@@ -109,11 +111,41 @@ export default {
           elm.question_id = null
           elm.answer = null
         })
-        this.$emit('closeQuiz', { approved, results })
+        this.$emit('closeListening', { approved, results })
         this.step = 1
         this.progress.xp = 0
         this.$q.loading.hide()
       }
+    },
+    back () {
+      if (this.step > 1) {
+        this.$refs.stepper.previous()
+        this.progress.xp -= 1
+      }
+    },
+    cleanAnswers (payload) {
+      const newPayload = []
+      payload.answers.forEach(elm => {
+        if (elm.answer !== null) newPayload.push(elm)
+      })
+      payload.answers = newPayload
+      return payload
+    },
+    setQuestions () {
+      for (let i = 0; i < this.questions.length; i += 1) {
+        this.answers[i].question_id = this.questions[i].id
+      }
+    }
+  },
+  watch: {
+    questions (value) {
+      const amount = []
+      console.log(value)
+      for (let i = 0; i < value.length; i += 1) {
+        amount.push({ question_id: null, answer: null })
+      }
+      this.answers = amount
+      this.progress.levelUp = value.length
     }
   }
 }
