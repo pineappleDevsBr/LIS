@@ -88,6 +88,7 @@ export default {
   methods: {
     closeQuiz () {
       this.step = 1
+      this.progress.xp = 0
       this.confirm = false
       this.answers.forEach(elm => (elm.answer = null))
       this.$emit('closeQuiz')
