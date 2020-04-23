@@ -1,5 +1,5 @@
 
-const questionTemplate = (idx) => {
+export default (idx) => {
   const template = `
     <li class="list-group-item rounded border mb-2 border-info" data-questions-item="">
       <p>Question #${idx}</p>
@@ -15,24 +15,5 @@ const questionTemplate = (idx) => {
     </li>
   `;
 
-  const layout = new DOMParser().parseFromString(template, 'text/html').body.firstChild;
-  return layout;
+  return new DOMParser().parseFromString(template, 'text/html').body.firstChild;
 }
-
-function addQuestion() {
-  const ctx = document.querySelector('[data-questions]');
-  const btn = ctx.querySelector('[data-questions-btn]');
-  const holder = ctx.querySelector('[data-questions-holder]');
-  let idx = 0;
-
-  btn.addEventListener('click', () => {
-    if (idx < 11) {
-      holder.appendChild(questionTemplate(idx));
-      idx += 1;
-    } else {
-      btn.parentNode.removeChild(btn);
-    }
-  })
-}
-
-addQuestion();

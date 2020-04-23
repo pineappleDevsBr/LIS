@@ -9,6 +9,7 @@ class QuestionSchema extends Schema {
       table.increments()
       table.string('question')
       table.string('text', 2000)
+      table.string('translation', 2000)
       table.string('file')
       table.integer('task_id')
         .unsigned()

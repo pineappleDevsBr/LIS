@@ -13,7 +13,7 @@
 
   <div class="row">
     <div class="col">
-      <form action="{{ route('admin.tasks.store') }}" method="POST" enctype="multipart/form-data" data-task-form>
+      <form action="{{ route('admin.tasks.store') }}" method="POST" enctype="multipart/form-data" data-validation="5">
         <div class="card">
           <div class="card-header">Task</div>
           <div class="card-body">
@@ -59,7 +59,10 @@
 
         <div class="card">
           <div class="card-header">Questions</div>
-          <div class="card-body" data-questions>
+          <div class="card-body" data-questions='{
+            "count": 5,
+            "template": "listening"
+          }'>
             <ul class="list-group list-group-flush" data-questions-holder>
             </ul>
             <div class="row mt-20 d-flex justify-content-center">
@@ -86,7 +89,6 @@
             </div>
           </div>
         </div>
-        <input type="file" name="image[]" id="pao">
       </form>
 
       <div class="sufee-alert alert with-close alert-danger alert-dismissible fade" data-error>

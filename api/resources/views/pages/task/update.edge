@@ -54,9 +54,9 @@
 
         <div class="card">
           <div class="card-header">Questions</div>
-          <div class="card-body" data-questions>
+          <div class="card-body">
             <ul class="list-group list-group-flush">
-              @if(question.task_type_id == 1)
+              @if(task.task_type_id == 1)
                 @!each(question in questions, include = 'partials/tasks/update/quiz')
               @endif
             </ul>
@@ -68,9 +68,6 @@
           <span class="badge badge-pill badge-danger">Failed</span>
           Exactly 10 questions must be registered
       </div>
-
-      {{--  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>  --}}
-      {{--  <script src="{{ assetsUrl('assets/js/task/update.js') }}"></script>  --}}
     </div>
   </div>
 @endsection

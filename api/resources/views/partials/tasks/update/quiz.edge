@@ -21,11 +21,11 @@
   </form>
 
   <strong>Answers</strong>
-  <ul class="list-group list-group-flush" data-radio>
+  <form action="/" method="PUT">
+    <ul class="list-group list-group-flush" data-radio>
 
-    @each(answer in question.answers)
-      <li class="list-group-item px-0">
-        <form action="" class="d-flex">
+      @each(answer in question.answers)
+        <li class="list-group-item px-0 d-flex">
           <div class="col-md-auto form-group mb-0">
             <div class="row d-flex align-items-center">
               <div class="col flex-grow-0">
@@ -48,8 +48,15 @@
               </div>
             </div>
           </div>
-        </form>
-      </li>
-    @endeach
-  </ul>
+        </li>
+      @endeach
+    </ul>
+    <div class="row">
+      <div class="col m-t-10 m-b-10">
+        <button id="payment-button" type="submit" data-reset class="btn btn-info">
+          <span id="payment-button-amount">Update answers</span>
+        </button>
+      </div>
+    </div>
+  </form>
 </li>

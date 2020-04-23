@@ -1,10 +1,14 @@
 import quiz from './template/quiz';
 import complete from './template/complete';
+import listening from './template/listening';
+import reading from './template/reading';
 import radio from '../radios';
 
 const templates = {
   quiz,
-  complete
+  complete,
+  listening,
+  reading
 }
 
 function questions(elm) {
