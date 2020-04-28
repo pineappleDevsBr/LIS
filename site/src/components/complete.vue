@@ -1,46 +1,53 @@
 <template>
   <q-dialog
-  v-model="listening"
+  v-model="complete"
   persistent
   :maximized="true"
   transition-show="slide-up"
   transition-hide="slide-down">
     <div class="o-modal bg-white" :class="{ 'q-dark': $q.dark.isActive }">
       <div class="o-modal_header bg-primary" :class="{ 'q-dark': $q.dark.isActive }">
-        <h2 class="o-modal_title">Leitura</h2>
+        <h2 class="o-modal_title">Complete a frase</h2>
         <q-btn
         flat
         icon="close"
         @click="confirm = true"/>
       </div>
-      <div class="o-modal_content m-listening">
-        <qprogress :progress="progress"/>
-          <q-stepper
-            v-model="step"
-            ref="stepper"
-            contracted
-            dense
-            flat
-            color="primary"
-            animated
-          >
-            <q-step :name="index + 1" :title="`Question ${question.id}`" icon="edit" :done="step > index" v-for="(question, index) in questions" v-bind:key="question.id">
-              <q-card class="m-card m-listening_card">
-                {{ question.question }}
-                <q-btn flat icon="volume_up" class="m-listening_btn" @click="playListening"/>
-                <video data-audio class="m-listening_audio" :src="question.filepath"></video>
+      <div class="o-modal_content m-quiz">
+        <progressBar :progress="progress"></progressBar>
+        <q-stepper
+          v-model="step"
+          ref="stepper"
+          contracted
+          dense
+          flat
+          color="primary"
+          animated
+        >
+          <q-step :name="index + 1" :title="`Question ${question.id}`" icon="edit" :done="step > index" v-for="(question, index) in questions" v-bind:key="question.id">
+            <div class="quiz">
+              <q-card class="m-card">
+                <q-card-section>
+                  <div class="m-quiz_title">
+                    {{ question.question }} {{ question.text }}
+                  </div>
+                </q-card-section>
               </q-card>
-              <div>
-                  <q-input v-model="answers[index].answer" label="Digite aqui sua resposta..."/>
-              </div>
-            </q-step>
-            <template v-slot:navigation>
-              <q-stepper-navigation>
-                <q-btn @click="next()" color="primary" :label="step === questions.length ? 'Finalizar' : 'Próximo'" />
-                <q-btn v-if="step > 1 " flat color="primary" @click="back()" label="Back" class="q-ml-sm"/>
-              </q-stepper-navigation>
-          </template>
-        </q-stepper>
+                  <q-input
+                    color="primary"
+                    class="primary-error"
+                    v-model="answers[index].answer"
+                    label="Digite aqui sua resposta"
+                  />
+            </div>
+          </q-step>
+          <template v-slot:navigation>
+            <q-stepper-navigation>
+              <q-btn @click="next()" color="primary" :label="step === questions.length ? 'Finalizar' : 'Próximo'" />
+              <q-btn v-if="step > 1 " flat color="primary" @click="back()" label="Back" class="q-ml-sm"/>
+            </q-stepper-navigation>
+        </template>
+      </q-stepper>
       </div>
     </div>
     <q-dialog v-model="confirm" persistent>
@@ -50,7 +57,7 @@
         </q-card-section>
 
         <q-card-actions align="right">
-          <q-btn flat rounded label="Sim" class="a-btn -dark" v-close-popup @click="closeListening"/>
+          <q-btn flat rounded label="Sim" class="a-btn -dark" v-close-popup @click="closeComplete"/>
           <q-btn flat rounded label="Não" class="a-btn -dark" v-close-popup />
         </q-card-actions>
       </q-card>
@@ -59,16 +66,16 @@
 </template>
 
 <script>
-import qprogress from './progress-bar'
+import progressBar from './progress-bar'
 import store from '../store/index'
 
 export default {
-  name: 'Listening',
+  name: 'Quiz',
   components: {
-    qprogress
+    progressBar
   },
   props: {
-    listening: Boolean,
+    complete: Boolean,
     taskType: Number,
     questions: Array
   },
@@ -81,16 +88,12 @@ export default {
     }
   },
   methods: {
-    playListening () {
-      const audio = document.querySelector('[data-audio]')
-      audio.play()
-    },
-    closeListening () {
+    closeComplete () {
       this.step = 1
       this.progress.xp = 0
       this.confirm = false
       this.answers.forEach(elm => (elm.answer = null))
-      this.$emit('closeListening')
+      this.$emit('closeComplete')
     },
     async next () {
       if (this.step < this.questions.length) {
@@ -111,16 +114,10 @@ export default {
           elm.question_id = null
           elm.answer = null
         })
-        this.$emit('closeListening', { approved, results })
+        this.$emit('closeComplete', { approved, results })
         this.step = 1
         this.progress.xp = 0
         this.$q.loading.hide()
-      }
-    },
-    back () {
-      if (this.step > 1) {
-        this.$refs.stepper.previous()
-        this.progress.xp -= 1
       }
     },
     cleanAnswers (payload) {
@@ -131,6 +128,12 @@ export default {
       payload.answers = newPayload
       return payload
     },
+    back () {
+      if (this.step > 1) {
+        this.$refs.stepper.previous()
+        this.progress.xp -= 1
+      }
+    },
     setQuestions () {
       for (let i = 0; i < this.questions.length; i += 1) {
         this.answers[i].question_id = this.questions[i].id
@@ -139,6 +142,7 @@ export default {
   },
   watch: {
     questions (value) {
+      console.log(value)
       const amount = []
       for (let i = 0; i < value.length; i += 1) {
         amount.push({ question_id: null, answer: null })

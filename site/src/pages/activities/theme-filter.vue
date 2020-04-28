@@ -32,6 +32,7 @@
     <quiz :quiz="openQuiz" :questions="questions" :taskType="taskType" @closeQuiz="closeActivitie"/>
     <reading :reading="openReading" :questions="questions" :taskType="taskType" @closeReading="closeActivitie"/>
     <listening :listening="openListening" :questions="questions" :taskType="taskType" @closeListening="closeActivitie"/>
+    <complete :complete="openComplete" :questions="questions" :taskType="taskType" @closeComplete="closeActivitie"/>
     <feedback
       :feedback="openFeedback"
       :feedbackResults="feedbackResults"
@@ -48,6 +49,7 @@
 import quiz from '../../components/quiz'
 import reading from '../../components/reading'
 import listening from '../../components/listening'
+import complete from '../../components/complete'
 import feedback from '../../components/feedback'
 import btnBack from '../../components/ui/btnBack'
 import taskType from '../../utils/type_task'
@@ -60,6 +62,7 @@ export default {
     quiz,
     reading,
     listening,
+    complete,
     feedback,
     btnBack
   },
