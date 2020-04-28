@@ -14,27 +14,31 @@
         @click="closeThemes"/>
       </div>
       <div class="o-modal_content">
-        <h2>{{ $t('generalAdjustments.themes.myThemes') }}</h2>
-        <div v-for="myTheme in getMyThemes" v-bind:key="`my_${myTheme.id}`">
-          <q-card class="m-card m-settings_card">
-            <q-card-section class="m-settings_info -between">
-              <p class="m-settings_info-notifications">{{myTheme.name}}</p>
-            </q-card-section>
-          </q-card>
+        <h2 class="m-change-theme_title">{{ $t('generalAdjustments.themes.myThemes') }}</h2>
+        <div class="m-change-theme_cards">
+          <div v-for="myTheme in getMyThemes" v-bind:key="`my_${myTheme.id}`">
+            <q-card class="m-card m-settings_card">
+              <q-card-section class="m-settings_info -between">
+                <p class="m-settings_info-notifications">{{myTheme.name}}</p>
+              </q-card-section>
+            </q-card>
+          </div>
         </div>
 
-        <h2>{{ $t('generalAdjustments.themes.availableThemes') }}</h2>
-        <q-input dense v-model="filter" :label="$t('access.choiceOfThemes.search')" />
-        <div v-for="theme in filterThemes" v-bind:key="theme.id">
-          <q-card class="m-card m-settings_card">
-            <q-card-section class="m-settings_info -between">
-              <p class="m-settings_info-notifications">{{theme.name}}</p>
-              <q-toggle v-model="theme.have" color="primary"/>
-            </q-card-section>
-          </q-card>
+        <h2 class="m-change-theme_title">{{ $t('generalAdjustments.themes.availableThemes') }}</h2>
+        <q-input class="m-change-theme_filter" dense v-model="filter" :label="$t('access.choiceOfThemes.search')" />
+        <div class="m-change-theme_cards">
+          <div v-for="theme in filterThemes" v-bind:key="theme.id">
+            <q-card class="m-card m-settings_card">
+              <q-card-section class="m-settings_info -between">
+                <p class="m-settings_info-notifications">{{theme.name}}</p>
+                <q-toggle v-model="theme.have" color="primary"/>
+              </q-card-section>
+            </q-card>
+          </div>
         </div>
       </div>
-    <q-btn @click="submit" :label="$t('generalAdjustments.themes.save')"/>
+    <q-btn no-caps rounded class="m-change-theme_btn" @click="submit" :label="$t('generalAdjustments.themes.save')"/>
     </div>
   </q-dialog>
 </template>
