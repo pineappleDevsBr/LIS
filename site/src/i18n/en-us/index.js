@@ -125,6 +125,7 @@ export default {
   hub: {
     title: 'Discover new friends! Learning together is more fun!',
     search: 'Search friends',
+    invitation: 'Invite a friend',
     requests: 'Friendship request',
     myFriends: 'My friends'
   },

@@ -125,6 +125,7 @@ export default {
   hub: {
     title: 'Descubra novos amigos! Aprender junto é mais divertido!',
     search: 'Pesquisar amigos',
+    invitation: 'Convidar um amigo',
     requests: 'Solicitações de amizade',
     myFriends: 'Meus amigos'
   },

@@ -1,4 +1,8 @@
 .m-friends_search {
+  display: flex;
+}
+
+.m-friends_search-btn {
   color: $primary;
   text-decoration: underline;
   font-size: em(16);
@@ -81,4 +85,35 @@
   width: em(65);
   margin-top: em(6);
   margin-right: em(10);
+}
+
+.m-friends_confirm {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: em(10);
+}
+
+.m-friends_confirm-btn:first-child {
+  margin-right: em(10);
+}
+
+.m-friends_invite-ilustra {
+  max-width: em(450);
+}
+
+.m-friend_invite {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.m-friends_invite-copy {
+  font-size: em(20);
+  margin-bottom: em(15, 20);
+
+  & .-link {
+    color: $primary;
+  }
 }
