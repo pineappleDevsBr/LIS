@@ -4,7 +4,7 @@
       <img class="m-spotlight_icon" src="statics/hub/bracelet.svg" alt="Friends">
       {{ $t('hub.title') }}
       <div class="m-friends_search">
-        <q-btn class="m-friends_search-btn" no-caps flat :label="$t('hub.search')"/>
+        <q-btn class="m-friends_search-btn" no-caps flat :label="$t('hub.search')" @click="searchOpen"/>
         <q-btn class="m-friends_search-btn" no-caps flat :label="$t('hub.invitation')" @click="invitation"/>
       </div>
     </div>
@@ -56,17 +56,25 @@
         </q-card-section>
       </q-card>
     </q-dialog>
+    <searchFriend :search="search" @closeSearch="closeSearch"/>
   </div>
 </template>
 
 <script>
 import { mapGetters } from 'vuex'
 import store from '../../store'
+import searchFriend from '../../components/searchFriend'
 
 export default {
   name: 'Hub',
+
+  components: {
+    searchFriend
+  },
+
   data () {
     return {
+      search: false,
       inviteOpen: false,
       invite: 'https://lis.com.br/invite/CH3BBC556GFccF'
     }
@@ -78,6 +86,14 @@ export default {
 
     invitation () {
       this.inviteOpen = true
+    },
+
+    searchOpen () {
+      this.search = true
+    },
+
+    closeSearch () {
+      this.search = false
     }
   },
   computed: {
