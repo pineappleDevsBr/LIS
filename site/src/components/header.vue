@@ -10,11 +10,26 @@
           <!-- <component :is="activeAction"></component> -->
         </div>
         <div class="o-header_menu" v-if="title === 'LIS'">
-          <swiper :options="swiperOption" ref="mySwiper">
+          <!-- <swiper :options="swiperOption" ref="mySwiper">
             <swiper-slide class="o-header_menu-slide" v-for="(item, index) in routes" :key="index">
               <router-link class="o-header_menu-item" :class="[ routerActive === item.name ? '-active' : '' ]" :to="{ name: item.name }">{{ item.label }}</router-link>
             </swiper-slide>
-          </swiper>
+          </swiper> -->
+          <q-tabs
+            v-model="active"
+            dense
+            no-caps
+            inline-label
+            indicator-color="transparent"
+            active-color="white"
+            class="text-grey-2"
+            >
+            <q-route-tab class="q-pa-sm" name="home" to="/" :label="$i18n.t('header.home')" />
+            <q-route-tab class="q-pa-sm" name="store" to="/store" :label="$i18n.t('header.store')" />
+            <q-route-tab class="q-pa-sm" name="profile" to="/profile" :label="$i18n.t('header.profile')" />
+            <q-route-tab class="q-pa-sm" name="hub" to="/hub" :label="$i18n.t('header.hub')" />
+            <q-route-tab class="q-pa-sm" name="settings" to="/settings" :label="$i18n.t('header.settings')" />
+          </q-tabs>
         </div>
       </q-toolbar>
       <div class="o-header_border">
@@ -27,9 +42,9 @@
 </template>
 
 <script>
-import 'swiper/dist/css/swiper.css'
-import { swiper, swiperSlide } from 'vue-awesome-swiper'
 import qprogress from './ui-header/progress'
+// import 'swiper/dist/css/swiper.css'
+// import { swiper, swiperSlide } from 'vue-awesome-swiper'
 // import qfriends from './ui-header/friends'
 // import qstore from './ui-header/store'
 // import qsettings from './ui-header/settings'
@@ -37,8 +52,8 @@ import qprogress from './ui-header/progress'
 export default {
   name: 'qheader',
   components: {
-    swiper,
-    swiperSlide,
+    // swiper,
+    // swiperSlide,
     qprogress
     // qfriends,
     // qstore,
@@ -47,6 +62,7 @@ export default {
   data () {
     return {
       title: 'LIS',
+      active: 'home',
       swiperOption: {
         slidesPerView: 'auto',
         freeMode: true,

@@ -72,7 +72,13 @@ module.exports = function (ctx) {
         'QStep',
         'QStepperNavigation',
         'QSpace',
-        'QSeparator'
+        'QSeparator',
+        'QCarousel',
+        'QCarouselControl',
+        'QCarouselSlide',
+        'QTabs',
+        'QTab',
+        'QRouteTab'
       ],
       directives: [
         'ClosePopup'
