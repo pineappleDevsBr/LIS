@@ -36,6 +36,11 @@ Route.group(() => {
   Route.get('/tasks/:id', 'Api/TaskController.get')
   Route.post('/task/finish', 'Api/FinishTaskController.index')
   Route.post('/task/evaluation', 'Api/EvaluationController.store')
+
+  // App -> Tasks
+  Route.get('/items/all', 'Api/StoreController.index')
+  Route.get('/items/buy', 'Api/StoreController.store')
+  Route.get('/items', 'Api/StoreController.indexOf')
 }).prefix('api/v1').middleware(['auth:jwt']);
 
 Route.group(() => {
@@ -54,7 +59,7 @@ Route.group(() => {
 */
 
 Route.group(() => {
-  Route.get('/', 'Admin/IndexController.index').as('admin')
+  Route.get('/', 'Site/IndexController.index').as('admin')
 
   // Admin -> Themes
   Route.on('/themes/new').render('pages.themes.store')

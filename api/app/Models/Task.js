@@ -15,6 +15,10 @@ class Task extends Model {
   evaluations() {
     return this.hasMany('App/Models/Evaluation');
   }
+
+  static get hidden() {
+    return ['created_at', 'updated_at'];
+  }
 }
 
 module.exports = Task

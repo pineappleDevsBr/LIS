@@ -6,7 +6,7 @@ trait('Test/ApiClient');
 test('It should return JWT token when session created', async ({ assert, client }) => {
   const user_data = {
     email: 'leandro@lis.com',
-    password: '123'
+    password: 'Secret123'
   }
 
   const response = await client

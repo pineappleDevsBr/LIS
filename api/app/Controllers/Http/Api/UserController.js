@@ -46,9 +46,9 @@ class UserController {
     const queryParameter = Object.keys(payload)[0];
 
     try {
-       const data = await User.findBy(queryParameter, payload[queryParameter]);
+      const data = await User.findBy(queryParameter, payload[queryParameter]);
       const status = data ? 204 : 404
-       response.status(status).send(status);
+      response.status(status).send(status);
 
     } catch (err) {
       response.send(err);

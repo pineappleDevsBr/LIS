@@ -2,14 +2,15 @@
 
 const TaskRepository = use('App/Repositories/TaskRepository');
 const UserRepository = use('App/Repositories/UserRepository');
-const TaskEnum = use('App/Enums/Task');
+const TaskType = use('App/Models/TaskType');
 const BaseTask = use('App/Base/Task');
 
 class FinishTaskController {
   async index({ request, response, auth }) {
     const requestData = request.all();
     const data = await TaskRepository.getById(requestData.task_id);
-    const result = this[TaskEnum[requestData.task_type_id]](requestData, data);
+    const task_type = await TaskType.find(requestData.task_type_id);
+    const result = this[task_type.name](requestData, data);
 
 
     if (result.approved) {
