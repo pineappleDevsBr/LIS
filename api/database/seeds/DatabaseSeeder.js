@@ -14,7 +14,6 @@
 const Factory = use('Factory')
 const Nationality = use('App/Models/Nationality')
 const User = use('App/Models/User')
-const Theme = use('App/Models/Theme')
 
 class DatabaseSeeder {
   async run () {
@@ -50,6 +49,41 @@ class DatabaseSeeder {
     await Factory.model('App/Models/TaskType').create('reading')
 
     // -------------------------------------------------------------------------- //
+
+    await Factory.model('App/Models/ItemType').create('xp')
+    await Factory.model('App/Models/ItemType').create('money')
+    await Factory.model('App/Models/ItemType').create('present')
+    await Factory.model('App/Models/ItemType').create('chest')
+
+    // -------------------------------------------------------------------------- //
+
+    await Factory.model('App/Models/Item').create({
+      name: 'xp-200',
+      price: 1000,
+      active_time: 8,
+      item_type_id : 1,
+      multiplier: 200
+    })
+
+    await Factory.model('App/Models/Item').create({
+      name: 'money-10',
+      price: 1000,
+      active_time: 8,
+      item_type_id : 2,
+      multiplier: 10
+    })
+
+    await Factory.model('App/Models/Item').create({
+      name: 'present',
+      price: 1000,
+      item_type_id : 3
+    })
+
+    await Factory.model('App/Models/Item').create({
+      name: 'chest',
+      price: 1500,
+      item_type_id : 4
+    })
   }
 }
 

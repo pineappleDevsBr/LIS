@@ -10,7 +10,7 @@
               <i class="zmdi zmdi-account-o"></i>
             </div>
             <div class="text">
-              <h2>{{ users }}</h2>
+              <h2>{{ users.total }}</h2>
               <span>members</span>
             </div>
           </div>
@@ -43,11 +43,11 @@
         <div class="overview__inner">
           <div class="overview-box clearfix">
             <div class="icon">
-              <i class="zmdi zmdi-calendar-note"></i>
+              <i class="fas fa-book"></i>
             </div>
             <div class="text">
-              <h2>108*</h2>
-              <span>this week</span>
+              <h2>{{ tasks.total }}</h2>
+              <span>created tasks</span>
             </div>
           </div>
           <div class="overview-chart">
@@ -64,7 +64,7 @@
               <i class="zmdi zmdi-money"></i>
             </div>
             <div class="text">
-              <h2>$106*</h2>
+              <h2>{{ users.money }}</h2>
               <span>total earnings</span>
             </div>
           </div>

@@ -1,7 +1,7 @@
 module.exports = {
   quiz: {
-    tasks: 10,
-    approvation: 6
+    tasks: 5,
+    approvation: 5
   },
   listening: {
     tasks: 5,

@@ -72,7 +72,6 @@ Factory.blueprint('App/Models/Task', async (faker, i, data) => {
 Factory.blueprint('App/Models/Question', async (faker, i, data) => {
   return {
     question: faker.username(),
-    text: faker.name(),
     ...data
   }
 })
@@ -86,6 +85,18 @@ Factory.blueprint('App/Models/Answer', async (faker, i, data) => {
 })
 
 Factory.blueprint('App/Models/Evaluation', async (faker, i, data) => {
+  return {
+    ...data
+  }
+})
+
+Factory.blueprint('App/Models/ItemType', async (faker, i, data) => {
+  return {
+    name: data || faker.word()
+  }
+})
+
+Factory.blueprint('App/Models/Item', async (faker, i, data) => {
   return {
     ...data
   }
