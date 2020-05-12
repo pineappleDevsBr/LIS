@@ -10,7 +10,20 @@
     </div>
     <div class="m-store_group" v-if="myItems.length > 0">
     <h2 class="m-store_title">{{ $t('store.myItems') }}</h2>
-      <div class="m-cards">
+      <div class="m-cards" v-if="!myItems">
+        <q-card class="m-card m-skeleton -center" v-for="index in 2" v-bind:key="index">
+          <q-card-section class="q-pa-xs">
+            <q-skeleton type="text" class="m-skeleton_price" />
+          </q-card-section>
+          <q-card-section class="q-pa-xs">
+            <q-skeleton type="QAvatar" class="m-skeleton_avatar -center" />
+          </q-card-section>
+          <q-card-section class="q-pa-xs">
+            <q-skeleton type="text" class="m-skeleton_title -sm -center" />
+          </q-card-section>
+        </q-card>
+      </div>
+      <div class="m-cards" v-else>
         <q-card class="m-card" v-for="item in myItems" v-bind:key="item.id">
           <q-card-section class="m-store_box-product">
             <div class="m-store_price">
@@ -25,7 +38,20 @@
       </div>
     </div>
     <h2 class="m-store_title">{{ $t('store.availableItems') }}</h2>
-    <div class="m-cards">
+    <div class="m-cards" v-if="!products">
+      <q-card class="m-card m-skeleton -center" v-for="index in 3" v-bind:key="index">
+        <q-card-section class="q-pa-xs">
+          <q-skeleton type="text" class="m-skeleton_price" />
+        </q-card-section>
+        <q-card-section class="q-pa-xs">
+          <q-skeleton type="QAvatar" class="m-skeleton_avatar -center" />
+        </q-card-section>
+        <q-card-section class="q-pa-xs">
+          <q-skeleton type="text" class="m-skeleton_title -sm -center" />
+        </q-card-section>
+      </q-card>
+    </div>
+    <div class="m-cards" v-else>
       <q-card class="m-card" v-for="item in products" v-bind:key="item.id" @click="buyProduct(item.id)">
         <q-card-section class="m-store_box-product">
           <div class="m-store_price">

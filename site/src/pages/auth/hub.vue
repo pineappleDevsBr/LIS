@@ -30,21 +30,40 @@
       </q-card>
     </div>
     <h2 class="m-friends_title">{{ $t('hub.myFriends') }}</h2>
-    <q-card class="m-card" v-for="item in getFriends" v-bind:key="item.id" @click="viewFriend(item.id)">
-      <q-card-section class="m-friends_card">
-        <div class="m-friends_profile">
-          <img class="m-friends_avatar" :src="`https://api.adorable.io/avatars/75/lis-avatar${item.id}.png`" :alt="`adorable avatar lis-avatar${item.id}.png`">
-          <div>
-            <h2 class="m-friends_username q-dark_title">{{item.name}}</h2>
-            <p class="m-friends_level">Nível: {{item.level ? item.level : 1}}</p>
-            <p class="m-friends_xp">{{item.xp}}XP</p>
+    <div v-if="!getFriends">
+      <q-card class="m-skeleton" v-for="index in 3" v-bind:key="index">
+        <q-card-section class="m-friends_card">
+          <div class="m-friends_profile">
+            <q-skeleton type="QAvatar" class="m-skeleton_avatar" />
+            <div>
+              <q-skeleton type="text" class="m-skeleton_title" />
+              <q-skeleton type="text" class="m-skeleton_subtitle" />
+              <q-skeleton type="text" class="m-skeleton_subtitle" />
+            </div>
           </div>
-        </div>
-        <div>
-          <img class="m-friends_course" src="statics/courses/226-united-states.svg" alt="Curso de Inglês">
-        </div>
-      </q-card-section>
-    </q-card>
+          <div>
+            <q-skeleton class="m-skeleton_flag" />
+          </div>
+        </q-card-section>
+      </q-card>
+    </div>
+    <div v-else>
+      <q-card class="m-card" v-for="item in getFriends" v-bind:key="item.id" @click="viewFriend(item.id)">
+        <q-card-section class="m-friends_card">
+          <div class="m-friends_profile">
+            <img class="m-friends_avatar" :src="`https://api.adorable.io/avatars/75/lis-avatar${item.id}.png`" :alt="`adorable avatar lis-avatar${item.id}.png`">
+            <div>
+              <h2 class="m-friends_username q-dark_title">{{item.name}}</h2>
+              <p class="m-friends_level">Nível: {{item.level ? item.level : 1}}</p>
+              <p class="m-friends_xp">{{item.xp}}XP</p>
+            </div>
+          </div>
+          <div>
+            <img class="m-friends_course" src="statics/courses/226-united-states.svg" alt="Curso de Inglês">
+          </div>
+        </q-card-section>
+      </q-card>
+    </div>
     <q-dialog v-model="inviteOpen" position="bottom">
       <q-card>
         <q-card-section class="m-friend_invite">

@@ -78,7 +78,8 @@ module.exports = function (ctx) {
         'QCarouselSlide',
         'QTabs',
         'QTab',
-        'QRouteTab'
+        'QRouteTab',
+        'QSkeleton'
       ],
       directives: [
         'ClosePopup'
