@@ -10,28 +10,48 @@
     </div>
     <div>
       <h2 class="m-friends_title">{{ $t('hub.requests') }}</h2>
-      <q-card class="m-card" v-for="item in getFriends" v-bind:key="item.id">
-        <q-card-section class="m-friends_card">
-          <div class="m-friends_profile">
-            <img class="m-friends_avatar" :src="`https://api.adorable.io/avatars/75/lis-avatar${item.id}.png`" :alt="`adorable avatar lis-avatar${item.id}.png`">
-            <div>
-              <h2 class="m-friends_username q-dark_title">{{item.name}}</h2>
-              <p class="m-friends_level">Nível: {{item.level ? item.level : 1}}</p>
-              <p class="m-friends_xp">{{item.xp}}XP</p>
+      <div v-if="!getFriends">
+        <q-card class="m-skeleton" v-for="index in 2" v-bind:key="index">
+          <q-card-section class="m-friends_card">
+            <div class="m-friends_profile">
+              <q-skeleton type="QAvatar" class="m-skeleton_avatar" />
+              <div>
+                <q-skeleton type="text" class="m-skeleton_title" />
+                <q-skeleton type="text" class="m-skeleton_subtitle" />
+                <q-skeleton type="text" class="m-skeleton_subtitle" />
+              </div>
             </div>
-          </div>
-          <div>
             <div class="m-friends_confirm">
-              <q-btn round color="accent" icon="done" class="m-friends_confirm-btn" @click="acceptFriendship(item.id)"/>
-              <q-btn round color="negative" icon="close" class="m-friends_confirm-btn" @click="refuseFriendship(item.id)"/>
+              <q-skeleton type="circle" class="m-skeleton_btn-round"/>
+              <q-skeleton type="circle" class="m-skeleton_btn-round"/>
             </div>
-          </div>
-        </q-card-section>
-      </q-card>
+          </q-card-section>
+        </q-card>
+      </div>
+      <div v-else>
+        <q-card class="m-card" v-for="item in getFriends" v-bind:key="item.id">
+          <q-card-section class="m-friends_card">
+            <div class="m-friends_profile">
+              <img class="m-friends_avatar" :src="`https://api.adorable.io/avatars/75/lis-avatar${item.id}.png`" :alt="`adorable avatar lis-avatar${item.id}.png`">
+              <div>
+                <h2 class="m-friends_username q-dark_title">{{item.name}}</h2>
+                <p class="m-friends_level">Nível: {{item.level ? item.level : 1}}</p>
+                <p class="m-friends_xp">{{item.xp}}XP</p>
+              </div>
+            </div>
+            <div>
+              <div class="m-friends_confirm">
+                <q-btn round color="accent" icon="done" class="m-friends_confirm-btn" @click="acceptFriendship(item.id)"/>
+                <q-btn round color="negative" icon="close" class="m-friends_confirm-btn" @click="refuseFriendship(item.id)"/>
+              </div>
+            </div>
+          </q-card-section>
+        </q-card>
+      </div>
     </div>
     <h2 class="m-friends_title">{{ $t('hub.myFriends') }}</h2>
     <div v-if="!getFriends">
-      <q-card class="m-skeleton" v-for="index in 3" v-bind:key="index">
+      <q-card class="m-skeleton" v-for="index in 2" v-bind:key="index">
         <q-card-section class="m-friends_card">
           <div class="m-friends_profile">
             <q-skeleton type="QAvatar" class="m-skeleton_avatar" />
