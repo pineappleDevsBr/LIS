@@ -58,7 +58,9 @@ class DatabaseSeeder {
     // -------------------------------------------------------------------------- //
 
     await Factory.model('App/Models/Item').create({
-      name: 'xp-200',
+      name: '200 XP',
+      icon: 'xp',
+      description: '200 pontos de XP para você subir de nível mais rápido!',
       price: 1000,
       active_time: 8,
       item_type_id : 1,
@@ -66,7 +68,9 @@ class DatabaseSeeder {
     })
 
     await Factory.model('App/Models/Item').create({
-      name: 'money-10',
+      name: '10% de Dinheiro',
+      icon: 'money',
+      description: '10% dinheiro: você receberá 10% a mais de todo o dinheiro que você ganhar nas próximas 12h!',
       price: 1000,
       active_time: 8,
       item_type_id : 2,
@@ -74,13 +78,17 @@ class DatabaseSeeder {
     })
 
     await Factory.model('App/Models/Item').create({
-      name: 'present',
+      name: 'Vale-presente',
+      icon: 'present',
+      description: 'Você pode comprar para presentear um amigo com um item surpresa!',
       price: 1000,
       item_type_id : 3
     })
 
     await Factory.model('App/Models/Item').create({
-      name: 'chest',
+      name: 'Baú especial',
+      icon: 'chest',
+      description: 'Quais itens aleatórios virão nesse baú?',
       price: 1500,
       item_type_id : 4
     })

@@ -2,13 +2,13 @@
   <q-dialog v-model="buy" persistent>
     <q-card class="m-card m-buy">
       <q-card-section class="m-buy_cash">
-        Preço: {{product.price}}
+        Preço: {{ buyProduct.price }}
         <img class="m-buy_cash-icon" :src="`statics/store/coin.svg`" alt="">
       </q-card-section>
       <q-card-section class="m-buy_product">
-        <h2 class="m-buy_product-name">{{product.name}}</h2>
-        <img class="m-buy_product_icon" :src="`statics/store/products/${product.icon}`" alt="">
-        <p class="m-buy_product_description"><strong>{{product.name}}: </strong>{{product.description}}</p>
+        <h2 class="m-buy_product-name">{{ buyProduct.name }}</h2>
+        <img class="m-buy_product_icon" :src="`statics/store/products/${buyProduct.icon}.svg`" alt="">
+        <p class="m-buy_product_description"><strong>{{buyProduct.name}}: </strong>{{buyProduct.description}}</p>
       </q-card-section>
       <q-card-actions class="m-buy_add">
         <span><strong>Quantidade:</strong> {{qtde}}</span>
@@ -33,6 +33,7 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import store from '../store'
 
 export default {
   name: 'buy',
@@ -42,7 +43,8 @@ export default {
   },
   data () {
     return {
-      qtde: 1
+      qtde: 1,
+      buyProduct: {}
     }
   },
   methods: {
@@ -52,21 +54,48 @@ export default {
       }
     },
     add () {
-      if ((this.value + this.product.price) <= this.getUser.money) {
+      if ((this.value + this.buyProduct.price) <= this.getUser.money) {
         this.qtde += 1
       }
     },
-    finishBuy () {
-      this.$emit('close')
+    async finishBuy () {
+      this.$q.loading.show()
+      const payload = {
+        id: this.buyProduct.id,
+        quantify: this.qtde
+      }
+      console.log(payload)
+      const sucess = await store().dispatch('store/buyItem', payload)
+      console.log(sucess)
+      if (sucess) {
+        this.$q.notify({
+          color: 'accent',
+          message: 'Compra realizada com sucesso!',
+          icon: 'shop'
+        })
+        this.$emit('close')
+      } else {
+        this.$q.notify({
+          color: 'negative',
+          message: 'Houve um erro ao processar sua compra. Tente novamente ou entre em contato com o suporte tecnico.',
+          icon: 'error'
+        })
+      }
+      this.$q.loading.hide()
     },
     close () {
       this.$emit('close')
     }
   },
+  watch: {
+    product (value) {
+      this.buyProduct = value
+    }
+  },
   computed: {
     ...mapGetters('user', ['getUser']),
     value () {
-      return this.qtde * this.product.price
+      return this.qtde * this.buyProduct.price
     }
   }
 }

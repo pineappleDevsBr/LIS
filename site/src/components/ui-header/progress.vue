@@ -25,6 +25,7 @@ export default {
       return ((this.getUser.xp * 100) / this.setLevelUp)
     },
     setLevelUp () {
+      console.log(levelUp(this.getUser.xp))
       return levelUp(this.getUser.xp)
     }
   }

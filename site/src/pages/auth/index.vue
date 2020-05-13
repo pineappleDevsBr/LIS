@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div v-for="item in activities" v-bind:key="item.id">
+    <div v-for="item in activities" v-bind:key="`skl_${item.id}`">
       <q-card class="m-skeleton" v-if="!item.progress.active">
         <q-card-section class="m-activities_information">
           <q-skeleton type="QAvatar" class="m-skeleton_avatar" />

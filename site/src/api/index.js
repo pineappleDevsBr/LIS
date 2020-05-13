@@ -5,6 +5,7 @@ import userAPI from './modules/user'
 import friendsAPI from './modules/friends'
 import themeAPI from './modules/theme'
 import taskAPI from './modules/task'
+import storeAPI from './modules/store'
 
 const api = axios.create({
   baseURL: 'http://localhost:3333/api/v1',
@@ -26,3 +27,4 @@ export const user = userAPI(api)
 export const friends = friendsAPI(api)
 export const theme = themeAPI(api)
 export const task = taskAPI(api)
+export const store = storeAPI(api)

@@ -6,6 +6,7 @@ import user from './modules/user'
 import friends from './modules/friends'
 import theme from './modules/theme'
 import task from './modules/task'
+import store from './modules/store'
 
 // import example from './module-example'
 
@@ -24,7 +25,8 @@ export default function (/* { ssrContext } */) {
       friends,
       theme,
       darkMode,
-      task
+      task,
+      store
     },
 
     // enable strict mode (adds overhead!)

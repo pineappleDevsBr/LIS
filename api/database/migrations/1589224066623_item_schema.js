@@ -8,6 +8,8 @@ class ItemSchema extends Schema {
     this.create('items', (table) => {
       table.increments()
       table.string('name', 40).notNullable()
+      table.string('icon', 40).notNullable();
+      table.string('description', 120).notNullable();
       table.integer('multiplier').defaultTo(0);
       table.integer('price').notNullable().defaultTo(0)
       table.integer('active_time')

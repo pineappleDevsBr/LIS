@@ -39,7 +39,7 @@ Route.group(() => {
 
   // App -> Tasks
   Route.get('/items/all', 'Api/StoreController.index')
-  Route.get('/items/buy', 'Api/StoreController.store')
+  Route.post('/items/buy', 'Api/StoreController.store')
   Route.get('/items', 'Api/StoreController.indexOf')
 }).prefix('api/v1').middleware(['auth:jwt']);
 

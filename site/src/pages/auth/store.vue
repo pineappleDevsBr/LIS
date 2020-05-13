@@ -8,10 +8,10 @@
       <img class="m-spotlight_icon" src="statics/store/online-store.svg" alt="Store">
       {{ $t('store.title') }}
     </div>
-    <div class="m-store_group" v-if="myItems.length > 0">
+    <div class="m-store_group" v-if="getMyItems.length > 0">
     <h2 class="m-store_title">{{ $t('store.myItems') }}</h2>
-      <div class="m-cards" v-if="!myItems">
-        <q-card class="m-card m-skeleton -center" v-for="index in 2" v-bind:key="index">
+      <div class="m-cards" v-if="!getMyItems">
+        <q-card class="m-card m-skeleton -center" v-for="index in 2" v-bind:key="`skl_${index}`">
           <q-card-section class="q-pa-xs">
             <q-skeleton type="text" class="m-skeleton_price" />
           </q-card-section>
@@ -24,12 +24,12 @@
         </q-card>
       </div>
       <div class="m-cards" v-else>
-        <q-card class="m-card" v-for="item in myItems" v-bind:key="item.id">
+        <q-card class="m-card" v-for="item in getMyItems" v-bind:key="item.id">
           <q-card-section class="m-store_box-product">
             <div class="m-store_price">
-              <strong>{{item.qtde}}</strong>x
+              <strong>{{ item.active === 0 ? 'USAR' : 'EM USO'}}</strong>
             </div>
-            <img class="m-store_icon" :src="`statics/store/products/${item.icon}`" alt="">
+            <img class="m-store_icon" :src="`statics/store/products/${item.icon}.svg`" alt="">
             <div class="m-store_product">
               <h2 class="m-store_subtitle">{{item.name}}</h2>
             </div>
@@ -38,8 +38,8 @@
       </div>
     </div>
     <h2 class="m-store_title">{{ $t('store.availableItems') }}</h2>
-    <div class="m-cards" v-if="!products">
-      <q-card class="m-card m-skeleton -center" v-for="index in 3" v-bind:key="index">
+    <div class="m-cards" v-if="!getItems">
+      <q-card class="m-card m-skeleton -center" v-for="index in 3" v-bind:key="`skl_${index}`">
         <q-card-section class="q-pa-xs">
           <q-skeleton type="text" class="m-skeleton_price" />
         </q-card-section>
@@ -52,25 +52,26 @@
       </q-card>
     </div>
     <div class="m-cards" v-else>
-      <q-card class="m-card" v-for="item in products" v-bind:key="item.id" @click="buyProduct(item.id)">
+      <q-card class="m-card" v-for="item in getItems" v-bind:key="item.id" @click="buyProduct(item.id)">
         <q-card-section class="m-store_box-product">
           <div class="m-store_price">
             <strong>{{item.price}}</strong>
             <img class="m-store_coin" src="statics/store/coin.svg" :alt="item.name">
           </div>
-          <img class="m-store_icon" :src="`statics/store/products/${item.icon}`" alt="">
+          <img class="m-store_icon" :src="`statics/store/products/${item.icon}.svg`" :alt="item.name">
           <div class="m-store_product">
             <h2 class="m-store_subtitle">{{item.name}}</h2>
           </div>
         </q-card-section>
       </q-card>
-      <buy :buy="buyConfirm" :product="products[productId]" @close="closeBuyConfirm"></buy>
+      <buy :buy="buyConfirm" :product="getItems[productId]" @close="closeBuyConfirm"></buy>
     </div>
   </div>
 </template>
 
 <script>
 import buy from '../../components/buy-product'
+import store from '../../store'
 import { mapGetters } from 'vuex'
 
 export default {
@@ -81,21 +82,12 @@ export default {
   data () {
     return {
       buyConfirm: false,
-      productId: 0,
-      products: [
-        { id: 1, name: 'Vale-presente', price: 100, icon: 'gift-card.svg', qtde: 2, description: 'Você pode comprar para presentear um amigo com um item surpresa 😁' },
-        { id: 2, name: 'Dobro de XP', price: 120, icon: 'magic.svg', qtde: 2, description: 'Durante 24h você vai duplicar todo o xp que você ganhar!' },
-        { id: 3, name: '10% dinheiro', price: 220, icon: 'money.svg', qtde: 2, description: '10% dinheiro: você receberá 10% a mais de todo o dinheiro que você ganhar nas próximas 12h!' }
-      ],
-      myItems: [
-        { id: 1, name: 'Vale-presente', qtde: 1, icon: 'gift-card.svg', description: 'Você pode comprar para presentear um amigo com um item surpresa 😁' },
-        { id: 2, name: 'Dobro de XP', price: 120, icon: 'magic.svg', qtde: 3, description: 'Durante 24h você vai duplicar todo o xp que você ganhar!' }
-      ]
+      productId: 0
     }
   },
   methods: {
     buyProduct (id) {
-      if (this.getUser.money >= this.products[id - 1].price) {
+      if (this.getUser.money >= this.getItems[id - 1].price) {
         this.productId = id - 1
         this.buyConfirm = true
       } else {
@@ -111,7 +103,13 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('user', ['getUser'])
+    ...mapGetters('user', ['getUser']),
+    ...mapGetters('store', ['getItems']),
+    ...mapGetters('store', ['getMyItems'])
+  },
+  async mounted () {
+    await store().dispatch('store/getItems')
+    await store().dispatch('store/getMyItems')
   }
 }
 </script>
