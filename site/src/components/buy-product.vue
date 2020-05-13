@@ -64,9 +64,7 @@ export default {
         id: this.buyProduct.id,
         quantify: this.qtde
       }
-      console.log(payload)
       const sucess = await store().dispatch('store/buyItem', payload)
-      console.log(sucess)
       if (sucess) {
         this.$q.notify({
           color: 'accent',

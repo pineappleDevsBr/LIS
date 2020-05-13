@@ -22,7 +22,6 @@ const actions = {
       const { data: allItems } = await store.list()
 
       const myItems = []
-      console.log(items)
 
       for (let i = 0; i < items.length; i += 1) {
         for (let j = 0; j < allItems.length; j += 1) {
@@ -52,7 +51,6 @@ const actions = {
   async buyItem ({ commit }, payload) {
     try {
       const { data: buy } = await store.buy(payload)
-      console.log(buy)
       return buy
     } catch (error) {
       return { status: false, error }

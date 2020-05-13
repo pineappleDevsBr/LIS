@@ -142,7 +142,6 @@ export default {
     },
     async closeSettings () {
       if (this.name) {
-        console.log(this.save)
         const payload = {
           name: this.name
         }

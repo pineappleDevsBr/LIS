@@ -142,7 +142,6 @@ export default {
   },
   watch: {
     questions (value) {
-      console.log(value)
       const amount = []
       for (let i = 0; i < value.length; i += 1) {
         amount.push({ question_id: null, answer: null })

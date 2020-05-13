@@ -1,4 +1,5 @@
 import { task } from '@api/index'
+import randomArray from '../../utils/randomizeArray'
 
 const getters = {
   getTask: state => state.tasks,
@@ -19,6 +20,10 @@ const actions = {
   async getQuestions ({ commit }, id) {
     try {
       const { data: questions } = await task.questions(id)
+      randomArray(questions.questions)
+      questions.questions.forEach(elm => {
+        randomArray(elm.answers)
+      })
       commit('UPDATE_QUESTIONS', questions)
       return questions
     } catch (error) {
