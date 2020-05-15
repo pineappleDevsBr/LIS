@@ -16,7 +16,7 @@
       <div class="o-modal_content">
         <div class="m-search_search">
           <q-input dense class="m-search_input" v-model="filter" label="Pesquise pelo nome ou e-mail" />
-          <q-btn dense class="m-search_btn-round" round icon="search"/>
+          <q-btn class="m-search_btn-round" round icon="search"/>
         </div>
         <h2 class="m-search_title">Amigos encontrados</h2>
         <div>

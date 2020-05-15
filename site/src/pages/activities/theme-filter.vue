@@ -94,7 +94,8 @@ export default {
 
       this.selectActivitie(this.typeId)
     },
-    closeActivitie (event) {
+    async closeActivitie (event) {
+      await store().dispatch('user/getUser')
       this.openQuiz = false
       this.openListening = false
       this.openComplete = false

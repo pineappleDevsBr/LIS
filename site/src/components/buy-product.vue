@@ -66,6 +66,7 @@ export default {
       }
       const sucess = await store().dispatch('store/buyItem', payload)
       if (sucess) {
+        await store().dispatch('user/getUser')
         this.$q.notify({
           color: 'accent',
           message: 'Compra realizada com sucesso!',

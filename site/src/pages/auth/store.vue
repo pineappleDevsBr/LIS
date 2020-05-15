@@ -1,7 +1,7 @@
 <template>
   <div class="m-store">
     <div class="m-store_money">
-      {{getUser.money}}
+      <span id="countStore">{{getUser.money}}</span>
       <img class="m-store_coin" src="statics/store/coin.svg" alt="">
     </div>
     <div class="m-spotlight">
@@ -73,6 +73,7 @@
 import buy from '../../components/buy-product'
 import store from '../../store'
 import { mapGetters } from 'vuex'
+import { CountUp } from 'countup.js'
 
 export default {
   name: 'Store',
@@ -82,7 +83,8 @@ export default {
   data () {
     return {
       buyConfirm: false,
-      productId: 0
+      productId: 0,
+      currentMoney: 0
     }
   },
   methods: {
@@ -90,6 +92,7 @@ export default {
       if (this.getUser.money >= this.getItems[id - 1].price) {
         this.productId = id - 1
         this.buyConfirm = true
+        this.currentMoney = this.getUser.money
       } else {
         this.$q.notify({
           color: 'negative',
@@ -98,7 +101,16 @@ export default {
         })
       }
     },
-    closeBuyConfirm () {
+    async closeBuyConfirm () {
+      const options = { startVal: this.currentMoney }
+      let demo = new CountUp('countStore', this.getUser.money, options)
+      if (!demo.error) {
+        demo.start()
+      } else {
+        console.error(demo.error)
+      }
+
+      await store().dispatch('store/getMyItems')
       this.buyConfirm = false
     }
   },
