@@ -28,6 +28,34 @@
         </q-card-section>
       </q-card>
     </div>
+    <q-dialog v-model="tutorial">
+      <q-card class="m-card">
+        <q-card-section>
+          <div class="text-h6">Olá, bem vindo ao LIS!</div>
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          Antes de começar gostaria de saber se você deseja assistir aos vídeos tutoriais agora.
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          Se preferir, pode acessar os mesmos vídeos em Perfil > Clique aqui para editar seus dados > Tutoriais.
+        </q-card-section>
+
+        <q-card-section class="q-pt-none">
+          Bons estudos!
+        </q-card-section>
+
+        <q-img src="statics/activities/tutorials.png" />
+        <q-card-actions align="between">
+          <q-checkbox keep-color v-model="repeatShowTutorial" label="Não mostrar novamente" color="primary" />
+          <div>
+            <q-btn rounded label="Assistir agora" color="primary" v-close-popup  class="q-mr-md"/>
+            <q-btn rounded label="Assistir mais tarde" color="primary" v-close-popup />
+          </div>
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
@@ -46,7 +74,9 @@ export default {
         { id: 2, title: 'Diga-me o que ouviu', icon: 'headphones.svg', activitie: 'Diágolo', start: 'listening', progress: { showValue: false, levelUp: 10, xp: 0, active: true } },
         { id: 3, title: 'Complete a frase', icon: 'content.svg', activitie: 'Substantivos', start: 'complete', progress: { showValue: false, levelUp: 10, xp: 0, active: true } },
         { id: 4, title: 'Leitura', icon: 'read.svg', activitie: 'Verbo To be', start: 'reading', progress: { showValue: false, levelUp: 10, xp: 0, active: true } }
-      ]
+      ],
+      tutorial: this.$q.cookies.get('lis_tutorial'),
+      repeatShowTutorial: false
     }
   },
   methods: {
