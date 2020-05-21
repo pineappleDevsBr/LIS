@@ -46,7 +46,7 @@ class FinishTaskController {
     return {
       results,
       hits,
-      approved: hits >= BaseTask.quiz.approvation
+      approved: (((hits*100) / results.length) / BaseTask.quiz.tasks) >= BaseTask.quiz.approvation
     };
   }
 
@@ -69,7 +69,7 @@ class FinishTaskController {
     return {
       results,
       hits,
-      approved: hits >= BaseTask.listening.approvation
+      approved: (((hits*100) / results.length) / BaseTask.listening.tasks) >= BaseTask.listening.approvation
     };
   }
 
@@ -92,7 +92,7 @@ class FinishTaskController {
     return {
       results,
       hits,
-      approved: hits >= BaseTask.complete.approvation
+      approved: (((hits*100) / results.length) / BaseTask.complete.tasks) >= BaseTask.complete.approvation
     };
   }
 
