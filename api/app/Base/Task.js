@@ -1,15 +1,15 @@
 module.exports = {
   quiz: {
-    tasks: 5,
-    approvation: 5
+    tasks: 10,
+    approvation: 7
   },
   listening: {
-    tasks: 5,
-    approvation: 3
+    tasks: 10,
+    approvation: 7
   },
   complete: {
     tasks: 10,
-    approvation: 6
+    approvation: 7
   },
   reading: {
     tasks: 1,
