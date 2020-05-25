@@ -19,29 +19,7 @@ const actions = {
   async getMyItems ({ commit }) {
     try {
       const { data: items } = await store.myItems()
-      const { data: allItems } = await store.list()
-
-      const myItems = []
-
-      for (let i = 0; i < items.length; i += 1) {
-        for (let j = 0; j < allItems.length; j += 1) {
-          if (items[i].item_id === allItems[j].id) {
-            myItems.push({
-              id: items[i].id,
-              item_id: items[i].item_id,
-              active: items[i].active,
-              active_time: items[i].active_time,
-              user_id: items[i].user_id,
-              name: allItems[j].name,
-              description: allItems[j].description,
-              icon: allItems[j].icon,
-              multiplier: allItems[j].multiplier
-            })
-          }
-        }
-      }
-
-      commit('UPDATE_MYITEMS', myItems)
+      commit('UPDATE_MYITEMS', items)
       return items
     } catch (error) {
       return { status: false, error }
@@ -52,6 +30,16 @@ const actions = {
     try {
       const { data: buy } = await store.buy(payload)
       return buy
+    } catch (error) {
+      return { status: false, error }
+    }
+  },
+
+  async useItem ({ commit }, payload) {
+    try {
+      const data = await store.use({ id: payload })
+      console.log(data)
+      return data
     } catch (error) {
       return { status: false, error }
     }
