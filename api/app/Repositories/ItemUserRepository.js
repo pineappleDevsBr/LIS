@@ -9,6 +9,7 @@ class ItemUserRepository {
   async index(id) {
     const data = await ItemUser
       .query()
+      .innerJoin('items', 'item_users.item_id', 'items.id')
       .where('user_id', id)
       .fetch();
 

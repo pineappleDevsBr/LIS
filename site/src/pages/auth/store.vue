@@ -24,10 +24,10 @@
         </q-card>
       </div>
       <div class="m-cards" v-else>
-        <q-card class="m-card" v-for="item in getMyItems" v-bind:key="item.id">
+        <q-card class="m-card" v-for="item in getMyItems" v-bind:key="item.id" @click="useProduct(item.id)">
           <q-card-section class="m-store_box-product">
             <div class="m-store_price">
-              <strong>{{ item.active === 0 ? 'USAR' : 'EM USO'}}</strong>
+              <strong>{{ item.status === 'inactivated' ? 'USAR' : 'EM USO'}}</strong>
             </div>
             <img class="m-store_icon" :src="`statics/store/products/${item.icon}.svg`" alt="">
             <div class="m-store_product">
@@ -98,6 +98,18 @@ export default {
           color: 'negative',
           message: 'Moedas insuficientes!',
           icon: 'monetization_on'
+        })
+      }
+    },
+    async useProduct (id) {
+      const response = await store().dispatch('store/useItem', id)
+      if (response) {
+        await store().dispatch('store/getMyItems')
+      } else {
+        this.$q.notify({
+          color: 'negative',
+          message: 'Ocorreu um erro ao ativar o item, tente novamente ou entre em contato com o suporte técnico.',
+          icon: 'report_problem'
         })
       }
     },
