@@ -26,10 +26,10 @@ export default {
   data () {
     return {
       activities: [
-        { id: 1, title: 'Quiz', icon: 'quiz.svg', activitie: 'Pronomes', start: 'quiz', progress: { showValue: false, levelUp: 100, xp: 80 } },
-        { id: 2, title: 'Diga-me o que ouviu', icon: 'headphones.svg', activitie: 'Diágolo', start: 'listening', progress: { showValue: false, levelUp: 200, xp: 180 } },
-        { id: 3, title: 'Complete a frase', icon: 'content.svg', activitie: 'Substantivos', start: 'complete', progress: { showValue: false, levelUp: 350, xp: 180 } },
-        { id: 4, title: 'Leitura', icon: 'read.svg', activitie: 'Verbo To be', start: 'reading', progress: { showValue: false, levelUp: 650, xp: 20 } }
+        { id: 1, title: 'Quiz', icon: 'quiz.svg', activitie: 'Pronomes', start: 'quiz', progress: { showValue: false, levelUp: 10, xp: 0 } },
+        { id: 2, title: 'Diga-me o que ouviu', icon: 'headphones.svg', activitie: 'Diágolo', start: 'listening', progress: { showValue: false, levelUp: 10, xp: 0 } },
+        { id: 3, title: 'Complete a frase', icon: 'content.svg', activitie: 'Substantivos', start: 'complete', progress: { showValue: false, levelUp: 10, xp: 0 } },
+        { id: 4, title: 'Leitura', icon: 'read.svg', activitie: 'Verbo To be', start: 'reading', progress: { showValue: false, levelUp: 10, xp: 0 } }
       ]
     }
   },

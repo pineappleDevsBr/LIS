@@ -1,17 +1,17 @@
-// import store from '../store'
+import store from '../store'
 
-// function requireAuth (to, from, next) {
-//   if (!store().state.auth.isUserLogged) {
-//     next({ name: 'welcome' })
-//   } else {
-//     next()
-//   }
-// }
+function requireAuth (to, from, next) {
+  if (!store().state.auth.isUserLogged) {
+    next({ name: 'welcome' })
+  } else {
+    next()
+  }
+}
 
 const routes = [
   {
     path: '/',
-    // beforeEnter: requireAuth,
+    beforeEnter: requireAuth,
     component: () => import('layouts/index.vue'),
     children: [
       { path: '', name: 'home', component: () => import('pages/auth/index.vue') },

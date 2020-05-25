@@ -29,13 +29,22 @@ Route.group(() => {
   Route.get('/user/:id', 'Api/UserController.index')
   Route.get('/user', 'Api/UserController.get')
   Route.put('/user', 'Api/UserController.update').validator(['User'])
+  Route.get('/friends', 'Api/FriendListController.index')
 
   // App -> Tasks
   Route.get('/task', 'Api/TaskController.index')
+  Route.get('/tasks/:id', 'Api/TaskController.get')
+  Route.post('/task/finish', 'Api/FinishTaskController.index')
+  Route.post('/task/evaluation', 'Api/EvaluationController.store')
+
+  // App -> Store
+  Route.post('/items/buy', 'Api/StoreController.store')
+  Route.post('/items/use', 'Api/StoreController.use')
+  Route.get('/items/all', 'Api/StoreController.index')
+  Route.get('/items', 'Api/StoreController.indexOf')
 }).prefix('api/v1').middleware(['auth:jwt']);
 
 Route.group(() => {
-  Route.get('/friends', 'Api/FriendListController.index')
   Route.get('/theme', 'Api/ThemeController.index')
   Route.post('/check', 'Api/UserController.check')
   Route.post('/user', 'Api/UserController.store').validator(['User'])
@@ -51,7 +60,7 @@ Route.group(() => {
 */
 
 Route.group(() => {
-  Route.get('/', 'Admin/IndexController.index').as('admin')
+  Route.get('/', 'Site/IndexController.index').as('admin')
 
   // Admin -> Themes
   Route.on('/themes/new').render('pages.themes.store')
@@ -65,14 +74,18 @@ Route.group(() => {
   Route.get('/users', 'Admin/UserController.index').as('admin.users')
 
   // Admin -> Tasks
-  Route.on('/tasks/new').render('pages.task.store')
+  Route.get('/tasks/update/:id', 'Site/TaskController.update').as('admin.task.update')
+  Route.get('/tasks/:type/new', 'Admin/TaskController.new').as('admin.tasks.type.store')
+  Route.get('/tasks/type/:type', 'Admin/TaskController.index').as('admin.tasks')
+  Route.get('/tasks/:id', 'Admin/TaskController.get').as('admin.task')
   Route.post('/tasks/new', 'Admin/TaskController.store').as('admin.tasks.store')
-  Route.get('/tasks/:id', 'Admin/TaskController.get')
-  Route.get('/tasks', 'Admin/TaskController.index').as('admin.tasks')
 
+// }).prefix('admin')
 }).prefix('admin').middleware(['admin', 'auth:session'])
 
 Route.group(() => {
   Route.on('/login').render('login').as('admin.login')
   Route.post('/login', 'Admin/AdminController.store').as('admin.auth')
 }).prefix('admin')
+
+Route.on('/').render('welcome')

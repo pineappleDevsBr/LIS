@@ -12,7 +12,7 @@ test('It should return user data when user created', async ({ assert, client }) 
     password: 'Lorem123',
     date_of_birth: '1999-10-10',
     nationality_id: 1,
-    themes: [ 1,2 ]
+    themes: [ 1, 2 ]
   }
 
   const response = await client

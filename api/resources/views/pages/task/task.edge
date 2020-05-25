@@ -1,48 +1,81 @@
 @layout('layout.index')
 
 @section('content')
-  <div class="card border-top primary">
-    <div class="card-header">
-      <h1 class="card-title">{{ task.title }}</h1>
-    </div>
-    <div class="card-body">
-      <p>Name: {{ task.name }}</p>
-      <p>Dificuldade: 0</p>
-      <p>Avaliações: 0</p>
-      <p>Média: 0</p>
-    </div>
+<div class="card border-top primary">
+  <div class="card-header">
+    <h1 class="card-title">{{ task.title }}</h1>
   </div>
+  <div class="card-body">
+    <p>Name: {{ task.name }}</p>
+    <p>Difficulty: {{ task.difficulty }}</p>
+    <p>Theme: {{ task.theme.name }}</p>
+    <p>Average: {{ task.evaluations }}</p>
+  </div>
+</div>
 
-  @if(questions)
+@if(questions)
+<div class="card">
+  <div class="card-header">{{ task.task_type_id == 4 ? 'Data' : 'Questions' }}</div>
+  <div class="card-body">
+    @each(item in questions)
+    @if(task.task_type_id == 1 || task.task_type_id == 3)
+    <div class="card mb-0">
+      <div class="card-header">
+        <h2 class="mb-0 d-flex justify-content-between">
+          <button class="btn flex-grow-1 text-left" type="button" data-toggle="collapse" data-target="#{{ item.id }}"
+            aria-expanded="true" aria-controls="collapseOne">
+            {{ item.question || item.text }}
+          </button>
+        </h2>
+      </div>
+
+      <div id="{{ item.id }}" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
+        <div class="card-body p-0">
+          @if(item.answers)
+          <ul class="list-group list-group-flush">
+            @each(answer in item.answers)
+            <li class="list-group-item {{ answer.right ? 'list-group-item-success' : '' }}">
+              {{ answer.answer }}
+            </li>
+            @endeach
+          </ul>
+          @endif
+        </div>
+      </div>
+    </div>
+    @elseif(task.task_type_id == 2)
     <div class="card">
-      <div class="card-header">Questions</div>
+      <div class="card-header">
+        <audio src="{{ assetsUrl('uploads') }}/{{ item.file }}" controls></audio>
+      </div>
       <div class="card-body">
-        @each(item in questions)
-          <div class="card mb-0">
-            <div class="card-header" id="headingOne">
-              <h2 class="mb-0 d-flex justify-content-between">
-                <button class="btn flex-grow-1 text-left" type="button" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                  {{ item.question }}
-                </button>
-              </h2>
-            </div>
-
-            <div id="collapseOne" class="collapse" aria-labelledby="headingOne" data-parent="#accordionExample">
-              <div class="card-body p-0">
-                @if(item.answers)
-                  <ul class="list-group list-group-flush">
-                    @each(answer in item.answers)
-                      <li class="list-group-item {{ answer.right == 1 ? 'list-group-item-success' : 'list-group-item-danger' }}">
-                        {{ answer.answer }}
-                      </li>
-                    @endeach
-                  </ul>
-                @endif
-              </div>
-            </div>
-          </div>
+        @each(answer in item.answers)
+        {{ answer.answer }}
         @endeach
       </div>
     </div>
-  @endif
+    @else
+    <div class="default-tab">
+      <nav>
+        <div class="nav nav-tabs" id="nav-tab" role="tablist">
+          <a class="nav-item nav-link active" id="nav-home-tab" data-toggle="tab" href="#nav-home" role="tab"
+            aria-controls="nav-home" aria-selected="true">Text</a>
+          <a class="nav-item nav-link" id="nav-profile-tab" data-toggle="tab" href="#nav-profile" role="tab"
+            aria-controls="nav-profile" aria-selected="false">Translation</a>
+        </div>
+      </nav>
+      <div class="tab-content pl-3 pt-2" id="nav-tabContent">
+        <div class="tab-pane fade show active" id="nav-home" role="tabpanel" aria-labelledby="nav-home-tab">
+          <p>{{ item.text }}</p>
+        </div>
+        <div class="tab-pane fade" id="nav-profile" role="tabpanel" aria-labelledby="nav-profile-tab">
+          <p>{{ item.translation }}</p>
+        </div>
+      </div>
+    </div>
+    @endif
+    @endeach
+  </div>
+</div>
+@endif
 @endsection

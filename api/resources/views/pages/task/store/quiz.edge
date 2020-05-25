@@ -1,0 +1,100 @@
+@layout('layout.index')
+
+@section('content')
+  <div class="row">
+    <div class="col">
+      <div class="card">
+        <div class="card-header">
+          <h2>New Quiz</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col">
+      <form action="{{ route('admin.tasks.store') }}" method="POST" data-validation="10">
+        <div class="card">
+          <div class="card-header">Task</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col form-group">
+                <label for="name" class="control-label mb-1">Name</label>
+                <input id="name" name="name" type="text" class="form-control" aria-required="true"
+                  aria-invalid="false">
+              </div>
+              <div class="col form-group">
+                <label for="title" class="control-label mb-1">Title</label>
+                <input id="title" name="title" type="text" class="form-control" aria-required="true"
+                  aria-invalid="false">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col form-group">
+                <label for="xp" class="control-label mb-1">XP</label>
+                <input id="xp" name="xp" type="number" class="form-control" aria-required="true"
+                  aria-invalid="false">
+              </div>
+              <div class="col form-group">
+                <label for="money" class="control-label mb-1">Money</label>
+                <input id="money" name="money" type="number" class="form-control" aria-required="true"
+                  aria-invalid="false">
+              </div>
+            </div>
+            <div class="row">
+              <div class="col form-group">
+                <label for="theme_id" class="control-label mb-1">Tema</label>
+                <select name="theme_id" id="theme_id" class="form-control">
+                  <option value="">Please select</option>
+                  @each(item in themes)
+                    <option value="{{ item.id }}">{{ item.name }}</option>
+                  @endeach
+                </select>
+              </div>
+              <input type="hidden" name="task_type_id" value="{{ task_type.id }}">
+              <input type="hidden" name="task_type_name" value="{{ task_type.name }}">
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Questions</div>
+          <div class="card-body" data-questions='{
+            "count": 10,
+            "template": "quiz"
+          }'>
+            <ul class="list-group list-group-flush" data-questions-holder data-radio>
+            </ul>
+            <div class="row mt-20 d-flex justify-content-center">
+              <button type="button" class="btn btn-info" data-questions-btn>
+                <i class="fa fa-plus"></i>
+                Add
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="card-header">Actions</div>
+          <div class="card-body">
+            <div class="row">
+              <div class="col">
+                <button id="payment-button" type="button" data-reset-button class="btn btn-lg btn-danger">
+                  <span id="payment-button-amount">Reset</span>
+                </button>
+                <button id="payment-button" type="submit" class="btn btn-lg btn-info">
+                  <span id="payment-button-amount">Submit</span>
+                </button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+      <div class="sufee-alert alert with-close alert-danger alert-dismissible fade" data-error>
+          <span class="badge badge-pill badge-danger">Failed</span>
+          Exactly 10 questions must be registered
+      </div>
+    </div>
+  </div>
+@endsection

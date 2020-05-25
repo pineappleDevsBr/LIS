@@ -19,11 +19,16 @@
   box-shadow: 0px 5px 20px -5px rgba(0,0,0,0.20);
   margin-bottom: em(20);
   flex-grow: 1;
+  cursor: pointer;
 
   &.-blocked {
     background-color: $gray-6;
     color: $gray-9;
     cursor: pointer;
+  }
+
+  &.-limit {
+    max-width: 320px;
   }
 
   &.-translate {

@@ -33,6 +33,16 @@ const actions = {
     } catch (err) {
       return err
     }
+  },
+
+  async updateUser ({ commit }, payload) {
+    try {
+      const response = await user.update(payload)
+      commit('UPDATE_USER', payload)
+      return response
+    } catch (err) {
+      return err
+    }
   }
 }
 
@@ -49,9 +59,9 @@ const state = {
   id: 1,
   nickname: '',
   email: '',
-  dateOfBirth: '',
+  date_of_birth: '',
   xp: 0,
-  money: 100,
+  money: 0,
   nationality: {
     id: 1,
     name: 'Brazil',

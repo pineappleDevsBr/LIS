@@ -8,6 +8,10 @@ class Theme extends Model {
     return this.hasMany('App/Models/ThemeList')
   }
 
+  tasks() {
+    return this.hasMany('App/Models/Task')
+  }
+
   static get hidden() {
     return ['created_at', 'updated_at'];
   }

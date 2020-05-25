@@ -32,9 +32,12 @@ export default {
       password: 'Senha',
       passwordConfirmation: 'Confirmação de senha',
       dateOfBirth: 'Data de nascimento',
+      sixCharacters: 'Utilize uma senha com seis ou mais caracteres',
       btn: 'Próximo',
       errors: {
-        required: 'Campo obrigatório'
+        required: 'Campo obrigatório',
+        minLength: 'O campo senha deve conter no mínimo seis caracteres',
+        sameAs: 'As senhas não são iguais'
       }
     },
     choiceOfThemes: {
@@ -84,5 +87,59 @@ export default {
     profile: 'Perfil',
     hub: 'Hub de amigos',
     settings: 'Ajustes gerais'
+  },
+  store: {
+    title: 'Suba de nível mais rápido com nossos itens!',
+    myItems: 'Meus itens',
+    availableItems: 'Itens disponíveis'
+  },
+  profile: {
+    editData: 'Clique aqui para editar seus dados',
+    settings: {
+      header: 'Configurações',
+      account: 'Conta',
+      avatar: 'Imagem do perfil:',
+      name: 'Nome:',
+      password: 'Senha:',
+      notifications: 'Notificações por e-mail',
+      update: 'Atualizações',
+      changeData: 'Alteração de seu e-mail e/ou senha',
+      about: 'Sobre nós',
+      terms: 'Termos de uso e privacidade',
+      credits: 'Créditos de mídia',
+      save: 'Salvar todas as alterações',
+      changeAccount: 'Trocar de conta'
+    },
+    terms: {
+      header: 'Política e privacidade de uso',
+      terms: 'Termos de uso',
+      copy: 'Copyright'
+    },
+    credits: {
+      header: 'Créditos',
+      text: 'LIS é um projeto open souce na qual utiliza como grande parte de sua mídia, fontes externas reproduzidas por artistas não ligados a nós. Sendo assim, temos o dever de citá-los em nossa plataforma com créditos à seu trabalho, pelo seu apoio de forma indireta ao desenvolvimento do app.',
+      icons: 'ícones',
+      vectors: 'Ilustrações'
+    }
+  },
+  hub: {
+    title: 'Descubra novos amigos! Aprender junto é mais divertido!',
+    search: 'Pesquisar amigos',
+    invitation: 'Convidar um amigo',
+    requests: 'Solicitações de amizade',
+    myFriends: 'Meus amigos'
+  },
+  generalAdjustments: {
+    title: 'Deixe seus estudos com a sua cara!',
+    updateThemes: 'Atualizar meus temas',
+    lang: 'Idioma',
+    darkMode: 'Tema escuro',
+    highContrast: 'Alto contraste',
+    themes: {
+      header: 'Temas',
+      myThemes: 'Meus temas',
+      availableThemes: 'Temas disponíveis',
+      save: 'Salvar alterações'
+    }
   }
 }

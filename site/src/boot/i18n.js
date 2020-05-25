@@ -1,18 +1,18 @@
-import Vue from 'vue'
 import VueI18n from 'vue-i18n'
 import messages from 'src/i18n'
+import { Quasar, Cookies } from 'quasar'
 
-Vue.use(VueI18n)
+const lang = Cookies.get('lis_lang')
+let locale = Quasar.lang.getLocale()
 
-const i18n = new VueI18n({
-  locale: 'pt-br',
-  fallbackLocale: 'en-us',
-  messages
-})
+if (lang !== locale && lang !== null) locale = lang
 
-export default ({ app }) => {
-  // Set i18n instance on app
-  app.i18n = i18n
+export default ({ app, Vue }) => {
+  Vue.use(VueI18n)
+
+  app.i18n = new VueI18n({
+    locale,
+    fallbackLocale: 'en-us',
+    messages
+  })
 }
-
-export { i18n }

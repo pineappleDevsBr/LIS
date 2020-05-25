@@ -6,7 +6,7 @@
     </a>
   </div>
   <div class="menu-sidebar__content js-scrollbar1">
-    <nav class="navbar-sidebar">
+    <nav class="navbar-sidebar2">
       <ul class="list-unstyled navbar__list">
         <li>
           <a href="{{ route('admin.themes') }}">
@@ -16,9 +16,38 @@
           <a href="{{ route('admin.users') }}">
             <i class="fas fa-child"></i>Users</a>
         </li>
-        <li>
-          <a href="{{ route('admin.tasks') }}">
-            <i class="fas fa-book"></i>Tasks</a>
+
+        <li class="has-sub">
+          <a class="js-arrow open" href="#">
+            <i class="fas fa-book"></i>
+            Tasks
+          </a>
+          <ul class="list-unstyled navbar__sub-list js-sub-list" style="background-color: #f5f5f5">
+            <li class="px-3">
+              <a href="{{ route('admin.tasks', { type: 'quiz' }) }}">
+                <i class="fas fa-check-square"></i>
+                Quiz
+              </a>
+            </li>
+            <li class="px-3">
+              <a href="{{ route('admin.tasks', { type: 'complete' }) }}">
+                <i class="fas fa-keyboard-o"></i>
+                Complete
+              </a>
+            </li>
+            <li class="px-3">
+              <a href="{{ route('admin.tasks', { type: 'listening' }) }}">
+                <i class="fas fa-headphones"></i>
+                Listening
+              </a>
+            </li>
+            <li class="px-3">
+              <a href="{{ route('admin.tasks', { type: 'reading' }) }}">
+                <i class="fas fa-book"></i>
+                Reading
+              </a>
+            </li>
+          </ul>
         </li>
       </ul>
     </nav>

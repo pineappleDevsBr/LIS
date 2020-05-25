@@ -6,7 +6,7 @@
       :value="progressXp"
       size="60px"
       :thickness="0.12"
-      color="white"
+      color="accent"
       track-color="gray-11">
       {{ getUser.xp }}XP
     </q-circular-progress>
@@ -15,21 +15,17 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import levelUp from '../../utils/levelUp'
 
 export default {
   name: 'header-progress',
-  data () {
-    return {
-      progress: {
-        value: 0,
-        levelUp: 100
-      }
-    }
-  },
   computed: {
     ...mapGetters('user', ['getUser']),
     progressXp () {
-      return ((this.getUser.xp * 100) / this.progress.levelUp)
+      return ((this.getUser.xp * 100) / this.setLevelUp)
+    },
+    setLevelUp () {
+      return levelUp(this.getUser.xp)
     }
   }
 }

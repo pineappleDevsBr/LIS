@@ -46,6 +46,7 @@ module.exports = function (ctx) {
       all: 'auto',
 
       components: [
+        'QRating',
         'QForm',
         'QInput',
         'QBtn',
@@ -70,7 +71,14 @@ module.exports = function (ctx) {
         'QStepper',
         'QStep',
         'QStepperNavigation',
-        'QSpace'
+        'QSpace',
+        'QSeparator',
+        'QCarousel',
+        'QCarouselControl',
+        'QCarouselSlide',
+        'QTabs',
+        'QTab',
+        'QRouteTab'
       ],
       directives: [
         'ClosePopup'
