@@ -24,11 +24,15 @@ class ItemUserRepository {
       .where('item_users.status', 'activated')
       .fetch();
 
-    return data.toJSON();
+    return data;
   }
 
   async indexOf(id) {
-    return await ItemUser.find(id);
+    return await ItemUser
+      .query()
+      .where('id', id)
+      .with('items')
+      .first();
   }
 
   async store({ item, quantify, user_id }) {

@@ -74,7 +74,7 @@ class DatabaseSeeder {
       price: 1000,
       active_time: 8,
       item_type_id : 2,
-      multiplier: 10
+      multiplier: 110
     })
 
     await Factory.model('App/Models/Item').create({
