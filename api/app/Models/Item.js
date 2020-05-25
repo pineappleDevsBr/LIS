@@ -7,6 +7,10 @@ class Item extends Model {
   static get hidden() {
     return ['created_at', 'updated_at'];
   }
+
+  itemUsers() {
+    return this.hasMany('App/Models/ItemUser')
+  }
 }
 
 module.exports = Item

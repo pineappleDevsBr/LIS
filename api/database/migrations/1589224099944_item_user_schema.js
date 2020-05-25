@@ -9,8 +9,8 @@ class ItemUserSchema extends Schema {
       table.increments()
       table.integer('user_id').unsigned().notNullable().references('id').inTable('users')
       table.integer('item_id').unsigned().notNullable().references('id').inTable('items')
-      table.boolean('active').notNullable().defaultTo(false)
-      table.datetime('active_time')
+      table.enu('status', ['inactivated', 'activated', 'used']).notNullable().defaultTo('inactivated')
+      table.datetime('endtime')
       table.timestamps()
     })
   }

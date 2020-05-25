@@ -2,6 +2,8 @@
 
 const TaskRepository = use('App/Repositories/TaskRepository');
 const UserRepository = use('App/Repositories/UserRepository');
+const ItemUserRepository = use('App/Repositories/ItemUserRepository');
+const Bonus = use('App/Helpers/Bonus');
 const TaskType = use('App/Models/TaskType');
 const BaseTask = use('App/Base/Task');
 
@@ -11,18 +13,19 @@ class FinishTaskController {
     const data = await TaskRepository.getById(requestData.task_id);
     const task_type = await TaskType.find(requestData.task_type_id);
     const result = this[task_type.name](requestData, data);
-
+    let values;
 
     if (result.approved) {
-      await this.updateUser({
+      values = await this.updateUser({
         id: auth.user.id,
-        data: data.task, response
+        data: data.task
       });
     }
 
     response.json({
       ...result,
-      task: data.task
+      task: data.task,
+      values
     });
   }
 
@@ -104,9 +107,13 @@ class FinishTaskController {
 
   async updateUser({ id, data }) {
     const user = await UserRepository.getById(id);
-    user.xp = user.xp + data.xp;
-    user.money = user.money + data.money;
+    const items = await ItemUserRepository.getAvailableItems(id);
+    const values = await Bonus({ payload: items, data });
+
+    user.xp += values.xp;
+    user.money += values.money;
     await user.save();
+    return values;
   }
 
 }

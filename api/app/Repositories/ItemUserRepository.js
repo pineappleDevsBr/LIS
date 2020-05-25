@@ -3,8 +3,7 @@
 
 // const Database = use('Database');
 const ItemUser = use('App/Models/ItemUser');
-const UserRepository = use('App/Repositories/UserRepository')
-
+const UserRepository = use('App/Repositories/UserRepository');
 
 class ItemUserRepository {
   async index(id) {
@@ -14,6 +13,22 @@ class ItemUserRepository {
       .fetch();
 
     return data.toJSON();
+  }
+
+  async getAvailableItems(id) {
+    const data = await ItemUser
+      .query()
+      .where('user_id', id)
+      .innerJoin('items', 'item_users.item_id', 'items.id')
+      .whereNotIn('items.name', ['present', 'chest'])
+      .where('item_users.status', 'activated')
+      .fetch();
+
+    return data.toJSON();
+  }
+
+  async indexOf(id) {
+    return await ItemUser.find(id);
   }
 
   async store({ item, quantify, user_id }) {

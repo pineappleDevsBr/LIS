@@ -2,6 +2,7 @@
 
 const ItemRepository = use('App/Repositories/ItemRepository')
 const ItemUserRepository = use('App/Repositories/ItemUserRepository')
+const ItemEnum = use('App/Base/ItemState');
 
 class StoreController {
   async index({ response }) {
@@ -32,6 +33,23 @@ class StoreController {
       response.json(data);
     } else {
       response.status(401).send('Unauthorized');
+    }
+  }
+
+  async use({ request, response, auth }) {
+    const { id } = request.only(['id']);
+    const item = await ItemUserRepository.indexOf(id);
+
+    if (item.status === ItemEnum.INACTIVATED) {
+      const time = new Date();
+      time.setHours(time.getHours() + 8);
+      item.status = ItemEnum.ACTIVATED;
+      item.endtime = time;
+      await item.save();
+
+      response.send('successfully used item');
+    } else {
+      response.status(401).send('The item is already being used');
     }
   }
 }
