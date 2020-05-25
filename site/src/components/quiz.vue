@@ -94,28 +94,36 @@ export default {
       this.$emit('closeQuiz')
     },
     async next () {
-      if (this.step < this.questions.length) {
-        this.$refs.stepper.next()
-        this.progress.xp += 1
-      } else {
-        this.$q.loading.show()
-        this.setQuestions()
+      if (this.answers[this.step - 1].answer) {
+        if (this.step < this.questions.length) {
+          this.$refs.stepper.next()
+          this.progress.xp += 1
+        } else {
+          this.$q.loading.show()
+          this.setQuestions()
 
-        const payload = {
-          task_id: this.questions[0].task_id,
-          task_type_id: this.taskType,
-          answers: this.answers
+          const payload = {
+            task_id: this.questions[0].task_id,
+            task_type_id: this.taskType,
+            answers: this.answers
+          }
+          const { approved, results } = await store().dispatch('task/sendAnswers', this.cleanAnswers(payload))
+
+          this.answers.forEach(elm => {
+            elm.question_id = null
+            elm.answer = null
+          })
+          this.$emit('closeQuiz', { approved, results })
+          this.step = 1
+          this.progress.xp = 0
+          this.$q.loading.hide()
         }
-        const { approved, results } = await store().dispatch('task/sendAnswers', this.cleanAnswers(payload))
-
-        this.answers.forEach(elm => {
-          elm.question_id = null
-          elm.answer = null
+      } else {
+        this.$q.notify({
+          color: 'negative',
+          message: 'Selecione uma resposta!',
+          icon: 'check_circle_outline'
         })
-        this.$emit('closeQuiz', { approved, results })
-        this.step = 1
-        this.progress.xp = 0
-        this.$q.loading.hide()
       }
     },
     cleanAnswers (payload) {

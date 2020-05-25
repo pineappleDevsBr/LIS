@@ -51,6 +51,11 @@
     </div>
     <div class="m-settings_notification">
       <h2 class="m-settings_title">{{ $t('profile.settings.about') }}</h2>
+      <q-card class="m-card m-settings_card">
+        <q-card-section class="m-settings_info">
+          <p class="m-settings_info-account">Tutoriais</p>
+        </q-card-section>
+      </q-card>
       <q-card class="m-card m-settings_card" @click="termsOpen = true">
         <q-card-section class="m-settings_info">
           <p class="m-settings_info-account">{{ $t('profile.settings.terms') }}</p>
@@ -68,7 +73,7 @@
     </div>
     <qprompt :prompt="prompt" @isClose="isClose"></qprompt>
     <changeAvatar :selectAvatar="selectAvatar" @selectedAvatar="selectedAvatar"></changeAvatar>
-    <changePassword :isOpen="changePassword.isOpen" @close="changePassword.isOpen = false"></changePassword>
+    <changePassword :isOpen="changePassword.isOpen" @close="closePassword"></changePassword>
     <credits :credits="creditsOpen" @close="close"></credits>
     <terms :terms="termsOpen" @close="close"></terms>
     </div>
@@ -115,7 +120,8 @@ export default {
       changePassword: {
         isOpen: false
       },
-      name: null
+      name: null,
+      password: null
     }
   },
   methods: {
@@ -136,17 +142,29 @@ export default {
         this.name = newValue
       }
     },
+    closePassword (event) {
+      this.changePassword.isOpen = false
+      if (event) {
+        this.password = event
+      }
+    },
     selectedAvatar (event) {
       this.selectAvatar = false
       if (event !== undefined) this.getUser.avatar = event.avatar
     },
     async closeSettings () {
+      let payload = {}
       if (this.name) {
-        const payload = {
+        payload = {
           name: this.name
         }
-        await store().dispatch('user/updateUser', payload)
       }
+      if (this.password) {
+        payload = {
+          password: this.password
+        }
+      }
+      await store().dispatch('user/updateUser', payload)
       this.$emit('closeSettings')
     },
     close () {

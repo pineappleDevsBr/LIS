@@ -28,7 +28,7 @@ Route.group(() => {
   Route.put('/user/theme', 'Api/ThemeController.update')
   Route.get('/user/:id', 'Api/UserController.index')
   Route.get('/user', 'Api/UserController.get')
-  Route.put('/user', 'Api/UserController.update').validator(['User'])
+  Route.put('/user', 'Api/UserController.update')
   Route.get('/friends', 'Api/FriendListController.index')
 
   // App -> Tasks

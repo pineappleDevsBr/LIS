@@ -1,14 +1,16 @@
 .m-changeAvatar {
-  background: $white;
-  max-width: em(310);
-  width: 100%;
-  padding: em(20) em(20) 0;
   display: flex;
-  justify-content: space-between;
+  max-width: em(640);
+  justify-content: flex-start;
   flex-wrap: wrap;
 }
 
 .m-changeAvatar_item {
-  width: em(50);
+  margin-right: em(15);
+  margin-left: em(15);
   margin-bottom: em(20);
+
+  & img {
+    border-radius: 50%;
+  }
 }

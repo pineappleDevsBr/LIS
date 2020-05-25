@@ -4,6 +4,7 @@
       <q-card-section>
           <q-input
           color="primary"
+          style="padding-bottom: 20px"
           v-model="currentPassword"
           :type="isPwd ? 'password' : 'text'"
           label="Senha atual">
@@ -15,17 +16,52 @@
             />
           </template>
         </q-input>
-        <q-input color="primary" type="password" v-model="newPassword" label="Nova senha" />
-        <q-input color="primary" type="password" v-model="confirmPassword" label="Confirmar nova senha" />
+        <q-input
+          color="primary"
+          :type="isPwdNew ? 'password' : 'text'"
+          v-model="newPassword"
+          @blur="$v.newPassword.$touch"
+          :error="$v.newPassword.$error"
+          :error-message="$t('reset.errors.required')"
+          label="Nova senha">
+          <template v-slot:append>
+            <q-icon
+              :name="isPwdNew ? 'visibility_off' : 'visibility'"
+              class="cursor-pointer"
+              @click="isPwdNew = !isPwdNew"
+            />
+          </template>
+        </q-input>
+        <q-input
+          color="primary"
+          :type="isPwdConfirm ? 'password' : 'text'"
+          v-model="confirmPassword"
+          @blur="$v.confirmPassword.$touch"
+          :error="$v.confirmPassword.$error"
+          :error-message="$t('reset.errors.same')"
+          label="Confirmar nova senha">
+          <template v-slot:append>
+            <q-icon
+              :name="isPwdConfirm ? 'visibility_off' : 'visibility'"
+              class="cursor-pointer"
+              @click="isPwdConfirm = !isPwdConfirm"
+            />
+          </template>
+        </q-input>
       </q-card-section>
       <q-card-actions align="left">
         <q-btn flat class="a-btn_actions" @click="save" label="Alterar senha"/>
+        <q-btn flat class="a-btn_actions" @click="close" label="Cancelar"/>
       </q-card-actions>
     </q-card>
   </q-dialog>
 </template>
 
 <script>
+import { required, sameAs, minLength } from 'vuelidate/lib/validators'
+import store from '../../store'
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'changePassword',
   props: {
@@ -37,20 +73,41 @@ export default {
       currentPassword: '',
       newPassword: '',
       confirmPassword: '',
-      isPwd: true
+      isPwd: true,
+      isPwdNew: true,
+      isPwdConfirm: true
     }
+  },
+  validations: {
+    newPassword: { required, minLength: minLength(4) },
+    confirmPassword: { sameAsPassword: sameAs('newPassword') }
   },
   methods: {
     close () {
       this.$emit('close')
     },
-    next () {
-      this.$refs.stepper.next()
-    },
-    save () {
-      this.step = 1
-      this.$emit('close')
+    async save () {
+      this.$v.$touch()
+      if (!this.$v.$error) {
+        const payload = {
+          email: this.getUser.email,
+          password: this.currentPassword
+        }
+        const response = await store().dispatch('auth/login', payload)
+        if (response.status) {
+          this.$emit('close', this.newPassword)
+        } else {
+          this.$q.notify({
+            color: 'negative',
+            message: 'Sua senha atual está incorreta! Tente novamente!',
+            icon: 'report_problem'
+          })
+        }
+      }
     }
+  },
+  computed: {
+    ...mapGetters('user', ['getUser'])
   }
 }
 </script>

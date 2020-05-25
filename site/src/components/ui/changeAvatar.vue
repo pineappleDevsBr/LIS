@@ -1,10 +1,12 @@
 <template>
   <q-dialog v-model="selectAvatar" persistent>
-     <div class="m-changeAvatar">
-      <q-avatar class="m-changeAvatar_item" v-for="avatar in avatars" v-bind:key="avatar.id" @click="selectedAvatar(avatar.image)">
-        <img :src="`https://api.adorable.io/avatars/50/${avatar.image}`">
-      </q-avatar>
-     </div>
+     <q-card class="m-card">
+        <q-card-section class="m-changeAvatar">
+          <figure class="m-changeAvatar_item" v-for="avatar in avatars" v-bind:key="avatar.id" @click="selectedAvatar(avatar.image)">
+            <img :src="`https://api.adorable.io/avatars/50/${avatar.image}`">
+          </figure>
+        </q-card-section>
+     </q-card>
   </q-dialog>
 </template>
 
