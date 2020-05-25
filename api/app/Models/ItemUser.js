@@ -5,6 +5,10 @@ const Model = use('Model')
 
 class ItemUser extends Model {
   items() {
+    return this.hasOne('App/Models/Item', 'item_id', 'id');
+  }
+
+  users() {
     return this.belongsToMany('App/Models/Item')
   }
 }

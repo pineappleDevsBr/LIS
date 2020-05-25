@@ -3,6 +3,11 @@
 const ItemRepository = use('App/Repositories/ItemRepository')
 const ItemUserRepository = use('App/Repositories/ItemUserRepository')
 const ItemEnum = use('App/Base/ItemState');
+const ItemType = use('App/Models/ItemType');
+const ItemUser = use('App/Models/ItemUser');
+const randomIntFromInterval = (min, max) => {
+  return Math.floor(Math.random() * (max - min + 1) + min);
+}
 
 class StoreController {
   async index({ response }) {
@@ -37,20 +42,57 @@ class StoreController {
   }
 
   async use({ request, response, auth }) {
-    const { id } = request.only(['id']);
+    const types = (await ItemType.query().fetch()).toJSON();
+    const { id, friend } = request.all();
     const item = await ItemUserRepository.indexOf(id);
+    const itemData = item.toJSON();
+    const findedType = (types.find(i => i.id == itemData.items.item_type_id)).name;
+    const actions = {
 
-    if (item.status === ItemEnum.INACTIVATED) {
-      const time = new Date();
-      time.setHours(time.getHours() + 8);
-      item.status = ItemEnum.ACTIVATED;
-      item.endtime = time;
-      await item.save();
+      async gift(item) {
+        const items = await ItemRepository.index();
+        const random = randomIntFromInterval(0, items.rows.length - 1);
+        const randomItem = items.rows[random];
+        const data = await ItemUser.create({
+          user_id: friend ? friend : auth.user.id,
+          item_id: randomItem.id
+        })
 
-      response.send('successfully used item');
+        item.status = ItemEnum.USED;
+        item.endtime = new Date();
+        await item.save();
+        
+        response.json({
+          message: 'successfully used item',
+          data,
+          randomItem
+        });
+      },
+  
+      async attribute(item) {
+        const time = new Date();
+        time.setHours(time.getHours() + itemData.items.active_time);
+        item.status = ItemEnum.ACTIVATED;
+        item.endtime = time;
+        await item.save();
+        
+        response.json({
+          message: 'successfully used item',
+        });
+      }
+    }
+
+
+    if (itemData.status === ItemEnum.INACTIVATED) {
+      if (findedType === 'chest' || findedType === 'present' ) {
+        await actions.gift(item);
+      } else {
+        await actions.attribute(item);
+      }
     } else {
       response.status(401).send('The item is already being used');
     }
+
   }
 }
 

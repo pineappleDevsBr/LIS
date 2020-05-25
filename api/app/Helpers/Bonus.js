@@ -1,6 +1,7 @@
 'use strict'
 /** @type {import('@adonisjs/lucid/src/Lucid/Model')} */
-const ItemType = use('App/Models/ItemType');
+
+const ItemState = use('App/Base/ItemState');
 
 module.exports = async ({ payload, data }) => {
   const types = (await ItemType.query().fetch()).toJSON();
@@ -19,7 +20,7 @@ module.exports = async ({ payload, data }) => {
   }
 
   function init() {
-    items.forEach(item => {
+    items.rows.forEach(async item => {
       const type = types.find(i => i.id == item.item_type_id);
       const value = data.xp * (item.multiplier / 100);
       const hasUse = checkToUse(item.endtime);
@@ -27,6 +28,9 @@ module.exports = async ({ payload, data }) => {
       if (hasUse) {
         pdata[type.name] = value;
         pdata.bonus[type.name] = (value - data.xp);
+      } else {
+        item.status = ItemState.USED;
+        await item.save();
       }
     });
   }

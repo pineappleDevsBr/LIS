@@ -8,7 +8,7 @@ class Item extends Model {
     return ['created_at', 'updated_at'];
   }
 
-  itemUsers() {
+  items_user() {
     return this.hasMany('App/Models/ItemUser')
   }
 }
