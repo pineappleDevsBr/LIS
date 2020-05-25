@@ -37,7 +37,7 @@ const actions = {
 
   async useItem ({ commit }, payload) {
     try {
-      const data = await store.use({ id: payload })
+      const data = await store.use(payload)
       console.log(data)
       return data
     } catch (error) {
