@@ -2,6 +2,7 @@
 /** @type {import('@adonisjs/lucid/src/Lucid/Model')} */
 
 const ItemState = use('App/Base/ItemState');
+const ItemType = use('App/Models/ItemType');
 
 module.exports = async ({ payload, data }) => {
   const types = (await ItemType.query().fetch()).toJSON();
