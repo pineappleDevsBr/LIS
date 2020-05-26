@@ -9,8 +9,9 @@ class ItemUserRepository {
   async index(id) {
     const data = await ItemUser
       .query()
-      .innerJoin('items', 'item_users.item_id', 'items.id')
+      .with('item')
       .where('user_id', id)
+      .whereNot('item_users.status', 'used')
       .fetch();
 
     return data.toJSON();
@@ -20,7 +21,7 @@ class ItemUserRepository {
     const data = await ItemUser
       .query()
       .where('user_id', id)
-      .innerJoin('items', 'item_users.item_id', 'items.id')
+      .with('item')
       .whereNotIn('items.name', ['present', 'chest'])
       .where('item_users.status', 'activated')
       .fetch();
@@ -32,7 +33,7 @@ class ItemUserRepository {
     return await ItemUser
       .query()
       .where('id', id)
-      .with('items')
+      .with('item')
       .first();
   }
 

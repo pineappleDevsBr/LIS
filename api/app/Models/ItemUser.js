@@ -4,7 +4,7 @@
 const Model = use('Model')
 
 class ItemUser extends Model {
-  items() {
+  item() {
     return this.hasOne('App/Models/Item', 'item_id', 'id');
   }
 

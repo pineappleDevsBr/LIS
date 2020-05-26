@@ -29,9 +29,9 @@
             <div class="m-store_price">
               <strong>{{ item.status === 'inactivated' ? 'USAR' : 'EM USO'}}</strong>
             </div>
-            <img class="m-store_icon" :src="`statics/store/products/${item.icon}.svg`" alt="">
+            <img class="m-store_icon" :src="`statics/store/products/${item.item.icon}.svg`" alt="">
             <div class="m-store_product">
-              <h2 class="m-store_subtitle">{{item.name}}</h2>
+              <h2 class="m-store_subtitle">{{item.item.name}}</h2>
             </div>
           </q-card-section>
         </q-card>

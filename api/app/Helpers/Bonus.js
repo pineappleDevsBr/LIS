@@ -22,8 +22,8 @@ module.exports = async ({ payload, data }) => {
 
   function init() {
     items.rows.forEach(async item => {
-      const type = types.find(i => i.id == item.item_type_id);
-      const value = data.xp * (item.multiplier / 100);
+      const type = types.find(i => i.id == item.item.item_type_id);
+      const value = data.xp * (item.item.multiplier / 100);
       const hasUse = checkToUse(item.endtime);
 
       if (hasUse) {

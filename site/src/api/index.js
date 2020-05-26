@@ -8,7 +8,7 @@ import taskAPI from './modules/task'
 import storeAPI from './modules/store'
 
 const api = axios.create({
-  baseURL: 'http://localhost:3333/api/v1',
+  baseURL: process.env.API_URL,
   crossDomain: true,
   timeout: 10000
 })

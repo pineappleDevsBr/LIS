@@ -5,6 +5,7 @@ const ItemUserRepository = use('App/Repositories/ItemUserRepository')
 const ItemEnum = use('App/Base/ItemState');
 const ItemType = use('App/Models/ItemType');
 const ItemUser = use('App/Models/ItemUser');
+
 const randomIntFromInterval = (min, max) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
 }
@@ -46,7 +47,7 @@ class StoreController {
     const { id, friend } = request.all();
     const item = await ItemUserRepository.indexOf(id);
     const itemData = item.toJSON();
-    const findedType = (types.find(i => i.id == itemData.items.item_type_id)).name;
+    const findedType = (types.find(i => i.id == itemData.item.item_type_id)).name;
     const actions = {
 
       async gift(item) {
@@ -61,21 +62,21 @@ class StoreController {
         item.status = ItemEnum.USED;
         item.endtime = new Date();
         await item.save();
-        
+
         response.json({
           message: 'successfully used item',
           data,
           randomItem
         });
       },
-  
+
       async attribute(item) {
         const time = new Date();
-        time.setHours(time.getHours() + itemData.items.active_time);
+        time.setHours(time.getHours() + itemData.item.active_time);
         item.status = ItemEnum.ACTIVATED;
         item.endtime = time;
         await item.save();
-        
+
         response.json({
           message: 'successfully used item',
         });
