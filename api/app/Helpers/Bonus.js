@@ -22,13 +22,13 @@ module.exports = async ({ payload, data }) => {
 
   function init() {
     items.rows.forEach(async item => {
-      const type = types.find(i => i.id == item.item.item_type_id);
-      const value = data.xp * (item.item.multiplier / 100);
+      const type = types.find(i => i.id == item.toJSON().item.item_type_id);
+      const value = data[type.name] * (item.toJSON().item.multiplier / 100);
       const hasUse = checkToUse(item.endtime);
 
       if (hasUse) {
         pdata[type.name] = value;
-        pdata.bonus[type.name] = (value - data.xp);
+        pdata.bonus[type.name] = (value - data[type.name]);
       } else {
         item.status = ItemState.USED;
         await item.save();

@@ -21,8 +21,9 @@ class ItemUserRepository {
     const data = await ItemUser
       .query()
       .where('user_id', id)
-      .with('item')
-      .whereNotIn('items.name', ['present', 'chest'])
+      .with('item', builder => {
+        builder.whereNotIn('name', ['present', 'chest'])
+      })
       .where('item_users.status', 'activated')
       .fetch();
 
