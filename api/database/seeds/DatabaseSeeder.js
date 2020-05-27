@@ -59,9 +59,9 @@ class DatabaseSeeder {
     // -------------------------------------------------------------------------- //
 
     await Factory.model('App/Models/Item').create({
-      name: '200 XP',
+      name: 'Dobro de XP',
       icon: 'xp',
-      description: '200 pontos de XP para você subir de nível mais rápido!',
+      description: 'Por 8 horas você ganha o dobro de XP por atividade!',
       price: 1000,
       active_time: 8,
       item_type_id : 1,
@@ -71,7 +71,7 @@ class DatabaseSeeder {
     await Factory.model('App/Models/Item').create({
       name: '10% de Dinheiro',
       icon: 'money',
-      description: '10% dinheiro: você receberá 10% a mais de todo o dinheiro que você ganhar nas próximas 12h!',
+      description: '10% dinheiro: você receberá 10% a mais de todo o dinheiro que você ganhar nas próximas 8 horas!',
       price: 1000,
       active_time: 8,
       item_type_id : 2,
