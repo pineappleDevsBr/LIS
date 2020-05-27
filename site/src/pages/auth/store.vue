@@ -24,7 +24,7 @@
         </q-card>
       </div>
       <div class="m-cards" v-else>
-        <q-card class="m-card" v-for="item in getMyItems" v-bind:key="item.id" @click="useProduct(item.id, item.item_type_id)">
+        <q-card class="m-card" v-for="item in getMyItems" v-bind:key="item.id" @click="useProduct(item.id, item.item_id)">
           <q-card-section class="m-store_box-product">
             <div class="m-store_price">
               <strong>{{ item.status === 'inactivated' ? 'USAR' : 'EM USO'}}</strong>
@@ -146,6 +146,7 @@ export default {
       const response = await store().dispatch('store/useItem', payload)
       if (response) {
         await store().dispatch('store/getMyItems')
+        this.selectFriend = false
       } else {
         this.$q.notify({
           color: 'negative',
