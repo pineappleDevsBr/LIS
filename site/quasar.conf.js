@@ -80,7 +80,8 @@ module.exports = function (ctx) {
         'QTab',
         'QRouteTab',
         'QSkeleton',
-        'QExpansionItem'
+        'QExpansionItem',
+        'QVideo'
       ],
       directives: [
         'ClosePopup'

@@ -50,8 +50,8 @@
         <q-card-actions align="between">
           <q-checkbox keep-color v-model="repeatShowTutorial" label="Não mostrar novamente" color="primary" />
           <div>
-            <q-btn rounded label="Assistir agora" color="primary" v-close-popup  class="q-mr-md"/>
-            <q-btn rounded label="Assistir mais tarde" color="primary" v-close-popup />
+            <q-btn rounded label="Assistir agora" color="primary" @click="viewTutorial(true)"  class="q-mr-md"/>
+            <q-btn rounded label="Assistir mais tarde" color="primary" @click="viewTutorial(false)" />
           </div>
         </q-card-actions>
       </q-card>
@@ -82,6 +82,11 @@ export default {
   methods: {
     startLearn (next) {
       this.$router.push({ name: next })
+    },
+    viewTutorial (response) {
+      if (response) this.$router.push({ name: 'profile', params: { view: true } })
+      if (this.repeatShowTutorial) this.$q.cookies.set('lis_tutorial', false)
+      this.tutorial = false
     }
   }
 }

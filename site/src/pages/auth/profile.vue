@@ -62,7 +62,7 @@ export default {
     return {
       avatar: '',
       title: '',
-      openSettings: false,
+      openSettings: this.$route.params.view,
       achievements: [
         { id: 1, title: 'Resistencia', description: 'Faça 10 dias consecutivos de atividades', icon: 'shield.svg', progress: { showValue: true, levelUp: 10, xp: 0, active: true } },
         { id: 2, title: 'Modo NERD', description: 'Leia 20 textos do nível 3', icon: 'book.svg', progress: { showValue: true, levelUp: 20, xp: 0, active: true } }

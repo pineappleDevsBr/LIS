@@ -51,7 +51,7 @@
     </div>
     <div class="m-settings_notification">
       <h2 class="m-settings_title">{{ $t('profile.settings.about') }}</h2>
-      <q-card class="m-card m-settings_card">
+      <q-card class="m-card m-settings_card" @click="tutorialOpen = true">
         <q-card-section class="m-settings_info">
           <p class="m-settings_info-account">Tutoriais</p>
         </q-card-section>
@@ -76,6 +76,7 @@
     <changePassword :isOpen="changePassword.isOpen" @close="closePassword"></changePassword>
     <credits :credits="creditsOpen" @close="close"></credits>
     <terms :terms="termsOpen" @close="close"></terms>
+    <tutorial :tutorial="tutorialOpen" @close="close"></tutorial>
     </div>
   </q-dialog>
 </template>
@@ -86,6 +87,7 @@ import changeAvatar from './ui/changeAvatar'
 import changePassword from './ui/changePassword'
 import credits from './credits'
 import terms from './terms'
+import tutorial from './tutorial'
 import store from '../store/index'
 import { mapGetters } from 'vuex'
 
@@ -96,7 +98,8 @@ export default {
     changeAvatar,
     changePassword,
     credits,
-    terms
+    terms,
+    tutorial
   },
   props: {
     settings: Boolean
@@ -105,6 +108,7 @@ export default {
     return {
       creditsOpen: false,
       termsOpen: false,
+      tutorialOpen: this.$route.params.view,
       notifications: {
         update: false,
         changeData: true
@@ -170,6 +174,7 @@ export default {
     close () {
       this.creditsOpen = false
       this.termsOpen = false
+      this.tutorialOpen = false
     }
   },
   computed: {

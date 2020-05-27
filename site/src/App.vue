@@ -17,7 +17,7 @@ export default {
     await store().dispatch('user/getUser')
     await store().dispatch('theme/getTheme')
     await store().dispatch('darkMode/setDarkMode', this.$q.cookies.get('lis_darkmode'))
-    this.$q.cookies.set('lis_tutorial', this.getUser.xp < 500)
+    if (this.$q.cookies.get('lis_tutorial') === null) this.$q.cookies.set('lis_tutorial', this.getUser.xp < 500)
   }
 }
 </script>
