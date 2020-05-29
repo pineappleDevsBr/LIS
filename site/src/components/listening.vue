@@ -31,7 +31,7 @@
                 <video data-audio class="m-listening_audio" :src="question.filepath"></video>
               </q-card>
               <div>
-                  <q-input v-model="answers[index].answer" label="Digite aqui sua resposta..."/>
+                <q-input v-model="answers[index].answer" label="Digite aqui sua resposta..."/>
               </div>
             </q-step>
             <template v-slot:navigation>

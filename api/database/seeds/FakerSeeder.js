@@ -235,16 +235,49 @@ class FakerSeeder {
     });
 
     const question_001 = await Factory.model('App/Models/Question').make({
-      question: 'Digite o que escutou #1',
-      file: 'example.mp3'
+      question: 'Digite a tradução da frase que você ouvir',
+      file: 'i-am-from-brazil.mp3'
+    });
+
+    const question_002 = await Factory.model('App/Models/Question').make({
+      question: 'Digite o que você ouvir',
+      file: 'whats-your-name.mp3'
+    });
+    
+    const question_003 = await Factory.model('App/Models/Question').make({
+      question: 'Qual o nome falado no audio',
+      file: 'hi-my-name-is-lis.mp3'
+    });
+
+    const question_004 = await Factory.model('App/Models/Question').make({
+      question: 'Digite o que você ouvir',
+      file: 'hello.mp3'
     });
 
     const answer_001 = await Factory.model('App/Models/Answer').make({
-      answer: 'Louro jose fuma pao de queijo'
+      answer: 'eu sou do brasil'
+    });
+
+    const answer_002 = await Factory.model('App/Models/Answer').make({
+      answer: 'what is your name'
+    });
+
+    const answer_003 = await Factory.model('App/Models/Answer').make({
+      answer: 'Lis'
+    });
+
+    const answer_004 = await Factory.model('App/Models/Answer').make({
+      answer: 'Hello'
     });
 
     await task_11.questions().save(question_001);
+    await task_11.questions().save(question_002);
+    await task_11.questions().save(question_003);
+    await task_11.questions().save(question_004);
     await question_001.answers().save(answer_001);
+    await question_002.answers().save(answer_002);
+    await question_003.answers().save(answer_003);
+    await question_004.answers().save(answer_004);
 
     // -------------------------------------------------------------------------- //
 
