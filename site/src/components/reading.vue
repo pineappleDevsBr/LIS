@@ -91,8 +91,8 @@ export default {
           task_type_id: this.taskType,
           answers: ''
         }
-        const { approved, values: results } = await store().dispatch('task/sendAnswers', payload)
-        this.$emit('closeReading', { approved, results })
+        const { approved, values } = await store().dispatch('task/sendAnswers', payload)
+        this.$emit('closeReading', { approved, values })
       } else this.$emit('closeReading')
     },
     startCount () {

@@ -100,7 +100,7 @@ export default {
       this.openListening = false
       this.openComplete = false
       this.openReading = false
-      console.log(event)
+      console.log(event.values.bonus)
       if (event) {
         this.openFeedback = true
         this.feedbackResults = event

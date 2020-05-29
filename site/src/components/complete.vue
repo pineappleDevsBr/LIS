@@ -109,13 +109,13 @@ export default {
             task_type_id: this.taskType,
             answers: this.answers
           }
-          const { approved, results } = await store().dispatch('task/sendAnswers', this.cleanAnswers(payload))
+          const { approved, results, values } = await store().dispatch('task/sendAnswers', this.cleanAnswers(payload))
 
           this.answers.forEach(elm => {
             elm.question_id = null
             elm.answer = null
           })
-          this.$emit('closeComplete', { approved, results })
+          this.$emit('closeComplete', { approved, results, values })
           this.step = 1
           this.progress.xp = 0
           this.$q.loading.hide()
