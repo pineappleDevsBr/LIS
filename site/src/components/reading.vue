@@ -94,6 +94,7 @@ export default {
         const { approved, values } = await store().dispatch('task/sendAnswers', payload)
         this.$emit('closeReading', { approved, values })
       } else this.$emit('closeReading')
+      this.finishReading = false
     },
     startCount () {
       const set = setInterval(() => {
@@ -119,9 +120,8 @@ export default {
       this.title = value[0].question
       this.text = value[0].text
       this.translation = value[0].translation
-      this.numberWords = this.text.split(' ')
-      // this.time = Math.trunc((this.numberWords.length * 70) / 150)
-      this.time = 2
+      if (this.text) this.numberWords = this.text.split(' ')
+      this.time = Math.trunc((this.numberWords.length * 70) / 150)
       this.aux = (100 / this.time)
     }
   }

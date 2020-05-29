@@ -16,14 +16,14 @@
           <img class="m-store_coin" src="statics/store/coin.svg">
         </div>
       </div>
-      <div v-if="feedbackResults.values.bonus.xp || feedbackResults.values.bonus.money">
+      <div v-if="bonus.exists">
         Bônus:
-        <div class="m-feedback_reward" v-if="feedbackResults.approved">
-          <div class="a-text m-feedback_text" v-if="feedbackResults.values.bonus.xp">
-            {{ feedbackResults.values.bonus.xp }} XP
+        <div class="m-feedback_reward">
+          <div class="a-text m-feedback_text" v-if="bonus.xp">
+            {{ bonus.xp }} XP
           </div>
-          <div class="a-text m-feedback_text m-feedback_money" v-if="feedbackResults.values.bonus.money">
-            {{ (feedbackResults.values.bonus.money).toFixed(0) }}
+          <div class="a-text m-feedback_text m-feedback_money" v-if="bonus.money">
+            {{ (bonus.money).toFixed(0) }}
             <img class="m-store_coin" src="statics/store/coin.svg">
           </div>
         </div>
@@ -55,12 +55,30 @@ export default {
     money: Number,
     questions: Array
   },
+  data () {
+    return {
+      bonus: {
+        exists: false,
+        xp: null,
+        money: null
+      }
+    }
+  },
   methods: {
     close () {
       this.$emit('close')
     },
     remake () {
       this.$emit('remakeActivitie')
+    }
+  },
+  watch: {
+    feedbackResults (values) {
+      if (values.values.bonus.xp || values.values.bonus.money) {
+        this.bonus.exists = true
+        this.bonus.xp = values.values.bonus.xp
+        this.bonus.money = values.values.bonus.money
+      }
     }
   }
 }
