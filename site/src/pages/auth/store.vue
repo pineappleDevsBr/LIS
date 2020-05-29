@@ -85,6 +85,18 @@
         </q-card>
       </div>
     </q-dialog>
+    <q-dialog v-model="useConfirm" persistent>
+      <q-card class="m-card -limit">
+        <q-card-section class="row items-center">
+          <span class="q-ml-sm">Deseja mesmo ativar este item?</span>
+        </q-card-section>
+
+        <q-card-actions align="right">
+          <q-btn flat rounded label="Sim" class="a-btn -dark" v-close-popup @click="activeProduct(itemSelect)"/>
+          <q-btn flat rounded label="Não" class="a-btn -dark" v-close-popup />
+        </q-card-actions>
+      </q-card>
+    </q-dialog>
   </div>
 </template>
 
@@ -106,7 +118,8 @@ export default {
       currentMoney: 0,
       selectFriend: false,
       friend: null,
-      itemSelect: null
+      itemSelect: null,
+      useConfirm: false
     }
   },
   methods: {
@@ -124,21 +137,28 @@ export default {
       }
     },
     async useProduct (id, type) {
+      this.itemSelect = id
       if (type === 3) {
         this.selectFriend = true
-        this.itemSelect = id
       } else {
-        const payload = { id: id }
-        const response = await store().dispatch('store/useItem', payload)
-        if (response) {
-          await store().dispatch('store/getMyItems')
+        if (this.$q.cookies.get('lis_confirmUseItems')) {
+          this.useConfirm = true
         } else {
-          this.$q.notify({
-            color: 'negative',
-            message: 'Ocorreu um erro ao ativar o item, tente novamente ou entre em contato com o suporte técnico.',
-            icon: 'report_problem'
-          })
+          this.activeProduct(this.itemSelect)
         }
+      }
+    },
+    async activeProduct (id) {
+      const payload = { id: id }
+      const response = await store().dispatch('store/useItem', payload)
+      if (response) {
+        await store().dispatch('store/getMyItems')
+      } else {
+        this.$q.notify({
+          color: 'negative',
+          message: 'Ocorreu um erro ao ativar o item, tente novamente ou entre em contato com o suporte técnico.',
+          icon: 'report_problem'
+        })
       }
     },
     async usePresent (item, friend) {

@@ -20,6 +20,12 @@
     </q-card>
     <q-card class="m-card">
       <q-card-section class="m-settings_info -between">
+        <p class="m-settings_info-notifications">Confirmação de uso dos itens da loja</p>
+        <q-toggle v-model="confirmUseItems" color="primary"/>
+      </q-card-section>
+    </q-card>
+    <q-card class="m-card">
+      <q-card-section class="m-settings_info -between">
         <p class="m-settings_info-notifications">{{ $t('generalAdjustments.darkMode') }}</p>
         <q-toggle v-model="isDark" color="primary"/>
       </q-card-section>
@@ -48,6 +54,7 @@ export default {
     return {
       themesOpen: false,
       isDark: false,
+      confirmUseItems: false,
       lang: this.$i18n.locale,
       options: ['pt-br', 'en-us']
     }
@@ -61,6 +68,9 @@ export default {
     }
   },
   watch: {
+    confirmUseItems (value) {
+      store().dispatch('settings/confirmUseItems', value)
+    },
     isDark (value) {
       store().dispatch('darkMode/setDarkMode', value)
     },
@@ -70,10 +80,12 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('darkMode', ['getDarkMode'])
+    ...mapGetters('darkMode', ['getDarkMode']),
+    ...mapGetters('settings', ['getConfirmUseItem'])
   },
   mounted () {
     this.isDark = this.getDarkMode ? this.getDarkMode : false
+    this.confirmUseItems = this.getConfirmUseItem ? this.getConfirmUseItem : false
   }
 }
 </script>

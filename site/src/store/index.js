@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import darkMode from './modules/dark-mode'
+import settings from './modules/settings'
 import auth from './modules/auth'
 import user from './modules/user'
 import friends from './modules/friends'
@@ -25,6 +26,7 @@ export default function (/* { ssrContext } */) {
       friends,
       theme,
       darkMode,
+      settings,
       task,
       store
     },
