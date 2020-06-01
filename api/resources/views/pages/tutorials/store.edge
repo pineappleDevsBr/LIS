@@ -1,0 +1,31 @@
+@layout('layout.index')
+
+@section('content')
+
+<div class="card-body card-block">
+  <form action="{{ route('admin.tutorials.store') }}" method="post" class="form-horizontal">
+    <legend class="row col m-b-40"> Register a new tutorial </legend>
+    <div class="row form-group">
+      <div class="col-12 col-md-9">
+        <input type="text" name="name" placeholder="Tutorial settings..." class="form-control">
+        <small class="form-text text-muted">The video name here!</small>
+      </div>
+    </div>
+    <div class="row form-group">
+      <div class="col-12 col-md-9">
+        <input type="text" name="link" placeholder="https://www.youtube.com/embed/..." class="form-control">
+        <small class="form-text text-muted">On the youtube link, click Share, then embed and finally copy the link inside src = "https: //www.youtube.com/embed / ..."</small>
+      </div>
+    </div>
+    <div class="">
+      <button type="submit" class="btn btn-primary btn-sm">
+        <i class="fa fa-dot-circle-o"></i> Submit
+      </button>
+      <button type="reset" class="btn btn-danger btn-sm">
+        <i class="fa fa-ban"></i> Reset
+      </button>
+      </div>
+  </form>
+</div>
+
+@endsection

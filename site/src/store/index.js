@@ -8,6 +8,7 @@ import friends from './modules/friends'
 import theme from './modules/theme'
 import task from './modules/task'
 import store from './modules/store'
+import tutorials from './modules/tutorials'
 
 // import example from './module-example'
 
@@ -28,7 +29,8 @@ export default function (/* { ssrContext } */) {
       darkMode,
       settings,
       task,
-      store
+      store,
+      tutorials
     },
 
     // enable strict mode (adds overhead!)

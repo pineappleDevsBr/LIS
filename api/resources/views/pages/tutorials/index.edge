@@ -1,0 +1,20 @@
+@layout('layout.index')
+
+@section('content')
+<div class="container-fluid pt-3">
+  <div class="row mb-3">
+    <div class="col d-flex align-items-center">
+      <a href="{{ route('admin.tutorials.store') }}" class="btn btn-danger m-r-20">
+        <i class="fa fa-plus"></i>
+          New tutorial
+      </a>
+      @if(old('result'))
+        <div class="alert alert-success mb-0" role="alert">
+          Tutorial has succesfull {{ old('result') }}
+        </div>
+      @endif
+    </div>
+  </div>
+  @include('partials.tutorials.index')
+</div>
+@endsection

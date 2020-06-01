@@ -1,6 +1,7 @@
 import axios from 'axios'
 import { Cookies } from 'quasar'
 import authAPI from './modules/auth'
+import tutorialAPI from './modules/tutorial'
 import userAPI from './modules/user'
 import friendsAPI from './modules/friends'
 import themeAPI from './modules/theme'
@@ -28,3 +29,4 @@ export const friends = friendsAPI(api)
 export const theme = themeAPI(api)
 export const task = taskAPI(api)
 export const store = storeAPI(api)
+export const tutorial = tutorialAPI(api)

@@ -1,0 +1,25 @@
+<div class="row">
+  @each(item in tutorials)
+    <div class="col-md-5">
+      <div class="card">
+        <div class="card-header d-flex justify-content-between align-items-center flex-wrap">
+          <strong class="card-title mb-0 mr-2">{{ item.name }}</strong>
+          <div class="d-flex">
+            <a href="{{ route('admin.tutorials.update') }}/{{ item.id }}" class="btn btn-outline-primary btn-sm mr-2">Update</a>
+            <form action="{{ route('admin.tutorials.delete') }}" method="post">
+              <input type="hidden" name="id" value="{{ item.id }}">
+              <button type="submit" class="btn btn-outline-danger btn-sm">Delete</button>
+            </form>
+          </div>
+        </div>
+        <!-- 16:9 aspect ratio -->
+        <div class="embed-responsive embed-responsive-16by9">
+          <iframe class="embed-responsive-item" src="{{ item.link }}"></iframe>
+        </div>
+        <div class="card-body">
+          <p class="card-text">Embed link: {{ item.link }}</p>
+        </div>
+      </div>
+  </div>
+  @endeach
+</div>

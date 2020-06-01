@@ -14,7 +14,7 @@
         @click="closeTutorial"/>
       </div>
       <div class="o-modal_content m-tutorials">
-        <q-card class="m-card m-tutorials_tutorial" v-for="item in tutorials" v-bind:key="item.id">
+        <q-card class="m-card m-tutorials_tutorial" v-for="item in getTutorials" v-bind:key="item.id">
           <q-card-section class="m-tutorials_video">
             <q-video
               :ratio="16/9"
@@ -22,7 +22,7 @@
               />
           </q-card-section>
           <q-card-section>
-            <h3 class="m-tutorials_video-title">{{ item.title }}</h3>
+            <h3 class="m-tutorials_video-title">{{ item.name }}</h3>
           </q-card-section>
         </q-card>
       </div>
@@ -31,25 +31,24 @@
 </template>
 
 <script>
+import store from '../store/index'
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'tutorial',
   props: {
     tutorial: Boolean
   },
-  data () {
-    return {
-      tutorials: [
-        { id: 1, title: 'Como realizar uma atividade do tipo quiz', link: 'https://www.youtube.com/embed/0YF8vecQWYs' },
-        { id: 2, title: 'Como realizar uma atividade do tipo listening', link: 'https://www.youtube.com/embed/0YF8vecQWYs' },
-        { id: 3, title: 'Como realizar uma atividade do tipo reading', link: 'https://www.youtube.com/embed/0YF8vecQWYs' },
-        { id: 4, title: 'Como realizar uma atividade do tipo complete', link: 'https://www.youtube.com/embed/0YF8vecQWYs' }
-      ]
-    }
-  },
   methods: {
     closeTutorial () {
       this.$emit('close')
     }
+  },
+  computed: {
+    ...mapGetters('tutorials', ['getTutorials'])
+  },
+  async mounted () {
+    await store().dispatch('tutorials/getTutorials')
   }
 }
 </script>

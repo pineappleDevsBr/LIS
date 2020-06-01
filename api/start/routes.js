@@ -45,6 +45,7 @@ Route.group(() => {
 }).prefix('api/v1').middleware(['auth:jwt']);
 
 Route.group(() => {
+  Route.get('/tutorial', 'Api/TutorialController.index')
   Route.get('/theme', 'Api/ThemeController.index')
   Route.post('/check', 'Api/UserController.check')
   Route.post('/user', 'Api/UserController.store').validator(['User'])
@@ -69,9 +70,14 @@ Route.group(() => {
   Route.get('/themes/update/:id', 'Admin/ThemeController.indexOf').as('admin.themes.indexOf')
   Route.post('/themes', 'Admin/ThemeController.delete').as('admin.themes.delete')
   Route.get('/themes', 'Admin/ThemeController.index').as('admin.themes')
-
+  
   // Admin -> Users
   Route.get('/users', 'Admin/UserController.index').as('admin.users')
+  
+  // Admin -> Tutorials
+  Route.on('/tutorials/new').render('pages.tutorials.store')
+  Route.get('/tutorials', 'Admin/TutorialController.index').as('admin.tutorials')
+  Route.post('/tutorials/new', 'Admin/TutorialController.store').as('admin.tutorials.store')
 
   // Admin -> Tasks
   Route.get('/tasks/update/:id', 'Site/TaskController.update').as('admin.task.update')
