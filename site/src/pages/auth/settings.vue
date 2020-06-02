@@ -54,7 +54,7 @@ export default {
     return {
       themesOpen: false,
       isDark: false,
-      confirmUseItems: false,
+      confirmUseItems: true,
       lang: this.$i18n.locale,
       options: ['pt-br', 'en-us']
     }

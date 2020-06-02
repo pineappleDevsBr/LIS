@@ -17,7 +17,8 @@ export default {
     await store().dispatch('user/getUser')
     await store().dispatch('theme/getTheme')
     await store().dispatch('darkMode/setDarkMode', this.$q.cookies.get('lis_darkmode'))
-    await store().dispatch('settings/confirmUseItems', this.$q.cookies.get('lis_confirmUseItems'))
+    console.log(this.$q.cookies.get('lis_confirmUseItems'))
+    await store().dispatch('settings/confirmUseItems', true)
     if (this.$q.cookies.get('lis_tutorial') === null) this.$q.cookies.set('lis_tutorial', this.getUser.xp < 500)
   }
 }

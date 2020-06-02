@@ -11,35 +11,10 @@
       </div>
       <q-btn class="m-profile_edit" no-caps flat :label="$t('profile.editData')" @click="openSettings = true"/>
     </div>
-    <div class="m-profile_achievements" v-if="achievements.length > 0">
-      <h2 class="m-profile_title">Conquistas</h2>
-      <div v-for="item in achievements" v-bind:key="`skl_${item.id}`">
-        <q-card class="m-skeleton" v-if="!item.progress.active">
-          <q-card-section class="m-activities_information">
-            <q-skeleton type="QAvatar" class="m-skeleton_avatar" />
-            <div>
-              <q-skeleton type="text" class="m-skeleton_title" />
-              <q-skeleton type="text" class="m-skeleton_subtitle" />
-            </div>
-          </q-card-section>
-          <q-card-section>
-            <q-skeleton type="rect"/>
-          </q-card-section>
-        </q-card>
-      </div>
-      <div v-for="item in achievements" v-bind:key="item.id">
-        <q-card class="m-card" v-if="item.progress.active">
-          <q-card-section class="m-profile_card">
-            <img class="m-profile_icon" :src="`statics/profile/achievements/${item.icon}`" alt="">
-            <div>
-              <h2 class="m-profile_subtitle q-dark_title">{{item.title}}</h2>
-              <p class="m-profile_description">{{item.description}}</p>
-            </div>
-          </q-card-section>
-          <q-card-section>
-            <progressBar :progress="item.progress"></progressBar>
-          </q-card-section>
-        </q-card>
+    <div class="m-profile_achievements">
+      <h2 class="m-profile_title">Notificações</h2>
+      <div class="a-text">
+        Você não tem nenhuma notificação!
       </div>
     </div>
     <settings :settings="openSettings" @closeSettings="closeSettings"></settings>
@@ -47,7 +22,6 @@
 </template>
 
 <script>
-import progressBar from '../../components/progress-bar'
 import settings from '../../components/settings'
 import store from '../../store'
 import { mapGetters } from 'vuex'
@@ -55,18 +29,13 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'Profile',
   components: {
-    progressBar,
     settings
   },
   data () {
     return {
       avatar: '',
       title: '',
-      openSettings: this.$route.params.view,
-      achievements: [
-        { id: 1, title: 'Resistencia', description: 'Faça 10 dias consecutivos de atividades', icon: 'shield.svg', progress: { showValue: true, levelUp: 10, xp: 0, active: true } },
-        { id: 2, title: 'Modo NERD', description: 'Leia 20 textos do nível 3', icon: 'book.svg', progress: { showValue: true, levelUp: 20, xp: 0, active: true } }
-      ]
+      openSettings: this.$route.params.view
     }
   },
   methods: {
