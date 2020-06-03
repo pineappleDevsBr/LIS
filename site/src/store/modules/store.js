@@ -19,8 +19,14 @@ const actions = {
   async getMyItems ({ commit }) {
     try {
       const { data: items } = await store.myItems()
-      commit('UPDATE_MYITEMS', items)
-      return items
+      const grouptItems = [[], [], [], []]
+
+      items.forEach(elm => grouptItems[elm.item_id - 1].push(elm))
+
+      console.log(grouptItems)
+
+      commit('UPDATE_MYITEMS', grouptItems)
+      return grouptItems
     } catch (error) {
       return { status: false, error }
     }

@@ -82,7 +82,8 @@ module.exports = function (ctx) {
         'QSkeleton',
         'QExpansionItem',
         'QVideo',
-        'QTooltip'
+        'QTooltip',
+        'QBadge'
       ],
       directives: [
         'ClosePopup'

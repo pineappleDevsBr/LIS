@@ -8,7 +8,7 @@
       <img class="m-spotlight_icon" src="statics/store/online-store.svg" alt="Store">
       {{ $t('store.title') }}
     </div>
-    <div class="m-store_group" v-if="getMyItems.length > 0">
+    <div class="m-store_group" v-if="getMyItems">
     <h2 class="m-store_title">{{ $t('store.myItems') }}</h2>
       <div class="m-cards" v-if="!getMyItems">
         <q-card class="m-card m-skeleton -center" v-for="index in 2" v-bind:key="`skl_${index}`">
@@ -24,8 +24,12 @@
         </q-card>
       </div>
       <div class="m-cards" v-else>
-        <q-card class="m-card" v-for="item in getMyItems" v-bind:key="item.id" @click="useProduct(item.id, item.item_id)">
+        <div v-for="(item, index) in getMyItems" v-bind:key="index">
+          {{ item[0] }} <!-- com o [0] mostra só o primeiro item sem repitir -->
+        </div>
+        <!-- <q-card class="m-card" v-for="item in getMyItems" v-bind:key="item.id" @click="useProduct(item.id, item.item_id)">
           <q-card-section class="m-store_box-product">
+            <q-badge floating color="primary" text-color="white" label="2x" />
             <div class="m-store_price">
               <strong>{{ item.status === 'inactivated' ? 'USAR' : 'EM USO'}}</strong>
             </div>
@@ -34,7 +38,7 @@
               <h2 class="m-store_subtitle">{{item.item.name}}</h2>
             </div>
           </q-card-section>
-        </q-card>
+        </q-card> -->
       </div>
     </div>
     <h2 class="m-store_title">{{ $t('store.availableItems') }}</h2>
