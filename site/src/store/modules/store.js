@@ -19,11 +19,17 @@ const actions = {
   async getMyItems ({ commit }) {
     try {
       const { data: items } = await store.myItems()
-      const grouptItems = [[], [], [], []]
+      const grouptItems = {}
 
-      items.forEach(elm => grouptItems[elm.item_id - 1].push(elm))
+      items.forEach(elm => (grouptItems[elm.item_id] = { item: null, qtde: 0 }))
+      items.forEach(elm => {
+        if (grouptItems[elm.item_id].item === null || elm.status !== 'inactivated') {
+          grouptItems[elm.item_id].item = elm
+        }
+        grouptItems[elm.item_id].qtde += 1
+      })
 
-      console.log(grouptItems)
+      Object.keys(grouptItems).forEach(key => (grouptItems[key].qtde === 0) && delete grouptItems[key])
 
       commit('UPDATE_MYITEMS', grouptItems)
       return grouptItems

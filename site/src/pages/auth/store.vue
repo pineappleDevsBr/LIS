@@ -24,21 +24,18 @@
         </q-card>
       </div>
       <div class="m-cards" v-else>
-        <div v-for="(item, index) in getMyItems" v-bind:key="index">
-          {{ item[0] }} <!-- com o [0] mostra só o primeiro item sem repitir -->
-        </div>
-        <!-- <q-card class="m-card" v-for="item in getMyItems" v-bind:key="item.id" @click="useProduct(item.id, item.item_id)">
+        <q-card class="m-card" v-for="item in getMyItems" v-bind:key="item.item.id" @click="useProduct(item.item.id, item.item.item_id, item.item.status)">
           <q-card-section class="m-store_box-product">
-            <q-badge floating color="primary" text-color="white" label="2x" />
+            <q-badge floating color="primary" text-color="white" :label="`${item.qtde}x`" />
             <div class="m-store_price">
-              <strong>{{ item.status === 'inactivated' ? 'USAR' : 'EM USO'}}</strong>
+              <strong>{{ item.item.status === 'inactivated' ? 'USAR' : 'EM USO'}}</strong>
             </div>
-            <img class="m-store_icon" :src="`statics/store/products/${item.item.icon}.svg`" alt="">
+            <img class="m-store_icon" :src="`statics/store/products/${item.item.item.icon}.svg`" alt="">
             <div class="m-store_product">
-              <h2 class="m-store_subtitle">{{item.item.name}}</h2>
+              <h2 class="m-store_subtitle">{{item.item.item.name}}</h2>
             </div>
           </q-card-section>
-        </q-card> -->
+        </q-card>
       </div>
     </div>
     <h2 class="m-store_title">{{ $t('store.availableItems') }}</h2>
@@ -140,15 +137,17 @@ export default {
         })
       }
     },
-    async useProduct (id, type) {
-      this.itemSelect = id
-      if (type === 3) {
-        this.selectFriend = true
-      } else {
-        if (this.$q.cookies.get('lis_confirmUseItems')) {
-          this.useConfirm = true
+    async useProduct (id, type, status) {
+      if (status === 'inactivated') {
+        this.itemSelect = id
+        if (type === 3) {
+          this.selectFriend = true
         } else {
-          this.activeProduct(this.itemSelect)
+          if (this.$q.cookies.get('lis_confirmUseItems')) {
+            this.useConfirm = true
+          } else {
+            this.activeProduct(this.itemSelect)
+          }
         }
       }
     },
