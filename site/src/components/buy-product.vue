@@ -80,10 +80,12 @@ export default {
           icon: 'error'
         })
       }
+      this.qtde = 1
       this.$q.loading.hide()
     },
     close () {
       this.$emit('close')
+      this.qtde = 1
     }
   },
   watch: {
