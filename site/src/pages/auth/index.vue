@@ -49,9 +49,9 @@
         <q-img src="statics/activities/tutorials.png" />
         <q-card-actions align="between">
           <q-checkbox keep-color v-model="repeatShowTutorial" label="Não mostrar novamente" color="primary" />
-          <div>
-            <q-btn rounded label="Assistir agora" color="primary" @click="viewTutorial(true)"  class="q-mr-md"/>
-            <q-btn rounded label="Assistir mais tarde" color="primary" @click="viewTutorial(false)" />
+          <div class="m-tutorials_modal-group">
+            <q-btn class="m-tutorials_modal-btn" rounded label="Assistir agora" color="primary" @click="viewTutorial(true)" />
+            <q-btn class="m-tutorials_modal-btn" rounded label="Assistir mais tarde" color="primary" @click="viewTutorial(false)" />
           </div>
         </q-card-actions>
       </q-card>
