@@ -17,11 +17,11 @@ const routes = [
       { path: '', name: 'home', component: () => import('pages/auth/index.vue') },
       { path: 'store', name: 'store', component: () => import('pages/auth/store.vue') },
       { path: 'profile', name: 'profile', component: () => import('pages/auth/profile.vue') },
-      { path: 'profile/:id', component: () => import('pages/internal-pages/profile-friend.vue') },
-      { path: 'reading', name: 'reading', component: () => import('pages/activities/theme-filter.vue') },
-      { path: 'quiz', name: 'quiz', component: () => import('pages/activities/theme-filter.vue') },
-      { path: 'listening', name: 'listening', component: () => import('pages/activities/theme-filter.vue') },
-      { path: 'complete', name: 'complete', component: () => import('pages/activities/theme-filter.vue') },
+      { path: 'profile/:id', component: () => import('pages/auth/profile-friend.vue') },
+      { path: 'reading', name: 'reading', component: () => import('pages/auth/theme-filter.vue') },
+      { path: 'quiz', name: 'quiz', component: () => import('pages/auth/theme-filter.vue') },
+      { path: 'listening', name: 'listening', component: () => import('pages/auth/theme-filter.vue') },
+      { path: 'complete', name: 'complete', component: () => import('pages/auth/theme-filter.vue') },
       { path: 'hub', name: 'hub', component: () => import('pages/auth/hub.vue') },
       { path: 'settings', name: 'settings', component: () => import('pages/auth/settings.vue') }
     ]

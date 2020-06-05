@@ -46,11 +46,11 @@
 </template>
 
 <script>
-import quiz from '../../components/quiz'
-import reading from '../../components/reading'
-import listening from '../../components/listening'
-import complete from '../../components/complete'
-import feedback from '../../components/feedback'
+import quiz from '../../components/activities/quiz'
+import reading from '../../components/activities/reading'
+import listening from '../../components/activities/listening'
+import complete from '../../components/activities/complete'
+import feedback from '../../components/activities/feedback'
 import btnBack from '../../components/ui/btnBack'
 import taskType from '../../utils/type_task'
 import store from '../../store'

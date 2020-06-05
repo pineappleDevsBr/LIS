@@ -86,23 +86,18 @@
         </q-card>
       </div>
     </q-dialog>
-    <q-dialog v-model="useConfirm" persistent>
-      <q-card class="m-card -limit">
-        <q-card-section class="row items-center">
-          <span class="q-ml-sm">Deseja mesmo ativar este item?</span>
-        </q-card-section>
-
-        <q-card-actions align="right">
-          <q-btn flat rounded label="Sim" class="a-btn -dark" v-close-popup @click="activeProduct(itemSelect)"/>
-          <q-btn flat rounded label="Não" class="a-btn -dark" v-close-popup />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
+    <confirmUse
+      :persistent="confirmUse.presistent"
+      :title="confirmUse.title"
+      :isOpen="confirmUse.open"
+      @close="activeProduct"
+    />
   </div>
 </template>
 
 <script>
 import buy from '../../components/buy-product'
+import confirmUse from '../../components/ui/dlg-confirm'
 import store from '../../store'
 import { mapGetters } from 'vuex'
 import { CountUp } from 'countup.js'
@@ -110,17 +105,24 @@ import { CountUp } from 'countup.js'
 export default {
   name: 'Store',
   components: {
-    buy
+    buy,
+    confirmUse
   },
   data () {
     return {
+      evt: null,
       buyConfirm: false,
       productId: 0,
       currentMoney: 0,
       selectFriend: false,
       friend: null,
       itemSelect: null,
-      useConfirm: false
+      useConfirm: false,
+      confirmUse: {
+        open: false,
+        persistent: true,
+        title: 'Deseja mesmo usar esse item?'
+      }
     }
   },
   methods: {
@@ -144,25 +146,28 @@ export default {
           this.selectFriend = true
         } else {
           if (this.$q.cookies.get('lis_confirmUseItems')) {
-            this.useConfirm = true
+            this.confirmUse.open = true
           } else {
             this.activeProduct(this.itemSelect)
           }
         }
       }
     },
-    async activeProduct (id) {
-      const payload = { id: id }
-      const response = await store().dispatch('store/useItem', payload)
-      if (response) {
-        await store().dispatch('store/getMyItems')
-      } else {
-        this.$q.notify({
-          color: 'negative',
-          message: 'Ocorreu um erro ao ativar o item, tente novamente ou entre em contato com o suporte técnico.',
-          icon: 'report_problem'
-        })
+    async activeProduct (evt) {
+      if (evt) {
+        const payload = { id: this.itemSelect }
+        const response = await store().dispatch('store/useItem', payload)
+        if (response) {
+          await store().dispatch('store/getMyItems')
+        } else {
+          this.$q.notify({
+            color: 'negative',
+            message: 'Ocorreu um erro ao ativar o item, tente novamente ou entre em contato com o suporte técnico.',
+            icon: 'report_problem'
+          })
+        }
       }
+      this.confirmUse.open = false
     },
     async usePresent (item, friend) {
       const payload = { id: item, friend }

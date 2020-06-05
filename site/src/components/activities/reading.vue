@@ -12,7 +12,7 @@
           <q-btn
           flat
           icon="close"
-          @click="confirm= true"/>
+          @click="closeActivities.open = true"/>
         </div>
         </div>
         <div class="o-modal_content o-reading">
@@ -43,26 +43,24 @@
           <q-btn no-caps rounded :disabled="!finishReading"  class="m-reading_btn" :label="!finishReading ? `Aguarde ${minutes}segundos para ler outro texto` : 'Ler outro texto'" @click="closeReading"/>
       </div>
     </div>
-    <q-dialog v-model="confirm" persistent>
-      <q-card class="m-card -limit">
-        <q-card-section class="row items-center">
-          <span class="q-ml-sm">Deseja mesmo abandonar essa atividade?<br>Suas respostas e recompensas serão perdidas</span>
-        </q-card-section>
-
-        <q-card-actions align="right">
-          <q-btn flat rounded label="Sim" class="a-btn -dark" v-close-popup @click="closeReading"/>
-          <q-btn flat rounded label="Não" class="a-btn -dark" v-close-popup />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
+    <closeActivities
+      :persistent="closeActivities.presistent"
+      :title="closeActivities.title"
+      :isOpen="closeActivities.open"
+      @close="closeReading"
+    />
   </q-dialog>
 </template>
 
 <script>
-import store from '../store/index'
+import closeActivities from '../ui/dlg-confirm'
+import store from '../../store/index'
 
 export default {
   name: 'Reading',
+  components: {
+    closeActivities
+  },
   props: {
     reading: Boolean,
     taskType: Number,
@@ -70,6 +68,12 @@ export default {
   },
   data () {
     return {
+      closeActivities: {
+        open: false,
+        persistent: true,
+        title: 'Deseja mesmo abandonar essa atividade?<br>Suas respostas e recompensas serão perdidas'
+      },
+      set: null,
       translated: false,
       finishReading: false,
       confirm: false,
@@ -84,7 +88,7 @@ export default {
     }
   },
   methods: {
-    async closeReading () {
+    async closeReading (evt) {
       if (this.finishReading) {
         const payload = {
           task_id: this.questions[0].task_id,
@@ -93,16 +97,22 @@ export default {
         }
         const { approved, values } = await store().dispatch('task/sendAnswers', payload)
         this.$emit('closeReading', { approved, values })
-      } else this.$emit('closeReading')
+      } else {
+        this.closeActivities.open = false
+        if (evt) {
+          clearInterval(this.set)
+          this.$emit('closeReading')
+        }
+      }
       this.finishReading = false
     },
     startCount () {
-      const set = setInterval(() => {
+      this.set = setInterval(() => {
         if (this.time > 0) {
           this.time -= 1
           this.counter -= this.aux
         } else {
-          clearInterval(set)
+          clearInterval(this.set)
           this.finishReading = true
         }
       }, 1000)

@@ -11,7 +11,7 @@
         <q-btn
         flat
         icon="close"
-        @click="confirm = true"/>
+        @click="closeActivities.open = true"/>
       </div>
       <div class="o-modal_content m-quiz">
         <progressBar :progress="progress"></progressBar>
@@ -50,29 +50,24 @@
       </q-stepper>
       </div>
     </div>
-    <q-dialog v-model="confirm" persistent>
-      <q-card class="m-card -limit">
-        <q-card-section class="row items-center">
-          <span class="q-ml-sm">Deseja mesmo abandonar essa atividade?<br>Suas respostas e recompensas serão perdidas</span>
-        </q-card-section>
-
-        <q-card-actions align="right">
-          <q-btn flat rounded label="Sim" class="a-btn -dark" v-close-popup @click="closeComplete"/>
-          <q-btn flat rounded label="Não" class="a-btn -dark" v-close-popup />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
+    <closeActivities
+      :persistent="closeActivities.presistent"
+      :title="closeActivities.title"
+      :isOpen="closeActivities.open"
+      @close="closeComplete"/>
   </q-dialog>
 </template>
 
 <script>
-import progressBar from './progress-bar'
-import store from '../store/index'
+import progressBar from '../ui/progress-bar'
+import closeActivities from '../ui/dlg-confirm'
+import store from '../../store/index'
 
 export default {
   name: 'Quiz',
   components: {
-    progressBar
+    progressBar,
+    closeActivities
   },
   props: {
     complete: Boolean,
@@ -82,18 +77,22 @@ export default {
   data () {
     return {
       step: 1,
-      confirm: false,
       progress: { showValue: false, levelUp: 10, xp: 0 },
-      answers: []
+      answers: [],
+      closeActivities: {
+        open: false,
+        persistent: true,
+        title: 'Deseja mesmo abandonar essa atividade?<br>Suas respostas e recompensas serão perdidas'
+      }
     }
   },
   methods: {
-    closeComplete () {
+    closeComplete (evt) {
       this.step = 1
       this.progress.xp = 0
-      this.confirm = false
       this.answers.forEach(elm => (elm.answer = null))
-      this.$emit('closeComplete')
+      this.closeActivities.open = false
+      if (evt) this.$emit('closeComplete')
     },
     async next () {
       if (this.answers[this.step - 1].answer) {

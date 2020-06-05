@@ -48,7 +48,7 @@
 </template>
 
 <script>
-import progressBar from '../../components/progress-bar'
+import progressBar from '../../components/ui/progress-bar'
 import btnBack from '../../components/ui/btnBack'
 
 export default {

@@ -31,7 +31,7 @@
 </template>
 
 <script>
-import progressBar from '../progress-bar'
+import progressBar from '../ui/progress-bar'
 import levelUp from '../../utils/levelUp'
 import { mapGetters } from 'vuex'
 import { CountUp } from 'countup.js'

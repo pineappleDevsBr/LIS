@@ -74,10 +74,12 @@ export default {
   },
   watch: {
     feedbackResults (values) {
-      if (values.values.bonus.xp || values.values.bonus.money) {
-        this.bonus.exists = true
-        this.bonus.xp = values.values.bonus.xp
-        this.bonus.money = values.values.bonus.money
+      if (values.values !== undefined) {
+        if (values.values.bonus.xp || values.values.bonus.money) {
+          this.bonus.exists = true
+          this.bonus.xp = values.values.bonus.xp
+          this.bonus.money = values.values.bonus.money
+        }
       }
     }
   }

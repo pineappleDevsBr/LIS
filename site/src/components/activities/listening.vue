@@ -11,10 +11,10 @@
         <q-btn
         flat
         icon="close"
-        @click="confirm = true"/>
+        @click="closeActivities.open = true"/>
       </div>
       <div class="o-modal_content m-listening">
-        <qprogress :progress="progress"/>
+        <progressBar :progress="progress"/>
           <q-stepper
             v-model="step"
             ref="stepper"
@@ -43,29 +43,25 @@
         </q-stepper>
       </div>
     </div>
-    <q-dialog v-model="confirm" persistent>
-      <q-card class="m-card -limit">
-        <q-card-section class="row items-center">
-          <span class="q-ml-sm">Deseja mesmo abandonar essa atividade?<br>Suas respostas e recompensas serão perdidas</span>
-        </q-card-section>
-
-        <q-card-actions align="right">
-          <q-btn flat rounded label="Sim" class="a-btn -dark" v-close-popup @click="closeListening"/>
-          <q-btn flat rounded label="Não" class="a-btn -dark" v-close-popup />
-        </q-card-actions>
-      </q-card>
-    </q-dialog>
+    <closeActivities
+      :persistent="closeActivities.presistent"
+      :title="closeActivities.title"
+      :isOpen="closeActivities.open"
+      @close="closeListening"
+    />
   </q-dialog>
 </template>
 
 <script>
-import qprogress from './progress-bar'
-import store from '../store/index'
+import progressBar from '../ui/progress-bar'
+import closeActivities from '../ui/dlg-confirm'
+import store from '../../store/index'
 
 export default {
   name: 'Listening',
   components: {
-    qprogress
+    progressBar,
+    closeActivities
   },
   props: {
     listening: Boolean,
@@ -75,9 +71,13 @@ export default {
   data () {
     return {
       step: 1,
-      confirm: false,
       progress: { showValue: false, levelUp: 10, xp: 0 },
-      answers: []
+      answers: [],
+      closeActivities: {
+        open: false,
+        persistent: true,
+        title: 'Deseja mesmo abandonar essa atividade?<br>Suas respostas e recompensas serão perdidas'
+      }
     }
   },
   methods: {
@@ -85,12 +85,12 @@ export default {
       const audio = document.querySelector('[data-audio]')
       audio.play()
     },
-    closeListening () {
+    closeListening (evt) {
       this.step = 1
       this.progress.xp = 0
-      this.confirm = false
       this.answers.forEach(elm => (elm.answer = null))
-      this.$emit('closeListening')
+      this.closeActivities.open = false
+      if (evt) this.$emit('closeListening')
     },
     async next () {
       if (this.answers[this.step - 1].answer) {
