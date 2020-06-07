@@ -146,7 +146,7 @@ module.exports = function (ctx) {
 
     // https://quasar.dev/quasar-cli/developing-ssr/configuring-ssr
     ssr: {
-      pwa: false
+      pwa: true
     },
 
     // https://quasar.dev/quasar-cli/developing-pwa/configuring-pwa
@@ -154,37 +154,42 @@ module.exports = function (ctx) {
       // workboxPluginMode: 'InjectManifest',
       // workboxOptions: {}, // only for NON InjectManifest
       manifest: {
-        // name: 'lis',
-        // short_name: 'lis',
-        // description: 'A Quasar Framework app',
+        name: 'LIS',
+        short_name: 'Learn is Simple',
+        description: 'Learn is Simple - Aprender é simples',
         display: 'standalone',
         orientation: 'portrait',
-        background_color: '#ffffff',
-        theme_color: '#027be3',
+        background_color: '#fe0056',
+        theme_color: '#ffffff',
         icons: [
           {
-            'src': 'statics/icons/icon-128x128.png',
-            'sizes': '128x128',
+            'src': 'statics/icons/android-icon-36x36.png',
+            'sizes': '36x36',
             'type': 'image/png'
           },
           {
-            'src': 'statics/icons/icon-192x192.png',
+            'src': 'statics/icons/android-icon-48x48.png',
+            'sizes': '48x48',
+            'type': 'image/png'
+          },
+          {
+            'src': 'statics/icons/android-icon-72x72.png',
+            'sizes': '72x72',
+            'type': 'image/png'
+          },
+          {
+            'src': 'statics/icons/android-icon-96x96.png',
+            'sizes': '96x96',
+            'type': 'image/png'
+          },
+          {
+            'src': 'statics/icons/android-icon-144x144.png',
+            'sizes': '144x144',
+            'type': 'image/png'
+          },
+          {
+            'src': 'statics/icons/android-icon-192x192.png',
             'sizes': '192x192',
-            'type': 'image/png'
-          },
-          {
-            'src': 'statics/icons/icon-256x256.png',
-            'sizes': '256x256',
-            'type': 'image/png'
-          },
-          {
-            'src': 'statics/icons/icon-384x384.png',
-            'sizes': '384x384',
-            'type': 'image/png'
-          },
-          {
-            'src': 'statics/icons/icon-512x512.png',
-            'sizes': '512x512',
             'type': 'image/png'
           }
         ]
