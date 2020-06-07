@@ -93,6 +93,11 @@ class DatabaseSeeder {
       price: 1500,
       item_type_id : 4
     })
+
+    await Factory.model('App/Models/Tutorial').create({
+      name: 'Como alterar minha senha',
+      link: 'https://www.youtube.com/embed/TnlPtaPxXfc'
+    })
   }
 }
 

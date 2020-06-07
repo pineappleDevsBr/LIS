@@ -101,3 +101,9 @@ Factory.blueprint('App/Models/Item', async (faker, i, data) => {
     ...data
   }
 })
+
+Factory.blueprint('App/Models/Tutorial', async (faker, i, data) => {
+  return {
+    ...data
+  }
+})
