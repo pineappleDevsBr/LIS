@@ -12,20 +12,27 @@
 
     <q-tab-panels v-model="tab" animated>
       <q-tab-panel :name="tasks.theme_id" v-for="tasks in getTask" v-bind:key="tasks.theme_id">
-        <q-card class="m-card" v-for="task in tasks.tasks" v-bind:key="task.id"  @click="openActivitie(task.id, task.task_type_id, task.xp, task.money)">
-          <q-card-section class="m-text_card -no-padding-bottom">
-            <div class="m-text_title">{{task.title}}</div>
-            <div class="m-text_xp">{{task.xp}} XP</div>
-          </q-card-section>
-          <q-card-section class="m-text_card -no-padding-top">
-            <q-rating
-              v-model="task.evaluations"
-              size="1.5em"
-              color="orange"
-              readonly
-            />
-          </q-card-section>
-        </q-card>
+        <div v-if="getTask[tab - 1].tasks.length > 0">
+          <q-card class="m-card" v-for="task in tasks.tasks" v-bind:key="task.id"  @click="openActivitie(task.id, task.task_type_id, task.xp, task.money)">
+            <q-card-section class="m-text_card -no-padding-bottom">
+              <div class="m-text_title">{{task.title}}</div>
+              <div class="m-text_xp">{{task.xp}} XP</div>
+            </q-card-section>
+            <q-card-section class="m-text_card -no-padding-top">
+              <q-rating
+                v-model="task.evaluations"
+                size="1.5em"
+                color="orange"
+                readonly
+              />
+            </q-card-section>
+          </q-card>
+        </div>
+        <div v-else>
+          <p class="a-text">
+            Infelizmente ainda não há atividades deste tipo neste tema, mas logo a equipe ira cadastrar!
+          </p>
+        </div>
       </q-tab-panel>
     </q-tab-panels>
     <btnBack @back="back"/>

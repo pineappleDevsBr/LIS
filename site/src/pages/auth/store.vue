@@ -8,9 +8,9 @@
       <img class="m-spotlight_icon" src="statics/store/online-store.svg" alt="Store">
       {{ $t('store.title') }}
     </div>
-    <div class="m-store_group" v-if="getMyItems">
-    <h2 class="m-store_title">{{ $t('store.myItems') }}</h2>
-      <div class="m-cards" v-if="!getMyItems">
+    <div class="m-store_group" v-if="getMyItems !== {}">
+      <h2 class="m-store_title">{{ $t('store.myItems') }}</h2>
+      <div class="m-cards" v-if="getMyItems === {}">
         <q-card class="m-card m-skeleton -center" v-for="index in 2" v-bind:key="`skl_${index}`">
           <q-card-section class="q-pa-xs">
             <q-skeleton type="text" class="m-skeleton_price" />
