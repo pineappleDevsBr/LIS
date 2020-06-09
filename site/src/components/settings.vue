@@ -11,7 +11,7 @@
       <q-btn
       flat
       icon="close"
-      @click="closeSettings"/>
+      @click="isCloseSettings.open = true"/>
     </div>
     <div class="o-modal_content">
       <h2 class="m-settings_title">{{ $t('profile.settings.account') }}</h2>
@@ -24,7 +24,13 @@
       <q-card class="m-card m-settings_card">
         <q-card-section class="m-settings_info" @click="openDlg('name', 'Nome', getUser.name)">
           <p class="m-settings_info-account">{{ $t('profile.settings.name') }}</p>
-          <p class="m-settings_info-account">{{getUser.name}}</p>
+          <p class="m-settings_info-account">{{ name }}</p>
+        </q-card-section>
+      </q-card>
+      <q-card class="m-card m-settings_card">
+        <q-card-section class="m-settings_info" @click="openDlg('nickname', 'Nickname', getUser.nickname)">
+          <p class="m-settings_info-account">{{ $t('profile.settings.nickname') }}</p>
+          <p class="m-settings_info-account">{{ nickname }}</p>
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card">
@@ -71,18 +77,25 @@
       <q-btn no-caps rounded class="m-settings_actions-item" :label="$t('profile.settings.save')" @click="closeSettings"/>
       <q-btn no-caps rounded class="m-settings_actions-item" :label="$t('profile.settings.changeAccount')" @click="loggout"/>
     </div>
-    <qprompt :prompt="prompt" @isClose="isClose"></qprompt>
     <changeAvatar :selectAvatar="selectAvatar" @selectedAvatar="selectedAvatar"></changeAvatar>
     <changePassword :isOpen="changePassword.isOpen" @close="closePassword"></changePassword>
     <credits :credits="creditsOpen" @close="close"></credits>
     <terms :terms="termsOpen" @close="close"></terms>
     <tutorial :tutorial="tutorialOpen" @close="close"></tutorial>
+    <qprompt :prompt="prompt" @isClose="isClose"></qprompt>
+    <closeSettings
+      :persistent="isCloseSettings.presistent"
+      :title="isCloseSettings.title"
+      :isOpen="isCloseSettings.open"
+      @close="closeWithoutSave"
+    />
     </div>
   </q-dialog>
 </template>
 
 <script>
 import qprompt from './ui/dlg-prompt'
+import closeSettings from './ui/dlg-confirm'
 import changeAvatar from './ui/changeAvatar'
 import changePassword from './ui/changePassword'
 import credits from './credits'
@@ -99,7 +112,8 @@ export default {
     changePassword,
     credits,
     terms,
-    tutorial
+    tutorial,
+    closeSettings
   },
   props: {
     settings: Boolean
@@ -119,12 +133,18 @@ export default {
         title: '',
         value: ''
       },
+      isCloseSettings: {
+        open: false,
+        persistent: true,
+        title: 'Deseja mesmo fechar as configurações?<br>Você perderá as alterações já feitas!'
+      },
       secretPass: '*****************',
       selectAvatar: false,
       changePassword: {
         isOpen: false
       },
       name: null,
+      nickname: null,
       password: null
     }
   },
@@ -144,6 +164,8 @@ export default {
       const { type, newValue } = event
       if (type === 'name') {
         this.name = newValue
+      } else if (type === 'nickname') {
+        this.nickname = newValue
       }
     },
     closePassword (event) {
@@ -160,7 +182,8 @@ export default {
       let payload = {}
       if (this.name) {
         payload = {
-          name: this.name
+          name: this.name,
+          nickname: this.nickname
         }
       }
       if (this.password) {
@@ -175,10 +198,18 @@ export default {
       this.creditsOpen = false
       this.termsOpen = false
       this.tutorialOpen = false
+    },
+    closeWithoutSave (evt) {
+      if (evt) this.$emit('closeSettings')
+      this.isCloseSettings.open = false
     }
   },
   computed: {
     ...mapGetters('user', ['getUser'])
+  },
+  mounted () {
+    this.name = this.getUser.name
+    this.nickname = this.getUser.nickname
   }
 }
 </script>
