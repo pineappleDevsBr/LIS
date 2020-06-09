@@ -159,6 +159,11 @@ export default {
         const response = await store().dispatch('store/useItem', payload)
         if (response) {
           await store().dispatch('store/getMyItems')
+          this.$q.notify({
+            color: 'positive',
+            message: 'Item ativado!',
+            icon: 'done'
+          })
         } else {
           this.$q.notify({
             color: 'negative',
@@ -175,6 +180,11 @@ export default {
       if (response) {
         await store().dispatch('store/getMyItems')
         this.selectFriend = false
+        this.$q.notify({
+          color: 'positive',
+          message: 'Presente enviado com sucesso!',
+          icon: 'card_giftcard'
+        })
       } else {
         this.$q.notify({
           color: 'negative',
