@@ -69,7 +69,7 @@ export default {
   },
   watch: {
     confirmUseItems (value) {
-      store().dispatch('settings/confirmUseItems', value)
+      store().dispatch('settings/confirmUseItems', !value)
     },
     isDark (value) {
       store().dispatch('darkMode/setDarkMode', value)
@@ -83,9 +83,10 @@ export default {
     ...mapGetters('darkMode', ['getDarkMode']),
     ...mapGetters('settings', ['getConfirmUseItem'])
   },
-  mounted () {
+  async mounted () {
+    await store().dispatch('settings/confirmUseItems', this.$q.cookies.get('lis_confirmUseItems'))
     this.isDark = this.getDarkMode ? this.getDarkMode : false
-    this.confirmUseItems = this.getConfirmUseItem ? this.getConfirmUseItem : false
+    this.confirmUseItems = this.getConfirmUseItem ? !this.getConfirmUseItem : !false
   }
 }
 </script>

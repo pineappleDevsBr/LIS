@@ -145,7 +145,7 @@ export default {
         if (type === 3) {
           this.selectFriend = true
         } else {
-          if (this.$q.cookies.get('lis_confirmUseItems')) {
+          if (!this.$q.cookies.get('lis_confirmUseItems')) {
             this.confirmUse.open = true
           } else {
             this.activeProduct(this.itemSelect)
