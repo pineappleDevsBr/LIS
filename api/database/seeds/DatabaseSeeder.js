@@ -26,6 +26,7 @@ class DatabaseSeeder {
     admin_1.name = 'Leandro C. Silva'
     admin_1.email = 'leandro@lis.com',
     admin_1.password = 'Secret123';
+    admin_1.money = 10000;
     admin_1.date_of_birth = new Date();
     admin_1.nationality_id = 1;
     admin_1.user_type = 1;

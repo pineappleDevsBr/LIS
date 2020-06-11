@@ -42,7 +42,7 @@ Route.group(() => {
   Route.post('/items/use', 'Api/StoreController.use')
   Route.get('/items/all', 'Api/StoreController.index')
   Route.get('/items', 'Api/StoreController.indexOf')
-}).prefix('api/v1').middleware(['auth:jwt']);
+}).prefix('api/v1').middleware(['auth:jwt', 'blockUser']);
 
 Route.group(() => {
   Route.get('/tutorial', 'Api/TutorialController.index')
@@ -70,10 +70,10 @@ Route.group(() => {
   Route.get('/themes/update/:id', 'Admin/ThemeController.indexOf').as('admin.themes.indexOf')
   Route.post('/themes', 'Admin/ThemeController.delete').as('admin.themes.delete')
   Route.get('/themes', 'Admin/ThemeController.index').as('admin.themes')
-  
+
   // Admin -> Users
   Route.get('/users', 'Admin/UserController.index').as('admin.users')
-  
+
   // Admin -> Tutorials
   Route.on('/tutorials/new').render('pages.tutorials.store')
   Route.get('/tutorials', 'Admin/TutorialController.index').as('admin.tutorials')

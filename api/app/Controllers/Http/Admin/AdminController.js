@@ -13,7 +13,7 @@ class AdminController {
       const hash = await Hash.verify(password, user.password);
 
       if (hash && user.user_type == 1) {
-        const resp = await auth.authenticator('session')
+        await auth.authenticator('session')
           .remember(remember)
           .login(user);
         response.route('admin', false)

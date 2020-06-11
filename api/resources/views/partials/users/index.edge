@@ -1,12 +1,13 @@
 <div class="row">
   <div class="col">
     <div class="table-responsive table--no-card m-b-30">
-      <table class="table table-borderless table-striped table-earning">
-        <thead>
+      <table class="table table-borderless table-striped">
+        <thead class="bg-dark text-white">
           <tr>
             <th>Id</th>
             <th>Name</th>
             <th>E-mail</th>
+            <th>Blocked</th>
           </tr>
         </thead>
         <tbody>
@@ -15,6 +16,7 @@
             <td>{{ user.id }}</td>
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
+            <td class="{{ user.user_type === '3' ? 'status--denied' : 'status--process' }}" >{{ user.user_type === '3' ? 'Blocked' : 'Unblocked' }}</td>
           </tr>
           @endeach
         </tbody>

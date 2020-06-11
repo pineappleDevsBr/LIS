@@ -12,7 +12,7 @@ class UsersSchema extends Schema {
       table.string('email', 254).notNullable().unique()
       table.string('password', 60).notNullable()
       table.date('date_of_birth').notNullable()
-      table.enu('user_type', [1, 2]).notNullable().defaultTo(2)
+      table.enu('user_type', [1, 2, 3]).notNullable().defaultTo(2)
       table.integer('xp').notNullable().defaultTo(0)
       table.integer('money').notNullable().defaultTo(0)
       table.integer('nationality_id').unsigned().notNullable().references('id').inTable('nationalities')

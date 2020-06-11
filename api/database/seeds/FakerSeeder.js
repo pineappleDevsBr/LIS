@@ -19,7 +19,13 @@ class FakerSeeder {
 
     // -------------------------------------------------------------------------- //
 
-    await Factory.model('App/Models/User').create({ nationality_id: 1 });
+    await Factory.model('App/Models/User').create({
+      nationality_id: 1,
+      email: 'block@test.com',
+      password: 'Secret123',
+      user_type: 3
+    });
+
     await Factory.model('App/Models/User').create({ nationality_id: 1 });
 
     // -------------------------------------------------------------------------- //
@@ -243,7 +249,7 @@ class FakerSeeder {
       question: 'Digite o que você ouvir',
       file: 'whats-your-name.mp3'
     });
-    
+
     const question_003 = await Factory.model('App/Models/Question').make({
       question: 'Qual o nome falado no audio',
       file: 'hi-my-name-is-lis.mp3'
