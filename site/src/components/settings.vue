@@ -18,19 +18,19 @@
       <q-card class="m-card m-settings_card">
         <q-card-section class="m-settings_info" @click="selectAvatar = true">
           <p class="m-settings_info-account">{{ $t('profile.settings.avatar') }}</p>
-          <img class="m-profile_avatar" :src="`https://api.adorable.io/avatars/35/lis-avatar${getUser.id}.png`" alt="avatar adorable">
-        </q-card-section>
-      </q-card>
-      <q-card class="m-card m-settings_card">
-        <q-card-section class="m-settings_info" @click="openDlg('name', 'Nome', getUser.name)">
-          <p class="m-settings_info-account">{{ $t('profile.settings.name') }}</p>
-          <p class="m-settings_info-account">{{ name }}</p>
+          <img class="m-profile_avatar -small" :src="`${avatar}`" alt="avatar adorable">
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card">
         <q-card-section class="m-settings_info" @click="openDlg('nickname', 'Nickname', getUser.nickname)">
           <p class="m-settings_info-account">{{ $t('profile.settings.nickname') }}</p>
           <p class="m-settings_info-account">{{ nickname }}</p>
+        </q-card-section>
+      </q-card>
+      <q-card class="m-card m-settings_card">
+        <q-card-section class="m-settings_info" @click="openDlg('name', 'Nome', getUser.name)">
+          <p class="m-settings_info-account">{{ $t('profile.settings.name') }}</p>
+          <p class="m-settings_info-account">{{ name }}</p>
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card">
@@ -77,7 +77,9 @@
       <q-btn no-caps rounded class="m-settings_actions-item" :label="$t('profile.settings.save')" @click="closeSettings"/>
       <q-btn no-caps rounded class="m-settings_actions-item" :label="$t('profile.settings.changeAccount')" @click="loggout"/>
     </div>
-    <changeAvatar :selectAvatar="selectAvatar" @selectedAvatar="selectedAvatar"></changeAvatar>
+    <q-dialog v-model="selectAvatar">
+      <changeAvatar @selectedAvatar="selectedAvatar"/>
+    </q-dialog>
     <changePassword :isOpen="changePassword.isOpen" @close="closePassword"></changePassword>
     <credits :credits="creditsOpen" @close="close"></credits>
     <terms :terms="termsOpen" @close="close"></terms>
@@ -145,7 +147,8 @@ export default {
       },
       name: null,
       nickname: null,
-      password: null
+      password: null,
+      avatar: null
     }
   },
   methods: {
@@ -176,15 +179,16 @@ export default {
     },
     selectedAvatar (event) {
       this.selectAvatar = false
-      if (event !== undefined) this.getUser.avatar = event.avatar
+      if (event !== undefined) {
+        this.avatar = event.avatar
+      }
     },
     async closeSettings () {
       let payload = {}
-      if (this.name) {
-        payload = {
-          name: this.name,
-          nickname: this.nickname
-        }
+      payload = {
+        name: this.name,
+        nickname: this.nickname,
+        avatar: this.avatar
       }
       if (this.password) {
         payload = {
@@ -210,6 +214,7 @@ export default {
   mounted () {
     this.name = this.getUser.name
     this.nickname = this.getUser.nickname
+    this.avatar = this.getUser.avatar
   }
 }
 </script>
