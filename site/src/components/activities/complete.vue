@@ -15,39 +15,42 @@
       </div>
       <div class="o-modal_content m-quiz">
         <progressBar :progress="progress"></progressBar>
-        <q-stepper
-          v-model="step"
-          ref="stepper"
-          contracted
-          dense
-          flat
-          color="primary"
-          animated
-        >
-          <q-step :name="index + 1" :title="`Question ${question.id}`" icon="edit" :done="step > index" v-for="(question, index) in questions" v-bind:key="question.id">
-            <div class="quiz">
-              <q-card class="m-card">
-                <q-card-section>
-                  <div class="m-quiz_title">
-                    {{ question.question }} {{ question.text }}
-                  </div>
-                </q-card-section>
-              </q-card>
-                  <q-input
-                    color="primary"
-                    class="primary-error"
-                    v-model="answers[index].answer"
-                    label="Digite aqui sua resposta"
-                  />
-            </div>
-          </q-step>
-          <template v-slot:navigation>
-            <q-stepper-navigation>
-              <q-btn @click="next()" color="primary" :label="step === questions.length ? 'Finalizar' : 'Próximo'" />
-              <q-btn v-if="step > 1 " flat color="primary" @click="back()" label="Back" class="q-ml-sm"/>
-            </q-stepper-navigation>
-        </template>
-      </q-stepper>
+        <q-form @submit="next">
+          <q-stepper
+            v-model="step"
+            ref="stepper"
+            contracted
+            dense
+            flat
+            color="primary"
+            animated
+          >
+            <q-step :name="index + 1" :title="`Question ${question.id}`" icon="edit" :done="step > index" v-for="(question, index) in questions" v-bind:key="question.id">
+              <div class="quiz">
+                <q-card class="m-card">
+                  <q-card-section>
+                    <div class="m-quiz_title">
+                      {{ question.question }} {{ question.text }}
+                    </div>
+                  </q-card-section>
+                </q-card>
+                    <q-input
+                      autofocus
+                      color="primary"
+                      class="primary-error"
+                      v-model="answers[index].answer"
+                      label="Digite aqui sua resposta"
+                    />
+              </div>
+            </q-step>
+            <template v-slot:navigation>
+              <q-stepper-navigation>
+                <q-btn type="submit" color="primary" :label="step === questions.length ? 'Finalizar' : 'Próximo'" />
+                <q-btn v-if="step > 1 " flat color="primary" @click="back()" label="Back" class="q-ml-sm"/>
+              </q-stepper-navigation>
+            </template>
+          </q-stepper>
+        </q-form>
       </div>
     </div>
     <closeActivities
