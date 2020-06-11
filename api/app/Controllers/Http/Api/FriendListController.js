@@ -1,27 +1,63 @@
 'use strict'
-const FriendList = use('App/Models/FriendList');
+const FriendRepository = use('App/Repositories/FriendRepository');
+const FriendState = use('App/Base/FriendState');
 const User = use('App/Models/User');
 
 class FriendListController {
   async index({ response, auth }) {
+    const data = {
+      friends: [],
+      invites: [],
+    };
+
     try {
-      const data = await FriendList
+      const fetchData = await FriendRepository.index(auth.user.id);
+      const friendData = fetchData.rows.map((item) => ({
+          status: item.status,
+          invite_id: item.id,
+          id: item.user_one_id === auth.user.id ? item.user_two_id : item.user_one_id
+        }))
+
+      const fetchFriends = await User
         .query()
-        .where('user_one_id', auth.user.id)
-        .orWhere('user_two_id', auth.user.id)
+        .whereIn('id', friendData.map(dt => dt.id))
         .fetch();
 
-      const friendIds = data.toJSON().map((item) => item.user_one_id === auth.user.id ? item.user_two_id : item.user_one_id)
+      friendData.forEach(item => {
+        const user = fetchFriends.rows.find(user_data => user_data.id === item.id);
 
-      const friends = await User
-        .query()
-        .whereIn('id', friendIds)
-        .fetch();
+        if (item.status === FriendState.PENDING) {
+          data.invites.push({ ...user.toJSON(),  invite_id: item.invite_id});
+        } else if (item.status === FriendState.CONFIRMED) {
+          data.friends.push(user)
+        }
+      })
 
-      response.send(friends);
-    } catch(err) {
+      response.send(data);
+    } catch (err) {
       response.send(err);
     }
+  }
+
+  async store({ request, response, auth }) {
+    const { friend_id } = request.only(['friend_id']);
+
+    try {
+      const data = FriendRepository.store({
+        user_one_id: auth.user.id,
+        user_two_id: friend_id,
+        user_action_id: auth.user.id,
+      })
+
+      response.send(data);
+    } catch (err) {
+      response.send(err)
+    }
+  }
+
+  async update({ request, response }) {
+    const { invite_id, selection } = request.only(['invite_id', 'selection']);
+    response.send(await FriendRepository.updateOrDelete({ invite_id, selection }));
   }
 }
 

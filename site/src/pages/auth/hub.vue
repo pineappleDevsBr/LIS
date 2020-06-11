@@ -29,7 +29,7 @@
         </q-card>
       </div>
       <div v-else>
-        <q-card class="m-card" v-for="item in getFriends" v-bind:key="item.id">
+        <q-card class="m-card" v-for="item in getFriends.invites" v-bind:key="item.id">
           <q-card-section class="m-friends_card">
             <div class="m-friends_profile">
               <img class="m-friends_avatar" :src="`https://api.adorable.io/avatars/75/lis-avatar${item.id}.png`" :alt="`adorable avatar lis-avatar${item.id}.png`">
@@ -68,7 +68,7 @@
       </q-card>
     </div>
     <div v-else>
-      <q-card class="m-card" v-for="item in getFriends" v-bind:key="item.id" @click="viewFriend(item.id)">
+      <q-card class="m-card" v-for="item in getFriends.friends" v-bind:key="item.id" @click="viewFriend(item.id)">
         <q-card-section class="m-friends_card">
           <div class="m-friends_profile">
             <img class="m-friends_avatar" :src="`https://api.adorable.io/avatars/75/lis-avatar${item.id}.png`" :alt="`adorable avatar lis-avatar${item.id}.png`">

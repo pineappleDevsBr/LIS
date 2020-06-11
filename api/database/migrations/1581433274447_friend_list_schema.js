@@ -10,6 +10,8 @@ class FriendListSchema extends Schema {
       table.integer('user_one_id').unsigned().notNullable().references('id').inTable('users')
       table.integer('user_two_id').unsigned().notNullable().references('id').inTable('users')
       table.integer('user_action_id').unsigned().notNullable().references('id').inTable('users')
+      table.unique(['user_one_id', 'user_two_id'])
+      table.enu('status', ['pending', 'confirmed']).notNullable().defaultTo('pending')
       table.timestamps()
     })
   }

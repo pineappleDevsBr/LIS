@@ -18,7 +18,7 @@
       <q-card class="m-card m-settings_card">
         <q-card-section class="m-settings_info" @click="selectAvatar = true">
           <p class="m-settings_info-account">{{ $t('profile.settings.avatar') }}</p>
-          <img class="m-profile_avatar -small" :src="`${avatar}`" alt="avatar adorable">
+          <img class="m-profile_avatar -small" :src="`${avatar_path}`" alt="avatar adorable">
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card">
@@ -209,7 +209,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('user', ['getUser'])
+    ...mapGetters('user', ['getUser']),
+    avatar_path () {
+      return `https://api.adorable.io/avatars/75/lis_avatarGenerator-${this.avatar}.png`
+    }
   },
   mounted () {
     this.name = this.getUser.name

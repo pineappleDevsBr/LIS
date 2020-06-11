@@ -9,7 +9,7 @@
     </q-card-section>
     <q-card-section class="m-changeAvatar_content">
       <figure class="m-changeAvatar_item">
-        <img :src="`${avatar}`">
+        <img :src="`${avatar_path}`">
       </figure>
     </q-card-section>
     <q-card-actions align="center" class="text-primary">
@@ -38,14 +38,17 @@ export default {
     },
 
     random () {
-      this.avatar = `https://api.adorable.io/avatars/75/lis_avatarGenerator-${Math.random().toString(36).substr(2, 4)}.png`
+      this.avatar = Math.random().toString(36).substr(2, 4)
     }
   },
   computed: {
-    ...mapGetters('user', ['getUser'])
+    ...mapGetters('user', ['getUser']),
+    avatar_path () {
+      return `https://api.adorable.io/avatars/75/lis_avatarGenerator-${this.avatar}.png`
+    }
   },
-  mounted () {
-    this.avatar = this.getUser.avatar
+  created () {
+    this.avatar_path = this.getUser.avatar
   }
 }
 </script>

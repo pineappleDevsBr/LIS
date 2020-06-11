@@ -29,7 +29,11 @@ Route.group(() => {
   Route.get('/user/:id', 'Api/UserController.index')
   Route.get('/user', 'Api/UserController.get')
   Route.put('/user', 'Api/UserController.update')
+
+  // App -> Friends
   Route.get('/friends', 'Api/FriendListController.index')
+  Route.post('/friends/invite', 'Api/FriendListController.store')
+  Route.post('/friends/selection', 'Api/FriendListController.update')
 
   // App -> Tasks
   Route.get('/task', 'Api/TaskController.index')

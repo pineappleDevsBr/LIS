@@ -27,15 +27,21 @@ class FakerSeeder {
     });
 
     await Factory.model('App/Models/User').create({ nationality_id: 1 });
+    await Factory.model('App/Models/User').create({ nationality_id: 1 });
+    await Factory.model('App/Models/User').create({ nationality_id: 1 });
 
     // -------------------------------------------------------------------------- //
 
 
     const user_1 = await User.find(2);
     const user_2 = await User.find(3);
+    const user_3 = await User.find(4);
 
-    await Factory.model('App/Models/FriendList').create(0, { one: 1, two: user_2.id });
-    await Factory.model('App/Models/FriendList').create(0, { one: user_1.id, two: user_2.id });
+    await Factory.model('App/Models/FriendList').create(0, { user_one_id: 1, user_two_id: user_2.id, status: 'confirmed' });
+    await Factory.model('App/Models/FriendList').create(0, { user_one_id: 1, user_two_id: user_3.id });
+
+    await Factory.model('App/Models/FriendList').create(0, { user_one_id: 2, user_two_id: user_2.id, status: 'confirmed' });
+    await Factory.model('App/Models/FriendList').create(0, { user_one_id: 2, user_two_id: user_3.id });
 
     // -------------------------------------------------------------------------- //
 

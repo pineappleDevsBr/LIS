@@ -3,7 +3,7 @@
     <div class="m-profile_info">
       <div>
         <q-skeleton type="QAvatar" class="m-skeleton_avatar -md -center" v-if="!getUser.nickname"/>
-        <img class="m-profile_avatar" :src="`${getUser.avatar}`" alt="avatar adorable" v-else>
+        <img class="m-profile_avatar" :src="`${avatar_path}`" alt="avatar adorable" v-else>
       </div>
       <div>
         <q-skeleton type="text" class="m-skeleton_title -high" v-if="!getUser.nickname"/>
@@ -44,7 +44,10 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('user', ['getUser'])
+    ...mapGetters('user', ['getUser']),
+    avatar_path () {
+      return `https://api.adorable.io/avatars/75/lis_avatarGenerator-${this.getUser.avatar}.png`
+    }
   },
   async mounted () {
     await store().dispatch('user/getUser')
