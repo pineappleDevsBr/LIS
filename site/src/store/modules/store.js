@@ -69,7 +69,7 @@ const mutations = {
 
 const state = {
   items: [],
-  myItems: []
+  myItems: {}
 }
 
 export default {

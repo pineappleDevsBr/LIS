@@ -15,32 +15,34 @@
       </div>
       <div class="o-modal_content m-listening">
         <progressBar :progress="progress"/>
-          <q-stepper
-            v-model="step"
-            ref="stepper"
-            contracted
-            dense
-            flat
-            color="primary"
-            animated
-          >
-            <q-step :name="index + 1" :title="`Question ${question.id}`" icon="edit" :done="step > index" v-for="(question, index) in questions" v-bind:key="question.id">
-              <q-card class="m-card m-listening_card">
-                {{ question.question }}
-                <q-btn flat icon="volume_up" class="m-listening_btn" @click="playListening"/>
-                <video data-audio class="m-listening_audio" :src="question.filepath"></video>
-              </q-card>
-              <div>
-                <q-input v-model="answers[index].answer" label="Digite aqui sua resposta..."/>
-              </div>
-            </q-step>
-            <template v-slot:navigation>
-              <q-stepper-navigation>
-                <q-btn @click="next()" color="primary" :label="step === questions.length ? 'Finalizar' : 'Próximo'" />
-                <q-btn v-if="step > 1 " flat color="primary" @click="back()" label="Back" class="q-ml-sm"/>
-              </q-stepper-navigation>
-          </template>
-        </q-stepper>
+          <q-form @submit="next">
+            <q-stepper
+              v-model="step"
+              ref="stepper"
+              contracted
+              dense
+              flat
+              color="primary"
+              animated
+            >
+              <q-step :name="index + 1" :title="`Question ${question.id}`" icon="edit" :done="step > index" v-for="(question, index) in questions" v-bind:key="question.id">
+                <q-card class="m-card m-listening_card">
+                  {{ question.question }}
+                  <q-btn flat icon="volume_up" class="m-listening_btn" @click="playListening"/>
+                  <video data-audio class="m-listening_audio" :src="question.filepath"></video>
+                </q-card>
+                <div>
+                  <q-input autofocus v-model="answers[index].answer" label="Digite aqui sua resposta..."/>
+                </div>
+              </q-step>
+              <template v-slot:navigation>
+                <q-stepper-navigation>
+                  <q-btn type="submit" color="primary" :label="step === questions.length ? 'Finalizar' : 'Próximo'" />
+                  <q-btn v-if="step > 1 " flat color="primary" @click="back()" label="Back" class="q-ml-sm"/>
+                </q-stepper-navigation>
+            </template>
+          </q-stepper>
+        </q-form>
       </div>
     </div>
     <closeActivities

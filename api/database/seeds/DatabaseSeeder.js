@@ -14,6 +14,7 @@
 const Factory = use('Factory')
 const Nationality = use('App/Models/Nationality')
 const User = use('App/Models/User')
+const fixUrlAvatar = 'https://api.adorable.io/avatars/75/'
 
 class DatabaseSeeder {
   async run () {
@@ -23,6 +24,7 @@ class DatabaseSeeder {
 
     const admin_1 = new User();
     admin_1.nickname = '4stronaut4'
+    admin_1.avatar = `${fixUrlAvatar}lis_4stronaut4.png`
     admin_1.name = 'Leandro C. Silva'
     admin_1.email = 'leandro@lis.com',
     admin_1.password = 'Secret123';
@@ -33,7 +35,8 @@ class DatabaseSeeder {
     await admin_1.save();
 
     const admin_2 = new User();
-    admin_2.nickname = 'Isquerim'
+    admin_2.nickname = 'fsouza2404'
+    admin_2.avatar = `${fixUrlAvatar}lis_avatar-g844.png`
     admin_2.name = 'Fernando S. Marques'
     admin_2.email = 'fernando@lis.com',
     admin_2.password = '123';

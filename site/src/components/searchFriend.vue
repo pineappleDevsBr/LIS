@@ -23,7 +23,7 @@
           <q-card class="m-card" v-for="item in list" v-bind:key="item.id">
             <q-card-section class="m-friends_card">
               <div class="m-friends_profile">
-                <img class="m-friends_avatar" :src="`https://api.adorable.io/avatars/75/lis-avatar${item.id}.png`" :alt="`adorable avatar lis-avatar${item.id}.png`">
+                <img class="m-friends_avatar" :src="`https://api.adorable.io/avatars/75/lis-avatar${item.id}.png`" :alt="`adorable avatar`">
                 <div>
                   <h2 class="m-friends_username q-dark_title">{{item.name}}</h2>
                   <p class="m-friends_level">Nível: {{item.level ? item.level : 1}}</p>

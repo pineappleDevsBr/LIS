@@ -100,6 +100,7 @@ export default {
       account: 'Account',
       avatar: 'Profile image:',
       name: 'Name:',
+      nickname: 'Nickname:',
       password: 'Password:',
       notifications: 'Email notification',
       update: 'Updates',

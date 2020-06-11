@@ -68,7 +68,7 @@ export default {
       if (sucess) {
         await store().dispatch('user/getUser')
         this.$q.notify({
-          color: 'accent',
+          color: 'positive',
           message: 'Compra realizada com sucesso!',
           icon: 'shop'
         })

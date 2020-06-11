@@ -53,6 +53,7 @@ Factory.blueprint('App/Models/TaskType', async (faker, i, data) => {
 Factory.blueprint('App/Models/User', async (faker, i, data) => {
   return {
     name: faker.name(),
+    avatar: faker.avatar(),
     nickname: faker.username(),
     email: faker.email(),
     password: faker.password(),

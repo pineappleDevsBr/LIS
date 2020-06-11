@@ -11,15 +11,15 @@
         {{ $t('access.choiceOfThemes.info') }}
       </q-card-section>
       <q-card-section>
-        <q-card  class="m-card" v-for="theme in filterThemes" v-bind:key="theme.id">
-          <q-slide-item @left="onLeft, addTheme(theme.id)" @right="onRight" right-color="negative">
+        <q-card  class="m-card" v-for="(theme) in filterThemes" v-bind:key="theme.id">
+          <q-slide-item @action="selected(theme.id)" @left="onLeft" @right="onRight" right-color="negative">
             <template v-slot:left>
               <q-icon name="done" />
             </template>
             <template v-slot:right>
               <q-icon name="close" />
             </template>
-            <q-card-section :class="bgColor">{{theme.name}}</q-card-section>
+            <q-card-section>{{theme.name}}</q-card-section>
           </q-slide-item>
         </q-card>
       </q-card-section>
@@ -44,7 +44,9 @@ export default {
   data () {
     return {
       filter: '',
-      bgColor: 'bg-white',
+      idTheme: null,
+      bgColor: {},
+      color: 'text-black',
       themes: []
     }
   },
@@ -60,17 +62,33 @@ export default {
         })
       }
     },
-    onLeft ({ reset }) {
-      this.bgColor = 'bg-accent'
-      this.finalize(reset)
+    selected (id) {
+      this.idTheme = id
+    },
+
+    async onLeft ({ reset }) {
+      await this.finalize(reset)
+      this.addTheme(this.idTheme)
+    },
+
+    async onRight ({ reset }) {
+      await this.finalize(reset)
+      this.removeTheme(this.idTheme)
     },
 
     addTheme (theme) {
-      this.themes.push(theme)
+      let add = null
+      this.themes.forEach(id => {
+        if (id === this.idTheme || add) add = true
+      })
+
+      if (!add) this.themes.push(theme)
+      this.bgColor[theme] = 'bg-accent'
     },
 
-    onRight ({ reset }) {
-      this.finalize(reset)
+    removeTheme (theme) {
+      const index = this.themes.indexOf(theme)
+      if (index > -1) this.themes.splice(index, 1)
     },
 
     finalize (reset) {

@@ -6,7 +6,7 @@ const User = use('App/Models/User');
 const UserRepository = use('App/Repositories/UserRepository')
 
 const labels = [
-  'name', 'nickname', 'email', 'password', 'date_of_birth', 'nationality_id'
+  'name', 'avatar', 'nickname', 'email', 'password', 'date_of_birth', 'nationality_id'
 ]
 
 class UserController {

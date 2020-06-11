@@ -6,12 +6,15 @@
 
 .m-profile_avatar {
   border-radius: 50%;
+
+  &.-small {
+    max-width: em(45);
+  }
 }
 
 .m-profile_username {
   color: $primary;
   font-weight: $fontweight.bold;
-  text-transform: uppercase;
   font-size: em(24);
   line-height: 1;
   margin-top: em(10);

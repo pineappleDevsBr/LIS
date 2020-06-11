@@ -7,8 +7,7 @@ const getters = {
 const actions = {
   confirmUseItems ({ commit }, use) {
     try {
-      if (use) cookie('confirmUseItems', 'set', use)
-      else cookie('confirmUseItems', 'remove')
+      cookie('confirmUseItems', 'set', use)
       commit('SET_USE', use)
       return { status: true }
     } catch (error) {
@@ -24,7 +23,7 @@ const mutations = {
 }
 
 const state = {
-  confirmUseItem: cookie('confirmUseItems', 'has')
+  confirmUseItem: null
 }
 
 export default {

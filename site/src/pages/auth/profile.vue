@@ -3,7 +3,7 @@
     <div class="m-profile_info">
       <div>
         <q-skeleton type="QAvatar" class="m-skeleton_avatar -md -center" v-if="!getUser.nickname"/>
-        <img class="m-profile_avatar" :src="`https://api.adorable.io/avatars/75/lis-avatar${getUser.id}.png`" alt="avatar adorable" v-else>
+        <img class="m-profile_avatar" :src="`${getUser.avatar}`" alt="avatar adorable" v-else>
       </div>
       <div>
         <q-skeleton type="text" class="m-skeleton_title -high" v-if="!getUser.nickname"/>

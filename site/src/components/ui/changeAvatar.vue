@@ -1,38 +1,51 @@
 <template>
-  <q-dialog v-model="selectAvatar" persistent>
-     <q-card class="m-card">
-        <q-card-section class="m-changeAvatar">
-          <figure class="m-changeAvatar_item" v-for="avatar in avatars" v-bind:key="avatar.id" @click="selectedAvatar(avatar.image)">
-            <img :src="`https://api.adorable.io/avatars/50/${avatar.image}`">
-          </figure>
-        </q-card-section>
-     </q-card>
-  </q-dialog>
+  <q-card class="m-changeAvatar">
+    <q-card-section class="m-changeAvatar_header">
+      <h2 class="o-modal_title">Gerar avatares aleatórios!</h2>
+    <q-btn
+    flat
+    icon="close"
+    @click="$emit('selectedAvatar')"/>
+    </q-card-section>
+    <q-card-section class="m-changeAvatar_content">
+      <figure class="m-changeAvatar_item">
+        <img :src="`${avatar}`">
+      </figure>
+    </q-card-section>
+    <q-card-actions align="center" class="text-primary">
+      <q-btn flat @click="random" label="Gerar novo avatar"/>
+      <q-btn flat @click="selectedAvatar" label="Escolher esse"/>
+    </q-card-actions>
+  </q-card>
 </template>
 
 <script>
+import { mapGetters } from 'vuex'
+
 export default {
   name: 'changeAvatar',
   data () {
     return {
-      avatars: [
-        { id: 1, image: 'lis-avatar1.png' },
-        { id: 2, image: 'lis-avatar2.png' },
-        { id: 3, image: 'lis-avatar3.png' },
-        { id: 4, image: 'lis-avatar4.png' },
-        { id: 5, image: 'lis-avatar5.png' },
-        { id: 6, image: 'lis-avatar6.png' }
-      ]
+      avatar: null
     }
   },
   props: {
     selectAvatar: Boolean
   },
   methods: {
-    selectedAvatar (avatar) {
-      if (avatar) this.$emit('selectedAvatar', { avatar })
-      else this.$emit('selectedAvatar')
+    selectedAvatar () {
+      this.$emit('selectedAvatar', { avatar: this.avatar })
+    },
+
+    random () {
+      this.avatar = `https://api.adorable.io/avatars/75/lis_avatarGenerator-${Math.random().toString(36).substr(2, 4)}.png`
     }
+  },
+  computed: {
+    ...mapGetters('user', ['getUser'])
+  },
+  mounted () {
+    this.avatar = this.getUser.avatar
   }
 }
 </script>
