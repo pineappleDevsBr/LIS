@@ -211,7 +211,7 @@ export default {
   computed: {
     ...mapGetters('user', ['getUser']),
     avatar_path () {
-      return `https://api.adorable.io/avatars/75/lis_avatarGenerator-${this.avatar}.png`
+      return `https://api.adorable.io/avatars/75/${this.avatar}`
     }
   },
   mounted () {
