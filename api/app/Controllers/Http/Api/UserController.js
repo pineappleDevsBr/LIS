@@ -54,6 +54,15 @@ class UserController {
       response.send(err);
     }
   }
+
+  async list({ auth }) {
+    const users = await User.all();
+    const formatUsers = [];
+    users.toJSON().forEach(user => {
+      if (user.email !== auth.user.email) formatUsers.push(user)
+    });
+    return formatUsers;
+  }
 }
 
 module.exports = UserController

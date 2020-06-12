@@ -95,7 +95,7 @@
         </q-card-section>
       </q-card>
     </q-dialog>
-    <searchFriend :search="search" @closeSearch="closeSearch"/>
+    <searchFriend :search="search" :list="listUser" @closeSearch="closeSearch"/>
   </div>
 </template>
 
@@ -162,10 +162,12 @@ export default {
   },
   computed: {
     ...mapGetters('friends', ['getFriends']),
-    ...mapGetters('friends', ['getInvites'])
+    ...mapGetters('friends', ['getInvites']),
+    ...mapGetters('user', ['listUser'])
   },
   async mounted () {
     await store().dispatch('friends/getFriends')
+    await store().dispatch('user/listUser')
   }
 }
 </script>
