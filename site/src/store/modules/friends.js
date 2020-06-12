@@ -9,9 +9,17 @@ const actions = {
   async getFriends ({ commit }) {
     try {
       const { data } = await friends.get()
-      console.log(data.invites)
       commit('UPDATE_FRIENDS', data.friends)
       commit('UPDATE_INVITES', data.invites)
+      return data
+    } catch (error) {
+      return { status: false, error }
+    }
+  },
+
+  async acceptInvites ({ commit }, payload) {
+    try {
+      const { data } = await friends.selection(payload)
       return data
     } catch (error) {
       return { status: false, error }

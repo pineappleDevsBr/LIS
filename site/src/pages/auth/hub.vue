@@ -8,9 +8,9 @@
         <q-btn class="m-friends_search-btn" no-caps flat :label="$t('hub.invitation')" @click="invitation"/>
       </div>
     </div>
-    <div>
+    <div v-if="!getInvites">
       <h2 class="m-friends_title">{{ $t('hub.requests') }}</h2>
-      <div v-if="!getFriends">
+      <div v-if="!getInvites">
         <q-card class="m-skeleton" v-for="index in 2" v-bind:key="index">
           <q-card-section class="m-friends_card">
             <div class="m-friends_profile">
@@ -41,8 +41,8 @@
             </div>
             <div>
               <div class="m-friends_confirm">
-                <q-btn round color="accent" icon="done" class="m-friends_confirm-btn" @click="acceptFriendship(item.id)"/>
-                <q-btn round color="negative" icon="close" class="m-friends_confirm-btn" @click="refuseFriendship(item.id)"/>
+                <q-btn round color="accent" icon="done" class="m-friends_confirm-btn" @click="acceptFriendship(item.invite_id, true, item.name)"/>
+                <q-btn round color="negative" icon="close" class="m-friends_confirm-btn" @click="acceptFriendship(item.invite_id, false, item.name)"/>
               </div>
             </div>
           </q-card-section>
@@ -121,6 +121,31 @@ export default {
   methods: {
     viewFriend (id) {
       this.$router.push(`/profile/${id}`)
+    },
+
+    async acceptFriendship (inviteId, selection, name) {
+      const payload = { invite_id: inviteId, selection }
+      const response = await store().dispatch('friends/acceptInvites', payload)
+      await store().dispatch('friends/getFriends')
+      if (response.status === 'confirmed') {
+        this.$q.notify({
+          color: 'positive',
+          message: `Agora ${name} é seu amigo!`,
+          icon: 'sentiment_satisfied_alt'
+        })
+      } else if (response.status === 'pending') {
+        this.$q.notify({
+          color: 'amber-8',
+          message: `${name} foi removido da lista de solicitações!`,
+          icon: 'sentiment_dissatisfied'
+        })
+      } else {
+        this.$q.notify({
+          color: 'negative',
+          message: `Ocorreu algum erro ao ${selection ? 'aceitar' : 'recusar'} a amizade!`,
+          icon: 'report_problem'
+        })
+      }
     },
 
     invitation () {
