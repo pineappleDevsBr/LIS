@@ -21,14 +21,15 @@ class FakerSeeder {
 
     await Factory.model('App/Models/User').create({
       nationality_id: 1,
+      avatar: 'lis_fakeAvatar-1.png',
       email: 'block@test.com',
       password: 'Secret123',
       user_type: 3
     });
 
-    await Factory.model('App/Models/User').create({ nationality_id: 1 });
-    await Factory.model('App/Models/User').create({ nationality_id: 1 });
-    await Factory.model('App/Models/User').create({ nationality_id: 1 });
+    await Factory.model('App/Models/User').create({ nationality_id: 1, avatar: 'lis_fakeAvatar-2.png' });
+    await Factory.model('App/Models/User').create({ nationality_id: 1, avatar: 'lis_fakeAvatar-3.png' });
+    await Factory.model('App/Models/User').create({ nationality_id: 1, avatar: 'lis_fakeAvatar-4.png' });
 
     // -------------------------------------------------------------------------- //
 

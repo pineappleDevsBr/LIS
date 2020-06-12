@@ -24,7 +24,7 @@ class DatabaseSeeder {
 
     const admin_1 = new User();
     admin_1.nickname = '4stronaut4'
-    admin_1.avatar = 'lis_4stronaut4',
+    admin_1.avatar = 'lis_4stronaut4.png',
     admin_1.name = 'Leandro C. Silva'
     admin_1.email = 'leandro@lis.com',
     admin_1.password = 'Secret123';
@@ -36,7 +36,7 @@ class DatabaseSeeder {
 
     const admin_2 = new User();
     admin_2.nickname = 'fsouza2404'
-    admin_2.avatar = 'lis_avatar-g844',
+    admin_2.avatar = 'lis_avatar-g844.png',
     admin_2.name = 'Fernando S. Marques'
     admin_2.email = 'fernando@lis.com',
     admin_2.password = '123';
