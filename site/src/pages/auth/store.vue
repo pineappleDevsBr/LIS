@@ -72,7 +72,7 @@
         <q-card class="m-card" v-for="item in getFriends" v-bind:key="item.id" @click="usePresent(itemSelect, item.id)">
           <q-card-section class="m-friends_card">
             <div class="m-friends_profile">
-              <img class="m-friends_avatar" :src="`https://api.adorable.io/avatars/75/lis-avatar${item.id}.png`" :alt="`adorable avatar lis-avatar${item.id}.png`">
+              <img class="m-friends_avatar" :src="`https://api.adorable.io/avatars/75/${item.avatar}`" :alt="`adorable avatar`">
               <div>
                 <h2 class="m-friends_username q-dark_title">{{item.name}}</h2>
                 <p class="m-friends_level">Nível: {{item.level ? item.level : 1}}</p>
@@ -80,7 +80,7 @@
               </div>
             </div>
             <div>
-              <img class="m-friends_course" src="statics/courses/226-united-states.svg" alt="Curso de Inglês">
+              <img class="m-friends_nationality" :src="`statics/nationalities/${item.nationality_id}.svg`" alt="Nacionalidade">
             </div>
           </q-card-section>
         </q-card>

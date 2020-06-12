@@ -79,7 +79,7 @@
             </div>
           </div>
           <div>
-            <img class="m-friends_course" src="statics/courses/226-united-states.svg" alt="Curso de Inglês">
+            <img class="m-friends_nationality" :src="`statics/nationalities/${item.nationality_id}.svg`" alt="Nacionalidade">
           </div>
         </q-card-section>
       </q-card>
