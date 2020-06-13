@@ -25,6 +25,7 @@ const Route = use('Route')
 Route.group(() => {
   // App -> User
   Route.get('/user/theme', 'Api/ThemeController.indexUser')
+  Route.get('/user/list', 'Api/UserController.list')
   Route.put('/user/theme', 'Api/ThemeController.update')
   Route.get('/user/:id', 'Api/UserController.index')
   Route.get('/user', 'Api/UserController.get')

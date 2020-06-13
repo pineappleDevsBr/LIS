@@ -38,17 +38,17 @@ export default {
     },
 
     random () {
-      this.avatar = Math.random().toString(36).substr(2, 4)
+      this.avatar = `lis_avatarGenerator-${Math.random().toString(36).substr(2, 4)}.png`
     }
   },
   computed: {
     ...mapGetters('user', ['getUser']),
     avatar_path () {
-      return `https://api.adorable.io/avatars/75/lis_avatarGenerator-${this.avatar}.png`
+      return `https://api.adorable.io/avatars/75/${this.avatar}`
     }
   },
   created () {
-    this.avatar_path = this.getUser.avatar
+    this.avatar = this.getUser.avatar
   }
 }
 </script>

@@ -2,7 +2,8 @@
 import { user } from '@api/index'
 
 const getters = {
-  getUser: (state) => state
+  getUser: state => state,
+  listUser: state => state.list
 }
 
 const actions = {
@@ -10,6 +11,17 @@ const actions = {
     try {
       const { data } = await user.get()
       commit('UPDATE_USER', data)
+
+      return data
+    } catch (err) {
+      return err
+    }
+  },
+
+  async listUser ({ commit }) {
+    try {
+      const { data } = await user.list()
+      commit('LIST_USER', data)
 
       return data
     } catch (err) {
@@ -52,6 +64,10 @@ const mutations = {
       .forEach((item) => {
         state[item[0]] = item[1]
       })
+  },
+
+  LIST_USER (state, data) {
+    state.list = data
   }
 }
 
@@ -66,7 +82,8 @@ const state = {
     id: 1,
     name: 'Brazil',
     file: 'Keith'
-  }
+  },
+  list: []
 }
 
 export default {
