@@ -8,7 +8,7 @@ class UsersSchema extends Schema {
     this.create('users', (table) => {
       table.increments('id')
       table.string('name', 80).notNullable()
-      table.string('avatar', 254).notNullable()
+      table.string('avatar', 254).notNullable().defaultTo(`lis_avatarGenerator-${Math.random().toString(36).substr(2, 4)}.png`)
       table.string('nickname', 80).notNullable().unique()
       table.string('email', 254).notNullable().unique()
       table.string('password', 60).notNullable()
