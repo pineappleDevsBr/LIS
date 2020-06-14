@@ -1,11 +1,22 @@
 'use strict'
-const User = use('App/Models/User')
+const UserRepository = use('App/Repositories/UserRepository');
+const UserState = use('App/Base/UserState');
 
 class UserController {
-  async index({ view }) {
-    const users = await User.all();
+  async block({ request, response, session }) {
+    const { id, action } = request.all();
+    const hasAction = action === 'true';
 
-    return view.render('pages.users.index', { users: users.toJSON() })
+    try {
+      const user = await UserRepository.updateById(id, {
+        user_type: hasAction ? UserState.UNBLOCKED : UserState.BLOCKED
+      });
+
+      session.flash({ result: hasAction ? 'Blocked' : 'Unblocked' })
+      response.route('admin.users');
+    } catch (err) {
+      response.send(err);
+    }
   }
 }
 

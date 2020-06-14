@@ -77,7 +77,8 @@ Route.group(() => {
   Route.get('/themes', 'Admin/ThemeController.index').as('admin.themes')
 
   // Admin -> Users
-  Route.get('/users', 'Admin/UserController.index').as('admin.users')
+  Route.get('/users', 'Site/UserController.index').as('admin.users')
+  Route.post('/users', 'Admin/UserController.block').as('admin.users.block')
 
   // Admin -> Tutorials
   Route.on('/tutorials/new').render('pages.tutorials.store')
@@ -91,8 +92,8 @@ Route.group(() => {
   Route.get('/tasks/:id', 'Admin/TaskController.get').as('admin.task')
   Route.post('/tasks/new', 'Admin/TaskController.store').as('admin.tasks.store')
 
-// }).prefix('admin')
-}).prefix('admin').middleware(['admin', 'auth:session'])
+}).prefix('admin')
+// }).prefix('admin').middleware(['admin', 'auth:session'])
 
 Route.group(() => {
   Route.on('/login').render('login').as('admin.login')

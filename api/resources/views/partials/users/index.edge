@@ -1,5 +1,10 @@
 <div class="row">
   <div class="col">
+    @if(old('result'))
+      <div class="alert alert-success mb-2" role="alert">
+        User has succesfull {{ old('result') }}
+      </div>
+    @endif
     <div class="table-responsive table--no-card m-b-30">
       <table class="table table-borderless table-striped">
         <thead class="bg-dark text-white">
@@ -7,7 +12,8 @@
             <th>Id</th>
             <th>Name</th>
             <th>E-mail</th>
-            <th>Blocked</th>
+            <th>Status</th>
+            <th>Actions</th>
           </tr>
         </thead>
         <tbody>
@@ -16,7 +22,14 @@
             <td>{{ user.id }}</td>
             <td>{{ user.name }}</td>
             <td>{{ user.email }}</td>
-            <td class="{{ user.user_type === '3' ? 'status--denied' : 'status--process' }}" >{{ user.user_type === '3' ? 'Blocked' : 'Unblocked' }}</td>
+            <td class="{{ user.user_type === '3' ? 'status--denied' : 'status--process' }}" >{{ user.user_type }} - {{ user.user_type === '3' ? 'Blocked' : user.user_type === '1' ? 'Admin' : 'Unblocked' }}</td>
+            <td>
+              <form action="{{ route('admin.users.block') }}" method="POST">
+                <input type="hidden" name="id" value="{{ user.id }}">
+                <input type="hidden" name="action" value="{{ user.user_type === '3' }}">
+                <button {{ user.user_type === '1' ? 'disabled': '' }} type="submit" style="min-width: 100px" class="btn {{ user.user_type === '3' ? 'btn-primary' : 'btn-danger' }} btn-sm">{{ user.user_type === '3' ? 'Unlock' : 'Block' }}</button>
+              </form>
+            </td>
           </tr>
           @endeach
         </tbody>
