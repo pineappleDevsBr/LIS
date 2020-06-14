@@ -8,7 +8,7 @@
         <q-btn class="m-friends_search-btn" no-caps flat :label="$t('hub.invitation')" @click="invitation"/>
       </div>
     </div>
-    <div v-if="!getInvites">
+    <div v-if="getInvites.length > 0">
       <h2 class="m-friends_title">{{ $t('hub.requests') }}</h2>
       <div v-if="!getInvites">
         <q-card class="m-skeleton" v-for="index in 2" v-bind:key="index">

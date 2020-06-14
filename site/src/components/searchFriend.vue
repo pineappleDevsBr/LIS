@@ -32,7 +32,7 @@
               </div>
               <div>
                 <div class="m-friends_confirm">
-                  <q-btn no-caps rounded class="m-search_btn" label="Solicitar amizade"/>
+                  <q-btn no-caps rounded class="m-search_btn" label="Solicitar amizade" @click="addFriend(item.id)"/>
                 </div>
               </div>
             </q-card-section>
@@ -44,6 +44,7 @@
 </template>
 
 <script>
+import store from '../store/index'
 
 export default {
   name: 'SearchFriend',
@@ -59,6 +60,25 @@ export default {
   },
 
   methods: {
+    async addFriend (id) {
+      const payload = { friend_id: id }
+
+      const response = await store().dispatch('friends/sendInvites', payload)
+      console.log(response)
+      if (response.status) {
+        this.$q.notify({
+          color: 'positive',
+          message: 'Solicitação enviada com sucesso!',
+          icon: 'sentiment_satisfied_alt'
+        })
+      } else {
+        this.$q.notify({
+          color: 'negative',
+          message: 'Ocorreu um erro ao realizar a solicitação, tente novamente mais tarde!',
+          icon: 'report_problem'
+        })
+      }
+    },
     closeSearch () {
       this.$emit('closeSearch')
     }

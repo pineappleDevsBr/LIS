@@ -24,6 +24,15 @@ const actions = {
     } catch (error) {
       return { status: false, error }
     }
+  },
+
+  async sendInvites ({ commit }, payload) {
+    try {
+      const data = await friends.invite(payload)
+      return data
+    } catch (error) {
+      return { status: false, error }
+    }
   }
 }
 
