@@ -43,13 +43,20 @@ class FriendListController {
     const { friend_id } = request.only(['friend_id']);
 
     try {
-      const data = FriendRepository.store({
+      const data = await FriendRepository.store({
         user_one_id: auth.user.id,
         user_two_id: friend_id,
         user_action_id: auth.user.id,
       })
 
-      response.send(data);
+      if (data.code) {
+        response.status(401).json({
+          message: 'are already friends'
+        })
+      } else {
+        response.send(data);
+      }
+
     } catch (err) {
       response.send(err)
     }

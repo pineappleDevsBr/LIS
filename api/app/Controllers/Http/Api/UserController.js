@@ -10,8 +10,8 @@ const labels = [
 ]
 
 class UserController {
-  async index({ response, params }) {
-    response.json(await UserRepository.getById(params.id));
+  async index({ response, params, auth }) {
+    response.json(await UserRepository.getById(params.id, auth.user.id));
   }
 
   async get({ response, auth }) {
@@ -53,15 +53,6 @@ class UserController {
     } catch (err) {
       response.send(err);
     }
-  }
-
-  async list({ auth }) {
-    const users = await User.all();
-    const formatUsers = [];
-    users.toJSON().forEach(user => {
-      if (user.email !== auth.user.email) formatUsers.push(user)
-    });
-    return formatUsers;
   }
 }
 

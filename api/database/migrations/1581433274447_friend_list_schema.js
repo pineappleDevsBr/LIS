@@ -6,7 +6,7 @@ const Schema = use('Schema')
 class FriendListSchema extends Schema {
   up () {
     this.create('friend_lists', (table) => {
-      table.increments('id')
+      table.increments('id_friend_list')
       table.integer('user_one_id').unsigned().notNullable().references('id').inTable('users')
       table.integer('user_two_id').unsigned().notNullable().references('id').inTable('users')
       table.integer('user_action_id').unsigned().notNullable().references('id').inTable('users')

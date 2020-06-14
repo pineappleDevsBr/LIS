@@ -25,7 +25,6 @@ const Route = use('Route')
 Route.group(() => {
   // App -> User
   Route.get('/user/theme', 'Api/ThemeController.indexUser')
-  Route.get('/user/list', 'Api/UserController.list')
   Route.put('/user/theme', 'Api/ThemeController.update')
   Route.get('/user/:id', 'Api/UserController.index')
   Route.get('/user', 'Api/UserController.get')
@@ -35,6 +34,10 @@ Route.group(() => {
   Route.get('/friends', 'Api/FriendListController.index')
   Route.post('/friends/invite', 'Api/FriendListController.store')
   Route.post('/friends/selection', 'Api/FriendListController.update')
+
+  // App -> Search
+  Route.get('/search/all/:page', 'Api/SearchController.index')
+  Route.get('/search/:value', 'Api/SearchController.search')
 
   // App -> Tasks
   Route.get('/task', 'Api/TaskController.index')

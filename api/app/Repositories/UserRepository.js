@@ -3,10 +3,12 @@
 
 const Database = use('Database');
 const User = use('App/Models/User');
+const FriendList = use('App/Models/FriendList');
 const ThemeList = use('App/Models/ThemeList');
 
 class UserRepository {
-  async getById(id) {
+  async getById(id, user) {
+    let areFriends;
     try {
       const data = await User
         .query()
@@ -14,7 +16,24 @@ class UserRepository {
         .with('nationality')
         .first()
 
-      return data;
+      if (user) {
+        areFriends = await FriendList
+        .query()
+        .where('user_one_id', user)
+        .andWhere('user_two_id', id)
+        .orWhere('user_one_id', id)
+        .andWhere('user_two_id', user)
+        .first();
+
+        return {
+          ...data.toJSON(),
+          areFriends: areFriends ? true : false
+        };
+      } else {
+        return data;
+      }
+
+
     } catch (err) {
       return err;
     }
@@ -55,6 +74,33 @@ class UserRepository {
     } catch (err) {
       await trx.rollback();
       return err
+    }
+  }
+
+  async indexPaginated(page) {
+    try {
+      const data = await User
+      .query()
+      .orderBy('xp', 'desc')
+      .paginate(page, 2)
+
+      return data;
+    } catch (err) {
+      return err;
+    }
+  }
+
+  async searchByEmailOrName(value) {
+    try {
+      const data = User
+        .query()
+        .whereRaw(`name LIKE ?`, `%${value}%`)
+        .orWhereRaw(`email LIKE ?`, `%${value}%`)
+        .fetch()
+
+      return data;
+    } catch (err) {
+      return err;
     }
   }
 }

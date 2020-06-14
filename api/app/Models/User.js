@@ -26,7 +26,7 @@ class User extends Model {
   }
 
   friends() {
-    return this.hasMany('App/Models/FriendList')
+    return this.hasMany('App/Models/FriendList', 'id', 'id_friend_list')
   }
 
   nationality() {
