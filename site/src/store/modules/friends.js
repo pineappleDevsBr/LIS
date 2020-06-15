@@ -2,7 +2,8 @@ import { friends } from '@api/index'
 
 const getters = {
   getFriends: state => state.friends,
-  getInvites: state => state.invites
+  getInvites: state => state.invites,
+  searchAll: state => state.searchAll
 }
 
 const actions = {
@@ -11,6 +12,26 @@ const actions = {
       const { data } = await friends.get()
       commit('UPDATE_FRIENDS', data.friends)
       commit('UPDATE_INVITES', data.invites)
+      return data
+    } catch (error) {
+      return { status: false, error }
+    }
+  },
+
+  async searchAll ({ commit }, page) {
+    try {
+      const { data } = await friends.searchAll(page)
+      commit('UPDATE_SEARCHALL', data.data)
+      return data
+    } catch (error) {
+      return { status: false, error }
+    }
+  },
+
+  async search ({ commit }, payload) {
+    try {
+      const { data } = await friends.search(payload)
+      commit('UPDATE_SEARCHALL', data)
       return data
     } catch (error) {
       return { status: false, error }
@@ -43,12 +64,17 @@ const mutations = {
 
   UPDATE_INVITES (state, invites) {
     state.invites = invites
+  },
+
+  UPDATE_SEARCHALL (state, searchAll) {
+    state.searchAll = state.searchAll.concat(searchAll)
   }
 }
 
 const state = {
   friends: [],
-  invites: []
+  invites: [],
+  searchAll: []
 }
 
 export default {

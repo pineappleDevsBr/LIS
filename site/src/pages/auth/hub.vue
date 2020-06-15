@@ -95,7 +95,7 @@
         </q-card-section>
       </q-card>
     </q-dialog>
-    <searchFriend :search="search" :list="listUser" @closeSearch="closeSearch"/>
+    <searchFriend :search="search" :list="searchAll" @closeSearch="closeSearch"/>
   </div>
 </template>
 
@@ -113,6 +113,7 @@ export default {
 
   data () {
     return {
+      page: 1,
       search: false,
       inviteOpen: false,
       invite: 'https://lis.com.br/invite/CH3BBC556GFccF'
@@ -163,11 +164,11 @@ export default {
   computed: {
     ...mapGetters('friends', ['getFriends']),
     ...mapGetters('friends', ['getInvites']),
-    ...mapGetters('user', ['listUser'])
+    ...mapGetters('friends', ['searchAll'])
   },
   async mounted () {
     await store().dispatch('friends/getFriends')
-    await store().dispatch('user/listUser')
+    await store().dispatch('friends/searchAll', this.page)
   }
 }
 </script>

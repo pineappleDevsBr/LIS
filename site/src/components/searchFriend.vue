@@ -14,10 +14,10 @@
         @click="closeSearch"/>
       </div>
       <div class="o-modal_content">
-        <div class="m-search_search">
+        <q-form @submit="searchFriend" class="m-search_search">
           <q-input dense class="m-search_input" v-model="filter" label="Pesquise pelo nome ou e-mail" />
-          <q-btn class="m-search_btn-round" round icon="search"/>
-        </div>
+          <q-btn class="m-search_btn-round" round icon="search" type="submit"/>
+        </q-form>
         <h2 class="m-search_title">Amigos encontrados</h2>
         <div>
           <q-card class="m-card" v-for="item in list" v-bind:key="item.id">
@@ -32,13 +32,14 @@
               </div>
               <div>
                 <div class="m-friends_confirm">
-                  <q-btn no-caps rounded class="m-search_btn" label="Solicitar amizade" @click="addFriend(item.id)"/>
+                  <q-btn no-caps rounded class="m-search_btn" label="Ver perfil"/>
                 </div>
               </div>
             </q-card-section>
           </q-card>
         </div>
       </div>
+      <q-btn no-caps rounded class="m-search_btn" label="Carregar mais amigos" @click="loadMore()"/>
     </div>
   </q-dialog>
 </template>
@@ -55,30 +56,41 @@ export default {
 
   data () {
     return {
+      page: 1,
       filter: ''
     }
   },
 
   methods: {
-    async addFriend (id) {
-      const payload = { friend_id: id }
+    // async addFriend (id) {
+    //   const payload = { friend_id: id }
 
-      const response = await store().dispatch('friends/sendInvites', payload)
-      console.log(response)
-      if (response.status) {
-        this.$q.notify({
-          color: 'positive',
-          message: 'Solicitação enviada com sucesso!',
-          icon: 'sentiment_satisfied_alt'
-        })
-      } else {
-        this.$q.notify({
-          color: 'negative',
-          message: 'Ocorreu um erro ao realizar a solicitação, tente novamente mais tarde!',
-          icon: 'report_problem'
-        })
-      }
+    //   const response = await store().dispatch('friends/sendInvites', payload)
+    //   console.log(response)
+    //   if (response.status) {
+    //     this.$q.notify({
+    //       color: 'positive',
+    //       message: 'Solicitação enviada com sucesso!',
+    //       icon: 'sentiment_satisfied_alt'
+    //     })
+    //   } else {
+    //     this.$q.notify({
+    //       color: 'negative',
+    //       message: 'Ocorreu um erro ao realizar a solicitação, tente novamente mais tarde!',
+    //       icon: 'report_problem'
+    //     })
+    //   }
+    // },
+
+    async searchFriend () {
+      await store().dispatch('friends/search', this.filter)
     },
+
+    async loadMore () {
+      this.page += 1
+      await store().dispatch('friends/searchAll', this.page)
+    },
+
     closeSearch () {
       this.$emit('closeSearch')
     }
