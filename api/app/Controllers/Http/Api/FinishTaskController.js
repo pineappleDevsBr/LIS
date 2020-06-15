@@ -62,7 +62,7 @@ class FinishTaskController {
 
       results.push({
         id,
-        status: item.answer === answers[0].answer
+        status: item.answer.toLowerCase() === answers[0].answer.toLowerCase()
       })
     })
 
@@ -85,7 +85,7 @@ class FinishTaskController {
 
       results.push({
         id,
-        status: item.answer === answers[0].answer
+        status: item.answer.toLowerCase() === answers[0].answer.toLowerCase()
       })
     })
 
