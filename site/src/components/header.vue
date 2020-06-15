@@ -68,13 +68,6 @@ export default {
         freeMode: true,
         freeModeMomentum: false
       },
-      routes: {
-        home: { name: 'home', label: this.$i18n.t('header.home'), action: 'qprogress' },
-        store: { name: 'store', label: this.$i18n.t('header.store'), action: 'qprogress' },
-        profile: { name: 'profile', label: this.$i18n.t('header.profile'), action: 'qprogress' },
-        hub: { name: 'hub', label: this.$i18n.t('header.hub'), action: 'qprogress' },
-        settings: { name: 'settings', label: this.$i18n.t('header.settings'), action: 'qprogress' }
-      },
       default: { name: 'home', label: 'Atividades', action: '' }
     }
   },
@@ -93,6 +86,16 @@ export default {
       }
 
       return this.default.action
+    },
+
+    routes () {
+      return {
+        home: { name: 'home', label: this.$i18n.t('header.home'), action: 'qprogress' },
+        store: { name: 'store', label: this.$i18n.t('header.store'), action: 'qprogress' },
+        profile: { name: 'profile', label: this.$i18n.t('header.profile'), action: 'qprogress' },
+        hub: { name: 'hub', label: this.$i18n.t('header.hub'), action: 'qprogress' },
+        settings: { name: 'settings', label: this.$i18n.t('header.settings'), action: 'qprogress' }
+      }
     }
   },
   methods: {
