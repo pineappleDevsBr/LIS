@@ -126,27 +126,13 @@ export default {
 
     async acceptFriendship (inviteId, selection, name) {
       const payload = { invite_id: inviteId, selection }
-      const response = await store().dispatch('friends/acceptInvites', payload)
+      await store().dispatch('friends/acceptInvites', payload)
       await store().dispatch('friends/getFriends')
-      if (response.status === 'confirmed') {
-        this.$q.notify({
-          color: 'positive',
-          message: `Agora ${name} é seu amigo!`,
-          icon: 'sentiment_satisfied_alt'
-        })
-      } else if (response.status === 'pending') {
-        this.$q.notify({
-          color: 'amber-8',
-          message: `${name} foi removido da lista de solicitações!`,
-          icon: 'sentiment_dissatisfied'
-        })
-      } else {
-        this.$q.notify({
-          color: 'negative',
-          message: `Ocorreu algum erro ao ${selection ? 'aceitar' : 'recusar'} a amizade!`,
-          icon: 'report_problem'
-        })
-      }
+      this.$q.notify({
+        color: 'positive',
+        message: `Agora ${name} é seu amigo!`,
+        icon: 'sentiment_satisfied_alt'
+      })
     },
 
     invitation () {

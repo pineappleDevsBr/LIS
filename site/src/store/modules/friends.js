@@ -13,6 +13,7 @@ const actions = {
       const { data } = await friends.get()
       commit('UPDATE_FRIENDS', data.friends)
       commit('UPDATE_INVITES', data.invites)
+      console.log(data.invites)
       return data
     } catch (error) {
       return { status: false, error }

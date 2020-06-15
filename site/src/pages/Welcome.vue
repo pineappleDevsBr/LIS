@@ -9,7 +9,11 @@
 </template>
 
 <script>
+import store from '../store/index'
 export default {
-  name: 'Welcome'
+  name: 'Welcome',
+  created () {
+    store().dispatch('darkMode/setDarkMode', false)
+  }
 }
 </script>

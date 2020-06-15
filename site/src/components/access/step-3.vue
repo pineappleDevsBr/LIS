@@ -19,7 +19,7 @@
             <template v-slot:right>
               <q-icon name="close" />
             </template>
-            <q-card-section>{{theme.name}}</q-card-section>
+            <q-card-section :class="bg[theme.id]">{{theme.name}} - {{ bg }}</q-card-section>
           </q-slide-item>
         </q-card>
       </q-card-section>
@@ -83,12 +83,13 @@ export default {
       })
 
       if (!add) this.themes.push(theme)
-      this.bgColor[theme] = 'bg-accent'
+      this.bgColor[this.idTheme] = 'bg-accent'
     },
 
     removeTheme (theme) {
       const index = this.themes.indexOf(theme)
       if (index > -1) this.themes.splice(index, 1)
+      this.bgColor[this.idTheme] = 'bg-white'
     },
 
     finalize (reset) {
@@ -106,7 +107,13 @@ export default {
       return this.filter ? this.getTheme.filter(theme => {
         return theme.name.toLowerCase().includes(this.filter.toLowerCase())
       }) : this.getTheme
+    },
+    bg () {
+      return this.bgColor
     }
+  },
+  created () {
+    this.getTheme.forEach(elm => (this.bgColor[elm.id] = 'bg-white'))
   }
 }
 </script>

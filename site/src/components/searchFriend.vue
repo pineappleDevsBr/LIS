@@ -39,7 +39,7 @@
           </q-card>
         </div>
       </div>
-      <q-btn no-caps rounded class="m-search_btn" label="Carregar mais amigos" @click="loadMore()" v-if="searchFilter.length = 0"/>
+      <q-btn no-caps rounded class="m-search_btn" label="Carregar mais amigos" @click="loadMore()" v-if="searchFilter.length === 0"/>
       <q-btn no-caps rounded class="m-search_btn" label="Mostrar todos" @click="searchFilter = []" v-else/>
     </div>
   </q-dialog>

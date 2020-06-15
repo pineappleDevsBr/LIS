@@ -14,7 +14,7 @@ class FriendListController {
       const fetchData = await FriendRepository.index(auth.user.id);
       const friendData = fetchData.rows.map((item) => ({
           status: item.status,
-          invite_id: item.id,
+          invite_id: item.id_friend_list,
           id: item.user_one_id === auth.user.id ? item.user_two_id : item.user_one_id
         }))
 
