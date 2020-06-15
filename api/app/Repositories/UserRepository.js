@@ -82,7 +82,7 @@ class UserRepository {
       const data = await User
       .query()
       .orderBy('xp', 'desc')
-      .paginate(page, 2)
+      .paginate(page, 10)
 
       return data;
     } catch (err) {

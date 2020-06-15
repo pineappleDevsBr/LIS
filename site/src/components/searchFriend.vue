@@ -20,7 +20,7 @@
         </q-form>
         <h2 class="m-search_title">Amigos encontrados</h2>
         <div>
-          <q-card class="m-card" v-for="item in list" v-bind:key="item.id">
+          <q-card class="m-card" v-for="item in friendList" v-bind:key="item.id">
             <q-card-section class="m-friends_card">
               <div class="m-friends_profile">
                 <img class="m-friends_avatar" :src="`https://api.adorable.io/avatars/75/${item.avatar}`" :alt="`adorable avatar`">
@@ -39,7 +39,8 @@
           </q-card>
         </div>
       </div>
-      <q-btn no-caps rounded class="m-search_btn" label="Carregar mais amigos" @click="loadMore()"/>
+      <q-btn no-caps rounded class="m-search_btn" label="Carregar mais amigos" @click="loadMore()" v-if="searchFilter.length = 0"/>
+      <q-btn no-caps rounded class="m-search_btn" label="Mostrar todos" @click="searchFilter = []" v-else/>
     </div>
   </q-dialog>
 </template>
@@ -57,7 +58,8 @@ export default {
   data () {
     return {
       page: 1,
-      filter: ''
+      filter: '',
+      searchFilter: []
     }
   },
 
@@ -83,7 +85,8 @@ export default {
     // },
 
     async searchFriend () {
-      await store().dispatch('friends/search', this.filter)
+      const response = await store().dispatch('friends/search', this.filter)
+      this.searchFilter = response
     },
 
     async loadMore () {
@@ -93,6 +96,12 @@ export default {
 
     closeSearch () {
       this.$emit('closeSearch')
+    }
+  },
+  computed: {
+    friendList () {
+      if (this.searchFilter.length > 0) return this.searchFilter
+      return this.list
     }
   }
 }

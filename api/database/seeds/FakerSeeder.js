@@ -31,6 +31,17 @@ class FakerSeeder {
     await Factory.model('App/Models/User').create({ nationality_id: 1, avatar: 'lis_fakeAvatar-3.png' });
     await Factory.model('App/Models/User').create({ nationality_id: 1, avatar: 'lis_fakeAvatar-4.png' });
 
+    await Factory.model('App/Models/User').create({ nationality_id: 1, avatar: 'lis_fakeAvatar-5.png' });
+    await Factory.model('App/Models/User').create({ nationality_id: 1, avatar: 'lis_fakeAvatar-6.png' });
+    await Factory.model('App/Models/User').create({ nationality_id: 1, avatar: 'lis_fakeAvatar-7.png' });
+    await Factory.model('App/Models/User').create({ nationality_id: 1, avatar: 'lis_fakeAvatar-8.png' });
+    await Factory.model('App/Models/User').create({ nationality_id: 1, avatar: 'lis_fakeAvatar-9.png' });
+    await Factory.model('App/Models/User').create({ nationality_id: 1, avatar: 'lis_fakeAvatar-10.png' });
+    await Factory.model('App/Models/User').create({ nationality_id: 1, avatar: 'lis_fakeAvatar-11.png' });
+    await Factory.model('App/Models/User').create({ nationality_id: 1, avatar: 'lis_fakeAvatar-12.png' });
+    await Factory.model('App/Models/User').create({ nationality_id: 1, avatar: 'lis_fakeAvatar-13.png' });
+    await Factory.model('App/Models/User').create({ nationality_id: 1, avatar: 'lis_fakeAvatar-14.png' });
+
     // -------------------------------------------------------------------------- //
 
 
