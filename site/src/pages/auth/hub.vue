@@ -139,11 +139,13 @@ export default {
       this.inviteOpen = true
     },
 
-    searchOpen () {
+    async searchOpen () {
+      await store().dispatch('friends/cleanList')
+      await store().dispatch('friends/searchAll', this.page)
       this.search = true
     },
 
-    closeSearch () {
+    async closeSearch () {
       this.search = false
     }
   },
@@ -154,7 +156,6 @@ export default {
   },
   async mounted () {
     await store().dispatch('friends/getFriends')
-    await store().dispatch('friends/searchAll', this.page)
   }
 }
 </script>

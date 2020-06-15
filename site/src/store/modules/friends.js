@@ -1,6 +1,7 @@
 import { friends } from '@api/index'
 
 const getters = {
+  getFriend: state => state.friend,
   getFriends: state => state.friends,
   getInvites: state => state.invites,
   searchAll: state => state.searchAll,
@@ -8,6 +9,16 @@ const getters = {
 }
 
 const actions = {
+  async getFriend ({ commit }, id) {
+    try {
+      const { data } = await friends.getFriend(id)
+      commit('UPDATE_FRIEND', data)
+      return data
+    } catch (error) {
+      return { status: false, error }
+    }
+  },
+
   async getFriends ({ commit }) {
     try {
       const { data } = await friends.get()
@@ -56,10 +67,23 @@ const actions = {
     } catch (error) {
       return { status: false, error }
     }
+  },
+
+  async cleanList ({ commit }) {
+    try {
+      commit('CLEAN_SEARCH')
+      return true
+    } catch (error) {
+      return { status: false, error }
+    }
   }
 }
 
 const mutations = {
+  UPDATE_FRIEND (state, friend) {
+    state.friend = friend
+  },
+
   UPDATE_FRIENDS (state, friends) {
     state.friends = friends
   },
@@ -68,16 +92,21 @@ const mutations = {
     state.invites = invites
   },
 
-  UPDATE_SEARCHALL (state, searchAll, friend) {
+  UPDATE_SEARCHALL (state, searchAll) {
     state.searchAll = state.searchAll.concat(searchAll)
   },
 
   UPDATE_SEARCH (state, search) {
     state.search = search
+  },
+
+  CLEAN_SEARCH (state) {
+    state.searchAll = []
   }
 }
 
 const state = {
+  friend: {},
   friends: [],
   invites: [],
   searchAll: [],

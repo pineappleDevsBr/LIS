@@ -32,7 +32,7 @@
               </div>
               <div>
                 <div class="m-friends_confirm">
-                  <q-btn no-caps rounded class="m-search_btn" label="Ver perfil"/>
+                  <q-btn no-caps rounded class="m-search_btn" label="Ver perfil" @click="viewFriend(item.id)"/>
                 </div>
               </div>
             </q-card-section>
@@ -64,25 +64,9 @@ export default {
   },
 
   methods: {
-    // async addFriend (id) {
-    //   const payload = { friend_id: id }
-
-    //   const response = await store().dispatch('friends/sendInvites', payload)
-    //   console.log(response)
-    //   if (response.status) {
-    //     this.$q.notify({
-    //       color: 'positive',
-    //       message: 'Solicitação enviada com sucesso!',
-    //       icon: 'sentiment_satisfied_alt'
-    //     })
-    //   } else {
-    //     this.$q.notify({
-    //       color: 'negative',
-    //       message: 'Ocorreu um erro ao realizar a solicitação, tente novamente mais tarde!',
-    //       icon: 'report_problem'
-    //     })
-    //   }
-    // },
+    viewFriend (id) {
+      this.$router.push(`/profile/${id}`)
+    },
 
     async searchFriend () {
       const response = await store().dispatch('friends/search', this.filter)
@@ -94,8 +78,10 @@ export default {
       await store().dispatch('friends/searchAll', this.page)
     },
 
-    closeSearch () {
+    async closeSearch () {
+      this.page = 1
       this.$emit('closeSearch')
+      await store().dispatch('friends/cleanList')
     }
   },
   computed: {
