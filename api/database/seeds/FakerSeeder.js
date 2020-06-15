@@ -50,7 +50,7 @@ class FakerSeeder {
     const user_3 = await User.find(4);
 
     await Factory.model('App/Models/FriendList').create(0, { user_one_id: 1, user_two_id: user_2.id, status: 'confirmed' });
-    await Factory.model('App/Models/FriendList').create(0, { user_one_id: 1, user_two_id: user_3.id });
+    await Factory.model('App/Models/FriendList').create(0, { user_one_id: 1, user_two_id: user_3.id, user_action_id: user_3.id });
 
     await Factory.model('App/Models/FriendList').create(0, { user_one_id: 2, user_two_id: user_2.id, status: 'confirmed' });
     await Factory.model('App/Models/FriendList').create(0, { user_one_id: 2, user_two_id: user_3.id });

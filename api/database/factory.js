@@ -31,8 +31,8 @@ Factory.blueprint('App/Models/Theme', async (faker, i, data) => {
 
 Factory.blueprint('App/Models/FriendList', async (faker, i) => {
   return {
-    ...i,
     user_action_id: i.user_one_id,
+    ...i,
   }
 })
 

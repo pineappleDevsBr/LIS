@@ -33,7 +33,7 @@ class FriendRepository {
     try {
       const data = await FriendList
         .query()
-        .where('id_friend_list', invite_id)
+        .where('id', invite_id)
         .first()
 
         if (selection) {

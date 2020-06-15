@@ -12,11 +12,14 @@ class FriendListController {
 
     try {
       const fetchData = await FriendRepository.index(auth.user.id);
-      const friendData = fetchData.rows.map((item) => ({
-        status: item.status,
-        invite_id: item.id_friend_list,
-        id: item.user_one_id === auth.user.id ? item.user_two_id : item.user_one_id
+      const friendData = fetchData.rows
+        .map((item) => ({
+          status: item.status,
+          invite_id: item.id,
+          user_action_id: item.user_action_id,
+          id: item.user_one_id === auth.user.id ? item.user_two_id : item.user_one_id
         }))
+        .filter(fill => !(fill.user_action_id === auth.user.id && fill.status === FriendState.PENDING));
 
       const fetchFriends = await User
         .query()
