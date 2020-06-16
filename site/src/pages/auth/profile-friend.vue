@@ -19,10 +19,10 @@
         <progressBar :progress="{ showValue: false, levelUp: this.setLevelUp.xp, xp: this.getFriend.xp }"/>
       </q-card-section>
     </q-card>
-    <q-btn no-caps rounded class="m-search_btn q-mb-md" label="Solicitar amizade" @click="addFriend(getFriend.id)"/>
+    <q-btn no-caps rounded class="m-search_btn q-mb-md" label="Solicitar amizade" @click="addFriend(getFriend.id)" v-if="!getFriend.areFriends"/>
 
-    <div>
-    <h2 class="m-friends_title">Amigos</h2>
+    <div v-if="friends">
+      <h2 class="m-friends_title">Amigos</h2>
       <q-card class="m-card" v-for="item in friends" v-bind:key="item.id">
         <q-card-section class="m-friends_card">
           <div class="m-friends_profile">
@@ -34,18 +34,18 @@
             </div>
           </div>
           <div>
-            <!-- <img class="m-friends_course" :src="`statics/nationa/${item.course.flag}`" alt=""> -->
+            <img class="m-friends_course" :src="`statics/nationa/${item.course.flag}`" alt="">
           </div>
         </q-card-section>
       </q-card>
     </div>
-    <!-- <btnBack @back="back"/> -->
+    <btnBack @back="back"/>
   </div>
 </template>
 
 <script>
 import progressBar from '../../components/ui/progress-bar'
-// import btnBack from '../../components/ui/btnBack'
+import btnBack from '../../components/ui/btnBack'
 import levelUp from '../../utils/levelUp'
 import store from '../../store'
 import { mapGetters } from 'vuex'
@@ -53,8 +53,8 @@ import { mapGetters } from 'vuex'
 export default {
   name: 'friend',
   components: {
-    progressBar
-    // btnBack
+    progressBar,
+    btnBack
   },
   data () {
     return {
@@ -62,13 +62,7 @@ export default {
         showValue: false,
         levelUp: 2000,
         xp: 1560
-      },
-      friends: [
-        { id: 1, name: 'Amigo1', avatar: 'lis-avatar2.png', level: '5', xp: '856', course: { name: 'Inglês', flag: '226-united-states.svg' } },
-        { id: 2, name: 'Amigo2', avatar: 'lis-avatar3.png', level: '1', xp: '300', course: { name: 'Inglês', flag: '226-united-states.svg' } },
-        { id: 3, name: 'Amigo3', avatar: 'lis-avatar4.png', level: '3', xp: '306', course: { name: 'Inglês', flag: '226-united-states.svg' } },
-        { id: 4, name: 'Amigo4', avatar: 'lis-avatar5.png', level: '10', xp: '120', course: { name: 'Inglês', flag: '226-united-states.svg' } }
-      ]
+      }
     }
   },
   methods: {
@@ -90,6 +84,9 @@ export default {
           icon: 'report_problem'
         })
       }
+    },
+    back () {
+      this.$router.push({ name: 'hub' })
     }
   },
   computed: {

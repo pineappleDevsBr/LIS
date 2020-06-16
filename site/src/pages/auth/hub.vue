@@ -88,8 +88,21 @@
       <q-card>
         <q-card-section class="m-friend_invite">
           <h3 class="m-friends_title">Convide seus amigos que já tenham uma conta!</h3>
-          <q-btn no-caps flat rounded class="m-friends_invite-copy" @click="inviteOpen = false">
-            <strong>Convite:&nbsp;</strong> <span class="-link">{{ invite }}</span>
+          <p class="a-text">Clique no link para copiar o convite abaixo e envie para seu amigo!</p>
+          <p class="a-text">Ele deve estar logado para acessar seu perfil!</p>
+          <div class="flex">
+            <q-tooltip
+            v-model="alertCopy"
+            anchor="top middle"
+            self="bottom middle"
+            :offset="[10, 10]"
+            content-class="bg-primary"
+            content-style="font-size: 14px">
+              Link copiado para a área de transferência!
+            </q-tooltip>
+          </div>
+          <q-btn no-caps flat rounded class="m-friends_invite-copy" @click="copy(`${baseURL}/#/profile/${getUser.id}`)">
+            <strong>Convite:&nbsp;</strong> <span class="-link">{{ `${baseURL}/#/profile/${getUser.id}` }}</span>
           </q-btn>
           <img class="m-friends_invite-ilustra" src="statics/hub/invite.png" alt="Invite ilustra">
         </q-card-section>
@@ -114,9 +127,10 @@ export default {
   data () {
     return {
       page: 1,
+      baseURL: 'http://18.217.115.80',
+      alertCopy: false,
       search: false,
-      inviteOpen: false,
-      invite: 'https://lis.com.br/invite/CH3BBC556GFccF'
+      inviteOpen: false
     }
   },
   methods: {
@@ -126,17 +140,51 @@ export default {
 
     async acceptFriendship (inviteId, selection, name) {
       const payload = { invite_id: inviteId, selection }
-      await store().dispatch('friends/acceptInvites', payload)
+      const response = await store().dispatch('friends/acceptInvites', payload)
       await store().dispatch('friends/getFriends')
-      this.$q.notify({
-        color: 'positive',
-        message: `Agora ${name} é seu amigo!`,
-        icon: 'sentiment_satisfied_alt'
-      })
+      if (response.status === 'confirmed') {
+        this.$q.notify({
+          color: 'positive',
+          message: `Agora ${name} é seu amigo!`,
+          icon: 'sentiment_satisfied_alt'
+        })
+      } else if (response.status === 'pending') {
+        this.$q.notify({
+          color: 'amber-8',
+          message: `${name} foi removido da lista de solicitações!`,
+          icon: 'sentiment_dissatisfied'
+        })
+      } else {
+        this.$q.notify({
+          color: 'negative',
+          message: `Ocorreu algum erro ao ${selection ? 'aceitar' : 'recusar'} a amizade!`,
+          icon: 'report_problem'
+        })
+      }
     },
 
     invitation () {
       this.inviteOpen = true
+    },
+
+    copy (call) {
+      this.alertCopy = true
+      const texto = call
+      let inputTest = document.createElement('input')
+
+      inputTest.value = texto
+      document.body.appendChild(inputTest)
+      inputTest.select()
+      document.execCommand('copy')
+      document.body.removeChild(inputTest)
+
+      setTimeout(() => {
+        this.alertCopy = false
+      }, 1500)
+
+      setTimeout(() => {
+        this.inviteOpen = false
+      }, 2000)
     },
 
     async searchOpen () {
@@ -152,10 +200,12 @@ export default {
   computed: {
     ...mapGetters('friends', ['getFriends']),
     ...mapGetters('friends', ['getInvites']),
-    ...mapGetters('friends', ['searchAll'])
+    ...mapGetters('friends', ['searchAll']),
+    ...mapGetters('user', ['getUser'])
   },
   async mounted () {
     await store().dispatch('friends/getFriends')
+    await store().dispatch('user/getUser')
   }
 }
 </script>
