@@ -11,16 +11,10 @@
         {{ $t('access.choiceOfThemes.info') }}
       </q-card-section>
       <q-card-section>
-        <q-card  class="m-card" v-for="(theme) in filterThemes" v-bind:key="theme.id">
-          <q-slide-item @action="selected(theme.id)" @left="onLeft" @right="onRight" right-color="negative">
-            <template v-slot:left>
-              <q-icon name="done" />
-            </template>
-            <template v-slot:right>
-              <q-icon name="close" />
-            </template>
-            <q-card-section :class="bg[theme.id]">{{theme.name}} - {{ bg }}</q-card-section>
-          </q-slide-item>
+        <q-card class="m-card" v-for="(theme, index) in filterThemes" v-bind:key="theme.id">
+          <q-card-section class="q-pa-xs">
+            <q-checkbox v-model="themes[index]" :label="theme.name" color="accent"/>
+          </q-card-section>
         </q-card>
       </q-card-section>
     </q-card>
@@ -44,16 +38,17 @@ export default {
   data () {
     return {
       filter: '',
-      idTheme: null,
-      bgColor: {},
-      color: 'text-black',
       themes: []
     }
   },
   methods: {
     finish () {
       if (this.themes.length > 0) {
-        this.$emit('finish', this.themes)
+        const payload = []
+        this.themes.forEach((element, index) => {
+          if (element) payload.push(this.getTheme[index].id)
+        })
+        this.$emit('finish', payload)
       } else {
         this.$q.notify({
           color: 'negative',
@@ -61,45 +56,7 @@ export default {
           icon: 'report_problem'
         })
       }
-    },
-    selected (id) {
-      this.idTheme = id
-    },
-
-    async onLeft ({ reset }) {
-      await this.finalize(reset)
-      this.addTheme(this.idTheme)
-    },
-
-    async onRight ({ reset }) {
-      await this.finalize(reset)
-      this.removeTheme(this.idTheme)
-    },
-
-    addTheme (theme) {
-      let add = null
-      this.themes.forEach(id => {
-        if (id === this.idTheme || add) add = true
-      })
-
-      if (!add) this.themes.push(theme)
-      this.bgColor[this.idTheme] = 'bg-accent'
-    },
-
-    removeTheme (theme) {
-      const index = this.themes.indexOf(theme)
-      if (index > -1) this.themes.splice(index, 1)
-      this.bgColor[this.idTheme] = 'bg-white'
-    },
-
-    finalize (reset) {
-      this.timer = setTimeout(() => {
-        reset()
-      }, 1000)
     }
-  },
-  beforeDestroy () {
-    clearTimeout(this.timer)
   },
   computed: {
     ...mapGetters('theme', ['getTheme']),
@@ -107,13 +64,12 @@ export default {
       return this.filter ? this.getTheme.filter(theme => {
         return theme.name.toLowerCase().includes(this.filter.toLowerCase())
       }) : this.getTheme
-    },
-    bg () {
-      return this.bgColor
     }
   },
   created () {
-    this.getTheme.forEach(elm => (this.bgColor[elm.id] = 'bg-white'))
+    for (let i = 0; i < this.getTheme.length; i += 1) {
+      this.themes.push(false)
+    }
   }
 }
 </script>
