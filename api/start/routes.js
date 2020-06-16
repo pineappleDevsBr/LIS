@@ -95,8 +95,8 @@ Route.group(() => {
   Route.get('/tasks/:id', 'Admin/TaskController.get').as('admin.task')
   Route.post('/tasks/new', 'Admin/TaskController.store').as('admin.tasks.store')
 
-}).prefix('admin')
-// }).prefix('admin').middleware(['admin', 'auth:session'])
+// }).prefix('admin')
+}).prefix('admin').middleware(['admin', 'auth:session'])
 
 Route.group(() => {
   Route.on('/login').render('login').as('admin.login')
