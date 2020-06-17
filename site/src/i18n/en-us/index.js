@@ -56,6 +56,7 @@ export default {
     password: 'Password',
     btn: 'Login',
     forgot: 'Forgot my password',
+    access: 'Create an account',
     errors: {
       required: 'Required field'
     }

@@ -37,8 +37,11 @@
         </q-input>
         <q-btn rounded no-caps outline color="primary" class="bg-white o-login_btn" size="lg" type="submit" :label="$t('login.btn')"/>
         <router-link :to="{name: 'forgot-password'}" class="q-mt-md text-white a-link">
-        {{ $t('login.forgot') }}
-      </router-link>
+          {{ $t('login.forgot') }}
+        </router-link>
+        <router-link :to="{name: 'access'}" class="q-mt-md text-white a-link">
+          {{ $t('login.access') }}
+        </router-link>
       </q-form>
   </q-page>
 </template>

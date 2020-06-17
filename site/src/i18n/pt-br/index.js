@@ -56,6 +56,7 @@ export default {
     password: 'Senha',
     btn: 'Login',
     forgot: 'Esqueci minha senha',
+    access: 'Criar uma conta',
     errors: {
       required: 'Campo obrigatório'
     }
