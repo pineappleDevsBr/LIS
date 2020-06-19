@@ -32,6 +32,7 @@ const actions = {
 
   async searchAll ({ commit }, page) {
     try {
+      console.log(page)
       const { data } = await friends.searchAll(page)
       commit('UPDATE_SEARCHALL', data.data)
       return data
@@ -92,7 +93,8 @@ const mutations = {
   },
 
   UPDATE_SEARCHALL (state, searchAll) {
-    state.searchAll = state.searchAll.concat(searchAll)
+    // state.searchAll = searchAll
+    state.searchAll = [...state.searchAll, ...searchAll]
   },
 
   UPDATE_SEARCH (state, search) {
