@@ -43,7 +43,14 @@ export default {
   },
   methods: {
     finish () {
-      if (this.themes.length > 0) {
+      let empty = true
+      for (let i = 0; i < this.themes.length; i += 1) {
+        if (this.themes[i]) {
+          empty = false
+        }
+      }
+
+      if (!empty) {
         const payload = []
         this.themes.forEach((element, index) => {
           if (element) payload.push(this.getTheme[index].id)

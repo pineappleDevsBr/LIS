@@ -44,12 +44,11 @@
     class="primary-error"
     autocomplete="new-password"
     v-model="form.password"
-    @blur="$v.form.password.$touch"
-    :error="$v.form.password.$error"
-    :error-message="$t('access.personalData.errors.minLength')"
+    :rules="[val => pattern.exec(val) !== null || $t('access.personalData.errors.notStrong')]"
+    lazy-rules
     type="password"
     :label="$t('access.personalData.password')"
-    :hint="$t('access.personalData.sixCharacters')" />
+    :hint="$t('access.personalData.strongPassword')" />
 
     <q-input
     dark
@@ -96,7 +95,7 @@
 </template>
 
 <script>
-import { required, email, sameAs, minLength } from 'vuelidate/lib/validators'
+import { required, email, sameAs } from 'vuelidate/lib/validators'
 import store from '../../store/index'
 
 export default {
@@ -109,6 +108,7 @@ export default {
         months: 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julio_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
         monthsShort: 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dec'.split('_')
       },
+      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/,
       form: {
         name: '',
         nickname: '',
@@ -126,7 +126,6 @@ export default {
   validations: {
     form: {
       email: { required, email },
-      password: { required, minLength: minLength(4) },
       confirm_password: { required, sameAsPassword: sameAs('password') },
       name: { required },
       nickname: { required },
@@ -180,6 +179,10 @@ export default {
     disabled () {
       const verify = this.errors.nicknameCheck || this.errors.emailCheck
       return verify
+    },
+
+    isValid () {
+      return this.pattern.exec(this.form.password) !== null
     }
   }
 }

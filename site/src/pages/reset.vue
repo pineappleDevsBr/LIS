@@ -12,10 +12,10 @@
       class="primary-error"
       :type="isPwd ? 'password' : 'text'"
       v-model="form.password"
-      :error="$v.form.password.$error"
-      :error-message="$t('reset.errors.required')"
+      :rules="[val => pattern.exec(val) !== null || $t('access.personalData.errors.notStrong')]"
+      lazy-rules
       :label="$t('reset.password')"
-      hint="Utilize uma senha com seis ou mais caracteres"/>
+      :hint="$t('access.personalData.strongPassword')"/>
 
       <q-input
       dark
@@ -34,7 +34,7 @@
 </template>
 
 <script>
-import { required, sameAs, minLength } from 'vuelidate/lib/validators'
+import { sameAs } from 'vuelidate/lib/validators'
 import store from '../store/index'
 
 export default {
@@ -43,6 +43,7 @@ export default {
     return {
       isPwd: true,
       token: this.$route.query.token,
+      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/,
       form: {
         confirmPassword: '',
         password: ''
@@ -51,7 +52,6 @@ export default {
   },
   validations: {
     form: {
-      password: { required, minLength: minLength(4) },
       confirmPassword: { sameAsPassword: sameAs('password') }
     }
   },

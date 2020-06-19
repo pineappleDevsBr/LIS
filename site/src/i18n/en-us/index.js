@@ -33,10 +33,12 @@ export default {
       passwordConfirmation: 'Password confirmation',
       dateOfBirth: 'Date of birth',
       sixCharacters: 'Use a password of six or more characters',
+      strongPassword: 'Strong password: use at least 6 characters, uppercase, lowercase and number.',
       btn: 'Next',
       errors: {
         required: 'Required field',
         minLength: 'The password field must contain at least six characters',
+        notStrong: 'Does not meet the requirements for a strong password',
         sameAs: 'Passwords are not the same'
       }
     },

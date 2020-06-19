@@ -20,10 +20,10 @@
           color="primary"
           :type="isPwdNew ? 'password' : 'text'"
           v-model="newPassword"
-          @blur="$v.newPassword.$touch"
-          :error="$v.newPassword.$error"
-          :error-message="$t('reset.errors.required')"
-          label="Nova senha">
+          :rules="[val => pattern.exec(val) !== null || $t('access.personalData.errors.notStrong')]"
+          lazy-rules
+          label="Nova senha"
+          :hint="$t('access.personalData.strongPassword')">
           <template v-slot:append>
             <q-icon
               :name="isPwdNew ? 'visibility_off' : 'visibility'"
@@ -58,7 +58,7 @@
 </template>
 
 <script>
-import { required, sameAs, minLength } from 'vuelidate/lib/validators'
+import { sameAs } from 'vuelidate/lib/validators'
 import store from '../../store'
 import { mapGetters } from 'vuex'
 
@@ -69,6 +69,7 @@ export default {
   },
   data () {
     return {
+      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/,
       step: 1,
       currentPassword: '',
       newPassword: '',
@@ -79,7 +80,6 @@ export default {
     }
   },
   validations: {
-    newPassword: { required, minLength: minLength(4) },
     confirmPassword: { sameAsPassword: sameAs('newPassword') }
   },
   methods: {

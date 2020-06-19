@@ -33,10 +33,12 @@ export default {
       passwordConfirmation: 'Confirmação de senha',
       dateOfBirth: 'Data de nascimento',
       sixCharacters: 'Utilize uma senha com seis ou mais caracteres',
+      strongPassword: 'Senha forte: use no mínimo 6 caracteres, letra maiúscula, minuscula e número.',
       btn: 'Próximo',
       errors: {
         required: 'Campo obrigatório',
         minLength: 'O campo senha deve conter no mínimo seis caracteres',
+        notStrong: 'Não atende os requisitos de uma senha forte',
         sameAs: 'As senhas não são iguais'
       }
     },
