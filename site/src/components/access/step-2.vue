@@ -42,6 +42,7 @@
     color="white"
     label-color="white"
     class="primary-error"
+    autocomplete="new-password"
     v-model="form.password"
     @blur="$v.form.password.$touch"
     :error="$v.form.password.$error"
