@@ -13,7 +13,7 @@
     <q-tab-panels v-model="tab" animated>
       <q-tab-panel :name="tasks.theme_id" v-for="tasks in getTask" v-bind:key="tasks.theme_id">
         <div v-if="getTask[tab - 1].tasks.length > 0">
-          <q-card class="m-card" v-for="task in tasks.tasks" v-bind:key="task.id"  @click="openActivitie(task.id, task.task_type_id, task.xp, task.money)">
+          <q-card class="m-card" v-for="task in tasks.tasks" v-bind:key="task.id" :disabled="getUser.level.level < task.difficulty"  @click="getUser.level.level < task.difficulty ? '' : openActivitie(task.id, task.task_type_id, task.xp, task.money)">
             <q-card-section class="m-text_card -no-padding-bottom">
               <div class="m-text_title">{{task.title}}</div>
               <div class="m-text_xp">{{task.xp}} XP</div>
@@ -143,7 +143,8 @@ export default {
     }
   },
   computed: {
-    ...mapGetters('task', ['getTask'])
+    ...mapGetters('task', ['getTask']),
+    ...mapGetters('user', ['getUser'])
   },
   async mounted () {
     await store().dispatch('task/getTask', taskType[this.activitie])

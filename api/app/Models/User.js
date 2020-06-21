@@ -25,6 +25,10 @@ class User extends Model {
     return ['created_at', 'updated_at', 'password'];
   }
 
+  static get computed() {
+    return ['level']
+  }
+
   friends() {
     return this.hasMany('App/Models/FriendList', 'id', 'id_friend_list')
   }
@@ -35,6 +39,14 @@ class User extends Model {
 
   themeList() {
     return this.hasMany('App/Models/ThemeList')
+  }
+
+  getLevel({ xp }) {
+    if (xp < 500) return { xp, level: 1 }
+    return {
+      xp: ((Math.ceil(xp / 500) * 500) + ((Math.ceil(xp / 500) * 500) * 0.5)),
+      level: (Math.ceil(xp / 500))
+    }
   }
 
   // getAvatar(avatar) {

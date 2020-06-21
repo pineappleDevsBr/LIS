@@ -87,7 +87,7 @@ class FakerSeeder {
       task_type_id: 1,
       title: 'Hi, how are you ?',
       name: 'verbos conjugados',
-      difficulty: 1,
+      difficulty: 3,
       xp: 200,
       money: 400,
     });
