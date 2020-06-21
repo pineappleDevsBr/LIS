@@ -2,8 +2,8 @@
 const UserRepository = use('App/Repositories/UserRepository');
 
 class SearchController {
-  async index({ params, response }) {
-    const data = await UserRepository.indexPaginated(params.page);
+  async index({ params, response, auth }) {
+    const data = await UserRepository.indexPaginated(auth.user.id, params.page);
     response.send(data);
   }
 

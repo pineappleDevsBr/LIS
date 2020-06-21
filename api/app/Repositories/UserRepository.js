@@ -77,10 +77,11 @@ class UserRepository {
     }
   }
 
-  async indexPaginated(page) {
+  async indexPaginated(id, page) {
     try {
       const data = await User
       .query()
+      .whereNot('id', id)
       .orderBy('xp', 'desc')
       .paginate(page, 10)
 
