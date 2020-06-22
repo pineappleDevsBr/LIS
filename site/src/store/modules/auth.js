@@ -11,6 +11,7 @@ const actions = {
   async login ({ commit }, payload) {
     try {
       const { data } = await auth.login(payload)
+      console.log(data)
       commit('LOGIN_SUCCESSFUL', JSON.parse(JSON.stringify(data)))
       cookie('token', 'set', data.token, 30)
 

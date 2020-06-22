@@ -27,13 +27,17 @@ export default {
     ...mapGetters('user', ['getUser'])
   },
   async mounted () {
-    await store().dispatch('user/getUser')
-    await store().dispatch('theme/getTheme')
-    await store().dispatch('darkMode/setDarkMode', this.$q.cookies.get('lis_darkmode'))
-    if (this.$q.cookies.get('lis_confirmUseItems') === null) {
-      this.$q.cookies.set('lis_confirmUseItems', false)
+    const response = await store().dispatch('user/getUser')
+    if (response.message === 'Request failed with status code 403') {
+      this.blocked = true
+    } else {
+      await store().dispatch('theme/getTheme')
+      await store().dispatch('darkMode/setDarkMode', this.$q.cookies.get('lis_darkmode'))
+      if (this.$q.cookies.get('lis_confirmUseItems') === null) {
+        this.$q.cookies.set('lis_confirmUseItems', false)
+      }
+      if (this.$q.cookies.get('lis_tutorial') === null) this.$q.cookies.set('lis_tutorial', this.getUser.xp < 500)
     }
-    if (this.$q.cookies.get('lis_tutorial') === null) this.$q.cookies.set('lis_tutorial', this.getUser.xp < 500)
   }
 }
 </script>
