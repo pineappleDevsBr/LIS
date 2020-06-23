@@ -8,22 +8,9 @@
       <img class="m-spotlight_icon" src="statics/store/online-store.svg" alt="Store">
       {{ $t('store.title') }}
     </div>
-    <div class="m-store_group" v-if="getMyItems !== {}">
+    <div class="m-store_group" v-if="getMyItems">
       <h2 class="m-store_title">{{ $t('store.myItems') }}</h2>
-      <div class="m-cards" v-if="getMyItems === {}">
-        <q-card class="m-card m-skeleton -center" v-for="index in 2" v-bind:key="`skl_${index}`">
-          <q-card-section class="q-pa-xs">
-            <q-skeleton type="text" class="m-skeleton_price" />
-          </q-card-section>
-          <q-card-section class="q-pa-xs">
-            <q-skeleton type="QAvatar" class="m-skeleton_avatar -center" />
-          </q-card-section>
-          <q-card-section class="q-pa-xs">
-            <q-skeleton type="text" class="m-skeleton_title -sm -center" />
-          </q-card-section>
-        </q-card>
-      </div>
-      <div class="m-cards" v-else>
+      <div class="m-cards">
         <q-card class="m-card" v-for="item in getMyItems" v-bind:key="item.item.id" @click="useProduct(item.item.id, item.item.item_id, item.item.status)">
           <q-card-section class="m-store_box-product">
             <q-badge floating color="primary" text-color="white" :label="`${item.qtde}x`" />
@@ -75,7 +62,7 @@
               <img class="m-friends_avatar" :src="`https://api.adorable.io/avatars/75/${item.avatar}`" :alt="`adorable avatar`">
               <div>
                 <h2 class="m-friends_username q-dark_title">{{item.name}}</h2>
-                <p class="m-friends_level">Nível: {{item.level ? item.level : 1}}</p>
+                <p class="m-friends_level">{{$t('hub.level')}}: {{item.level.level ? item.level.level : 1}}</p>
                 <p class="m-friends_xp">{{item.xp}}XP</p>
               </div>
             </div>
@@ -121,7 +108,7 @@ export default {
       confirmUse: {
         open: false,
         persistent: true,
-        title: 'Deseja mesmo usar esse item?'
+        title: this.$t('store.confirmUseItem')
       }
     }
   },
@@ -134,7 +121,7 @@ export default {
       } else {
         this.$q.notify({
           color: 'negative',
-          message: 'Moedas insuficientes!',
+          message: this.$t('store.insufficientCurrencies'),
           icon: 'monetization_on'
         })
       }
@@ -161,13 +148,13 @@ export default {
           await store().dispatch('store/getMyItems')
           this.$q.notify({
             color: 'positive',
-            message: 'Item ativado!',
+            message: this.$t('store.activatedItem'),
             icon: 'done'
           })
         } else {
           this.$q.notify({
             color: 'negative',
-            message: 'Ocorreu um erro ao ativar o item, tente novamente ou entre em contato com o suporte técnico.',
+            message: this.$t('store.errorActivating'),
             icon: 'report_problem'
           })
         }
@@ -182,13 +169,13 @@ export default {
         this.selectFriend = false
         this.$q.notify({
           color: 'positive',
-          message: 'Presente enviado com sucesso!',
+          message: this.$t('store.gift'),
           icon: 'card_giftcard'
         })
       } else {
         this.$q.notify({
           color: 'negative',
-          message: 'Ocorreu um erro ao ativar o item, tente novamente ou entre em contato com o suporte técnico.',
+          message: this.$t('store.errorActivating'),
           icon: 'report_problem'
         })
       }

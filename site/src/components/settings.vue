@@ -64,7 +64,7 @@
       </q-card>
       <q-card class="m-card m-settings_card" @click="termsOpen = true">
         <q-card-section class="m-settings_info">
-          <p class="m-settings_info-account">{{ $t('profile.settings.terms') }}</p>
+          <p class="m-settings_info-account -full">{{ $t('profile.settings.terms') }}</p>
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card" @click="creditsOpen = true">

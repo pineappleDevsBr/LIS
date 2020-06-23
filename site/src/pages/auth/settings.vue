@@ -20,7 +20,7 @@
     </q-card>
     <q-card class="m-card">
       <q-card-section class="m-settings_info -between">
-        <p class="m-settings_info-notifications">Confirmação de uso dos itens da loja</p>
+        <p class="m-settings_info-notifications">{{ $t('generalAdjustments.useItems') }}</p>
         <q-toggle v-model="confirmUseItems" color="primary"/>
       </q-card-section>
     </q-card>

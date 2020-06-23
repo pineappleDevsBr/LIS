@@ -58,7 +58,7 @@ export default {
       if (response.status) {
         this.$q.notify({
           color: 'positive',
-          message: 'Usuário cadastrado com sucesso!',
+          message: this.$i18n.t('access.personalData.registeredSuccessfully'),
           icon: 'report_problem'
         })
         this.$router.push({ name: 'login' })

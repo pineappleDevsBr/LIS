@@ -12,7 +12,7 @@
         </div>
       </q-card-section>
       <q-card-section>
-        <h2 class="m-friends_level-spotlight">Nível {{ setLevelUp.level }}</h2>
+        <h2 class="m-friends_level-spotlight">{{$t('profileFriends.level')}} {{ setLevelUp.level }}</h2>
         <h3 class="m-friends_xp-spotlight">{{getFriend.xp}} XP</h3>
       </q-card-section>
       <q-card-section>
@@ -21,15 +21,15 @@
     </q-card>
     <q-btn no-caps rounded class="m-search_btn q-mb-md" label="Solicitar amizade" @click="addFriend(getFriend.id)" v-if="!getFriend.areFriends"/>
 
-    <div v-if="friends">
-      <h2 class="m-friends_title">Amigos</h2>
+    <div v-if="friends.length > 0">
+      <h2 class="m-friends_title">{{$t('profileFriends.friends')}}</h2>
       <q-card class="m-card" v-for="item in friends" v-bind:key="item.id">
         <q-card-section class="m-friends_card">
           <div class="m-friends_profile">
-            <img class="m-friends_avatar" :src="`https://api.adorable.io/avatars/75/${item.avatar}`" alt="">
+            <img class="m-friends_avatar" :src="`https://api.adorable.io/avatars/75/${item.avatar}`" alt="adorable">
             <div>
               <h2 class="m-friends_username">{{item.name}}</h2>
-              <p class="m-friends_level">Nível: {{item.level}}</p>
+              <p class="m-friends_level">{{$t('profileFriends.level')}}: {{item.level}}</p>
               <p class="m-friends_xp">{{item.xp}}XP</p>
             </div>
           </div>
@@ -58,6 +58,7 @@ export default {
   },
   data () {
     return {
+      friends: [],
       progress: {
         showValue: false,
         levelUp: 2000,
@@ -74,13 +75,13 @@ export default {
       if (response.status) {
         this.$q.notify({
           color: 'positive',
-          message: 'Solicitação enviada com sucesso!',
+          message: this.$t('profileFriends.requestSuccessfully'),
           icon: 'sentiment_satisfied_alt'
         })
       } else {
         this.$q.notify({
           color: 'negative',
-          message: 'Ocorreu um erro ao realizar a solicitação, tente novamente mais tarde!',
+          message: this.$t('profileFriends.error'),
           icon: 'report_problem'
         })
       }

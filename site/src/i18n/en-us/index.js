@@ -3,6 +3,12 @@
 
 export default {
   errorFilter: {
+    page404: 'Oops! it seems that your studies had a little deviation, let\'s go back to the home screen for you to continue where you left off.',
+    page404Btn: 'Back',
+    withoutInternet: {
+      title: 'Without Internet',
+      text: 'You are disconnected! Connect again to get back to studies!'
+    },
     user: {
       '404': 'User not found',
       '401': 'Incorrect password',
@@ -35,6 +41,7 @@ export default {
       sixCharacters: 'Use a password of six or more characters',
       strongPassword: 'Strong password: use at least 6 characters, uppercase, lowercase and number.',
       btn: 'Next',
+      registeredSuccessfully: 'User successfully registered!',
       errors: {
         required: 'Required field',
         minLength: 'The password field must contain at least six characters',
@@ -91,13 +98,40 @@ export default {
     hub: 'Friends Hub',
     settings: 'General adjustments'
   },
+  activities: {
+    quiz: 'Quiz',
+    listening: 'Tell me what you heard',
+    complete: 'Complete the sentence',
+    reading: 'Reading'
+  },
+  themeFilter: {
+    empty: 'Unfortunately there are still no activities of this type on this topic, but soon the team will register!'
+  },
+  tutorial: {
+    title: 'Hello, welcome to LIS!',
+    text: 'Before I start I would like to know if you want to watch the tutorial videos now.',
+    accessIn: 'If you prefer, you can access the same videos in Profile > Click here to edit your data > Tutorials.',
+    goodStudies: 'Good studies!',
+    repeatShowTutorial: 'Don\'t show again',
+    watchNow: 'Watch Now',
+    watchLater: 'Watch later'
+  },
   store: {
     title: 'Level up faster with our items!',
     myItems: 'My items',
-    availableItems: 'Available items'
+    availableItems: 'Available items',
+    confirmUseItem: 'Do you really want to use this item?',
+    insufficientCurrencies: 'Insufficient currencies!',
+    activatedItem: 'Activated item!',
+    errorActivating: 'An error occurred while activating the item, please try again or contact technical support.',
+    gift: 'Gift sent successfully!'
   },
   profile: {
     editData: 'Click here to edit your data',
+    notifications: {
+      title: 'Notifications',
+      text: 'You have no notifications!'
+    },
     settings: {
       header: 'Settings',
       account: 'Account',
@@ -126,17 +160,41 @@ export default {
       vectors: 'Vectors'
     }
   },
+  profileFriends: {
+    level: 'Level',
+    friends: 'Friends',
+    requestSuccessfully: 'Request sent successfully!',
+    requestError: 'There was an error making the request, please try again later!'
+  },
   hub: {
     title: 'Discover new friends! Learning together is more fun!',
     search: 'Search friends',
     invitation: 'Invite a friend',
     requests: 'Friendship request',
-    myFriends: 'My friends'
+    myFriends: 'My friends',
+    level: 'Level',
+    invite: {
+      title: 'Invite your friends who already have an account!',
+      text: 'Click the link to copy the invitation below and send it to your friend!',
+      obs: 'He must be logged in to access his profile!',
+      alert: 'Link copied to the clipboard!',
+      invitation: 'Invitation',
+      notify: {
+        confirmed1: 'Now',
+        confirmed2: 'is your friend!',
+        pending: 'has been removed from the request list!',
+        error1: 'An error occurred while',
+        error2: 'accept',
+        error3: 'refuse',
+        error4: 'the friendship!'
+      }
+    }
   },
   generalAdjustments: {
     title: 'Leave your studies to your face!',
     updateThemes: 'Update my themes',
     lang: 'Language',
+    useItems: 'Confirmation of use of store items',
     darkMode: 'Dark mode',
     highContrast: 'High contrast',
     themes: {

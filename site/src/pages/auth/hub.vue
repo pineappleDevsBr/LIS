@@ -35,7 +35,7 @@
               <img class="m-friends_avatar" :src="`https://api.adorable.io/avatars/75/${item.avatar}`" :alt="`adorable avatar`">
               <div>
                 <h2 class="m-friends_username q-dark_title">{{item.name}}</h2>
-                <p class="m-friends_level">Nível: {{item.level ? item.level : 1}}</p>
+                <p class="m-friends_level">{{$t('hub.level')}}: {{item.level.level ? item.level.level : 1}}</p>
                 <p class="m-friends_xp">{{item.xp}}XP</p>
               </div>
             </div>
@@ -74,7 +74,7 @@
             <img class="m-friends_avatar" :src="`https://api.adorable.io/avatars/75/${item.avatar}`" :alt="`adorable avatar`">
             <div>
               <h2 class="m-friends_username q-dark_title">{{item.name}}</h2>
-              <p class="m-friends_level">Nível: {{item.level ? item.level : 1}}</p>
+              <p class="m-friends_level">{{$t('hub.level')}}: {{item.level.level ? item.level.level : 1}}</p>
               <p class="m-friends_xp">{{item.xp}}XP</p>
             </div>
           </div>
@@ -87,9 +87,9 @@
     <q-dialog v-model="inviteOpen" position="bottom">
       <q-card>
         <q-card-section class="m-friend_invite">
-          <h3 class="m-friends_title">Convide seus amigos que já tenham uma conta!</h3>
-          <p class="a-text">Clique no link para copiar o convite abaixo e envie para seu amigo!</p>
-          <p class="a-text">Ele deve estar logado para acessar seu perfil!</p>
+          <h3 class="m-friends_title">{{$t('hub.invite.title')}}</h3>
+          <p class="a-text">{{$t('hub.invite.text')}}</p>
+          <p class="a-text">{{$t('hub.invite.obs')}}</p>
           <div class="flex">
             <q-tooltip
             v-model="alertCopy"
@@ -98,11 +98,11 @@
             :offset="[10, 10]"
             content-class="bg-primary"
             content-style="font-size: 14px">
-              Link copiado para a área de transferência!
+              {{$t('hub.invite.alert')}}
             </q-tooltip>
           </div>
           <q-btn no-caps flat rounded class="m-friends_invite-copy" @click="copy(`${baseURL}/#/profile/${getUser.id}`)">
-            <strong>Convite:&nbsp;</strong> <span class="-link">{{ `${baseURL}/#/profile/${getUser.id}` }}</span>
+            <strong>{{$t('hub.invite.invitation')}}:&nbsp;</strong> <span class="-link">{{ `${baseURL}/#/profile/${getUser.id}` }}</span>
           </q-btn>
           <img class="m-friends_invite-ilustra" src="statics/hub/invite.png" alt="Invite ilustra">
         </q-card-section>
@@ -145,13 +145,13 @@ export default {
       if (response.status === 'confirmed') {
         this.$q.notify({
           color: 'positive',
-          message: `Agora ${name} é seu amigo!`,
+          message: `${this.$t('hub.invite.notify.confirmed1')} ${name} ${this.$t('hub.invite.notify.confirmed2')}`,
           icon: 'sentiment_satisfied_alt'
         })
       } else if (response.status === 'pending') {
         this.$q.notify({
           color: 'amber-8',
-          message: `${name} foi removido da lista de solicitações!`,
+          message: `${name} ${this.$t('hub.invite.notify.pending')}`,
           icon: 'sentiment_dissatisfied'
         })
       } else {

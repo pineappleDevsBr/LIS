@@ -3,6 +3,12 @@
 
 export default {
   errorFilter: {
+    page404: 'Ops! parece que seus estudos tiveram um pequeno desvio, vamos voltar à tela inicial para você continuar de onde parou.',
+    page404Btn: 'Voltar',
+    withoutInternet: {
+      title: 'Sem internet',
+      text: 'Você está desconectado! Conecte-se novamente para voltar aos estudos!'
+    },
     user: {
       '404': 'Usuário não encontrado',
       '401': 'Senha incorreta',
@@ -35,6 +41,7 @@ export default {
       sixCharacters: 'Utilize uma senha com seis ou mais caracteres',
       strongPassword: 'Senha forte: use no mínimo 6 caracteres, letra maiúscula, minuscula e número.',
       btn: 'Próximo',
+      registeredSuccessfully: 'Usuário cadastrado com sucesso!',
       errors: {
         required: 'Campo obrigatório',
         minLength: 'O campo senha deve conter no mínimo seis caracteres',
@@ -91,13 +98,40 @@ export default {
     hub: 'Hub de amigos',
     settings: 'Ajustes gerais'
   },
+  activities: {
+    quiz: 'Quiz',
+    listening: 'Diga-me o que ouviu',
+    complete: 'Complete a frase',
+    reading: 'Leitura'
+  },
+  themeFilter: {
+    empty: 'Infelizmente ainda não há atividades deste tipo neste tema, mas logo a equipe ira cadastrar!'
+  },
+  tutorial: {
+    title: 'Olá, bem vindo ao LIS!',
+    text: 'Antes de começar gostaria de saber se você deseja assistir aos vídeos tutoriais agora.',
+    accessIn: 'Se preferir, pode acessar os mesmos vídeos em Perfil > Clique aqui para editar seus dados > Tutoriais.',
+    goodStudies: 'Bons estudos!',
+    repeatShowTutorial: 'Não mostrar novamente',
+    watchNow: 'Assistir agora',
+    watchLater: 'Assistir mais tarde'
+  },
   store: {
     title: 'Suba de nível mais rápido com nossos itens!',
     myItems: 'Meus itens',
-    availableItems: 'Itens disponíveis'
+    availableItems: 'Itens disponíveis',
+    confirmUseItem: 'Deseja mesmo usar esse item?',
+    insufficientCurrencies: 'Moedas insuficientes!',
+    activatedItem: 'Item ativado!',
+    errorActivating: 'Ocorreu um erro ao ativar o item, tente novamente ou entre em contato com o suporte técnico.',
+    gift: 'Presente enviado com sucesso!'
   },
   profile: {
     editData: 'Clique aqui para editar seus dados',
+    notifications: {
+      title: 'Notificações',
+      text: 'Você não tem nenhuma notificação!'
+    },
     settings: {
       header: 'Configurações',
       account: 'Conta',
@@ -126,17 +160,41 @@ export default {
       vectors: 'Ilustrações'
     }
   },
+  profileFriends: {
+    level: 'Nível',
+    friends: 'Amigos',
+    requestSuccessfully: 'Solicitação enviada com sucesso!',
+    requestError: 'Ocorreu um erro ao realizar a solicitação, tente novamente mais tarde!'
+  },
   hub: {
     title: 'Descubra novos amigos! Aprender junto é mais divertido!',
     search: 'Pesquisar amigos',
     invitation: 'Convidar um amigo',
     requests: 'Solicitações de amizade',
-    myFriends: 'Meus amigos'
+    myFriends: 'Meus amigos',
+    level: 'Nível',
+    invite: {
+      title: 'Convide seus amigos que já tenham uma conta!',
+      text: 'Clique no link para copiar o convite abaixo e envie para seu amigo!',
+      obs: 'Ele deve estar logado para acessar seu perfil!',
+      alert: 'Link copiado para a área de transferência!',
+      invitation: 'Convite',
+      notify: {
+        confirmed1: 'Agora',
+        confirmed2: 'é seu amigo!',
+        pending: 'foi removido da lista de solicitações!',
+        error1: 'Ocorreu algum erro ao',
+        error2: 'aceitar',
+        error3: 'recusar',
+        error4: 'a amizade!'
+      }
+    }
   },
   generalAdjustments: {
     title: 'Deixe seus estudos com a sua cara!',
     updateThemes: 'Atualizar meus temas',
     lang: 'Idioma',
+    useItems: 'Confirmação de uso dos itens da loja',
     darkMode: 'Tema escuro',
     highContrast: 'Alto contraste',
     themes: {

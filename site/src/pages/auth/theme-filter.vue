@@ -30,7 +30,7 @@
         </div>
         <div v-else>
           <p class="a-text">
-            Infelizmente ainda não há atividades deste tipo neste tema, mas logo a equipe ira cadastrar!
+            {{$t('themeFilter.empty')}}
           </p>
         </div>
       </q-tab-panel>

@@ -12,9 +12,9 @@
       <q-btn class="m-profile_edit" no-caps flat :label="$t('profile.editData')" @click="openSettings = true"/>
     </div>
     <div class="m-profile_achievements">
-      <h2 class="m-profile_title">Notificações</h2>
+      <h2 class="m-profile_title">{{$t('profile.notifications.title')}}</h2>
       <div class="a-text">
-        Você não tem nenhuma notificação!
+        {{$t('profile.notifications.text')}}
       </div>
     </div>
     <settings :settings="openSettings" @closeSettings="closeSettings"></settings>

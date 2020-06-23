@@ -63,13 +63,13 @@ const mutations = {
   },
 
   UPDATE_MYITEMS (state, items) {
-    state.myItems = items
+    state.myItems = { ...items }
   }
 }
 
 const state = {
   items: [],
-  myItems: {}
+  myItems: null
 }
 
 export default {
