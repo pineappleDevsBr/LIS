@@ -38,6 +38,13 @@ export default {
       password: 'Password',
       passwordConfirmation: 'Password confirmation',
       dateOfBirth: 'Date of birth',
+      dateFormat: 'MM/DD/YYYY',
+      myLocale: {
+        days: 'Sunday_Monday_Tuesday_Wednesday_Thursday_Friday_Saturday',
+        daysShort: 'Sun_Mon_Tue_Wed_Thu_Fri_Sat',
+        months: 'January_February_March_April_May_June_July_August_September_October_November_December',
+        monthsShort: 'Jan_Feb_Mar_Apr_May_Jun_Jul_Aug_Sep_Oct_Nov_Dec'
+      },
       sixCharacters: 'Use a password of six or more characters',
       strongPassword: 'Strong password: use at least 6 characters, uppercase, lowercase and number.',
       btn: 'Next',
@@ -102,7 +109,31 @@ export default {
     quiz: 'Quiz',
     listening: 'Tell me what you heard',
     complete: 'Complete the sentence',
-    reading: 'Reading'
+    reading: 'Reading',
+    common: {
+      enterAnswer: 'Type your answer here',
+      finish: 'Finish',
+      next: 'Next',
+      back: 'Back',
+      titleModal: 'Do you really want to abandon this activity?<br>Your answers and rewards will be lost.',
+      selectAnswer: 'Select an answer!',
+      answerEmpty: 'The answer cannot be empty!',
+      translate: 'Translate',
+      readAnother: 'Read another text',
+      seconds: 'seconds',
+      minutes: 'minute(s)',
+      wait: 'Wait',
+      wait2: 'to read another text'
+    },
+    feedback: {
+      checkAnswers: 'Check your answers!',
+      checkAwards: 'Check your prizes for completing the activity!',
+      approved: 'Approved',
+      disapproved: 'Disapproved',
+      bonus: 'Bonus',
+      close: 'Close',
+      remake: 'Remake'
+    }
   },
   themeFilter: {
     empty: 'Unfortunately there are still no activities of this type on this topic, but soon the team will register!'

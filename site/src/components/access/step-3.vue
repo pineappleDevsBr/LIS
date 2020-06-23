@@ -3,7 +3,7 @@
     <div class="a-title -white -sub">
       {{ $t('access.choiceOfThemes.title') }}
     </div>
-    <q-card class="my-card o-access_selectTheme" style="max-height: 400px; min-height: 400px; overflow-y: auto;">
+    <q-card class="my-card o-access_selectTheme">
       <q-card-section>
          <q-input dense v-model="filter" :label="$t('access.choiceOfThemes.search')" />
       </q-card-section>

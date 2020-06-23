@@ -38,6 +38,13 @@ export default {
       password: 'Senha',
       passwordConfirmation: 'Confirmação de senha',
       dateOfBirth: 'Data de nascimento',
+      dateFormat: 'DD/MM/YYYY',
+      myLocale: {
+        days: 'Domingo_Segunda_Terça_Quarta_Quinta_Sexta_Sábado',
+        daysShort: 'Dom_Seg_Ter_Qua_Qui_Sex_Sáb',
+        months: 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julio_Agosto_Setembro_Outubro_Novembro_Dezembro',
+        monthsShort: 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dec'
+      },
       sixCharacters: 'Utilize uma senha com seis ou mais caracteres',
       strongPassword: 'Senha forte: use no mínimo 6 caracteres, letra maiúscula, minuscula e número.',
       btn: 'Próximo',
@@ -102,7 +109,31 @@ export default {
     quiz: 'Quiz',
     listening: 'Diga-me o que ouviu',
     complete: 'Complete a frase',
-    reading: 'Leitura'
+    reading: 'Leitura',
+    common: {
+      enterAnswer: 'Digite aqui sua resposta',
+      finish: 'Finalizar',
+      next: 'Próximo',
+      back: 'Voltar',
+      titleModal: 'Deseja mesmo abandonar essa atividade?<br>Suas respostas e recompensas serão perdidas.',
+      selectAnswer: 'Selecione uma resposta!',
+      answerEmpty: 'A resposta não pode estar vazia!',
+      translate: 'Traduzir',
+      readAnother: 'Ler outro texto',
+      seconds: 'segundos',
+      minutes: 'minuto(s)',
+      wait: 'Aguarde',
+      wait2: 'para ler outro texto'
+    },
+    feedback: {
+      checkAnswers: 'Confira suas respostas!',
+      checkAwards: 'Confira seus prêmios por concluir a atividade!',
+      approved: 'Aprovado',
+      disapproved: 'Reprovado',
+      bonus: 'Bônus',
+      close: 'Fechar',
+      remake: 'Refazer'
+    }
   },
   themeFilter: {
     empty: 'Infelizmente ainda não há atividades deste tipo neste tema, mas logo a equipe ira cadastrar!'

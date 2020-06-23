@@ -75,7 +75,7 @@
       <template v-slot:append>
         <q-icon name="event" class="cursor-pointer">
           <q-popup-proxy ref="qDateProxy" transition-show="scale" transition-hide="scale">
-            <q-date v-model="form.dateOfBirth" @input="() => $refs.qDateProxy.hide()"  mask="DD/MM/YYYY" :locale="myLocale"/>
+            <q-date v-model="form.dateOfBirth" @input="() => $refs.qDateProxy.hide()"  :mask="mask" :locale="myLocale"/>
           </q-popup-proxy>
         </q-icon>
       </template>
@@ -102,12 +102,6 @@ export default {
   name: 'step2',
   data () {
     return {
-      myLocale: {
-        days: 'Domingo_Segunda_Terça_Quarta_Quinta_Sexta_Sábado'.split('_'),
-        daysShort: 'Dom_Seg_Ter_Qua_Qui_Sex_Sáb'.split('_'),
-        months: 'Janeiro_Fevereiro_Março_Abril_Maio_Junho_Julio_Agosto_Setembro_Outubro_Novembro_Dezembro'.split('_'),
-        monthsShort: 'Jan_Fev_Mar_Abr_Mai_Jun_Jul_Ago_Set_Out_Nov_Dec'.split('_')
-      },
       pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/,
       form: {
         name: '',
@@ -183,6 +177,20 @@ export default {
 
     isValid () {
       return this.pattern.exec(this.form.password) !== null
+    },
+
+    mask () {
+      console.log(this.$t('access.personalData.dateFormat'))
+      return this.$t('access.personalData.dateFormat')
+    },
+
+    myLocale () {
+      return {
+        days: this.$t('access.personalData.myLocale.days').split('_'),
+        daysShort: this.$t('access.personalData.myLocale.daysShort').split('_'),
+        months: this.$t('access.personalData.myLocale.months').split('_'),
+        monthsShort: this.$t('access.personalData.myLocale.monthsShort').split('_')
+      }
     }
   }
 }

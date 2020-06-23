@@ -7,7 +7,7 @@
   transition-hide="slide-down">
     <div class="o-modal bg-white" :class="{ 'q-dark': $q.dark.isActive }">
       <div class="o-modal_header bg-primary" :class="{ 'q-dark': $q.dark.isActive }">
-        <h2 class="o-modal_title">Leitura</h2>
+        <h2 class="o-modal_title">{{ $t('activities.reading') }}</h2>
         <div>
           <q-btn
           flat
@@ -18,7 +18,7 @@
         <div class="o-modal_content o-reading">
           <div class="m-reading_translated">
             <span class="m-reading_translated-toggle">
-              Tradução
+              {{ $t('activities.common.translate') }}
               <q-toggle v-model="translated" color="primary"/>
             </span>
           </div>
@@ -40,14 +40,14 @@
               </q-scroll-area>
             </q-card-section>
           </q-card>
-          <q-btn no-caps rounded :disabled="!finishReading"  class="m-reading_btn" :label="!finishReading ? `Aguarde ${minutes}segundos para ler outro texto` : 'Ler outro texto'" @click="closeReading"/>
+          <q-btn no-caps rounded :disabled="!finishReading"  class="m-reading_btn" :label="minutes" @click="closeReading"/>
       </div>
     </div>
     <closeActivities
       :persistent="closeActivities.presistent"
       :title="closeActivities.title"
       :isOpen="closeActivities.open"
-      @close="closeReading"
+      @close="close"
     />
   </q-dialog>
 </template>
@@ -71,7 +71,7 @@ export default {
       closeActivities: {
         open: false,
         persistent: true,
-        title: 'Deseja mesmo abandonar essa atividade?<br>Suas respostas e recompensas serão perdidas'
+        title: this.$t('activities.common.titleModal')
       },
       set: null,
       translated: false,
@@ -88,7 +88,7 @@ export default {
     }
   },
   methods: {
-    async closeReading (evt) {
+    async closeReading () {
       if (this.finishReading) {
         const payload = {
           task_id: this.questions[0].task_id,
@@ -97,14 +97,15 @@ export default {
         }
         const { approved, values } = await store().dispatch('task/sendAnswers', payload)
         this.$emit('closeReading', { approved, values })
-      } else {
-        this.closeActivities.open = false
-        if (evt) {
-          clearInterval(this.set)
-          this.$emit('closeReading')
-        }
       }
       this.finishReading = false
+    },
+    close (evt) {
+      if (evt) {
+        clearInterval(this.set)
+        this.$emit('closeReading')
+      }
+      this.closeActivities.open = false
     },
     startCount () {
       this.set = setInterval(() => {
@@ -121,7 +122,9 @@ export default {
   },
   computed: {
     minutes () {
-      return this.time < 60 ? `${this.time} segundos ` : `${Math.trunc(this.time / 60)} minuto(s) `
+      const writtenTime = this.time < 60 ? `${this.time} ${this.$t('activities.common.seconds')} ` : `${Math.trunc(this.time / 60)} ${this.$t('activities.common.minutes')} `
+      const response = !this.finishReading ? `${this.$t('activities.common.wait')} ${writtenTime} ${this.$t('activities.common.wait2')}` : this.$t('activities.common.readAnother')
+      return response
     }
   },
   watch: {
@@ -131,7 +134,7 @@ export default {
       this.text = value[0].text
       this.translation = value[0].translation
       if (this.text) this.numberWords = this.text.split(' ')
-      this.time = Math.trunc((this.numberWords.length * 70) / 150)
+      this.time = Math.trunc((this.numberWords.length * 70) / 2000)
       this.aux = (100 / this.time)
     }
   }

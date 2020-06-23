@@ -5,8 +5,8 @@
   transition-show="slide-up"
   transition-hide="slide-down">
     <div class="m-feedback bg-white" :class="{ 'q-dark': $q.dark.isActive }">
-      <div class="a-title -primary -left">{{ feedbackResults.results ? 'Confira suas respostas!' : 'Confira seus prêmios por concluir a atividade!'}}</div>
-      <div class="a-text m-feedback_status" v-if="feedbackResults.results">Status: <span class=" m-feedback_status" :class="`-${feedbackResults.approved ? 'positive' : 'negative'}`">{{ feedbackResults.approved ? 'Aprovado' : 'Reprovado' }}</span></div>
+      <div class="a-title -primary -left">{{ feedbackResults.results ? $t('activities.feedback.checkAnswers') : $t('activities.feedback.checkAwards')}}</div>
+      <div class="a-text m-feedback_status" v-if="feedbackResults.results">Status: <span class=" m-feedback_status" :class="`-${feedbackResults.approved ? 'positive' : 'negative'}`">{{ feedbackResults.approved ?  $t('activities.feedback.approved') : $t('activities.feedback.disapproved') }}</span></div>
       <div class="m-feedback_reward" v-if="feedbackResults.approved">
         <div class="a-text m-feedback_text">
           {{ xp }} XP
@@ -17,7 +17,7 @@
         </div>
       </div>
       <div v-if="bonus.exists">
-        Bônus:
+        {{ $t('activities.feedback.bonus') }}:
         <div class="m-feedback_reward">
           <div class="a-text m-feedback_text" v-if="bonus.xp">
             {{ bonus.xp }} XP
@@ -38,8 +38,8 @@
         </div>
       </div>
       <div class="m-feedback_actions">
-        <q-btn right rounded class="a-btn -dark m-feedback_btn" @click="close">Fechar</q-btn>
-        <q-btn right rounded class="a-btn -dark m-feedback_btn" v-if="!feedbackResults.approved" @click="remake">Refazer</q-btn>
+        <q-btn right rounded class="a-btn -dark m-feedback_btn" @click="close">{{ $t('activities.feedback.close') }}</q-btn>
+        <q-btn right rounded class="a-btn -dark m-feedback_btn" v-if="!feedbackResults.approved" @click="remake">{{ $t('activities.feedback.remake') }}</q-btn>
       </div>
     </div>
   </q-dialog>

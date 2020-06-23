@@ -7,7 +7,7 @@
   transition-hide="slide-down">
     <div class="o-modal bg-white" :class="{ 'q-dark': $q.dark.isActive }">
       <div class="o-modal_header bg-primary" :class="{ 'q-dark': $q.dark.isActive }">
-        <h2 class="o-modal_title">Diga-me o que ouviu</h2>
+        <h2 class="o-modal_title">{{ $t('activities.listening') }}</h2>
         <q-btn
         flat
         icon="close"
@@ -32,13 +32,13 @@
                   <video data-audio class="m-listening_audio" :src="question.filepath"></video>
                 </q-card>
                 <div>
-                  <q-input autofocus v-model="answers[index].answer" label="Digite aqui sua resposta..."/>
+                  <q-input autofocus v-model="answers[index].answer" :label="$t('activities.common.enterAnswer')"/>
                 </div>
               </q-step>
               <template v-slot:navigation>
                 <q-stepper-navigation>
-                  <q-btn type="submit" color="primary" :label="step === questions.length ? 'Finalizar' : 'Próximo'" />
-                  <q-btn v-if="step > 1 " flat color="primary" @click="back()" label="Back" class="q-ml-sm"/>
+                  <q-btn type="submit" color="primary" :label="step === questions.length ? $t('activities.common.finish') : $t('activities.common.next')" />
+                <q-btn v-if="step > 1 " flat color="primary" @click="back()" :label="$t('activities.common.back')" class="q-ml-sm"/>
                 </q-stepper-navigation>
             </template>
           </q-stepper>
@@ -78,7 +78,7 @@ export default {
       closeActivities: {
         open: false,
         persistent: true,
-        title: 'Deseja mesmo abandonar essa atividade?<br>Suas respostas e recompensas serão perdidas'
+        title: this.$t('activities.common.titleModal')
       }
     }
   },
@@ -122,7 +122,7 @@ export default {
       } else {
         this.$q.notify({
           color: 'negative',
-          message: 'Selecione uma resposta!',
+          message: this.$t('activities.common.answerEmpty'),
           icon: 'check_circle_outline'
         })
       }
