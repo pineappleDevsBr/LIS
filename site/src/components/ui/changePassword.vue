@@ -7,7 +7,7 @@
           style="padding-bottom: 20px"
           v-model="currentPassword"
           :type="isPwd ? 'password' : 'text'"
-          label="Senha atual">
+          :label="$t('profile.settings.changePassword.current')">
           <template v-slot:append>
             <q-icon
               :name="isPwd ? 'visibility_off' : 'visibility'"
@@ -22,7 +22,7 @@
           v-model="newPassword"
           :rules="[val => pattern.exec(val) !== null || $t('access.personalData.errors.notStrong')]"
           lazy-rules
-          label="Nova senha"
+          :label="$t('profile.settings.changePassword.new')"
           :hint="$t('access.personalData.strongPassword')">
           <template v-slot:append>
             <q-icon
@@ -39,7 +39,7 @@
           @blur="$v.confirmPassword.$touch"
           :error="$v.confirmPassword.$error"
           :error-message="$t('reset.errors.same')"
-          label="Confirmar nova senha">
+          :label="$t('profile.settings.changePassword.confirm')">
           <template v-slot:append>
             <q-icon
               :name="isPwdConfirm ? 'visibility_off' : 'visibility'"
@@ -50,8 +50,8 @@
         </q-input>
       </q-card-section>
       <q-card-actions align="left">
-        <q-btn flat class="a-btn_actions" @click="save" label="Alterar senha"/>
-        <q-btn flat class="a-btn_actions" @click="close" label="Cancelar"/>
+        <q-btn flat class="a-btn_actions" @click="save" :label="$t('profile.settings.changePassword.change')"/>
+        <q-btn flat class="a-btn_actions" @click="close" :label="$t('profile.settings.changePassword.cancel')"/>
       </q-card-actions>
     </q-card>
   </q-dialog>
@@ -99,7 +99,7 @@ export default {
         } else {
           this.$q.notify({
             color: 'negative',
-            message: 'Sua senha atual está incorreta! Tente novamente!',
+            message: this.$t('profile.settings.changePassword.incorrectPassword'),
             icon: 'report_problem'
           })
         }

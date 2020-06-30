@@ -2,7 +2,7 @@
   <q-dialog v-model="buy" persistent>
     <q-card class="m-card m-buy">
       <q-card-section class="m-buy_cash">
-        Preço: {{ buyProduct.price }}
+        {{ $t('store.buy.price') }}: {{ buyProduct.price }}
         <img class="m-buy_cash-icon" :src="`statics/store/coin.svg`" alt="">
       </q-card-section>
       <q-card-section class="m-buy_product">
@@ -11,7 +11,7 @@
         <p class="m-buy_product_description"><strong>{{buyProduct.name}}: </strong>{{buyProduct.description}}</p>
       </q-card-section>
       <q-card-actions class="m-buy_add">
-        <span><strong>Quantidade:</strong> {{qtde}}</span>
+        <span><strong>{{ $t('store.buy.units') }}:</strong> {{qtde}}</span>
         <div>
           <q-btn class="m-buy_add-btn" push round dense icon="remove" @click="remove" />
           <q-btn class="m-buy_add-btn" push round dense icon="add" @click="add" />
@@ -19,13 +19,13 @@
       </q-card-actions>
 
       <q-card-section class="m-buy_value">
-        Valor total: {{value}}
+        {{ $t('store.buy.total') }}: {{value}}
       </q-card-section>
       <q-separator />
 
       <q-card-actions align="right">
-        <q-btn @click="close" flat class="a-btn_actions" label="Cancelar" />
-        <q-btn @click="finishBuy" flat class="a-btn_actions" label="Comprar" />
+        <q-btn @click="close" flat class="a-btn_actions" :label="$t('store.buy.cancel')" />
+        <q-btn @click="finishBuy" flat class="a-btn_actions" :label="$t('store.buy.buy')" />
       </q-card-actions>
     </q-card>
   </q-dialog>

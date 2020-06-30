@@ -7,7 +7,7 @@
   transition-hide="slide-down">
     <div class="o-modal bg-white" :class="{ 'q-dark': $q.dark.isActive }">
       <div class="o-modal_header bg-primary" :class="{ 'q-dark': $q.dark.isActive }">
-        <h2 class="o-modal_title">Tutoriais</h2>
+        <h2 class="o-modal_title">{{ $t('profile.tutorials.title')}}</h2>
         <q-btn
         flat
         icon="close"

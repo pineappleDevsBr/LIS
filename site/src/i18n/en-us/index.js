@@ -98,12 +98,20 @@ export default {
       same: 'Password must be the same as above'
     }
   },
+  blocked: {
+    title: 'Bad news!',
+    text: 'Unfortunately your access was blocked by the administrator!',
+    contact: 'Get in touch with him at <a href="mailto:admin@lis.com" target="_blank" class="a-link -primary -text-decoration"> admin@lis.com </a> to find out what happened and have your access cleared again.',
+    thanks: 'Thank you for understanding!'
+  },
   header: {
     home: 'Activities',
     store: 'Store',
     profile: 'Profile',
     hub: 'Friends Hub',
-    settings: 'General adjustments'
+    settings: 'General adjustments',
+    level: 'Level',
+    nextLevel: 'Next level'
   },
   activities: {
     quiz: 'Quiz',
@@ -149,13 +157,24 @@ export default {
   },
   store: {
     title: 'Level up faster with our items!',
-    myItems: 'My items',
+    myItems: {
+      title: 'My items',
+      use: 'USE',
+      inUse: 'IN USE'
+    },
     availableItems: 'Available items',
     confirmUseItem: 'Do you really want to use this item?',
     insufficientCurrencies: 'Insufficient currencies!',
     activatedItem: 'Activated item!',
     errorActivating: 'An error occurred while activating the item, please try again or contact technical support.',
-    gift: 'Gift sent successfully!'
+    gift: 'Gift sent successfully!',
+    buy: {
+      price: 'Price',
+      units: 'Units',
+      total: 'Total',
+      cancel: 'Cancel',
+      buy: 'Buy'
+    }
   },
   profile: {
     editData: 'Click here to edit your data',
@@ -167,9 +186,22 @@ export default {
       header: 'Settings',
       account: 'Account',
       avatar: 'Profile image:',
+      changeAvatar: {
+        title: 'Generate random avatars!',
+        new: 'Generate new avatar',
+        choice: 'Choose this'
+      },
       name: 'Name:',
       nickname: 'Nickname:',
       password: 'Password:',
+      changePassword: {
+        current: 'Current password',
+        new: 'New password',
+        confirm: 'Confirm new password',
+        change: 'Change Password',
+        cancel: 'Cancel',
+        incorrectPassword: 'Your current password is incorrect! Try again!'
+      },
       notifications: 'Email notification',
       update: 'Updates',
       changeData: 'Changing your email and/or password',
@@ -177,7 +209,12 @@ export default {
       terms: 'Terms of use and privacy',
       credits: 'Media credits',
       save: 'Save all changes',
-      changeAccount: 'Switch account'
+      changeAccount: 'Switch account',
+      tutorials: 'Tutorials',
+      close: 'Do you really want to close the settings? <br> You will lose the changes already made!'
+    },
+    tutorials: {
+      title: 'Tutorials'
     },
     terms: {
       header: 'Usage policy and privacy',
@@ -194,12 +231,12 @@ export default {
   profileFriends: {
     level: 'Level',
     friends: 'Friends',
+    request: 'Request friendship',
     requestSuccessfully: 'Request sent successfully!',
     requestError: 'There was an error making the request, please try again later!'
   },
   hub: {
     title: 'Discover new friends! Learning together is more fun!',
-    search: 'Search friends',
     invitation: 'Invite a friend',
     requests: 'Friendship request',
     myFriends: 'My friends',
@@ -219,6 +256,15 @@ export default {
         error3: 'refuse',
         error4: 'the friendship!'
       }
+    },
+    search: {
+      title: 'Search friends',
+      input: 'Search by name or email',
+      friends: 'Friends found',
+      level: 'Level',
+      profile: 'View profile',
+      loadMore: 'Load more friends',
+      viewAll: 'Show all'
     }
   },
   generalAdjustments: {
@@ -232,7 +278,15 @@ export default {
       header: 'Themes',
       myThemes: 'My themes',
       availableThemes: 'Available themes',
-      save: 'Save changes'
+      save: 'Save changes',
+      min: 'You must select at least one theme!',
+      updateSuccessfull: 'Your themes have been updated!'
     }
+  },
+  dlg: {
+    yes: 'Yes',
+    no: 'No',
+    change: 'Change',
+    cancel: 'Cancel'
   }
 }

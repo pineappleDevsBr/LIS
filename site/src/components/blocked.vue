@@ -2,19 +2,19 @@
   <q-dialog v-model="blocked" persistent>
     <q-card class="m-card -image">
       <q-card-section>
-        <div class="text-h6">Más noticias!</div>
+        <div class="text-h6">{{ $t('blocked.title') }}</div>
       </q-card-section>
 
       <q-card-section class="q-pt-none">
-        Infelizmente seu acesso foi bloqueado pelo administrador!
+        {{ $t('blocked.text') }}
       </q-card-section>
 
       <q-card-section class="q-pt-none">
-        Entre em contato com ele pelo e-mail <a href="mailto:admin@lis.com" target="_blank" class="a-link -primary -text-decoration">admin@lis.com</a> para descobrir o que aconteceu e ter seu acesso liberado novamente.
+        {{ $t('blocked.contact') }}
       </q-card-section>
 
       <q-card-section class="q-pt-none">
-        Obrigado pela compreensão!
+        {{ $t('blocked.thanks') }}
       </q-card-section>
       <q-card-section align="center">
         <img src="statics/blocked/blocked.png">

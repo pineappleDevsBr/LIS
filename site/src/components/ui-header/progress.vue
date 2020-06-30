@@ -10,12 +10,12 @@
       :thickness="0.12"
       color="accent"
       track-color="gray-11">
-      Nível&nbsp;<span id="countXp">{{ setLevelUp.level }}</span>
+      {{ $t('header.level') }}&nbsp;<span id="countXp">{{ setLevelUp.level }}</span>
     </q-circular-progress>
     <q-dialog v-model="showXP">
       <q-card class="m-card">
         <q-card-section>
-          <div class="text-h6">Próximo nível</div>
+          <div class="text-h6">{{ $t('header.nextLevel') }}</div>
         </q-card-section>
 
         <q-card-section>

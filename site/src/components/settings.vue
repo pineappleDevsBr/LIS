@@ -59,7 +59,7 @@
       <h2 class="m-settings_title">{{ $t('profile.settings.about') }}</h2>
       <q-card class="m-card m-settings_card" @click="tutorialOpen = true">
         <q-card-section class="m-settings_info">
-          <p class="m-settings_info-account">Tutoriais</p>
+          <p class="m-settings_info-account">{{ $t('profile.settings.tutorials') }}</p>
         </q-card-section>
       </q-card>
       <q-card class="m-card m-settings_card" @click="termsOpen = true">
@@ -138,7 +138,7 @@ export default {
       isCloseSettings: {
         open: false,
         persistent: true,
-        title: 'Deseja mesmo fechar as configurações?<br>Você perderá as alterações já feitas!'
+        title: this.$t('profile.settings.close')
       },
       secretPass: '*****************',
       selectAvatar: false,

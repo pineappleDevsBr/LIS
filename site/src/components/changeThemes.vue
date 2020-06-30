@@ -66,22 +66,23 @@ export default {
         if (this.allThemes[i].have) newThemes.push(this.allThemes[i].id)
       }
 
-      if (newThemes.length < 1) {
+      if (newThemes.length > 1) {
+        this.$q.loading.show()
+        await store().dispatch('theme/updateTheme', { themes: newThemes })
+        this.$q.notify({
+          color: 'positive',
+          message: this.$t('generalAdjustments.themes.updateSuccessfull'),
+          icon: 'sentiment_satisfied_alt'
+        })
+        this.closeThemes()
+        this.$q.loading.hide()
+      } else {
         this.$q.notify({
           color: 'negative',
-          message: 'Você deve selecionar no mínimo um tema!',
+          message: this.$t('generalAdjustments.themes.min'),
           icon: 'report_problem'
         })
       }
-      this.$q.loading.show()
-      await store().dispatch('theme/updateTheme', { themes: newThemes })
-      this.$q.notify({
-        color: 'positive',
-        message: 'Seus temas foram atualizados!',
-        icon: 'sentiment_satisfied_alt'
-      })
-      this.closeThemes()
-      this.$q.loading.hide()
     },
     closeThemes () {
       this.$emit('closeThemes')

@@ -98,12 +98,20 @@ export default {
       same: 'A senha deve ser igual à de cima'
     }
   },
+  blocked: {
+    title: 'Más noticias!',
+    text: 'Infelizmente seu acesso foi bloqueado pelo administrador!',
+    contact: 'Entre em contato com ele pelo e-mail <a href="mailto:admin@lis.com" target="_blank" class="a-link -primary -text-decoration">admin@lis.com</a> para descobrir o que aconteceu e ter seu acesso liberado novamente.',
+    thanks: 'Obrigado pela compreensão!'
+  },
   header: {
     home: 'Atividades',
     store: 'Loja',
     profile: 'Perfil',
     hub: 'Hub de amigos',
-    settings: 'Ajustes gerais'
+    settings: 'Ajustes gerais',
+    level: 'Nível',
+    nextLevel: 'Próximo nível'
   },
   activities: {
     quiz: 'Quiz',
@@ -149,13 +157,24 @@ export default {
   },
   store: {
     title: 'Suba de nível mais rápido com nossos itens!',
-    myItems: 'Meus itens',
+    myItems: {
+      title: 'Meus itens',
+      use: 'USAR',
+      inUse: 'EM USO'
+    },
     availableItems: 'Itens disponíveis',
     confirmUseItem: 'Deseja mesmo usar esse item?',
     insufficientCurrencies: 'Moedas insuficientes!',
     activatedItem: 'Item ativado!',
     errorActivating: 'Ocorreu um erro ao ativar o item, tente novamente ou entre em contato com o suporte técnico.',
-    gift: 'Presente enviado com sucesso!'
+    gift: 'Presente enviado com sucesso!',
+    buy: {
+      price: 'Preço',
+      units: 'Quantidade',
+      total: 'Total',
+      cancel: 'Cancelar',
+      buy: 'Comprar'
+    }
   },
   profile: {
     editData: 'Clique aqui para editar seus dados',
@@ -167,9 +186,22 @@ export default {
       header: 'Configurações',
       account: 'Conta',
       avatar: 'Imagem do perfil:',
+      changeAvatar: {
+        title: 'Gerar avatares aleatórios!',
+        new: 'Gerar novo avatar',
+        choice: 'Escolher esse'
+      },
       name: 'Nome:',
       nickname: 'Nickname:',
       password: 'Senha:',
+      changePassword: {
+        current: 'Senha atual',
+        new: 'Nova senha',
+        confirm: 'Confirmar nova senha',
+        change: 'Alterar senha',
+        cancel: 'Cancelar',
+        incorrectPassword: 'Sua senha atual está incorreta! Tente novamente!'
+      },
       notifications: 'Notificações por e-mail',
       update: 'Atualizações',
       changeData: 'Alteração de seu e-mail e/ou senha',
@@ -177,7 +209,12 @@ export default {
       terms: 'Termos de uso e privacidade',
       credits: 'Créditos de mídia',
       save: 'Salvar todas as alterações',
-      changeAccount: 'Trocar de conta'
+      changeAccount: 'Trocar de conta',
+      tutorials: 'Tutoriais',
+      close: 'Deseja mesmo fechar as configurações?<br>Você perderá as alterações já feitas!'
+    },
+    tutorials: {
+      title: 'Tutoriais'
     },
     terms: {
       header: 'Política e privacidade de uso',
@@ -194,12 +231,12 @@ export default {
   profileFriends: {
     level: 'Nível',
     friends: 'Amigos',
+    request: 'Solicitar amizade',
     requestSuccessfully: 'Solicitação enviada com sucesso!',
     requestError: 'Ocorreu um erro ao realizar a solicitação, tente novamente mais tarde!'
   },
   hub: {
     title: 'Descubra novos amigos! Aprender junto é mais divertido!',
-    search: 'Pesquisar amigos',
     invitation: 'Convidar um amigo',
     requests: 'Solicitações de amizade',
     myFriends: 'Meus amigos',
@@ -219,6 +256,15 @@ export default {
         error3: 'recusar',
         error4: 'a amizade!'
       }
+    },
+    search: {
+      title: 'Pesquisar amigos',
+      input: 'Pesquise pelo nome ou e-mail',
+      friends: 'Amigos encontrados',
+      level: 'Nível',
+      profile: 'Ver perfil',
+      loadMore: 'Carregar mais amigos',
+      viewAll: 'Mostrar todos'
     }
   },
   generalAdjustments: {
@@ -232,7 +278,15 @@ export default {
       header: 'Temas',
       myThemes: 'Meus temas',
       availableThemes: 'Temas disponíveis',
-      save: 'Salvar alterações'
+      save: 'Salvar alterações',
+      min: 'Você deve selecionar no mínimo um tema!',
+      updateSuccessfull: 'Seus temas foram atualizados!'
     }
+  },
+  dlg: {
+    yes: 'Sim',
+    no: 'Não',
+    change: 'Alterar',
+    cancel: 'Cancelar'
   }
 }

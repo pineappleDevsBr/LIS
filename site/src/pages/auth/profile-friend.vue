@@ -19,7 +19,7 @@
         <progressBar :progress="{ showValue: false, levelUp: this.setLevelUp.xp, xp: this.getFriend.xp }"/>
       </q-card-section>
     </q-card>
-    <q-btn no-caps rounded class="m-search_btn q-mb-md" label="Solicitar amizade" @click="addFriend(getFriend.id)" v-if="!getFriend.areFriends"/>
+    <q-btn no-caps rounded class="m-search_btn q-mb-md" :label="$t('profileFriends.request')" @click="addFriend(getFriend.id)" v-if="!getFriend.areFriends"/>
 
     <div v-if="friends.length > 0">
       <h2 class="m-friends_title">{{$t('profileFriends.friends')}}</h2>

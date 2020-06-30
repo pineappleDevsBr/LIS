@@ -6,8 +6,8 @@
       </q-card-section>
 
       <q-card-actions align="right">
-        <q-btn flat rounded label="Sim" class="a-btn -dark" @click="close(true)"/>
-        <q-btn flat rounded label="Não" class="a-btn -dark" @click="close(false)"/>
+        <q-btn flat rounded :label="$t('dlg.yes')" class="a-btn -dark" @click="close(true)"/>
+        <q-btn flat rounded :label="$t('dlg.no')" class="a-btn -dark" @click="close(false)"/>
       </q-card-actions>
     </q-card>
   </q-dialog>

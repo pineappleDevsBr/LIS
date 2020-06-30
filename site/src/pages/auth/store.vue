@@ -9,13 +9,13 @@
       {{ $t('store.title') }}
     </div>
     <div class="m-store_group" v-if="getMyItems">
-      <h2 class="m-store_title">{{ $t('store.myItems') }}</h2>
+      <h2 class="m-store_title">{{ $t('store.myItems.title') }}</h2>
       <div class="m-cards">
         <q-card class="m-card" v-for="item in getMyItems" v-bind:key="item.item.id" @click="useProduct(item.item.id, item.item.item_id, item.item.status)">
           <q-card-section class="m-store_box-product">
             <q-badge floating color="primary" text-color="white" :label="`${item.qtde}x`" />
             <div class="m-store_price">
-              <strong>{{ item.item.status === 'inactivated' ? 'USAR' : 'EM USO'}}</strong>
+              <strong>{{ item.item.status === 'inactivated' ? $t('store.myItems.use') : $t('store.myItems.inUse')}}</strong>
             </div>
             <img class="m-store_icon" :src="`statics/store/products/${item.item.item.icon}.svg`" alt="">
             <div class="m-store_product">

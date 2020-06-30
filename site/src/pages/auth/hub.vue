@@ -4,7 +4,7 @@
       <img class="m-spotlight_icon" src="statics/hub/bracelet.svg" alt="Friends">
       {{ $t('hub.title') }}
       <div class="m-friends_search">
-        <q-btn class="m-friends_search-btn" no-caps flat :label="$t('hub.search')" @click="searchOpen"/>
+        <q-btn class="m-friends_search-btn" no-caps flat :label="$t('hub.search.title')" @click="searchOpen"/>
         <q-btn class="m-friends_search-btn" no-caps flat :label="$t('hub.invitation')" @click="invitation"/>
       </div>
     </div>
