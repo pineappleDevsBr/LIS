@@ -41,7 +41,7 @@
           </q-step>
           <template v-slot:navigation>
             <q-stepper-navigation>
-              <q-btn type="submit" color="primary" :label="step === questions.length ? $t('activities.common.finish') : $t('activities.common.next')" />
+              <q-btn type="submit" @click="next" color="primary" :label="step === questions.length ? $t('activities.common.finish') : $t('activities.common.next')" />
                 <q-btn v-if="step > 1 " flat color="primary" @click="back()" :label="$t('activities.common.back')" class="q-ml-sm"/>
             </q-stepper-navigation>
         </template>
@@ -94,6 +94,7 @@ export default {
       if (evt) this.$emit('closeQuiz')
     },
     async next () {
+      console.log(this.answers[this.step - 1].answer)
       if (this.answers[this.step - 1].answer) {
         if (this.step < this.questions.length) {
           this.$refs.stepper.next()

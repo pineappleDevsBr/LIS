@@ -66,7 +66,7 @@ export default {
         if (this.allThemes[i].have) newThemes.push(this.allThemes[i].id)
       }
 
-      if (newThemes.length > 1) {
+      if (newThemes.length >= 1) {
         this.$q.loading.show()
         await store().dispatch('theme/updateTheme', { themes: newThemes })
         this.$q.notify({
@@ -84,7 +84,8 @@ export default {
         })
       }
     },
-    closeThemes () {
+    async closeThemes () {
+      await store().dispatch('theme/getMyThemes')
       this.$emit('closeThemes')
     },
     selectAllThemes () {
