@@ -34,12 +34,13 @@ class DatabaseSeeder {
     admin_1.nationality_id = 1;
     admin_1.user_type = 1;
     await admin_1.save();
-
+    
     const admin_2 = new User();
     admin_2.nickname = 'fsouza2404'
     admin_2.avatar = 'lis_avatar-g844.png',
     admin_2.name = 'Fernando S. Marques'
     admin_2.email = 'fernando@lis.com',
+    admin_2.xp = 450;
     admin_2.password = '123';
     admin_2.money = 10000;
     admin_2.date_of_birth = new Date();
@@ -100,8 +101,8 @@ class DatabaseSeeder {
     })
 
     await Factory.model('App/Models/Tutorial').create({
-      name: 'Como alterar minha senha',
-      link: 'https://www.youtube.com/embed/TnlPtaPxXfc'
+      name: 'Como ativar o tema escuro',
+      link: 'https://www.youtube.com/embed/GEHtfFIwNos'
     })
   }
 }
