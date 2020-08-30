@@ -134,7 +134,7 @@ export default {
       this.text = value[0].text
       this.translation = value[0].translation
       if (this.text) this.numberWords = this.text.split(' ')
-      this.time = Math.trunc((this.numberWords.length * 70) / 2000)
+      this.time = Math.trunc((this.numberWords.length * 70) / 150)
       this.aux = (100 / this.time)
     }
   }
