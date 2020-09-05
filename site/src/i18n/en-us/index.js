@@ -144,6 +144,7 @@ export default {
     }
   },
   themeFilter: {
+    taskDisabled: 'Level up to answer that question!',
     empty: 'Unfortunately there are still no activities of this type on this topic, but soon the team will register!'
   },
   tutorial: {

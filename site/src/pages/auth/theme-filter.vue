@@ -14,6 +14,16 @@
       <q-tab-panel :name="tasks.theme_id" v-for="tasks in getTask" v-bind:key="tasks.theme_id">
         <div v-if="getTask[tab - 1].tasks.length > 0">
           <q-card class="m-card" v-for="task in tasks.tasks" v-bind:key="task.id" :disabled="getUser.level.level < task.difficulty"  @click="getUser.level.level < task.difficulty ? '' : openActivitie(task.id, task.task_type_id, task.xp, task.money)">
+            <q-tooltip
+              v-if="getUser.level.level < task.difficulty"
+              :delay="500"
+              content-class="bg-primary"
+              content-style="font-size: 14px"
+              transition-show="scale"
+              transition-hide="scale"
+              :offset="[0, 10]">
+                {{$t('themeFilter.taskDisabled')}}
+            </q-tooltip>
             <q-card-section class="m-text_card -no-padding-bottom">
               <div class="m-text_title">{{task.title}}</div>
               <div class="m-text_xp">{{task.xp}} XP</div>

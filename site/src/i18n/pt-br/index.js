@@ -144,6 +144,7 @@ export default {
     }
   },
   themeFilter: {
+    taskDisabled: 'Evolua seu nível para responder essa questão!',
     empty: 'Infelizmente ainda não há atividades deste tipo neste tema, mas logo a equipe ira cadastrar!'
   },
   tutorial: {
