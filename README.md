@@ -2,7 +2,6 @@
   <h1>
     <img width="200" src="https://docs.google.com/uc?id=1DqyqRrNiOdiiER85tGFBYBculT8R73J_">
     <br />
-    <br />
     Learning is simple
   </h1>
 </div>
