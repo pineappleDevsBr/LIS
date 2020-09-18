@@ -1,6 +1,6 @@
 {
   "name": "site",
-  "version": "0.0.1",
+  "version": "0.2.0",
   "description": "LIS - Learning is simple",
   "productName": "LIS",
   "cordovaId": "org.cordova.quasar.app",
