@@ -2,6 +2,12 @@
 // so you can safely delete all default props below
 
 export default {
+  pattern: {
+    lower: 'The password must have: Lower case',
+    upper: 'The password must have: Upper case',
+    number: 'The password must have: Number',
+    min: 'The password must have: A length of at least six characters'
+  },
   errorFilter: {
     page404: 'Oops! it seems that your studies had a little deviation, let\'s go back to the home screen for you to continue where you left off.',
     page404Btn: 'Back',

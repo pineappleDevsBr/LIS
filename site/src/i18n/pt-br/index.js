@@ -2,6 +2,12 @@
 // so you can safely delete all default props below
 
 export default {
+  pattern: {
+    lower: 'A senha deve ter: Letra minúscula',
+    upper: 'A senha deve ter: Letra maiúscula',
+    number: 'A senha deve ter: Número',
+    min: 'A senha deve ter: Um tamanho de no mínimo seis caracteres'
+  },
   errorFilter: {
     page404: 'Ops! parece que seus estudos tiveram um pequeno desvio, vamos voltar à tela inicial para você continuar de onde parou.',
     page404Btn: 'Voltar',
