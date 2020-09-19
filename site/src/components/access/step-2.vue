@@ -185,7 +185,6 @@ export default {
     },
 
     mask () {
-      console.log(this.$t('access.personalData.dateFormat'))
       return this.$t('access.personalData.dateFormat')
     },
 

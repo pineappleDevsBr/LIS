@@ -46,7 +46,6 @@
 <script>
 import progressBar from '../../components/ui/progress-bar'
 import btnBack from '../../components/ui/btnBack'
-import levelUp from '../../utils/levelUp'
 import store from '../../store'
 import { mapGetters } from 'vuex'
 
@@ -71,7 +70,6 @@ export default {
       const payload = { friend_id: id }
 
       const response = await store().dispatch('friends/sendInvites', payload)
-      console.log(response)
       if (response.status) {
         this.$q.notify({
           color: 'positive',
@@ -93,7 +91,7 @@ export default {
   computed: {
     ...mapGetters('friends', ['getFriend']),
     setLevelUp () {
-      return levelUp(this.getFriend.xp)
+      return this.getFriend.level
     }
   },
   async mounted () {

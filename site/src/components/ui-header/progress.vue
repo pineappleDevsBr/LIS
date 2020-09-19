@@ -32,7 +32,6 @@
 
 <script>
 import progressBar from '../ui/progress-bar'
-import levelUp from '../../utils/levelUp'
 import { mapGetters } from 'vuex'
 import { CountUp } from 'countup.js'
 
@@ -59,7 +58,7 @@ export default {
       return ((this.getUser.xp * 100) / this.setLevelUp.xp)
     },
     setLevelUp () {
-      return levelUp(this.getUser.xp)
+      return this.getUser.level
     }
   }
 }

@@ -94,7 +94,6 @@ export default {
       if (evt) this.$emit('closeQuiz')
     },
     async next () {
-      console.log(this.answers[this.step - 1].answer)
       if (this.answers[this.step - 1].answer) {
         if (this.step < this.questions.length) {
           this.$refs.stepper.next()
