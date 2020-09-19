@@ -1,5 +1,15 @@
 <template>
   <div>
+    <div v-if="skeleton">
+      <div style="display: grid; grid-template-columns: repeat(3, 1fr); grid-gap: 10px;" class="q-mb-xl">
+        <q-skeleton type="rect"/>
+        <q-skeleton type="rect"/>
+        <q-skeleton type="rect"/>
+      </div>
+      <div>
+        <q-skeleton v-for="i in 5" v-bind:key="i" width="100%" height="60px" class="q-mb-md"/>
+      </div>
+    </div>
     <q-tabs
     v-model="tab"
     inline-label
@@ -7,7 +17,7 @@
     no-caps
     narrow-indicator
     class="m-text_tabs">
-      <q-tab v-for="tab in getTask" v-bind:key="tab.theme_id" :label="tab.theme" :name="tab.theme_id" class="m-text_tab" />
+      <q-tab v-for="tab in getTask" v-bind:key="tab.theme_id" :label="tab.theme" :name="tab.theme_id" class="m-text_tab"/>
     </q-tabs>
 
     <q-tab-panels v-model="tab" animated>
@@ -85,6 +95,7 @@ export default {
   },
   data () {
     return {
+      skeleton: true,
       tab: 1,
       activitie: this.$route.name,
       openQuiz: false,
@@ -158,6 +169,7 @@ export default {
   },
   async mounted () {
     await store().dispatch('task/getTask', taskType[this.activitie])
+    this.skeleton = false
   }
 }
 </script>
