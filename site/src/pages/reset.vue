@@ -12,7 +12,12 @@
       class="primary-error"
       :type="isPwd ? 'password' : 'text'"
       v-model="form.password"
-      :rules="[val => pattern.exec(val) !== null || $t('access.personalData.errors.notStrong')]"
+      :rules="[
+        val => pattern[0].exec(val) !== null || $t('pattern.lower'),
+        val => pattern[1].exec(val) !== null || $t('pattern.upper'),
+        val => pattern[2].exec(val) !== null || $t('pattern.number'),
+        val => pattern[3].exec(val) !== null || $t('pattern.min'),
+      ]"
       lazy-rules
       :label="$t('reset.password')"
       :hint="$t('access.personalData.strongPassword')"/>
@@ -43,7 +48,7 @@ export default {
     return {
       isPwd: true,
       token: this.$route.query.token,
-      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/,
+      pattern: [/^(?=.*[a-z])/, /^(?=.*[A-Z])/, /^(?=.*[0-9])/, /^(?=.{6,})/],
       form: {
         confirmPassword: '',
         password: ''

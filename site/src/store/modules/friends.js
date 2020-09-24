@@ -32,7 +32,6 @@ const actions = {
 
   async searchAll ({ commit }, page) {
     try {
-      console.log(page)
       const { data } = await friends.searchAll(page)
       commit('UPDATE_SEARCHALL', data.data)
       return data

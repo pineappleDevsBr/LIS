@@ -2,6 +2,12 @@
 // so you can safely delete all default props below
 
 export default {
+  pattern: {
+    lower: 'A senha deve ter: Letra minúscula',
+    upper: 'A senha deve ter: Letra maiúscula',
+    number: 'A senha deve ter: Número',
+    min: 'A senha deve ter: Um tamanho de no mínimo seis caracteres'
+  },
   errorFilter: {
     page404: 'Ops! parece que seus estudos tiveram um pequeno desvio, vamos voltar à tela inicial para você continuar de onde parou.',
     page404Btn: 'Voltar',
@@ -218,9 +224,48 @@ export default {
       title: 'Tutoriais'
     },
     terms: {
-      header: 'Política e privacidade de uso',
-      terms: 'Termos de uso',
-      copy: 'Copyright'
+      header: 'Política de privacidade e uso',
+      privacyPolicy: 'Política de privacidade',
+      privacyText1: 'A sua privacidade é importante para nós. É política do PineappleDevs respeitar a sua privacidade em relação a qualquer informação sua que possamos coletar no site PineappleDevs, e outros sites que possuímos e operamos.',
+      privacyText2: 'Solicitamos informações pessoais apenas quando realmente precisamos delas para lhe fornecer um serviço. Fazemo-lo por meios justos e legais, com o seu conhecimento e consentimento. Também informamos por que estamos coletando e como será usado.',
+      privacyText3: 'Apenas retemos as informações coletadas pelo tempo necessário para fornecer o serviço solicitado. Quando armazenamos dados, protegemos dentro de meios comercialmente aceitáveis para evitar perdas e roubos, bem como acesso, divulgação, cópia, uso ou modificação não autorizados.',
+      privacyText4: 'Não compartilhamos informações de identificação pessoal publicamente ou com terceiros, exceto quando exigido por lei.',
+      privacyText5: 'O nosso site pode ter links para sites externos que não são operados por nós. Esteja ciente de que não temos controle sobre o conteúdo e práticas desses sites e não podemos aceitar responsabilidade por suas respectivas políticas de privacidade.',
+      privacyText6: 'Você é livre para recusar a nossa solicitação de informações pessoais, entendendo que talvez não possamos fornecer alguns dos serviços desejados.',
+      privacyText7: 'O uso continuado de nosso site será considerado como aceitação de nossas práticas em torno de privacidade e informações pessoais. Se você tiver alguma dúvida sobre como lidamos com dados do usuário e informações pessoais, entre em contacto connosco.',
+      cookiesPolicy: 'Política de Cookies PineappleDevs',
+      cookiesTitle1: 'O que são cookies?',
+      cookiesTitle2: 'Como usamos os cookies?',
+      cookiesTitle3: 'Desativar cookies',
+      cookiesTitle4: 'Cookies que definimos',
+      cookiesTitle5: 'Cookies de Terceiros',
+      cookiesTitle6: 'Mais informações',
+      cookiesText1: 'Como é prática comum em quase todos os sites profissionais, este site usa cookies, que são pequenos arquivos baixados no seu computador, para melhorar sua experiência. Esta página descreve quais informações eles coletam, como as usamos e por que às vezes precisamos armazenar esses cookies. Também compartilharemos como você pode impedir que esses cookies sejam armazenados, no entanto, isso pode fazer o downgrade ou "quebrar" certos elementos da funcionalidade do site.',
+      cookiesText2: 'Utilizamos cookies por vários motivos, detalhados abaixo. Infelizmente, na maioria dos casos, não existem opções padrão do setor para desativar os cookies sem desativar completamente a funcionalidade e os recursos que eles adicionam a este site. É recomendável que você deixe todos os cookies se não tiver certeza se precisa ou não deles, caso sejam usados para fornecer um serviço que você usa.',
+      cookiesText3: 'Você pode impedir a configuração de cookies ajustando as configurações do seu navegador (consulte a Ajuda do navegador para saber como fazer isso). Esteja ciente de que a desativação de cookies afetará a funcionalidade deste e de muitos outros sites que você visita. A desativação de cookies geralmente resultará na desativação de determinadas funcionalidades e recursos deste site. Portanto, é recomendável que você não desative os cookies.',
+      cookiesText4: 'Cookies relacionados à conta',
+      cookiesText5: 'Se você criar uma conta connosco, usaremos cookies para o gerenciamento do processo de inscrição e administração geral. Esses cookies geralmente serão excluídos quando você sair do sistema, porém, em alguns casos, eles poderão permanecer posteriormente para lembrar as preferências do seu site ao sair.',
+      cookiesText6: 'Cookies relacionados ao login',
+      cookiesText7: 'Utilizamos cookies quando você está logado, para que possamos lembrar dessa ação. Isso evita que você precise fazer login sempre que visitar uma nova página. Esses cookies são normalmente removidos ou limpos quando você efetua logout para garantir que você possa acessar apenas a recursos e áreas restritas ao efetuar login.',
+      cookiesText8: 'Cookies relacionados a boletins por e-mail',
+      cookiesText9: 'Este site oferece serviços de assinatura de boletim informativo ou e-mail e os cookies podem ser usados para lembrar se você já está registrado e se deve mostrar determinadas notificações válidas apenas para usuários inscritos / não inscritos.',
+      cookiesText10: 'Pedidos processando cookies relacionados',
+      cookiesText11: 'Este site oferece facilidades de comércio eletrônico ou pagamento e alguns cookies são essenciais para garantir que seu pedido seja lembrado entre as páginas, para que possamos processá-lo adequadamente.',
+      cookiesText12: 'Cookies relacionados a pesquisas',
+      cookiesText13: 'Periodicamente, oferecemos pesquisas e questionários para fornecer informações interessantes, ferramentas úteis ou para entender nossa base de usuários com mais precisão. Essas pesquisas podem usar cookies para lembrar quem já participou numa pesquisa ou para fornecer resultados precisos após a alteração das páginas.',
+      cookiesText14: 'Cookies relacionados a formulários',
+      cookiesText15: 'Quando você envia dados por meio de um formulário como os encontrados nas páginas de contacto ou nos formulários de comentários, os cookies podem ser configurados para lembrar os detalhes do usuário para correspondência futura.',
+      cookiesText16: 'Cookies de preferências do site',
+      cookiesText17: 'Para proporcionar uma ótima experiência neste site, fornecemos a funcionalidade para definir suas preferências de como esse site é executado quando você o usa. Para lembrar suas preferências, precisamos definir cookies para que essas informações possam ser chamadas sempre que você interagir com uma página for afetada por suas preferências.',
+      cookiesText18: 'Em alguns casos especiais, também usamos cookies fornecidos por terceiros confiáveis. A seção a seguir detalha quais cookies de terceiros você pode encontrar através deste site.',
+      cookiesText19: 'Este site usa o Google Analytics, que é uma das soluções de análise mais difundidas e confiáveis da Web, para nos ajudar a entender como você usa o site e como podemos melhorar sua experiência. Esses cookies podem rastrear itens como quanto tempo você gasta no site e as páginas visitadas, para que possamos continuar produzindo conteúdo atraente.',
+      cookiesText20: 'Para mais informações sobre cookies do Google Analytics, consulte a página oficial do Google Analytics.',
+      cookiesText21: 'As análises de terceiros são usadas para rastrear e medir o uso deste site, para que possamos continuar produzindo conteúdo atrativo. Esses cookies podem rastrear itens como o tempo que você passa no site ou as páginas visitadas, o que nos ajuda a entender como podemos melhorar o site para você.',
+      cookiesText22: 'Periodicamente, testamos novos recursos e fazemos alterações subtis na maneira como o site se apresenta. Quando ainda estamos testando novos recursos, esses cookies podem ser usados para garantir que você receba uma experiência consistente enquanto estiver no site, enquanto entendemos quais otimizações os nossos usuários mais apreciam.',
+      cookiesText23: 'À medida que vendemos produtos, é importante entendermos as estatísticas sobre quantos visitantes de nosso site realmente compram e, portanto, esse é o tipo de dados que esses cookies rastrearão. Isso é importante para você, pois significa que podemos fazer previsões de negócios com precisão que nos permitem analizar nossos custos de publicidade e produtos para garantir o melhor preço possível.',
+      cookiesText24: 'Esperemos que esteja esclarecido e, como mencionado anteriormente, se houver algo que você não tem certeza se precisa ou não, geralmente é mais seguro deixar os cookies ativados, caso interaja com um dos recursos que você usa em nosso site.',
+      cookiesText25: 'Esta política é efetiva a partir de',
+      cookiesText26: 'Setembro/2020'
     },
     credits: {
       header: 'Créditos',
