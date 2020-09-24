@@ -91,6 +91,19 @@ class UserRepository {
     }
   }
 
+  async findByType(type) {
+    try {
+      const data = await User
+        .query()
+        .where('user_type', type)
+        .fetch();
+
+        return data;
+    } catch (error) {
+      return err;
+    }
+  }
+
   async searchByEmailOrName(value) {
     try {
       const data = User

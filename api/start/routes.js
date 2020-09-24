@@ -95,6 +95,11 @@ Route.group(() => {
   Route.get('/tasks/:id', 'Admin/TaskController.get').as('admin.task')
   Route.post('/tasks/new', 'Admin/TaskController.store').as('admin.tasks.store')
 
+  // Admin -> Emails
+  Route.get('/emails', 'Site/EmailSenderController.index').as('admin.emails')
+  Route.get('/emails/:template', 'Site/EmailSenderController.get')
+  Route.post('/emails', 'Admin/EmailSenderController.store').validator(['Email'])
+
 // }).prefix('admin')
 }).prefix('admin').middleware(['admin', 'auth:session'])
 

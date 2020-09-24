@@ -10,7 +10,7 @@ class Admin {
    * @param {Function} next
    */
   async handle ({ response, auth }, next) {
-    
+
     try {
       await auth.authenticator('session').check();
       if (!auth.user || auth.user.user_type !== 1) {
@@ -18,8 +18,8 @@ class Admin {
       }
 
       await next();
-    } catch {
-      response.redirect('/admin/login')
+    } catch (error) {
+      response.redirect('/admin/login', { error })
     }
   }
 }
