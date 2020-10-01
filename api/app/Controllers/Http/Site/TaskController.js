@@ -11,7 +11,7 @@ class TaskController {
       ...task,
       task_type: types.toJSON().find(tp => tp.id == params.id)
     }
-
+    console.log(task);
     return view.render('pages.task.update', data);
   }
 }

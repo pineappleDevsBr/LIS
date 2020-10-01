@@ -1,5 +1,5 @@
 <li class="list-group-item rounded border mb-2 border-info">
-  <form action="#" method="PUT">
+  <form action="/" method="POST" data-ajax>
     <strong># {{ ($loop.index + 1) }}</strong>
     <div class="form-group">
       <label for="question" class="control-label mb-1">Question*</label>
@@ -21,7 +21,7 @@
   </form>
 
   <strong>Answers</strong>
-  <form action="/" method="PUT">
+  <form action="/" method="POST" data-ajax>
     <ul class="list-group list-group-flush" data-radio>
 
       @each(answer in question.answers)
