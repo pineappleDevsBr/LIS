@@ -7,7 +7,7 @@ class Email {
 
   get rules() {
     return {
-      title: 'required',
+      'payload.title': 'required',
     }
   }
 

@@ -94,14 +94,17 @@ Route.group(() => {
   Route.get('/tasks/type/:type', 'Admin/TaskController.index').as('admin.tasks')
   Route.get('/tasks/:id', 'Admin/TaskController.get').as('admin.task')
   Route.post('/tasks/new', 'Admin/TaskController.store').as('admin.tasks.store')
+  Route.post('/tasks/update/task', 'Admin/UpdateTaskController.task').as('admin.tasks.update.task')
+  Route.post('/tasks/update/question', 'Admin/UpdateTaskController.question').as('admin.tasks.update.question')
+  Route.post('/tasks/update/answers', 'Admin/UpdateTaskController.answers').as('admin.tasks.update.answers')
 
   // Admin -> Emails
   Route.get('/emails', 'Site/EmailSenderController.index').as('admin.emails')
   Route.get('/emails/:template', 'Site/EmailSenderController.get')
   Route.post('/emails', 'Admin/EmailSenderController.store').validator(['Email'])
 
-// }).prefix('admin')
-}).prefix('admin').middleware(['admin', 'auth:session'])
+}).prefix('admin')
+// }).prefix('admin').middleware(['admin', 'auth:session'])
 
 Route.group(() => {
   Route.on('/login').render('login').as('admin.login')

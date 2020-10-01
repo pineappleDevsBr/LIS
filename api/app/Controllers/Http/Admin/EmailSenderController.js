@@ -5,9 +5,7 @@ const UserRespository = use('App/Repositories/UserRepository');
 class EmailSenderController {
   async store({ view, session, request, response }) {
     const {
-      title,
-      description,
-      greetings,
+      payload,
       target,
       subject,
       template,
@@ -15,9 +13,7 @@ class EmailSenderController {
     const users = (await UserRespository.findByType(target)).toJSON();
 
     try {
-      // users.forEach(async user => {
-      // });
-      await Mail.send(`emails.${template}`, { title, description, greetings }, (message) => {
+      await Mail.send(`emails.${template}`, payload, (message) => {
         message
           .from('suporte@pineappledevs.com')
           .to(users.map(user => user.email).join())

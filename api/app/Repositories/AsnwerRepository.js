@@ -1,14 +1,13 @@
 'use strict'
 /** @type {import('@adonisjs/lucid/src/Lucid/Model')} */
 
-const Question = use('App/Models/Question');
+const Answer = use('App/Models/Answer');
 
-class QuestionRepository {
+class AnswerRepository {
   async getById(id) {
-    const data = await Question
+    const data = await Answer
       .query()
       .where('id', id)
-      .with(['answers'])
       .fetch();
 
     return data.toJSON();
@@ -16,7 +15,7 @@ class QuestionRepository {
 
   async updateById(id, body) {
     try {
-      const data = await Question
+      const data = await Answer
         .query()
         .where('id', id)
         .first()
@@ -31,4 +30,4 @@ class QuestionRepository {
   }
 }
 
-module.exports = new QuestionRepository();
+module.exports = new AnswerRepository();
