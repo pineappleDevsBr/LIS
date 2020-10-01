@@ -59,6 +59,9 @@
               @if(task.task_type_id == 1)
                 @!each(question in questions, include = 'partials/tasks/update/quiz')
               @endif
+              @if(task.task_type_id == 2)
+                @!each(question in questions, include = 'partials/tasks/update/listening')
+              @endif
               @if(task.task_type_id == 3)
                 @!each(question in questions, include = 'partials/tasks/update/complete')
               @endif
