@@ -2955,7 +2955,7 @@ function ajax(elm) {
               formData = new FormData(elm);
               _context.prev = 1;
               _context.next = 4;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default.a[method](URL, formData);
+              return axios__WEBPACK_IMPORTED_MODULE_1___default.a[method.toLowerCase()](URL, formData);
 
             case 4:
               response = _context.sent;

@@ -5,8 +5,8 @@ const AnswerRepository = use('App/Repositories/AnswerRepository');
 
 class UpdateTaskController {
   task({ request, response }) {
-    const body = request.all();
-    response.json(await TaskRepository.updateById(body.id, body));
+    const { task } = request.all();
+    response.send(await TaskRepository.updateById(task.id, task));
   }
 
   question({ request, response }) {

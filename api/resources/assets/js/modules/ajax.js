@@ -7,7 +7,7 @@ function ajax(elm) {
   async function doRequest() {
     const formData = new FormData(elm);
     try {
-      const response = await axios[method](URL, formData);
+      const response = await axios[method.toLowerCase()](URL, formData);
       console.log(response);
 
     } catch(err) {
