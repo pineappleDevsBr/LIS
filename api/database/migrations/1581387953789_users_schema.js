@@ -17,6 +17,8 @@ class UsersSchema extends Schema {
       table.integer('xp').notNullable().defaultTo(0)
       table.integer('money').notNullable().defaultTo(0)
       table.integer('nationality_id').unsigned().notNullable().references('id').inTable('nationalities')
+      .onUpdate('CASCADE')
+      .onDelete('CASCADE')
       table.timestamps()
     })
   }

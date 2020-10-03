@@ -10,7 +10,7 @@ class Question extends Model {
   }
 
   getFilepath({ file }) {
-    return `${Env.get('API_URL')}/uploads/${file}`
+    return `${Env.get('APP_URL')}/uploads/${file}`
   }
 
   tasks() {

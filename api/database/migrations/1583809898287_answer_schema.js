@@ -14,6 +14,8 @@ class AnswerSchema extends Schema {
         .notNullable()
         .references('id')
         .inTable('questions')
+        .onUpdate('CASCADE')
+        .onDelete('CASCADE')
       table.timestamps()
     })
   }

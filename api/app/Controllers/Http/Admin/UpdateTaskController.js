@@ -4,21 +4,28 @@ const QuestionRepository = use('App/Repositories/QuestionRepository');
 const AnswerRepository = use('App/Repositories/AnswerRepository');
 
 class UpdateTaskController {
-  task({ request, response }) {
-    const { task } = request.all();
-    response.send(await TaskRepository.updateById(task.id, task));
+  async task({ request, response }) {
+    const body = request.all();
+    response.send(await TaskRepository.updateById(body.id, body));
   }
 
-  question({ request, response }) {
+  async question({ request, response }) {
     const body = request.all();
+    console.log(body);
     response.json(await QuestionRepository.updateById(body.id, body));
   }
 
-  questions({ request, response }) {
-    const body = request.all();
+  async answers({ request, response }) {
+    const { answers } = request.all();
+    const hasRightProp = answers.find(item => item.hasOwnProperty('right'))
+    answers.map(async aws => {
+      const payload = { ...aws }
 
-    body.answers.map(async aws => {
-      await AnswerRepository.updateById(aws.id, aws)
+      if (hasRightProp) {
+        payload.right = (payload.right == 'true')
+      }
+
+      await AnswerRepository.updateById(payload.id, payload)
     })
 
     response.json({ success: true });
