@@ -15,6 +15,9 @@
       </div>
       <div class="o-modal_content">
         <h2 class="m-change-theme_title">{{ $t('generalAdjustments.themes.myThemes') }}</h2>
+        <div v-if="skeleton">
+          <q-skeleton v-for="i in 2" v-bind:key="i" width="100%" height="40px" class="q-mb-md"/>
+        </div>
         <div class="m-change-theme_cards">
           <div v-for="myTheme in getMyThemes" v-bind:key="`my_${myTheme.id}`">
             <q-card class="m-card m-settings_card">
@@ -27,6 +30,9 @@
 
         <h2 class="m-change-theme_title">{{ $t('generalAdjustments.themes.availableThemes') }}</h2>
         <q-input class="m-change-theme_filter" dense v-model="filter" :label="$t('access.choiceOfThemes.search')" />
+        <div v-if="skeleton">
+          <q-skeleton v-for="i in 5" v-bind:key="i" width="100%" height="40px" class="q-mb-md"/>
+        </div>
         <div class="m-change-theme_cards">
           <div v-for="theme in filterThemes" v-bind:key="theme.id">
             <q-card class="m-card m-settings_card">
@@ -54,6 +60,7 @@ export default {
   },
   data () {
     return {
+      skeleton: true,
       filter: '',
       allThemes: []
     }
@@ -117,6 +124,7 @@ export default {
   async mounted () {
     await store().dispatch('theme/getMyThemes')
     this.selectAllThemes()
+    this.skeleton = false
   }
 }
 </script>

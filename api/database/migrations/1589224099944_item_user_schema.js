@@ -7,8 +7,8 @@ class ItemUserSchema extends Schema {
   up () {
     this.create('item_users', (table) => {
       table.increments()
-      table.integer('user_id').unsigned().notNullable().references('id').inTable('users')
-      table.integer('item_id').unsigned().notNullable().references('id').inTable('items')
+      table.integer('user_id').unsigned().notNullable().references('id').inTable('users').onUpdate('CASCADE').onDelete('CASCADE')
+      table.integer('item_id').unsigned().notNullable().references('id').inTable('items').onUpdate('CASCADE').onDelete('CASCADE')
       table.enu('status', ['inactivated', 'activated', 'used']).notNullable().defaultTo('inactivated')
       table.datetime('endtime')
       table.timestamps()

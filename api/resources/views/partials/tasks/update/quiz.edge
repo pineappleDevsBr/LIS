@@ -1,5 +1,5 @@
 <li class="list-group-item rounded border mb-2 border-info">
-  <form action="#" method="PUT">
+  <form action="{{ route('admin.tasks.update.question') }}" method="POST" data-ajax class="m-b-60">
     <strong># {{ ($loop.index + 1) }}</strong>
     <div class="form-group">
       <label for="question" class="control-label mb-1">Question*</label>
@@ -9,10 +9,10 @@
     <div class="form-group">
       <label for="text" class="control-label mb-1">Text*</label>
       <input id="text" name="text" type="text" class="form-control"
-        aria-invalid="false" value="{{ question.text }}">
+        aria-invalid="false" value="{{ question.text || '' }}">
     </div>
     <div class="row">
-      <div class="col m-b-60">
+      <div class="col">
         <button id="payment-button" type="submit" data-reset class="btn btn-info">
           <span id="payment-button-amount">Update question</span>
         </button>
@@ -21,10 +21,11 @@
   </form>
 
   <strong>Answers</strong>
-  <form action="/" method="PUT">
+  <form action="{{ route('admin.tasks.update.answers') }}" method="POST" data-ajax>
     <ul class="list-group list-group-flush" data-radio>
 
       @each(answer in question.answers)
+        <input type="hidden" name="answers[{{ $loop.index }}].id" value="{{ answer.id }}">
         <li class="list-group-item px-0 d-flex">
           <div class="col-md-auto form-group mb-0">
             <div class="row d-flex align-items-center">
@@ -32,7 +33,7 @@
                 <label for="asnwer" class="control-label mb-0">Answer</label>
               </div>
               <div class="col">
-                <input id="asnwer" name="asnwer" type="text" class="form-control"
+                <input id="asnwer" name="answers[{{ $loop.index }}].answer" type="text" class="form-control"
               aria-invalid="false" value="{{ answer.answer }}">
               </div>
             </div>
@@ -42,7 +43,7 @@
               <div class="form-check">
                 <div class="radio">
                   <label for="right-{{ ($loop.index + 1) }}" class="form-check-label ">
-                  <input data-radio-right type="radio" id="right-{{ ($loop.index + 1) }}" name="right" value="true" {{ answer.right ? 'checked' : '' }} class="form-check-input">Is right
+                  <input data-radio-right type="radio" id="right-{{ ($loop.index + 1) }}" name="answers[{{ $loop.index }}].right" value="true" {{ answer.right ? 'checked' : '' }} class="form-check-input">Is right
                   </label>
                 </div>
               </div>

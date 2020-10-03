@@ -14,7 +14,7 @@
   <div class="row">
     <div class="col">
       <div>
-        <form action="{{ route('admin.tasks.update') }}" method="PUT" data-form class="card">
+        <form action="{{ route('admin.tasks.update.task') }}" method="POST" data-form data-ajax class="card">
           <div class="card-header">Task</div>
           <div class="card-body">
             <div class="row">
@@ -58,6 +58,15 @@
             <ul class="list-group list-group-flush">
               @if(task.task_type_id == 1)
                 @!each(question in questions, include = 'partials/tasks/update/quiz')
+              @endif
+              @if(task.task_type_id == 2)
+                @!each(question in questions, include = 'partials/tasks/update/listening')
+              @endif
+              @if(task.task_type_id == 3)
+                @!each(question in questions, include = 'partials/tasks/update/complete')
+              @endif
+              @if(task.task_type_id == 4)
+                @!each(question in questions, include = 'partials/tasks/update/reading')
               @endif
             </ul>
           </div>

@@ -1,0 +1,36 @@
+@layout('layout.index')
+
+@section('content')
+<div class="row">
+  <div class="col-md-4">
+    <div class="card">
+      <img class="card-img-top" src="{{ assetsUrl('assets/images/email.png') }}" alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title mb-3">Common</h4>
+        <p class="card-text">
+          This is a common template, containing title, description and thanks.
+        </p>
+        <a href="{{ route('admin.emails') }}/common" class="mt-2 btn btn-danger btn-block">
+          <i class="fa fa-envelope"></i>
+            Send email
+        </a>
+      </div>
+    </div>
+  </div>
+  <div class="col-md-4">
+    <div class="card">
+      <img class="card-img-top" src="{{ assetsUrl('assets/images/newsletter.png') }}" alt="Card image cap">
+      <div class="card-body">
+        <h4 class="card-title mb-3">Newsletter</h4>
+        <p class="card-text">
+          This template is used to notify users of changes and new functionality
+        </p>
+        <a href="{{ route('admin.emails') }}/newsletter" class="mt-2 btn btn-danger btn-block">
+          <i class="fa fa-envelope"></i>
+            Send email
+        </a>
+      </div>
+    </div>
+  </div>
+</div>
+@endsection

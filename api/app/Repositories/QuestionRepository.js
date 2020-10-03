@@ -13,6 +13,22 @@ class QuestionRepository {
 
     return data.toJSON();
   }
+
+  async updateById(id, body) {
+    try {
+      const data = await Question
+        .query()
+        .where('id', id)
+        .first()
+
+      data.merge(body);
+      await data.save();
+
+      return data
+    } catch (err) {
+      return err;
+    }
+  }
 }
 
 module.exports = new QuestionRepository();

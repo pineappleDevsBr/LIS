@@ -13,7 +13,7 @@ class ItemSchema extends Schema {
       table.integer('multiplier').defaultTo(0);
       table.integer('price').notNullable().defaultTo(0)
       table.integer('active_time')
-      table.integer('item_type_id').unsigned().references('id').inTable('item_types')
+      table.integer('item_type_id').unsigned().references('id').inTable('item_types').onUpdate('CASCADE').onDelete('CASCADE')
       table.timestamps()
     })
   }

@@ -44,7 +44,12 @@
     class="primary-error"
     autocomplete="new-password"
     v-model="form.password"
-    :rules="[val => pattern.exec(val) !== null || $t('access.personalData.errors.notStrong')]"
+    :rules="[
+      val => pattern[0].exec(val) !== null || $t('pattern.lower'),
+      val => pattern[1].exec(val) !== null || $t('pattern.upper'),
+      val => pattern[2].exec(val) !== null || $t('pattern.number'),
+      val => pattern[3].exec(val) !== null || $t('pattern.min'),
+    ]"
     lazy-rules
     type="password"
     :label="$t('access.personalData.password')"
@@ -102,7 +107,7 @@ export default {
   name: 'step2',
   data () {
     return {
-      pattern: /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.{6,})/,
+      pattern: [/^(?=.*[a-z])/, /^(?=.*[A-Z])/, /^(?=.*[0-9])/, /^(?=.{6,})/],
       form: {
         name: '',
         nickname: '',
@@ -180,7 +185,6 @@ export default {
     },
 
     mask () {
-      console.log(this.$t('access.personalData.dateFormat'))
       return this.$t('access.personalData.dateFormat')
     },
 

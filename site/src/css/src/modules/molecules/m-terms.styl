@@ -3,5 +3,17 @@
 }
 
 .m-terms_text {
-  margin-bottom: em(30);
+  font-size 1.2rem;
+  margin-bottom: em(15);
+  list-style: none;
+}
+
+.m-terms_list-item::before {
+  content: "\2022";
+  position: absolute;
+  color: $primary;
+  font-weight: $fontweight.bold;
+  display: inline-block;
+  width: 1em;
+  margin-left: -1em;
 }
