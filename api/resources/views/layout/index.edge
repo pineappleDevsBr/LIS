@@ -10,8 +10,12 @@
 
       <div class="page-container">
         @include('partials.header')
-        <div class="main-content section__content section__content--p30">
-          @!section('content')
+        <div class="main-content">
+          <div class="section-content section__content--p30">
+            <div class="container-fluid">
+              @!section('content')
+            </div>
+          </div>
         </div>
         @include('partials.footer')
       </div>

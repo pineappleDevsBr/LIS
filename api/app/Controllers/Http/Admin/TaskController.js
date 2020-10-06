@@ -148,6 +148,23 @@ class TaskController {
     session.flash({ result: 'created' });
     return response.route('admin.tasks', { type });
   }
+
+  async delete({ request, response, session }) {
+    const { id, type } = request.all();
+
+    try {
+      await Task
+        .query()
+        .where('id', id)
+        .delete()
+
+      session.flash({ deleted: true });
+    } catch (err) {
+      session.flash({ deleted: false });
+    } finally {
+      return response.route('admin.tasks', { type });
+    }
+  }
 }
 
 module.exports = TaskController

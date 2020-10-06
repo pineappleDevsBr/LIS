@@ -12,6 +12,11 @@
           {{ type.name }} has succesfull {{ old('result') }}
         </div>
       @endif
+      @if(old('deleted'))
+        <div class="alert alert-{{ old('deleted') === true ? 'success' : 'danger' }} mb-0" role="alert">
+          {{ type.name }} has {{ old('deleted') === true ? '' : 'not' }} succesfull deleted
+        </div>
+      @endif
     </div>
   </div>
   @include('partials.tasks.index')

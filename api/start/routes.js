@@ -97,6 +97,7 @@ Route.group(() => {
   Route.post('/tasks/update/task', 'Admin/UpdateTaskController.task').as('admin.tasks.update.task')
   Route.post('/tasks/update/question', 'Admin/UpdateTaskController.question').as('admin.tasks.update.question')
   Route.post('/tasks/update/answers', 'Admin/UpdateTaskController.answers').as('admin.tasks.update.answers')
+  Route.post('/tasks/delete', 'Admin/TaskController.delete').as('admin.tasks.delete')
 
   // Admin -> Emails
   Route.get('/emails', 'Site/EmailSenderController.index').as('admin.emails')
