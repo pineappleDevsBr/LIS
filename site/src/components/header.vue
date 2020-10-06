@@ -6,7 +6,20 @@
           <q-toolbar-title class="a-text -white o-header_title q-dark_title">
             {{ title }}
           </q-toolbar-title>
-          <qprogress></qprogress>
+          <qprogress v-if="!loader"></qprogress>
+          <q-circular-progress
+            indeterminate
+            class="m-progress_circular"
+            font-size="14px"
+            size="60px"
+            show-value
+            :thickness="0.12"
+            color="accent"
+            track-color="gray-11"
+            v-else
+          >
+          {{ $t('header.level') }}&nbsp;<span id="countXp">?</span>
+          </q-circular-progress>
           <!-- <component :is="activeAction"></component> -->
         </div>
         <div class="o-header_menu" v-if="title === 'LIS'">
@@ -45,6 +58,8 @@
 import qprogress from './ui-header/progress'
 import 'swiper/dist/css/swiper.css'
 import { swiper, swiperSlide } from 'vue-awesome-swiper'
+import { mapGetters } from 'vuex'
+import store from '../store'
 // import qfriends from './ui-header/friends'
 // import qstore from './ui-header/store'
 // import qsettings from './ui-header/settings'
@@ -63,6 +78,7 @@ export default {
     return {
       title: 'LIS',
       active: 'home',
+      loader: true,
       swiperOption: {
         slidesPerView: 'auto',
         freeMode: true,
@@ -72,6 +88,7 @@ export default {
     }
   },
   computed: {
+    ...mapGetters('user', ['getUser']),
     swiper () {
       return this.$refs.mySwiper.swiper
     },
@@ -102,6 +119,10 @@ export default {
     toSlide (idx) {
       this.swiper.slideTo(idx)
     }
+  },
+  async mounted () {
+    await store().dispatch('user/getUser')
+    this.loader = false
   }
 }
 </script>
