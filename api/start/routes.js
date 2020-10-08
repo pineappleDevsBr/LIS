@@ -102,10 +102,10 @@ Route.group(() => {
   // Admin -> Emails
   Route.get('/emails', 'Site/EmailSenderController.index').as('admin.emails')
   Route.get('/emails/:template', 'Site/EmailSenderController.get')
-  Route.post('/emails', 'Admin/EmailSenderController.store').validator(['Email'])
+  Route.post('/emails', 'Admin/EmailSenderController.store')
 
-}).prefix('admin')
-// }).prefix('admin').middleware(['admin', 'auth:session'])
+// }).prefix('admin')
+}).prefix('admin').middleware(['admin', 'auth:session'])
 
 Route.group(() => {
   Route.on('/login').render('login').as('admin.login')

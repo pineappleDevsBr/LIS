@@ -1,6 +1,6 @@
 export default (idx) => {
   const template = `
-    <li class="list-group-item rounded border mb-2 border-info" data-questions-item="">
+    <li class="list-group-item rounded border mb-2 border-info" data-questions-item="" data-validation-item="">
       <p>Question #${idx}</p>
       <div class="form-group">
         <label for="question_${idx}" class="control-label mb-1">Question*</label>

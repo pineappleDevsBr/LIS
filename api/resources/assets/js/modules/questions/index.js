@@ -2,13 +2,15 @@ import quiz from './template/quiz';
 import complete from './template/complete';
 import listening from './template/listening';
 import reading from './template/reading';
+import newsletter from './template/newsletter';
 import radio from '../radios';
 
 const templates = {
   quiz,
   complete,
   listening,
-  reading
+  reading,
+  newsletter
 }
 
 function questions(elm) {

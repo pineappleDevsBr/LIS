@@ -6,6 +6,8 @@ function validation(elm) {
   ctx.addEventListener('submit', (e) => {
     e.preventDefault();
 
+    console.log(ctx.querySelectorAll('[data-validation-item]').length, quant);
+
     if (ctx.querySelectorAll('[data-validation-item]').length < quant) {
       error.classList.add('show');
     } else {

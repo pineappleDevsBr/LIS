@@ -1,0 +1,71 @@
+@layout('layout.index')
+
+@section('content')
+<div class="row">
+  <div class="col">
+    <div class="card">
+      <div class="card-header">
+        <h2>Newsletter</h2>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col">
+    <form action="{{ route('admin.emails', { template: 'newsletter' }) }}" method="POST" data-validation="2">
+      <div class="card">
+        <div class="card-header">Info</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col form-group">
+              <label for="target" class="control-label mb-1">Target</label>
+              <select name="target" id="target" class="form-control" required>
+                <option value="">Please select</option>
+                @each(item in targets)
+                  <option value="{{ item[1] }}">{{ item[0] }}</option>
+                @endeach
+              </select>
+            </div>
+          </div>
+          <input type="hidden" name="template" value="{{ template }}">
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">Items</div>
+        <div class="card-body" data-questions='{
+          "count": 4,
+          "template": "newsletter"
+        }'>
+          <ul class="list-group list-group-flush" data-questions-holder>
+          </ul>
+          <div class="row mt-20 d-flex justify-content-center">
+            <button type="button" class="btn btn-info" data-questions-btn>
+              <i class="fa fa-plus"></i>
+              Add
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-header">Actions</div>
+        <div class="card-body">
+          <div class="row">
+            <div class="col">
+              <button id="payment-button" type="submit" class="btn btn-lg btn-info">
+                <span id="payment-button-amount">Submit</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </form>
+    <div class="sufee-alert alert with-close alert-danger alert-dismissible fade" data-error>
+      <span class="badge badge-pill badge-danger">Failed</span>
+      Minimum two items
+  </div>
+  </div>
+</div>
+@endsection
