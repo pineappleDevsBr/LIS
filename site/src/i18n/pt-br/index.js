@@ -65,7 +65,7 @@ export default {
     choiceOfThemes: {
       title: 'Escolha de temas',
       search: 'Buscar tema...',
-      info: 'Arraste para a direita para selecionar o tema.',
+      info: 'Escolha os temas abaixo.',
       btn: 'Finalizar cadastro',
       errors: {
         required: 'É obrigatório escolher no mínimo um tema'
