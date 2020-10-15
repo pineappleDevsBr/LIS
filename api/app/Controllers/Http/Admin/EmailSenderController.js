@@ -1,5 +1,6 @@
 'use strict'
 const Mail = use('Mail');
+const Logger = use('Logger');
 const UserRespository = use('App/Repositories/UserRepository');
 
 class EmailSenderController {
@@ -21,11 +22,12 @@ class EmailSenderController {
       })
 
       session.flash({ success: true });
-      return view.render('pages.emailSender.index');
     } catch (error) {
-      console.log(error);
-      session.flash({ success: false })
-      return response.redirect('back');
+      Logger.info('EmailSender', error);
+      session.flash({ success: true, error })
+    }
+    finally {
+      return view.render('pages.emailSender.index');
     }
   }
 }
