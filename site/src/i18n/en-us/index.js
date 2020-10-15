@@ -65,7 +65,7 @@ export default {
     choiceOfThemes: {
       title: 'Choosing themes',
       search: 'Search theme...',
-      info: 'Drag to the right to select the theme.',
+      info: 'Choose the themes below.',
       btn: 'Finalize registration',
       errors: {
         required: 'It is mandatory to choose at least one theme'
